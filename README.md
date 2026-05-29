@@ -96,7 +96,7 @@ node server.js
 
 ## Project Management
 
-- **Trello board:** [https://trello.com/b/1iRK5AXY/summer-project-nci-2026]
+- **Trello board:** [https://trello.com/b/1iRK5AXY/]
 - **GitHub:** [this repository]
 
 ---
