@@ -109,4 +109,7 @@ This project was developed as part of the HDip in Science in Computing (Software
 
 ## Author
 
-Molly Kane — Artist & Software Development Student, NCI Dublin
+- **Name:** Molly Kane
+- **Student ID:** 25132539
+- **Module:** Summer Project (Semester 3)
+- **Institution:** National College of Ireland
