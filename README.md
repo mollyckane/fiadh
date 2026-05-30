@@ -1,8 +1,8 @@
-# Giorria
+# Fiadh
 
 **A bilingual (English/Irish) artist hub for neurodivergent creatives in Ireland.**
 
-Giorria (from *an giorria* — Irish for "the hare," a symbol of prosperity and intuition) is a free web application that helps neurodivergent artists manage both the business side of their creative practice and their personal wellbeing in one place.
+Fiadh (*fee-ah* – an Irish name coming from the word ‘fia’ which means deer representing the words “wild/free” which reflects the independent spirit of the self-employed artist), is a free, bilingual (English/Irish) web application designed as an all-in-one business toolkit for emerging and early-career freelance artists in Ireland.
 
 ---
 
@@ -10,14 +10,12 @@ Giorria (from *an giorria* — Irish for "the hare," a symbol of prosperity and 
 
 **My Practice**
 - Invoice generator with VAT toggle and payment status tracking
-- Self-employment hub — plain-language guides on Irish sole trader registration, VAT, self-assessment tax, pricing, and artist rights
-- External resources directory — curated links to Irish artist grants and support organisations
+- Contract templates — pre-built Commission, Licensing and Collaboration contracts with fillable fields
+- Income & expense tracker with Chart.js visualisations (monthly totals, trends, category breakdown)
 
-**My Wellbeing**
-- Mental health check — daily log for mood, anxiety, and energy
-- Physical health / chronic flare tracker — daily log for pain, migraine severity, and fatigue
-- Journal — free-text, dated, keyword-searchable private notes
-- Pattern view — weekly and monthly visualisations of health data alongside business activity
+**My Resources**
+- Self-employment hub — plain-language guides on Irish sole trader registration, VAT, self-assessment tax, pricing and artist rights
+- External resources directory — curated links to Irish artist grants and support organisations
 
 **Accessibility**
 - Full English / Irish language toggle — switches at runtime, no page reload
@@ -42,7 +40,7 @@ Giorria (from *an giorria* — Irish for "the hare," a symbol of prosperity and 
 ## Project Structure
 
 ```
-giorria/
+fiadh/
 ├── server.js
 ├── config/
 │   └── db.js
@@ -51,8 +49,10 @@ giorria/
 ├── routes/
 │   ├── auth.js
 │   ├── invoices.js
-│   ├── logs.js
-│   └── journal.js
+│   ├── contracts.js
+│   ├── income.js
+│   ├── expenses.js
+│   └── articles.js
 ├── public/
 │   ├── css/
 │   ├── js/
@@ -71,8 +71,8 @@ giorria/
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/giorria.git
-cd giorria
+git clone https://github.com/yourusername/fiadh.git
+cd fiadh
 npm install
 ```
 
@@ -82,7 +82,7 @@ Create a `.env` file in the root:
 DB_HOST=your_host
 DB_USER=your_user
 DB_PASSWORD=your_password
-DB_NAME=giorria
+DB_NAME=fiadh
 JWT_SECRET=your_secret
 ```
 
