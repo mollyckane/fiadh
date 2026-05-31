@@ -14,7 +14,7 @@ db.connect((err) => {
         console.error('Database connection failed:', err);
         throw err;
     }
-    console.log('Connected to Railway MySQL!');
+    console.log('Connected to Railway MySQL successful.');
 });
 
 module.exports = db;
