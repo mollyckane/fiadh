@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         //SQL query to insert new user into database
-        const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+        const sql = 'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)';
 
         //run query
         //prevent SQL injection attacks by using parameterized queries (the ? placeholders) instead of directly inserting user input into the query string
@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
         const user = results[0];
 
         //compare provided password with hashed password in database
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password_hash);
 
         //if passwords don't match, return error 401
         if (!isMatch) return res.status(401).json({ error: 'Incorrect password' });
