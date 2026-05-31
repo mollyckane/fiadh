@@ -1,0 +1,32 @@
+{
+  "name": "fiadh-summer-project",
+  "version": "1.0.0",
+  "description": "**A bilingual (English/Irish) artist hub for neurodivergent creatives in Ireland.**",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mollyckane/fiadh.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mollyckane/fiadh/issues"
+  },
+  "homepage": "https://github.com/mollyckane/fiadh#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.22.4"
+  }
+}
