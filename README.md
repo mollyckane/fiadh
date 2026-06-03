@@ -86,14 +86,18 @@ DB_NAME=fiadh
 JWT_SECRET=your_secret
 ```
 
-To run the application:
-- Cd into the folder containing the project.
-- Run the server:
+## How to run the project
+Make sure terminal is cd into the folder containing the project.
+
+Start the server:
 
 ```bash
 node server.js
 ```
-
+Open the app in your browser at:
+```txt
+http://localhost:3000
+```
 ---
 
 ## Project Management
