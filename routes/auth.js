@@ -10,26 +10,41 @@ const db = require('../config/db');
 //---- ROUTES -----
 // Register route - create new user
 router.post('/register', async (req, res) => {
+    //validate input - check that all required fields are provided
+    if (!fname || !lname || !email || !password) {
+        return res.status(400).json({ error: 'All fields are required' });
+      }
     //pull name, email, password from request body
-    const { name, email, password } = req.body;
+    const { fname, lname, email, password } = req.body;
 
     //try-catch for error handling
     try {
-        //hash password before saving it, value of 10 is the salt rounds (higher is more secure but slower)
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        //SQL query to insert new user into database
-        const sql = 'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)';
-
-        //run query
-        //prevent SQL injection attacks by using parameterized queries (the ? placeholders) instead of directly inserting user input into the query string
-        db.query(sql, [name, email, hashedPassword], (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
+        const checkSql = 'SELECT * FROM users WHERE email = ?';
+        db.query(checkSql, [email], async (err, results) =>{
+            if(err){ return res.status(500).json({ error: err.message });
             }
-            //if successful:
-            res.status(201).json({ message: 'User registered successfully.'});       
-        });                
+
+            //if user already exists with this email, return error 409
+            if(results.length > 0){ return res.status(409).json({ error: 'User already exists with this email' });
+            }
+            //hash password before saving it, value of 10 is the salt rounds (higher is more secure but slower)
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+
+            //SQL query to insert new user into database
+            const sql = 'INSERT INTO users (fname, lname, email, password_hash) VALUES (?, ?, ?, ?)';
+
+            //run query
+            //prevent SQL injection attacks by using parameterized queries (the ? placeholders) instead of directly inserting user input into the query string
+            db.query(sql, [fname, lname, email, hashedPassword], (err, result) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+                const token = jwt.sign({ id: result.insertId }, process.env.JWT_SECRET, { expiresIn: '1d' });
+                //if successful:
+                res.status(201).json({ token, message: 'User registered successfully.' });
+            });    
+        });            
     }
     catch (err) {
         res.status(500).json({ error: err.message });
@@ -38,6 +53,11 @@ router.post('/register', async (req, res) => {
 
 // Login route - authenticate user and return JWT token
 router.post('/login', (req, res) => {
+    //validate input - check that all required fields are provided
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Email and password are required' });
+      }
+
     //pull email and password from request body
     const { email, password } = req.body;
 
@@ -63,7 +83,7 @@ router.post('/login', (req, res) => {
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
         //return token to client - they will use this token to authenticate future requests
-        res.json({ token });
+        res.json({ token, message: 'Login successful.'});
     });
 })
 
