@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+Tokumin&display=swap');
+
+:root {
+    /* font */
+    --font-body: 'Inter', Arial, sans-serif;
+    --font-heading: 'Kaisei Tokumin', Times, serif;
+    --text-color-primary: #9b6363;
+    --text-color-secondary: #9f998e;
+    --subtitle: #595a3dae;
+    --text-color-muted: #9a9494;
+    --text-green: rgb(40, 103, 40);
+    --text-red: rgb(196, 42, 42);
+    --text-highlight: rgb(220, 144, 87);
+
+    /* colours */
+    --bg-main: #faf4f3;
+    --bg-secondary: #965E5E;
+    --card-main: rgba(250, 249, 247, 0.957);
+    --border-color-main: #965E5E;
+    --border-color-secondary: #e2c8c8;
+    --color-surface-offset: #eeeae0;
+    --input-bg: #f4e8e8;
+
+    /* presets */
+    --border: 1px solid var(--border-color-main);
+    --radius: 0.6rem;
+    --shadow-sm: 0 2px 5px #00000058;
+    --divider: rgba(0, 0, 0, 0.07);
+    --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0 auto;
+    min-height: 100vh;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    color: var(--text-color-primary);
+    background-color: var(--bg-main);
+    display: flex;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40vw;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5, p {
+    margin: 0;
+    padding: 0;
+}
+
+aside{
+    top: 0;
+    left: 0;
+    width: 20vw;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: solid 10px var(--border-color-secondary);
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+li a{
+    color: var(--bg-main);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+main{
+    max-width: 500px;
+    scroll-snap-align: start;
+    padding-bottom: 40vh;
+}
+
+main h1{
+    font-size: 5rem;
+}
+
+footer{
+    font-size: 0.8rem;
+    position: sticky;
+    background-color: var(--bg-main);
+    color: var(--text-color-secondary);
+    text-align: center;
+    bottom: 0.5rem;
+    margin-left: -7vw;
+}
+
+.subtitle{
+    font-size: 0.9rem;
+    color: var(--subtitle);
+    font-weight: 500;
+    border-bottom: 1px solid var(--subtitle);
+    padding-bottom: 0.8rem;
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+main, .register-section, .login-section{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100vh;
+}
+
+.register-section {
+    padding-bottom: 5rem;
+}
+
+.login-section{
+    padding-bottom: 12rem;
+}
+
+.register-section, .login-section{
+    text-align: center;
+    max-width: 400px;
+    scroll-snap-align: start;min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-inline: 0.5rem;
+}
+
+.register-section h2, .login-section h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.register-form, .login-form{
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-align: left;
+    width: 100%;
+}
+ .register-text{
+    text-align: left;
+    margin-bottom: 1rem;
+    width: 100%;
+ }
+
+ .register-text .subtitle{
+    border: none;
+ }
+ .register-text span{
+    color: var(--text-highlight);
+    font-weight: 600;
+ }
+
+ .register-text span:hover{
+    color: #743333;
+    transition: var(--transition);
+ }
+
+input{
+    padding: 0.5rem;
+    border: var(--border);
+    border-radius: var(--radius);
+    background-color: var(--input-bg);
+    width: 100%;
+}
+
+input:focus{
+    border-color: var(--bg-secondary);
+    box-shadow: 0 0 0 2px var(--bg-secondary);
+    transition: var(--transition);
+}
+
+input::placeholder{
+    color: var(--text-color-muted);
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: -0.25rem;
+}
+
+.register-button, .login-button{
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--bg-secondary);
+    color: var(--bg-main);
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+.register-button:hover {
+    background-color: #7a4d4d;
+    transition: var(--transition);
+}

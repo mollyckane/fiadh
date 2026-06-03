@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Fiadh</title>
+</head>
+<body>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#register-section">Register</a></li>
+                <li><a href="#login-section">Login</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Accessibility</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- MAIN CONTENT -->
+     <div class="main-content">
+        <main>
+            <h1>Fiadh</h1>
+            <p class="subtitle">
+                pronounced “fee-ah”
+            </p>
+            <p>An Irish name coming from the word ‘fia’ which means ‘deer’, representing the words “wild/free”, is a free, bilingual
+            (English/Irish) web application designed as an all-in-one business toolkit for emerging and early-career freelance
+            artists in Ireland.</p>
+        </main>
+        <!-- REGISTER SECTION -->
+        <section class="register-section" id="register-section">
+            <div class="register-text">
+                <h2>Register for Fiadh</h2>
+                <p class="subtitle">Please fill out the form below to create an account.<br>
+                Already have an account? <a href="#login-section"><span>Login here</span></a></p>
+            </div>
+            <form action="#" method="post" class="register-form">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required placeholder="Enter your first name e.g. John"><br><br>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required placeholder="Enter your last name e.g. Smith"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="reg-email" name="email" required placeholder="e.g. johnsmith@example.com"><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="reg-password" name="password" required placeholder="Please create a strong password"><br><br>
+                <button type="submit" class="register-button">Register</button>
+            </form>
+        </section>
+        <section class="login-section" id="login-section">
+            <div class="register-text">
+                <h2>Login to Fiadh</h2>
+                <p class="subtitle">Please fill out the form below to login.<br>
+                    Don't have an account? <a href="#register-section"><span>Register here</span></a></p>
+            </div>
+            <form action="#" method="post" class="login-form">
+                <label for="email">Email:</label>
+                <input type="email" id="login-email" name="email" required placeholder="e.g. johnsmith@example.com"><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password"><br><br>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </section>
+        <footer>
+            <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
+        </footer> 
+    </div>   
+</body>
+</html>
