@@ -10,12 +10,12 @@ const db = require('../config/db');
 //---- ROUTES -----
 // Register route - create new user
 router.post('/register', async (req, res) => {
+    //pull name, email, password from request body
+    const { fname, lname, email, password } = req.body;
     //validate input - check that all required fields are provided
     if (!fname || !lname || !email || !password) {
         return res.status(400).json({ error: 'All fields are required' });
       }
-    //pull name, email, password from request body
-    const { fname, lname, email, password } = req.body;
 
     //try-catch for error handling
     try {
@@ -53,13 +53,12 @@ router.post('/register', async (req, res) => {
 
 // Login route - authenticate user and return JWT token
 router.post('/login', (req, res) => {
+    //pull email and password from request body
+    const { email, password } = req.body;
     //validate input - check that all required fields are provided
     if (!email || !password) {
         return res.status(400).json({ error: 'Email and password are required' });
       }
-
-    //pull email and password from request body
-    const { email, password } = req.body;
 
     //search database for user with this email
     const sql = 'SELECT * FROM users WHERE email = ?';
