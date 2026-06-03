@@ -1,6 +1,15 @@
-document.querySelector('.register-form').addEventListener('submit', handleRegister);
+const registerForm = document.querySelector('.register-form');
+registerForm.addEventListener('submit', handleRegister);
 
-document.querySelector('.login-form').addEventListener('submit', handleLogin);
+const loginForm = document.querySelector('.login-form');
+loginForm.addEventListener('submit', handleLogin);
+
+if (registerForm) {
+    registerForm.addEventListener('submit', handleRegister);
+}
+if (loginForm) {
+    loginForm.addEventListener('submit', handleLogin);
+}
 
 
 // REGISTRATION: register form validation + submission
@@ -33,7 +42,7 @@ async function handleRegister(e) {
 
         if (response.ok) {
             localStorage.setItem('token', result.token); //save token to localStorage for future authenticated requests
-            window.location.href = '/dashboard'; //redirect to dashboard after successful registration
+            window.location.href = '/dashboard.html'; //redirect to dashboard after successful registration
         } else {
             alert(result.error || result.message || 'Registration failed');
         }
@@ -71,7 +80,7 @@ async function handleLogin(e) {
 
         if (response.ok) {
             localStorage.setItem('token', result.token); //save token to localStorage for future authenticated requests
-            window.location.href = '/dashboard'; //redirect to dashboard after successful login
+            window.location.href = '/dashboard.html'; //redirect to dashboard after successful login
         } else {
             alert(result.error || result.message || 'Login failed');
         }
