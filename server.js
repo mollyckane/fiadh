@@ -1,9 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const app = express();
 
 app.use(express.json());
 
+//fronted
+app.use(express.static(path.join(__dirname, 'public')));
+
+//routes
 const authRoutes = require('./routes/auth');
 const invoiceRoutes = require('./routes/invoice');
 const expenseRoutes = require('./routes/expenses');
@@ -17,6 +22,11 @@ app.use('/api/expenses', expenseRoutes);
 app.use('/api/income', incomeRoutes);
 app.use('/api/contracts', contractRoutes);
 app.use('/api/articles', articleRoutes);
+
+//home page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
