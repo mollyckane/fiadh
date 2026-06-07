@@ -64,6 +64,11 @@ a {
     text-decoration: none;
 }
 
+#logout-btn{
+    margin:0;
+    padding:0;
+}
+
 h1,
 h2,
 h3,
@@ -115,7 +120,7 @@ nav .btm-nav {
     white-space: nowrap;
     gap: 0px;
 
-    li {
+    li, button {
         font-size: var(--text-xs);
     }
 
@@ -130,7 +135,7 @@ nav ul {
     color: var(--bg-main);
 }
 
-nav a {
+nav a, .btm-nav button {
     color: var(--bg-main);
     text-decoration: none;
     font-size: var(--text-sm);
@@ -139,9 +144,11 @@ nav a {
     cursor: pointer;
     padding: 0.5rem 1rem;
     transition: var(--transition);
+    background: none;
+    border: none;
 }
 
-nav a:hover {
+nav a:hover, .btm-nav button:hover {
     color: #743333;
     background-color: var(--border-color-secondary);
 }
