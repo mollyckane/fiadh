@@ -84,6 +84,17 @@ router.post('/login', (req, res) => {
         //return token to client - they will use this token to authenticate future requests
         res.json({ token, message: 'Login successful.'});
     });
-})
+});
+
+const verifyToken = require('../middleware/auth');
+
+router.get('/me', verifyToken, (req, res) => {
+    const sql = 'SELECT id, fname, lname, email FROM users WHERE id = ?';
+    db.query(sql, [req.userId], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        if (results.length === 0) return res.status(404).json({ error: 'User not found' });
+        res.json(results[0]);
+    });
+});
 
 module.exports = router;
