@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
                 if (err) {
                     return res.status(500).json({ error: err.message });
                 }
-                const token = jwt.sign({ id: result.insertId }, process.env.JWT_SECRET, { expiresIn: '1d' });
+                const token = jwt.sign({ id: result.insertId }, process.env.JWT_SECRET, { expiresIn: '3h' });
                 //if successful:
                 res.status(201).json({ token, message: 'User registered successfully.' });
             });    
@@ -78,8 +78,8 @@ router.post('/login', (req, res) => {
         //if passwords don't match, return error 401
         if (!isMatch) return res.status(401).json({ error: 'Incorrect password' });
 
-        //if passwords match, create JWT token -  expires in one day
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        //if passwords match, create JWT token -  expires in three hours
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '3h' });
 
         //return token to client - they will use this token to authenticate future requests
         res.json({ token, message: 'Login successful.'});
