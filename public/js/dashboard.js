@@ -178,13 +178,32 @@ function toggleDropdown(header) {
     // find the arrow icon inside this button
     var arrow = header.querySelector("i");
 
-    if (!arrow) return;
+    if(arrow){
+        if (dropdown.classList.contains("show")) {
+            arrow.classList.remove("fa-caret-down");
+            arrow.classList.add("fa-caret-up");
+    }   else {
+            arrow.classList.add("fa-caret-down");
+            arrow.classList.remove("fa-caret-up");
+        }
+    }
+    
+}
 
-    if (dropdown.classList.contains("show")) {
-        arrow.classList.remove("fa-caret-down");
-        arrow.classList.add("fa-caret-up");
-    } else {
-        arrow.classList.add("fa-caret-down");
-        arrow.classList.remove("fa-caret-up");
+function openSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    const header = section.querySelector('.dash-section-header');
+    const container = section.querySelector('.dash-section-container');
+
+    if (!header || !container) return;
+
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (!container.classList.contains('show')) {
+        setTimeout(() => {
+            toggleDropdown(header);
+        }, 500); 
     }
 }

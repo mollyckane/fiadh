@@ -22,7 +22,7 @@
     /* colours */
     --bg-main: #faf4f3;
     --bg-secondary: #965E5E;
-    --bg-hover-001: #e1bebe;
+    --bg-hover-001: #e1bebead;
     --card-main: rgba(250, 249, 247, 0a.957);
     --border-color-main: #965E5E;
     --border-color-secondary: #e2c8c8;
@@ -376,15 +376,16 @@ label {
     font-weight: 600;
     font-size: 1.2rem;
     min-height: 20px;
-    background-color: #f1e6e64a;
+    background-color: #f1e6e615;
     text-align: left; 
 }
 
 .dash-section .dash-section-header{
-    border-bottom: var(--border);
+    border-bottom: 2px solid var(--border-color-main);
     display: flex;
     justify-content: space-between;
     width: 100%;
+    cursor: pointer;
 }
 
 .dash-quick-actions{
@@ -506,7 +507,7 @@ label {
     color: var(--text-color-primary);
     padding: 1rem;
     border: 1px solid var(--border-color-main);
-    background: #e2c8c8;
+    background: #e2c8c827;
     transition: var(--transition);
     cursor: pointer;
 }
@@ -523,7 +524,13 @@ label {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    overflow: hidden;
     justify-content: flex-start;
+}
+
+#resource-container{
+    padding-bottom: 2rem;
+    min-height: 150px;
 }
 
 /* inner items animation */
