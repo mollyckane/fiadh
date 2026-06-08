@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/f.png">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/21102ac5ea.js" crossorigin="anonymous"></script>
+    
     <title>Fiadh</title>
 </head>
 <body>
@@ -29,24 +34,75 @@
     <div class="main-content-dash">
         <header>
             <h1>Welcome to your Fiadh Dashboard, <span id="welcome-name">.</span></h1>
-            <p>Saturday, 6th June 2026. 16:52.</p>
+            <p id="live-datetime"></p>
         </header>
         <main class="dash-grid">
             <section class="dash-quick-actions">
+                <!-- calender widget -->
+                <div class="dash-calendar">
+                    <div id="mini-calendar"></div>
+                </div>
+                <!-- quick shortcuts -->
+                <div class="dash-shortcuts">
+                    <button>+ Create Invoice</button>
+                    <button>+ I forget</button>
+                    <button>Current Opportunities</button>
+                </div>
+                <!-- chart widget -->
+                <div class="dash-chart">
+                    <div class="card-header">
+                      <p>Income vs Expenses this month</p>
+                    </div>
+                    <div class="dash-chart-body">
+                      <canvas id="income-expense-chart"></canvas>
+                    </div>
+                </div>
+                
 
             </section>
             <section class="dash-section">
-                <div>Business Tools</div>
+                <div class="dash-section-header"  onclick="toggleDropdown(this)" >
+                    Business Tools 
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="dash-section-container" id="business-container">
+                    <button>Learn about contracts</button>
+                    <button>View my income/expenses</button>
+                    <button>Learn about contracts</button>
+                    <button>Learn about contracts</button>
+                    <button>Learn about contracts</button>
+                    <button>Learn about contracts</button>
+
+                </div>
             </section>
             <section class="dash-section">
-                <div>Generators</div>
+                <div class="dash-section-header"  onclick="toggleDropdown(this)" >
+                    Generators
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="dash-section-container" id="generators-container">
+                    <button>Invoice</button>
+                    <button>Contract</button>
+                    <button>Expense Chart</button>
+                    <button>Email</button>
+                </div>
             </section>
             <section class="dash-section">
-                <div>Resource Hub</div>
+                <div class="dash-section-header"  onclick="toggleDropdown(this)" >
+                    Resource Hub
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="dash-section-container" id="resource-container">
+                    <button>gov.ie</button>
+                    <button>Self-employment</button>
+                    <button>Arts Council</button>
+                    <button>Current Opportunties</button>
+                    <button>Artist Megathread</button>
+                    <button>Local Development</button>
+                </div>
             </section>
         </main>
     </div>
-    
 <script src="js/dashboard.js"></script>
 </body>
 </html>
