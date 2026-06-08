@@ -167,3 +167,24 @@ function initIncomeExpenseChart() {
 
 initIncomeExpenseChart();
 
+// arrow dropdown toggle
+function toggleDropdown(header) {
+    var dropdown = header.nextElementSibling;
+
+    if (!dropdown) return;
+
+    dropdown.classList.toggle("show");
+
+    // find the arrow icon inside this button
+    var arrow = header.querySelector("i");
+
+    if (!arrow) return;
+
+    if (dropdown.classList.contains("show")) {
+        arrow.classList.remove("fa-caret-down");
+        arrow.classList.add("fa-caret-up");
+    } else {
+        arrow.classList.add("fa-caret-down");
+        arrow.classList.remove("fa-caret-up");
+    }
+}
