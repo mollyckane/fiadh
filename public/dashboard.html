@@ -17,11 +17,11 @@
         <nav class="navbar">
             <h1 style="color:white;">f.</h1>
             <ul>
-                <a href="#"><li>Home</li></a>
-                <a href="#"><li>Business Hub</li></a>
-                <a href="#"><li>Tools</li></a>
-                <a href="#"><li>Resource Hub</li></a>
-                <a href="#"><li>Contact Us</li></a>
+                <a href="#"><li>Dashboard</li></a>
+                <a href="#"><li>Invoices</li></a>
+                <a href="#"><li>Income & Expenses</li></a>
+                <a href="#business-container" onclick="openSection('business-container')"><li>Business Tools</li></a>
+                <a href="#resource-container" onclick="openSection('resource-container')"><li>Resource Hub</li></a>
             </ul>
             <ul class="btm-nav">
                 <a href="#"><li>Settings</li></a>
@@ -60,12 +60,12 @@
                 
 
             </section>
-            <section class="dash-section">
+            <section class="dash-section" id="business-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
                     Business Tools 
                     <i class="fa-solid fa-caret-down"></i>
                 </div>
-                <div class="dash-section-container" id="business-container">
+                <div class="dash-section-container">
                     <button>Learn about contracts</button>
                     <button>View my income/expenses</button>
                     <button>Learn about contracts</button>
@@ -75,24 +75,24 @@
 
                 </div>
             </section>
-            <section class="dash-section">
+            <section class="dash-section" id="generators-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
                     Generators
                     <i class="fa-solid fa-caret-down"></i>
                 </div>
-                <div class="dash-section-container" id="generators-container">
+                <div class="dash-section-container">
                     <button>Invoice</button>
                     <button>Contract</button>
                     <button>Expense Chart</button>
                     <button>Email</button>
                 </div>
             </section>
-            <section class="dash-section">
+            <section class="dash-section" id="resource-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
                     Resource Hub
                     <i class="fa-solid fa-caret-down"></i>
                 </div>
-                <div class="dash-section-container" id="resource-container">
+                <div class="dash-section-container">
                     <button>gov.ie</button>
                     <button>Self-employment</button>
                     <button>Arts Council</button>
@@ -102,6 +102,9 @@
                 </div>
             </section>
         </main>
+        <footer>
+            <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
+        </footer>
     </div>
 <script src="js/dashboard.js"></script>
 </body>
