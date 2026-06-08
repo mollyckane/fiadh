@@ -91,3 +91,79 @@ function renderMiniCalendar() {
 }
 
 renderMiniCalendar();
+
+// income/expense chart on dashboard
+function initIncomeExpenseChart() {
+    const ctx = document.getElementById('income-expense-chart');
+    if (!ctx || typeof Chart === 'undefined') return;
+
+    const data = {
+        labels: ['This month'],
+        datasets: [
+            {
+                label: 'Income',
+                data: [400],
+                backgroundColor: 'rgba(150, 94, 94, 0.7)',
+                borderRadius: 6,
+                barThickness: 18   
+            },
+            {
+                label: '',         
+                data: [0],
+                backgroundColor: 'transparent',
+                barThickness: 8, 
+                borderWidth: 0
+            },
+            {
+                label: 'Expenses',
+                data: [500],
+                backgroundColor: 'rgba(226, 200, 200, 0.9)',
+                borderRadius: 6,
+                barThickness: 18  
+            }
+        ]
+    };
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 12,
+                    font: { size: 10 }
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: { display: false },
+                ticks: { font: { size: 10 } },
+                categoryPercentage: 0.1
+            },
+            y: {
+                beginAtZero: true,
+                max: 1000,      
+                ticks: {
+                    font: { size: 10 },
+                    stepSize: 200
+                }
+            }
+        },
+        onClick: (evt, elements) => {
+            if (elements.length > 0) {
+                window.location.href = '/income-expenses.html';
+            }
+        }
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data,
+        options
+    });
+}
+
+initIncomeExpenseChart();
+
