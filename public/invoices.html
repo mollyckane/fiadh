@@ -46,20 +46,18 @@
 
     <div class="main-content-dash">
         <header>
-            <h1>Invoices Generator</h1>
+            <h1>Invoice Generator</h1>
             <p id="live-datetime"></p>
         </header>
-        <main class="main-section-invoice">
-
-
+        <div class="main-section-invoice">
             <section class="invoice-page">
+                <i class="fa-solid fa-caret-down" style="float:right;width:100%;text-align:right;" onclick="toggleDropdown(this)"></i>
                 <!-- Invoice header -->
                 <div class="invoice-header">
                     <div class="invoice-id-group">
                         <label for="invoiceNumber">Invoice number</label>
                         <input type="text" id="invoiceNumber" name="invoiceNumber" />
                     </div>
-            
                         <div>
                             <label for="invoiceDate">Invoice date</label>
                             <input type="date" id="invoiceDate" name="invoiceDate" />
@@ -83,38 +81,30 @@
                     </div>
                 </div>
             
-                <!-- Line items -->
+                <p style="border-bottom: 1px solid #965E5E; font-weight:700">Line items</p>
                 <div class="invoice-items">
-                    <p style="border-bottom: 1px solid #965E5E; font-weight:700;">Line items</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Description</th>
-                                <th>Quantity</th>
-                                <th>Rate</th>
-                                <th>Line total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="invoiceItemsBody">
-                            <tr class="invoice-item-row">
-                                <td><input type="text" name="itemDescription[]" /></td>
-                                <td><input type="number" name="itemQuantity[]" step="1" min="0" /></td>
-                                <td><input type="number" name="itemRate[]" step="0.01" min="0" /></td>
-                                <td><input type="text" name="itemTotal[]" readonly /></td>
-                                <td><button type="button" class="remove-item"> - </button></td>
-                                <td><button type="button" id="addItemButton"> + </button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    
+                
+                    <!-- Column headers -->
+                    <div class="item-header">
+                        <span>Description</span>
+                        <span>Quantity</span>
+                        <span>Rate</span>
+                        <span>Line total</span>
+                        <span></span>
+                    </div>
+                
+                    <!-- Rows live here -->
+                    <div id="invoiceItemsBody"></div>
+                
+                    <button type="button" id="addItemButton">+ Add item</button>            </div>
             
                 <!-- Totals + VAT -->
                 <div class="invoice-totals">
                     <div class="totals-left">
                         <label>
-                            <input type="checkbox" id="vatEnabled" />
                             Apply VAT
+                            <input type="checkbox" id="vatEnabled" />  
                         </label>
                         <div id="vatRateContainer">
                             <label for="vatRate">VAT rate (%)</label>
@@ -164,12 +154,11 @@
             <section class="invoice-history">
                 <p>Invoice History</p>
             </section>
-        </main>
+        </div>
         <footer>
             <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
         </footer>
     </div>
-    <script src="js/dashboard.js"></script>
     <script src="js/invoices.js"></script>
 </body>
 </html>
