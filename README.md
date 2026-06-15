@@ -65,40 +65,61 @@ fiadh/
 ## Getting Started
 
 ### Prerequisites
-- Node.js
-- MySQL database (Railway free tier recommended)
+- Node.js (LTS)
+- MySQL database (local instance recommended; Railway was used during development but is not required)
 
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/fiadh.git
+git clone https://github.com/YOUR-USERNAME/fiadh.git
 cd fiadh
 npm install
 ```
 
-Create a `.env` file in the root:
+### Environment variables
 
-```
-DB_HOST=your_host
-DB_USER=your_user
-DB_PASSWORD=your_password
-DB_NAME=fiadh
-JWT_SECRET=your_secret
+This project uses a `.env` file for database and JWT configuration.
+
+1. Copy the example file:
+
+```bash
+cp .env.example .env
 ```
 
-## How to run the project
-Make sure terminal is cd into the folder containing the project.
+2. Edit `.env` and update the values to match your local MySQL setup:
+
+- `DB_HOST` and `DB_PORT`
+- `DB_USER` and `DB_PASSWORD`
+- `DB_NAME` (for example `fiadh`)
+- `JWT_SECRET` (any random string)
+
+### Database setup
+
+1. Create the database and tables using the provided `schema.sql`:
+
+- Open your MySQL client and run:
+
+```sql
+SOURCE path/to/schema.sql;
+```
+
+2. Optionally, use the Register form in the app to create your first user account.
+
+### Running the project
+
+Make sure your terminal is in the project folder and your MySQL server is running.
 
 Start the server:
 
 ```bash
 node server.js
 ```
-Open the app in your browser at:
-```txt
+
+Then open the app in your browser at:
+
+```text
 http://localhost:3000
 ```
----
 
 ## Project Management
 
