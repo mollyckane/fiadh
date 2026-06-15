@@ -97,11 +97,21 @@ cp .env.example .env
 
 1. Create the database and tables using the provided `schema.sql`:
 
-- Open your MySQL client and run:
+- In your MySQL client (CLI or GUI), run the `schema.sql` file from the project root.
+
+For example, from the MySQL command line:
+
+```bash
+mysql -u your_user -p
+```
+
+Then inside the MySQL prompt:
 
 ```sql
-SOURCE path/to/schema.sql;
+SOURCE /full/path/to/fiadh/schema.sql;
 ```
+
+(Replace `/full/path/to/fiadh/schema.sql` with the actual path on your machine.)
 
 2. Optionally, use the Register form in the app to create your first user account.
 
