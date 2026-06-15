@@ -1,15 +1,3 @@
-// LOGOUT FUNCTIONALITY
-document.getElementById('logout-btn').addEventListener('click', handleLogout);
-const token = localStorage.getItem('token');
-
-// if (!token) {
-//     window.location.href = '/index.html';
-// }
-
-function handleLogout() {
-    localStorage.removeItem('token');
-    window.location.href = '/index.html';
-}
 
 //show user's name
 async function loadUserData() {
@@ -21,20 +9,17 @@ async function loadUserData() {
     const user = await response.json();
     document.getElementById('welcome-name').textContent = user.fname;
 }
-
 loadUserData();
 
 //live date 
 function updateDateTime() {
     const now = new Date();
-
     const day = now.toLocaleDateString('en-IE', { weekday: 'long' });
     const date = now.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' });
     const time = now.toLocaleTimeString('en-IE', { hour: '2-digit', minute: '2-digit', hour12: false });
 
     document.getElementById('live-datetime').textContent = `${day}, ${date}, ${time}`;
 }
-
 // run then update every second
 updateDateTime();
 setInterval(updateDateTime, 1000);
@@ -164,7 +149,6 @@ function initIncomeExpenseChart() {
         options
     });
 }
-
 initIncomeExpenseChart();
 
 // arrow dropdown toggle
