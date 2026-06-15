@@ -58,6 +58,168 @@ body {
     color: var(--text-color-primary);
     background-color: var(--bg-main);
     display: flex;
+
+}
+
+/* responsiveness */
+@media (max-width: 900px) {
+    html {
+        scroll-snap-type: none;
+    }
+
+    body {
+        flex-direction: column;
+        max-width: 100vw !important;
+    }
+
+    aside {
+        width: 100%;
+        z-index: 100;
+    }
+
+    /* Top bar that's always visible -- holds f. and the burger */
+    .mobile-bar {
+        position: fixed;
+        width: 100%;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--bg-secondary);
+        padding: 0.75rem 1.5rem;
+        border-bottom: 4px solid var(--border-color-secondary);
+        z-index: 101;
+      }
+    
+      .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        width: auto;
+        gap: 5px;
+      }
+
+    .burger span {
+        display: block;
+        width: 1.8rem;
+        height: 2px;
+        background-color: var(--bg-main);
+        border-radius: 2px;
+        transition: var(--transition);
+    }
+
+    /* Animate burger into X when open */
+    .burger.open span:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Nav is hidden by default on mobile */
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100% !important;
+        height: auto;
+        max-height: 0;
+        border-right: none !important;
+        padding: 0 1.5rem;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        overflow: hidden;
+        z-index: 100 !important;
+    }
+
+    /* Nav open state */
+    .navbar.open {
+        max-height: 400px !important;
+        padding: 5rem 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    .navbar>h1 {
+        display: none;
+        height: 0;
+    }
+
+    .btm-nav {
+        justify-content: left !important;
+    }
+
+    .btm-nav li {
+        font-size: 1rem !important;
+    }
+
+    .btm-nav a {
+        width: fit-content !important;
+    }
+
+    /* Main content fills full width */
+    .main-content, .main-content-dash {
+        position: relative;
+        top: 5rem;
+        margin-left: 0 !important;
+        width: 100vw !important;
+        padding: 1.5rem;
+        max-width: 100vw;
+    }
+
+    .main-home,
+    .register-section,
+    .login-section {
+        grid-column: 1;
+        min-height: fit-content !important;
+        justify-content: flex-start !important;
+        padding: 0 3rem 3rem !important;
+        max-width: 100%;
+    }
+
+    main h1 {
+        font-size: 3rem;
+    }
+
+    .main-content::before,
+    .main-content::after {
+        width: 50%;
+        height: 40%;
+    }
+
+    .dash-quick-actions{
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    main.dash-grid{
+        margin: 0;
+        width: 100%;
+    }
+
+    .dash-grid button{
+        margin-bottom: 1rem;
+    }
+
+    .dash-grid{
+        padding: 0 !important;
+    }
+
+    footer {
+        white-space: normal !important;
+        padding: 1rem 0;
+        position: relative !important;
+    }
 }
 
 a {
@@ -161,10 +323,12 @@ nav a:hover, .btm-nav button:hover {
     width: var(--main-width);
     /* fills the rest of the screen */
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    display: flex;
+    flex-direction: column;
+    /* display: grid;
+    grid-template-columns: 1fr 2fr 1fr; */
     /* left space | content | right space */
-    grid-template-rows: 100vh 100vh 100vh;
+    /* grid-template-rows: 100vh 100vh 100vh; */
 }
 
 .main-content::before {
@@ -202,7 +366,7 @@ nav a:hover, .btm-nav button:hover {
     z-index: 1;
 }
 
-.register-section {
+/* .register-section {
     grid-column: 2;
     grid-row: 2;
 }
@@ -210,14 +374,15 @@ nav a:hover, .btm-nav button:hover {
 .login-section {
     grid-column: 2;
     grid-row: 3;
-}
+} */
+
 
 .main-home {
     max-width: 500px;
     scroll-snap-align: start;
     padding-bottom: 40vh;
-    grid-column: 2;
-    grid-row: 1;
+    /* grid-column: 2;
+    grid-row: 1; */
 }
 
 main h1 {
@@ -232,9 +397,9 @@ footer{
     color: var(--text-color-secondary);
     text-align: center;
     bottom: 0.5rem;
-    margin-right: auto;
-    grid-column: 2/3;
-    grid-row: 4;
+    margin: 0 auto;
+    /* grid-column: 2/3;
+    grid-row: 4; */
     white-space: nowrap;
 }
 
@@ -254,6 +419,7 @@ footer{
     flex-direction: column;
     justify-content: flex-end;
     min-height: 100vh;
+    margin: 0 auto;
 }
 
 .register-section {
@@ -266,7 +432,8 @@ footer{
 
 .register-section, .login-section{
     text-align: center;
-    max-width: 400px;
+    max-width: 500px;
+    width: 100%;
     scroll-snap-align: start;
     min-height: 100vh;
     display: flex;
@@ -292,6 +459,8 @@ footer{
     box-shadow: var(--shadow-sm);
     text-align: left;
     width: 100%;
+    background-color: var(--bg-main);
+    z-index: 100;
 }
  .register-text{
     text-align: left;
@@ -711,13 +880,17 @@ label, tr {
 .invoice-history{
     width: 100%;
     max-width: 250px;
-    height: 200px;
+    height: fit-content; max-height: 500px;
+    overflow: auto;
     box-shadow: var(--shadow-sm);
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
 
     p{
         border-bottom: var(--border);
     }
 }
 
+.mobile-bar{
+    display: none;
+}
 
