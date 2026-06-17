@@ -231,8 +231,8 @@ async function loadInvoiceHistory() {
         <div style="font-size:0.82rem; border-bottom:1px solid var(--border-color-secondary); padding-bottom:0.4rem;">
             <div style="display: flex; justify-content:space-between; align-items: center;"><strong>${inv.client_name}</strong>
                 <div>
-                    <button>edit</button>
-                    <button>delete</button>
+                    <button class="edit-btn" data-id="${inv.id}">edit</button>
+                    <button class="delete-btn" data-id="${inv.id}">delete</button>
                 </div>
         </div>
             €${parseFloat(inv.total).toFixed(2)} &middot; <span class="status-pill ${inv.status}"> ${inv.status}</span>
@@ -241,6 +241,34 @@ async function loadInvoiceHistory() {
         `).join('')}
     </div>
     `;
+    historySection.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id= btn.dataset.id;
+            const confrimed = confirm('Are you sure you want to delete this invoice?');
+            if(confirmed){
+                try {
+                    const response = await fetch(`/api/invoices/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert('Invoice deleted!');
+                        loadInvoiceHistory();
+                    } else {
+                        alert(result.error || result.message || 'Failed to delete invoice.');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('An error occurred. Please try again.');
+                }
+            }
+        });
+    });
+
     } catch (err) {
         console.error('Could not load invoice history:', err);
     }
