@@ -61,167 +61,6 @@ body {
 
 }
 
-/* responsiveness */
-@media (max-width: 900px) {
-    html {
-        scroll-snap-type: none;
-    }
-
-    body {
-        flex-direction: column;
-        max-width: 100vw !important;
-    }
-
-    aside {
-        width: 100%;
-        z-index: 100;
-    }
-
-    /* Top bar that's always visible -- holds f. and the burger */
-    .mobile-bar {
-        position: fixed;
-        width: 100%;
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        background-color: var(--bg-secondary);
-        padding: 0.75rem 1.5rem;
-        border-bottom: 4px solid var(--border-color-secondary);
-        z-index: 101;
-      }
-    
-      .burger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        width: auto;
-        gap: 5px;
-      }
-
-    .burger span {
-        display: block;
-        width: 1.8rem;
-        height: 2px;
-        background-color: var(--bg-main);
-        border-radius: 2px;
-        transition: var(--transition);
-    }
-
-    /* Animate burger into X when open */
-    .burger.open span:nth-child(1) {
-        transform: translateY(5px) rotate(45deg);
-    }
-
-    .burger.open span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .burger.open span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* Nav is hidden by default on mobile */
-    .navbar {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100% !important;
-        height: auto;
-        max-height: 0;
-        border-right: none !important;
-        padding: 0 1.5rem;
-        transition: max-height 0.35s ease, padding 0.35s ease;
-        overflow: hidden;
-        z-index: 100 !important;
-    }
-
-    /* Nav open state */
-    .navbar.open {
-        max-height: 400px !important;
-        padding: 5rem 1.5rem;
-    }
-
-    nav ul {
-        flex-direction: column;
-    }
-
-    .navbar>h1 {
-        display: none;
-        height: 0;
-    }
-
-    .btm-nav {
-        justify-content: left !important;
-    }
-
-    .btm-nav li {
-        font-size: 1rem !important;
-    }
-
-    .btm-nav a {
-        width: fit-content !important;
-    }
-
-    /* Main content fills full width */
-    .main-content, .main-content-dash {
-        position: relative;
-        top: 5rem;
-        margin-left: 0 !important;
-        width: 100vw !important;
-        padding: 1.5rem;
-        max-width: 100vw;
-    }
-
-    .main-home,
-    .register-section,
-    .login-section {
-        grid-column: 1;
-        min-height: fit-content !important;
-        justify-content: flex-start !important;
-        padding: 0 3rem 3rem !important;
-        max-width: 100%;
-    }
-
-    main h1 {
-        font-size: 3rem;
-    }
-
-    .main-content::before,
-    .main-content::after {
-        width: 50%;
-        height: 40%;
-    }
-
-    .dash-quick-actions{
-        flex-direction: column;
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    main.dash-grid{
-        margin: 0;
-        width: 100%;
-    }
-
-    .dash-grid button{
-        margin-bottom: 1rem;
-    }
-
-    .dash-grid{
-        padding: 0 !important;
-    }
-
-    footer {
-        white-space: normal !important;
-        padding: 1rem 0;
-        position: relative !important;
-    }
-}
-
 a {
     color: inherit;
     text-decoration: none;
@@ -301,7 +140,6 @@ nav ul {
 nav a, .btm-nav button {
     color: var(--bg-main);
     text-decoration: none;
-    font-size: var(--text-sm);
     font-weight: 600;
     width: 100%;
     cursor: pointer;
@@ -747,13 +585,15 @@ label, tr {
     margin: 2rem auto;
     display: flex;
     gap: 1rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
     text-align: left;
 }
 
 .main-section-invoice button{
     border-radius: var(--radius);
     width: 100%;
+    height: fit-content;
+    align-self: end;
 }
 
 .invoice-page{
@@ -792,12 +632,15 @@ label, tr {
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
 }
    
 .item-row input[name="itemTotal"] {
-    flex: 2;
     background-color: var(--color-surface-offset);
     color: var(--text-color-secondary);  
+    cursor: not-allowed;
 }
 
 #addItemButton {
@@ -819,8 +662,9 @@ label, tr {
     display: flex;
     flex-direction: column;
     /* gap: 0.75rem; */
-    justify-content: space-around;
     height: 100%;
+    margin-left: 1rem;
+    transition: var(--transition);
 }
   
 .totals-right {
@@ -828,6 +672,7 @@ label, tr {
     gap: 0.25rem;
     border: var(--border);
     padding: 1rem;
+    white-space: nowrap;
 }
   
 .totals-right > div {
@@ -854,6 +699,40 @@ label, tr {
     grid-template-columns: 1fr 2fr;
     gap: 1rem;
 }
+
+.status-pill {
+    padding: 2px 8px;
+    border-radius: 0.5rem;
+    border: 1px solid #ebcc6d96; 
+}
+
+/* draft pill */
+.status-pill.draft{
+    background: #68dcef59;
+    border: 1px solid #3292a85e;
+    color: #228da6;
+}
+
+/* paid pill */
+.status-pill.paid {
+    background: #91eb5f80;
+    border: 1px solid #588a1c5e;
+    color: #52b326;
+}
+
+/* overdue pill */
+.status-pill.overdue {
+    background: #ff00006e;
+    border: 1px solid #a22d2d5e;
+    color: white;
+}
+
+/* sent pill */
+.status-pill.sent {
+    background: #fff0115c;
+    border: 1px solid #e1bd31e0;
+    color: #c8a025;
+}
   
 .invoice-page label {
     display: block;
@@ -877,6 +756,10 @@ label, tr {
     width: fit-content;
 }
 
+input[name="itemTotal"]{
+    border-radius: 0;
+}
+
 .invoice-history{
     width: 100%;
     max-width: 250px;
@@ -890,7 +773,291 @@ label, tr {
     }
 }
 
+.invoice-history button{
+    padding: 0;
+    width: fit-content;
+    align-self: center;
+    text-decoration: underline;
+    background: none;
+    color: #b15f5fb8;
+    border-radius: 0;
+    border: none;
+    font-size: 0.7rem;
+    
+}
+
 .mobile-bar{
     display: none;
+}
+
+@media (max-width: 1300px){
+    .main-section-invoice{
+        flex-direction: column;
+
+    }
+
+    .invoice-page{
+        width: 100%;
+    }
+    /* .invoice-item-row{
+        display: flex;
+        flex-direction: column;
+    } */
+
+    .item-row .remove-item {
+        width:  30%;
+        min-width: 100px;
+        margin-top: 0.5rem;
+        align-self: flex-end;
+    }
+
+}
+
+
+/* responsiveness */
+@media (max-width: 900px) {
+    html {
+        scroll-snap-type: none;
+    }
+
+    body {
+        flex-direction: column;
+        max-width: 100vw !important;
+    }
+
+    aside {
+        width: 100%;
+        z-index: 100;
+    }
+
+    /* Top bar that's always visible -- holds f. and the burger */
+    .mobile-bar {
+        position: fixed;
+        width: 100vw;
+        overflow-x: hidden;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--bg-secondary);
+        padding: 0.75rem 1.5rem;
+        border-bottom: 4px solid var(--border-color-secondary);
+        z-index: 101;
+    }
+
+    .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        width: auto;
+        gap: 5px;
+    }
+
+    .burger span {
+        display: block;
+        width: 1.8rem;
+        height: 2px;
+        background-color: var(--bg-main);
+        border-radius: 2px;
+        transition: var(--transition);
+    }
+
+    /* Animate burger into X when open */
+    .burger.open span:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Nav is hidden by default on mobile */
+    .navbar {
+        position: fixed;
+        left: 0;
+        width: 100% !important;
+        height: auto;
+        max-height: 0;
+        border-right: none !important;
+        padding: 0 1.5rem;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        overflow: hidden;
+        z-index: 100 !important;
+    }
+
+    /* Nav open state */
+    .navbar.open {
+        max-height: 450px !important;
+        padding: 1.5rem;
+        margin-top: 4.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    .navbar>h1 {
+        display: none;
+        height: 0;
+    }
+
+    nav .btm-nav {
+        margin-bottom: 1.5rem;
+    }
+
+    nav .btm-nav li,
+    nav .btm-nav button {
+        width: fit-content !important;
+        font-size: 1.2rem !important;
+    }
+
+    /* Main content fills full width */
+    .main-content,
+    .main-content-dash {
+        position: relative;
+        top: 5rem;
+        margin-left: 0 !important;
+        width: 100vw !important;
+        padding: 1.5rem;
+        max-width: 100vw;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-home,
+    .register-section,
+    .login-section {
+        grid-column: 1;
+        min-height: fit-content !important;
+        justify-content: flex-start !important;
+        padding: 0 3rem 3rem !important;
+        max-width: 100%;
+    }
+
+    main h1 {
+        font-size: 3rem;
+    }
+
+    .main-content::before,
+    .main-content::after {
+        width: 50%;
+        height: 40%;
+    }
+
+    .dash-quick-actions {
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    main.dash-grid {
+        margin: 0;
+        width: 100%;
+    }
+
+    .dash-grid button {
+        margin-bottom: 1rem;
+    }
+
+    .dash-grid {
+        padding: 0 !important;
+    }
+
+    /* invoice page */
+    .main-section-invoice {
+        flex-direction: column;
+        margin: 1rem 0;
+        width: 100%;
+    }
+
+    .invoice-header, .invoice-footer{
+        display: block;
+    }
+
+    .invoice-page{
+        padding: 1rem;
+        width: auto;
+    }
+
+    .invoice-items .item-header span{
+        font-size: 0.8rem;
+        line-height: 1rem;
+    }
+
+    .invoice-history{
+        max-width: 100%;
+    }
+
+    /* desktop -- labels hidden, column headers do the job */
+    .item-field {
+        display: contents;
+    }
+
+    .item-field label {
+        display: none;
+    }
+
+    .item-header {
+        display: none;
+    }
+
+    .item-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+        border: var(--border);
+        border-radius: var(--radius);
+        margin-bottom: 1rem;
+    }
+
+    .item-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .item-field label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .item-row .remove-item {
+        width:  20%;
+        min-width: 100px;
+        margin-top: 0.5rem;
+        align-self: flex-end;
+    }
+
+    #addItemButton{
+        width: 40%;
+        margin-left: 1rem;
+    }
+
+    .totals-left{
+        width: 100%;
+    }
+
+    .status-notes{
+        display: block;
+        div{
+            margin-bottom: 1rem;
+        }
+    }
+
+    footer {
+        white-space: normal !important;
+        padding: 1rem 0;
+        position: relative !important;
+    }
 }
 
