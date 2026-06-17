@@ -1,13 +1,33 @@
-
-//show user's name
 async function loadUserData() {
-    const response = await fetch('/api/auth/me', {
-        headers: {
-            'Authorization': `Bearer ${token}`
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = '/index.html';
+    }
+
+    try {
+        const response = await fetch('/api/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            localStorage.removeItem('token');
+            window.location.href = '/index.html';
+            return;
         }
-    });
-    const user = await response.json();
-    document.getElementById('welcome-name').textContent = user.fname;
+
+        const user = await response.json();
+
+        const nameEl = document.getElementById('welcome-name');
+        if (nameEl && user.fname) {
+            nameEl.textContent = user.fname;
+        }
+
+    } catch (err) {
+        console.error('Failed to load user data:', err);
+    }
 }
 loadUserData();
 
