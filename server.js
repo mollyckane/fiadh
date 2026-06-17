@@ -7,14 +7,17 @@ app.use(express.json());
 
 //fronted
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/libs', express.static(path.join(__dirname, 'node_modules')));
+
 
 //routes
 const authRoutes = require('./routes/auth');
-const invoiceRoutes = require('./routes/invoice');
+const invoiceRoutes = require('./routes/invoices');
 const expenseRoutes = require('./routes/expenses');
 const incomeRoutes = require('./routes/income');
 const contractRoutes = require('./routes/contracts');
 const articleRoutes = require('./routes/articles');
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/invoices', invoiceRoutes);
