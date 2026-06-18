@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('viewMode').style.display = 'block';
         document.getElementById('editMode').style.display = 'none';
         document.getElementById('editActions').style.display = 'none';
-
+        document.getElementById('viewActions').style.display = 'block';
         document.getElementById('invoiceModal').style.display = 'flex';
     }
 
