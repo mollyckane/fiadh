@@ -593,7 +593,7 @@ label, tr {
     text-align: left;
 }
 
-.main-section-invoice button{
+.invoice-item-row button, .main-section-invoice button{
     border-radius: var(--radius);
     width: 100%;
     height: fit-content;
@@ -649,10 +649,11 @@ label, tr {
     padding: 1rem;
 }
    
-.item-row input[name="itemTotal"] {
+.item-row input[name="itemTotal"], .item-row input[name="editItemTotal"] {
     background-color: var(--color-surface-offset);
     color: var(--text-color-secondary);  
     cursor: not-allowed;
+    border-radius: 0;
 }
 
 #addItemButton {
@@ -792,10 +793,6 @@ label, tr {
     width: fit-content;
 }
 
-input[name="itemTotal"]{
-    border-radius: 0;
-}
-
 .invoice-history{
     width: 100%;
     max-width: 250px;
@@ -840,7 +837,7 @@ input[name="itemTotal"]{
     border-radius: var(--radius);
     width: 100%;
     max-width: 680px;
-    max-height: 95vh;
+    max-height: 91vh;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -901,8 +898,8 @@ input[name="itemTotal"]{
 
 .modal-divider {
     border: none;
-    border-top: var(--border);
-    margin: 0.5rem 0;
+    border-top: 1px solid var(--border-color-secondary);
+    margin: 1.5rem 0;
 }
 
 .modal-items-table {
@@ -915,7 +912,7 @@ input[name="itemTotal"]{
 .modal-items-table td {
     text-align: left;
     padding: 0.4rem 0.5rem;
-    border-bottom: var(--border);
+    border-bottom: 1px solid var(--border-color-secondary);
 }
 
 .modal-items-table th {
@@ -931,6 +928,7 @@ input[name="itemTotal"]{
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    margin: 1.5rem 0;
 }
 
 .modal-footer {

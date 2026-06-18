@@ -520,7 +520,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // make sure we start in view mode
         document.getElementById('viewMode').style.display = 'block';
         document.getElementById('editMode').style.display = 'none';
-        document.getElementById('viewActions').style.display = 'flex';
         document.getElementById('editActions').style.display = 'none';
 
         document.getElementById('invoiceModal').style.display = 'flex';
@@ -611,7 +610,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('viewMode').style.display = 'none';
         document.getElementById('editMode').style.display = 'block';
         document.getElementById('viewActions').style.display = 'none';
-        document.getElementById('editActions').style.display = 'flex';
+        document.getElementById('editActions').style.display = 'block';
     }
 
     // modal button listeners
@@ -624,7 +623,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('modalCancelBtn').addEventListener('click', () => {
         document.getElementById('viewMode').style.display = 'block';
         document.getElementById('editMode').style.display = 'none';
-        document.getElementById('viewActions').style.display = 'flex';
+        document.getElementById('viewActions').style.display = 'block';
         document.getElementById('editActions').style.display = 'none';
     });
 
@@ -635,6 +634,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } 
     });
 
+    //modal save button
     document.getElementById('modalSaveBtn').addEventListener('click', async () => {
         const id = currentModalInvoice.id;
         const updated = {
@@ -647,10 +647,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             notes: document.getElementById('editNotes').value.trim(),
             // keep existing financial values unchanged
             description: currentModalInvoice.description,
-            amount: currentModalInvoice.amount,
+            amount: parseFloat(document.getElementById('editSubtotal').textContent) || 0,
             vat_enabled: currentModalInvoice.vat_enabled,
-            vat_amount: currentModalInvoice.vat_amount,
-            total: currentModalInvoice.total,
+            vat_amount: parseFloat(document.getElementById('editVat').textContent) || 0,
+            total: parseFloat(document.getElementById('editTotal').textContent) || 0,
             items: [...document.getElementById('editItemsBody').querySelectorAll('.invoice-item-row')].map(row => ({
                 description: row.querySelector('[name="editItemDescription"]').value || '',
                 quantity: row.querySelector('[name="editItemQuantity"]').value || '0',
