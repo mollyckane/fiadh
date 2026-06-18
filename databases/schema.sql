@@ -32,6 +32,7 @@ CREATE TABLE invoices (
   user_id        INT             NOT NULL,
   client_name    VARCHAR(150)    NOT NULL,
   client_email   VARCHAR(150)    DEFAULT NULL,
+  client_address TEXT            DEFAULT NULL,
   description    TEXT,
   amount         DECIMAL(10,2)   NOT NULL DEFAULT '0.00',
   vat_enabled    TINYINT(1)      DEFAULT '0',
