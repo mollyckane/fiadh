@@ -241,10 +241,11 @@ async function loadInvoiceHistory() {
         `).join('')}
     </div>
     `;
+
     historySection.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
             const id= btn.dataset.id;
-            const confrimed = confirm('Are you sure you want to delete this invoice?');
+            const confirmed = confirm('Are you sure you want to delete this invoice?');
             if(confirmed){
                 try {
                     const response = await fetch(`/api/invoices/${id}`, {
@@ -266,6 +267,13 @@ async function loadInvoiceHistory() {
                     alert('An error occurred. Please try again.');
                 }
             }
+        });
+    });
+    historySection.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id= btn.dataset.id;
+            //TODO: open edit modal/form for this invoice
+            console.log('Edit invoice: ', id);
         });
     });
 
