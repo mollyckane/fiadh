@@ -7,7 +7,7 @@ const verifyToken = require('../middleware/auth');
 //POST /api/invoices - save a new invoice
 router.post('/', verifyToken, async (req, res) => {
     const{
-        client_name, client_email, description, amount, vat_enabled, vat_amount, total, status, due_date, notes
+        client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date, notes, items
     } = req.body;
 
     if(!client_name){
@@ -17,10 +17,22 @@ router.post('/', verifyToken, async (req, res) => {
     try{
         const [result] = await db.query(
             `INSERT INTO invoices
-            (user_id, client_name, client_email, description, amount, vat_enabled, vat_amount, total, status, due_date, notes)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [req.userId, client_name, client_email, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes]
+            (user_id, client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date, notes)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [req.userId, client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes]
         );
+
+        const invoiceId = result.insertId;
+
+        //insert lines items
+        if(items && items.length > 0){
+            const itemRows = items.map(item => [invoiceId, item.description, item.quantity, item.rate, item.total ]);
+            await db.query(
+                `INSERT INTO invoice_items (invoice_id, description, quantity, rate, total) VALUES ?`,
+                [itemRows]
+            );
+        }
+
         res.status(201).json({ message: 'Invoice saved.', id: result.insertId });
     }
     catch(err){
@@ -108,7 +120,7 @@ router.get('/:id', verifyToken, async (req, res) => {
 
 //full edit
 router.put('/:id', verifyToken, async (req, res) => {
-    const { client_name, client_email, description, 
+    const { client_name, client_email, client_address, description, 
             amount, vat_enabled, vat_amount, total, 
             status, due_date, notes, items } = req.body;
 
@@ -117,9 +129,9 @@ router.put('/:id', verifyToken, async (req, res) => {
     }
     try{
         const [result] = await db.query(
-            `UPDATE invoices SET client_name=?, client_email=?, description=?, amount=?, vat_enabled=?, vat_amount=?, total=?, status=?, due_date=?, notes=?
+            `UPDATE invoices SET client_name=?, client_email=?, client_address=?, description=?, amount=?, vat_enabled=?, vat_amount=?, total=?, status=?, due_date=?, notes=?
             WHERE id = ? AND user_id = ? AND is_deleted = 0`,
-            [client_name, client_email, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes, req.params.id, req.userId]
+            [client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes, req.params.id, req.userId]
         );
         if(result.affectedRows === 0){
             return res.status(404).json({ error:' Invoice not found'});
