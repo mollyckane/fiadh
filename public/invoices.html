@@ -146,6 +146,7 @@
                     </div>
 
                     <div class="invoice-actions">
+                        <button type="button" id="exportPdfBtn">Export as PDF</button>
                         <button type="button" id="saveInvoiceButton">Save invoice</button>
                     </div>
                 </div>
@@ -158,6 +159,58 @@
             <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
         </footer>
     </div>
+
+    <!-- html2pdf print pdf (hidden) -->
+    <div id="printArea" style="display: none;">
+        <div class="print-invoice">
+            <!-- header -->
+             <div class="print-header">
+                <div class="print-brand">
+                    <h1>Fiadh</h1>
+                    <p>fiadh.app</p>
+                </div>
+                <div class="print-meta">
+                    <h2>Invoice</h2>
+                    <p><strong>Date:</strong><span id="printDate"></span></p>
+                    <p><strong>Due:</strong><span id="printDueDate"></span></p>
+                    <p><strong>Status:</strong><span id="printStatus"></span></p>
+                </div>
+            </div>
+            <!-- client -->
+            <div class="print-client">
+                <p><strong>Billed To:</strong></p>
+                <p id="printClientName"></p>
+                <p id="printClientEmail"></p>
+            </div>
+            <!-- line items table -->
+            <table class="print-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Rate (€)</th>
+                        <th>Total (€)</th>
+                    </tr>
+                </thead>
+                <tbody id="printItemsBody"></tbody>
+            </table>
+            <!-- totals -->
+            <div class="print-totals">
+                <p>Subtotal: €<span id="printSubtotal"></span></p>
+                <p>VAT: €<span id="printVat"></span></p>
+                <p><strong>Total: €<span id="printTotal"></span></strong></p>
+            </div>
+            <!-- notes -->
+            <div class="print-notes">
+                <p id="printNotes"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- my scripts -->
     <script src="js/ui.js"></script>
     <script src="js/invoices.js"></script>
 </body>
