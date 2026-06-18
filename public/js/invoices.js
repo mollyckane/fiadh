@@ -1,10 +1,22 @@
 // invoices.js
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
     // token authentication
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = '/index.html';
+    }
+
+    let currentUser = {};
+
+    try{
+        const res = await fetch('/api/auth/me', {
+            headers: { 'Authorization' : `Bearer ${token}`}
+        });
+        currentUser = await res.json();
+    }
+    catch (err){
+        console.error('Could not load user: ', err);
     }
 
     // logout functionality
@@ -283,94 +295,112 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loadInvoiceHistory();
 
-    // html2pdf
-    function populatePrintArea() {
-        // elements
-        const printDate = document.getElementById('printDate');
-        const printDueDate = document.getElementById('printDueDate');
-        const printStatus = document.getElementById('printStatus');
-        const printClientName = document.getElementById('printClientName');
-        const printClientEmail = document.getElementById('printClientEmail');
+    exportPdfBtn.addEventListener('click', () => {
+        const clientName = document.getElementById('clientName')?.value.trim() || 'invoice';
+        const clientEmail = document.getElementById('clientEmail')?.value.trim() || '';
+        const dueDate = document.getElementById('dueDate')?.value || 'N/A';
+        const status = document.getElementById('status')?.value || '';
+        const notes = document.getElementById('notes')?.value.trim() || '';
 
-        //header fields
-        printDate.textContent = new Date().toLocaleDateString('en-IE');
+        const subtotal = subtotalDisplay?.textContent || '0.00';
+        const vat = vatDisplay?.textContent || '0.00';
+        const total = totalDisplay?.textContent || '0.00';
 
-        printDueDate.textContent = document.getElementById('dueDate')?.value ? new Date(document.getElementById('dueDate').value).toLocaleDateString('en-IE') : 'N/A';
-    
-
-        printStatus.textContent = document.getElementById('status')?.value || '';
-
-        //client
-        printClientName.textContent = document.getElementById('clientName')?.value || '';
-
-        printClientEmail.textContent = document.getElementById('clientEmail')?.value || '';
-
-        //line items
-        const tbody = document.getElementById('printItemsBody');
-        tbody.innerHTML = '';
+        // collect line items
+        const items = [];
         itemsBody.querySelectorAll('.invoice-item-row').forEach(row => {
-            const desc = row.querySelector('[name="itemDescription"]')?.value || '';
-
-            const qty = row.querySelector('[name="itemQuantity"]')?.value || '0';
-
-            const rate = row.querySelector('[name="itemRate"]')?.value || '0.00';
-
-            const total = row.querySelector('[name="itemTotal"]')?.value || '0.00';
-
-            tbody.innerHTML += 
-            `<tr>
-                <td>${desc}</td>
-                <td>${qty}</td>
-                <td>€${parseFloat(rate).toFixed(2)}</td>
-                <td>€${parseFloat(total).toFixed(2)}</td>
-            </tr>`;
+            items.push({
+                desc: row.querySelector('[name="itemDescription"]')?.value || '',
+                qty: row.querySelector('[name="itemQuantity"]')?.value || '0',
+                rate: row.querySelector('[name="itemRate"]')?.value || '0.00',
+                tot: row.querySelector('[name="itemTotal"]')?.value || '0.00'
+            });
         });
 
-        //totals
-        document.getElementById('printSubtotal').textContent = subtotalDisplay?.textContent || '0.00';
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: 'mm', format: 'a4' });
 
-        document.getElementById('printVat').textContent = vatDisplay?.textContent || '0.00';
+        const margin = 20;
+        let y = 20;
 
-        document.getElementById('printTotal').textContent = totalDisplay?.textContent || '0.00';
+        // brand
+        doc.setFontSize(22);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Fiadh', margin, y);
 
-        //notes
-        document.getElementById('printNotes').textContent = document.getElementById('notes')?.value || '';
-    }
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`${currentUser.fname} ${currentUser.lname}`, margin, y + 6);
+        doc.text(currentUser.email || '', margin, y + 22);
 
-    const exportPdfBtn =  document.getElementById('exportPdfBtn');
+        // invoice title
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Invoice', 190, y, { align: 'right' });
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Date: ${new Date().toLocaleDateString('en-IE')}`, 190, y + 6, { align: 'right' });
+        doc.text(`Due: ${dueDate}`, 190, y + 11, { align: 'right' });
+        doc.text(`Status: ${status}`, 190, y + 16, { align: 'right' });
 
-    if(exportPdfBtn){
-        exportPdfBtn.addEventListener('click', () => {
-            const clientName = document.getElementById('clientName')?.value.trim() || 'invoice';
+        y += 30;
+        doc.setDrawColor(200);
+        doc.line(margin, y, 190, y);
+        y += 8;
 
-            populatePrintArea();
+        // client
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Billed To:', margin, y);
+        doc.setFont('helvetica', 'normal');
+        doc.text(clientName, margin, y + 6);
+        if (clientEmail) doc.text(clientEmail, margin, y + 12);
 
-            const element = document.getElementById('printArea');
-            element.style.cssText = `
-                display: block !important;
-                position: fixed;
-                top: -9999px;
-                left: -9999px;
-                width: 794px;
-                background: white;
-                color: black;
-                padding: 2rem;
-            `
+        y += 24;
+        doc.line(margin, y, 190, y);
+        y += 8;
 
-            //timeout to allow render time
-            setTimeout(() => {
-                const options = {
-                    margin:         [0.5, 0.5, 0.5, 0.5],
-                    filename:       `${clientName}-invoice.pdf`,
-                    image:          { type: 'jpeg', quality: 0.98 },
-                    html2canvas:    { scale: 2, useCORS: true, backgroundColor: '#ffffff', width: 794, windowWidth: 794, scrollX: -window.scrollX, scrollY: -window.scrollY},
-                    jsPDF:          { unit: 'in', format: 'a4', orientation: 'portrait' }
-                };
+        // line items header
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.text('Description', margin, y);
+        doc.text('Qty', 120, y);
+        doc.text('Rate ( € ) ', 145, y);
+        doc.text('Total ( € ) ', 175, y);
+        y += 5;
+        doc.line(margin, y, 190, y);
+        y += 6;
 
-                html2pdf().set(options).from(element).save().then(() => {
-                    element.style.cssText = 'display: none;';
-                });
-            }, 800);
+        // line items rows
+        doc.setFont('helvetica', 'normal');
+        items.forEach(item => {
+            doc.text(item.desc, margin, y);
+            doc.text(item.qty, 120, y);
+            doc.text(`€ ${parseFloat(item.rate).toFixed(2)}`, 145, y);
+            doc.text(`€ ${parseFloat(item.tot).toFixed(2)}`, 175, y);
+            y += 7;
         });
-    }
+
+        y += 4;
+        doc.line(margin, y, 190, y);
+        y += 8;
+
+        // totals
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Subtotal: € ${subtotal}`, 190, y, { align: 'right' });
+        doc.text(`VAT: € ${vat}`, 190, y + 6, { align: 'right' });
+        doc.setFont('helvetica', 'bold');
+        doc.text(`Total: € ${total}`, 190, y + 12, { align: 'right' });
+
+        // notes
+        if (notes) {
+            y += 24;
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.text('Notes:', margin, y);
+            doc.text(notes, margin, y + 6);
+        }
+
+        doc.save(`${clientName}-invoice.pdf`);
+    });
 });
