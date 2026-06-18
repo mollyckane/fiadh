@@ -154,6 +154,10 @@ nav a:hover, .btm-nav button:hover {
     background-color: var(--border-color-secondary);
 }
 
+.mobile-bar {
+    display: none;
+}
+
 /* MAIN */
 .main-content {
     margin-left: var(--sidebar-width);
@@ -627,6 +631,14 @@ label, tr {
     gap: 1rem;
 }
 
+.client-address {
+    grid-column: 1 / -1;
+}
+
+.client-address textarea{
+    height: 150px;
+}
+
 .item-header,.item-row {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
@@ -810,9 +822,158 @@ input[name="itemTotal"]{
     
 }
 
-.mobile-bar{
-    display: none;
+/* invoice modal: view/edit */
+/* MODAL */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
+
+.modal-box {
+    background: var(--bg-main);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 680px;
+    max-height: 95vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: var(--border);
+}
+
+.modal-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.modal-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color-secondary);
+    line-height: 1;
+    padding: 0;
+    width: fit-content;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.modal-grid .full-width {
+    grid-column: 1 / -1;
+}
+
+.modal-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-color-secondary);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.modal-divider {
+    border: none;
+    border-top: var(--border);
+    margin: 0.5rem 0;
+}
+
+.modal-items-table {
+    width: 100%;
+    font-size: 0.85rem;
+    border-collapse: collapse;
+}
+
+.modal-items-table th,
+.modal-items-table td {
+    text-align: left;
+    padding: 0.4rem 0.5rem;
+    border-bottom: var(--border);
+}
+
+.modal-items-table th {
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-color-secondary);
+}
+
+.modal-totals {
+    text-align: right;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: var(--border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.modal-footer button {
+    width: fit-content;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: var(--border);
+    background: none;
+    color: var(--text-color-main);
+    transition: var(--transition);
+}
+
+.modal-footer button#modalSaveBtn {
+    background: var(--color-primary, #965E5E);
+    color: white;
+    border: none;
+}
+
+.modal-footer button:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-grid .full-width {
+        grid-column: 1;
+    }
+}
+
+
 
 @media (max-width: 1300px){
     .main-section-invoice{
