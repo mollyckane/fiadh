@@ -771,7 +771,8 @@ label, tr {
     color: #c8a025;
 }
   
-.invoice-page label {
+.invoice-page label,
+.invoice-totals label {
     display: block;
     margin-bottom: 0.25rem;
 }
@@ -789,7 +790,7 @@ label, tr {
     max-height: 300px;
 }
   
-.invoice-page input[type="checkbox"]{
+.invoice-page input[type="checkbox"], .invoice-totals input[type="checkbox"]{
     width: fit-content;
 }
 
@@ -954,7 +955,6 @@ label, tr {
 .modal-footer button#modalSaveBtn {
     background: var(--color-primary, #965E5E);
     color: white;
-    border: none;
 }
 
 .modal-footer button:hover {

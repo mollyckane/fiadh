@@ -228,7 +228,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 status,
                 due_date: dueDate,
                 notes,
-                items
+                items,
+                invoice_number: document.getElementById('invoiceNumber')?.value.trim() || null
             };
 
             try {
@@ -578,9 +579,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         container.querySelectorAll('[name="editItemTotal"]').forEach(input => {
             subtotal += parseFloat(input.value) || 0;
         });
+
+        const vatCheckbox = document.getElementById('editVatEnabled');
+        const vatRateInput = document.getElementById('editVatRate');
+        const vatOn = vatCheckbox?.checked || false;
+        const vatRate = vatOn ? (parseFloat(vatRateInput?.value) || 0) / 100 : 0;
+        const vatAmount = subtotal * vatRate;
+        const total = subtotal + vatAmount;
+
         document.getElementById('editSubtotal').textContent = subtotal.toFixed(2);
-        document.getElementById('editVat').textContent = '0.00';
-        document.getElementById('editTotal').textContent = subtotal.toFixed(2);
+        document.getElementById('editVat').textContent = vatAmount.toFixed(2);
+        document.getElementById('editTotal').textContent = total.toFixed(2);
     }
 
     //switch to edit mode in modal
@@ -598,6 +607,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('editNotes').value = inv.notes || '';
 
         const editItemsBody = document.getElementById('editItemsBody');
+
+        // pre-fill VAT
+        const editVatCheckbox = document.getElementById('editVatEnabled');
+        const editVatRateContainer = document.getElementById('editVatRateContainer');
+        const editVatRateInput = document.getElementById('editVatRate');
+
+        editVatCheckbox.checked = !!inv.vat_enabled;
+        editVatRateContainer.style.display = inv.vat_enabled ? 'block' : 'none';
+
+        // wire VAT toggle
+        editVatCheckbox.onchange = () => {
+            editVatRateContainer.style.display = editVatCheckbox.checked ? 'block' : 'none';
+            recalcEditTotals(editItemsBody);
+        };
+        editVatRateInput.oninput = () => recalcEditTotals(editItemsBody);
+
         editItemsBody.innerHTML = '';
         const existingItems = inv.items || [];
         if (existingItems.length === 0) {
@@ -641,16 +666,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             client_name: document.getElementById('editClientName').value.trim(),
             client_email: document.getElementById('editClientEmail').value.trim(),
             client_address: document.getElementById('editClientAddress').value.trim(),
-            invoice_number: document.getElementById('editInvoiceNumber').value.trim(),
             due_date: document.getElementById('editDueDate').value || null,
             status: document.getElementById('editStatus').value,
             notes: document.getElementById('editNotes').value.trim(),
             // keep existing financial values unchanged
             description: currentModalInvoice.description,
             amount: parseFloat(document.getElementById('editSubtotal').textContent) || 0,
-            vat_enabled: currentModalInvoice.vat_enabled,
+            vat_enabled: document.getElementById('editVatEnabled').checked,
             vat_amount: parseFloat(document.getElementById('editVat').textContent) || 0,
             total: parseFloat(document.getElementById('editTotal').textContent) || 0,
+            invoice_number: document.getElementById('editInvoiceNumber').value.trim() || null,
             items: [...document.getElementById('editItemsBody').querySelectorAll('.invoice-item-row')].map(row => ({
                 description: row.querySelector('[name="editItemDescription"]').value || '',
                 quantity: row.querySelector('[name="editItemQuantity"]').value || '0',
@@ -660,6 +685,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         try {
+            console.log('PUT payload:', JSON.stringify(updated));
             const res = await fetch(`/api/invoices/${id}`, {
                 method: 'PUT',
                 headers: {

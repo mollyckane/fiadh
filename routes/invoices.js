@@ -6,9 +6,11 @@ const verifyToken = require('../middleware/auth');
 
 //POST /api/invoices - save a new invoice
 router.post('/', verifyToken, async (req, res) => {
-    const{
-        client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date, notes, items
-    } = req.body;
+   const {
+    client_name, client_email, client_address, description,
+    amount, vat_enabled, vat_amount, total, status,
+    due_date, notes, items, invoice_number   // add this
+} = req.body;
 
     if(!client_name){
         return res.status(400).json({ error: 'Client name is required.'});
@@ -16,10 +18,9 @@ router.post('/', verifyToken, async (req, res) => {
 
     try{
         const [result] = await db.query(
-            `INSERT INTO invoices
-            (user_id, client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date, notes)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [req.userId, client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes]
+            `INSERT INTO invoices (user_id, client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date, notes, invoice_number)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [req.userId, client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes, invoice_number || null]
         );
 
         const invoiceId = result.insertId;
@@ -120,18 +121,19 @@ router.get('/:id', verifyToken, async (req, res) => {
 
 //full edit
 router.put('/:id', verifyToken, async (req, res) => {
-    const { client_name, client_email, client_address, description, 
-            amount, vat_enabled, vat_amount, total, 
-            status, due_date, notes, items } = req.body;
+    const { client_name, client_email, client_address, description,
+        amount, vat_enabled, vat_amount, total,
+        status, due_date, notes, items, invoice_number } = req.body; 
 
     if(!client_name){
         return res.status(400).json({ error: 'Client name is required.'});
     }
     try{
+        console.log('invoice_number value hitting query:', invoice_number);
         const [result] = await db.query(
-            `UPDATE invoices SET client_name=?, client_email=?, client_address=?, description=?, amount=?, vat_enabled=?, vat_amount=?, total=?, status=?, due_date=?, notes=?
+            `UPDATE invoices SET client_name=?, client_email=?, client_address=?, description=?, amount=?, vat_enabled=?, vat_amount=?, total=?, status=?, due_date=?, notes=?, invoice_number=?
             WHERE id = ? AND user_id = ? AND is_deleted = 0`,
-            [client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes, req.params.id, req.userId]
+            [client_name, client_email, client_address, description, amount, vat_enabled, vat_amount, total, status, due_date || null, notes, invoice_number || null, req.params.id, req.userId]
         );
         if(result.affectedRows === 0){
             return res.status(404).json({ error:' Invoice not found'});
