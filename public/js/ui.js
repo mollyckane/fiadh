@@ -25,8 +25,8 @@ function updateDateTime() {
 
     document.getElementById('live-datetime').textContent = `${day}, ${date}, ${time}`;
 }
-// run then update every second
-updateDateTime();
-setInterval(updateDateTime, 1000);
-
+if (document.getElementById('live-datetime')) {
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+}
 
