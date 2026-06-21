@@ -16,6 +16,18 @@ if(burgerBtn && mainNav){
     });
 }
 
+// logout functionality
+const logoutBtn = document.getElementById('logout-btn');
+
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', handleLogout);
+}
+
+function handleLogout() {
+    localStorage.removeItem('token');
+    window.location.href = '/index.html';
+}
+
 //live date 
 function updateDateTime() {
     const now = new Date();

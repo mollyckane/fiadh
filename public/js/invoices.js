@@ -19,15 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Could not load user: ', err);
     }
 
-    // logout functionality
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('token');
-            window.location.href = '/index.html';
-        });
-    }
-
     //live date 
     function updateDateTime() {
         const now = new Date();
