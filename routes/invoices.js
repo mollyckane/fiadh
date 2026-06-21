@@ -129,7 +129,6 @@ router.put('/:id', verifyToken, async (req, res) => {
         return res.status(400).json({ error: 'Client name is required.'});
     }
     try{
-        console.log('invoice_number value hitting query:', invoice_number);
         const [result] = await db.query(
             `UPDATE invoices SET client_name=?, client_email=?, client_address=?, description=?, amount=?, vat_enabled=?, vat_amount=?, total=?, status=?, due_date=?, notes=?, invoice_number=?
             WHERE id = ? AND user_id = ? AND is_deleted = 0`,
