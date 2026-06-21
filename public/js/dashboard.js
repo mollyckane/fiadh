@@ -31,19 +31,6 @@ async function loadUserData() {
 }
 loadUserData();
 
-//live date 
-function updateDateTime() {
-    const now = new Date();
-    const day = now.toLocaleDateString('en-IE', { weekday: 'long' });
-    const date = now.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' });
-    const time = now.toLocaleTimeString('en-IE', { hour: '2-digit', minute: '2-digit', hour12: false });
-
-    document.getElementById('live-datetime').textContent = `${day}, ${date}, ${time}`;
-}
-// run then update every second
-updateDateTime();
-setInterval(updateDateTime, 1000);
-
 //custom mini calendar
 let currentMonthOffset=0;
 
