@@ -65,10 +65,18 @@ fiadh/
 ## Getting Started
 
 ### Prerequisites
-- Node.js (LTS)
-- MySQL database (local instance recommended; Railway was used during development but is not required)
+
+Before running Fiadh locally, make sure you have:
+
+- Node.js
+- npm
+- MySQL Server installed and running locally
+
+Fiadh currently uses a **local MySQL database** for development and demonstration.
 
 ### Installation
+
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/fiadh.git
@@ -76,48 +84,43 @@ cd fiadh
 npm install
 ```
 
-### Environment variables
+### Environment Variables
 
-This project uses a `.env` file for database and JWT configuration.
+Create a `.env` file in the project root and add the following:
 
-1. Copy the example file:
-
-```bash
-cp .env.example .env
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your-local-mysql-password
+DB_NAME=fiadh
+JWT_SECRET=your-secret-key
 ```
 
-2. Edit `.env` and update the values to match your local MySQL setup:
+These values must match your local MySQL setup.
 
-- `DB_HOST` and `DB_PORT`
-- `DB_USER` and `DB_PASSWORD`
-- `DB_NAME` (for example `fiadh`)
-- `JWT_SECRET` (any random string)
+### Database Setup
 
-### Database setup
-
-1. Create the database and tables using the provided `schema.sql`:
-
-- In your MySQL client (CLI or GUI), run the `schema.sql` file from the project root.
-
-For example, from the MySQL command line:
-
-```bash
-mysql -u your_user -p
-```
-
-Then inside the MySQL prompt:
+Create the local database:
 
 ```sql
-SOURCE /full/path/to/fiadh/schema.sql;
+CREATE DATABASE fiadh;
+USE fiadh;
 ```
 
-(Replace `/full/path/to/fiadh/schema.sql` with the actual path on your machine.)
+Then import the schema file.
 
-2. Optionally, use the Register form in the app to create your first user account.
+Example using MySQL command line:
 
-### Running the project
+```bash
+mysql -u root -p fiadh < database/schema.sql
+```
 
-Make sure your terminal is in the project folder and your MySQL server is running.
+This will create the required tables for users, invoices, invoice items, contracts, income, expenses and articles.
+
+### Running the Project
+
+Make sure MySQL is running and your terminal is in the project folder.
 
 Start the server:
 
@@ -130,6 +133,16 @@ Then open the app in your browser at:
 ```text
 http://localhost:3000
 ```
+
+You can then register a user account and log in through the application.
+
+---
+
+## Development Note
+
+Fiadh currently uses a **local MySQL database** to make development, testing and demonstration simpler and more reliable across different machines.
+
+A potential future upgrade would be to reconnect the project to a remote MySQL service such as Railway for deployment, once the environment setup and remote connection flow are fully stable.
 
 ## Project Management
 
