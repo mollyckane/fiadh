@@ -28,6 +28,23 @@ function handleLogout() {
     window.location.href = '/index.html';
 }
 
+//fade elements
+document.addEventListener('DOMContentLoaded', () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const pageLoadElement = document.querySelector('.page-load');
+
+    if (!pageLoadElement) return;
+
+    if (prefersReducedMotion) {
+        pageLoadElement.classList.add('is-visible');
+        return;
+    }
+
+    requestAnimationFrame(() => {
+        pageLoadElement.classList.add('is-visible');
+    });
+});
+
 //live date 
 function updateDateTime() {
     const now = new Date();

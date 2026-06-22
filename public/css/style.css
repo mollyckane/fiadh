@@ -92,6 +92,22 @@ p {
     margin-top: 1rem;
 }
 
+.page-load {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.page-load.is-visible {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-load {
+        opacity: 1;
+        transition: none;
+    }
+}
+
 input,
 select,
 textarea {
@@ -391,6 +407,13 @@ main h1 {
     padding: 1rem;
 }
 
+.card-full,
+.dash-section {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
 /* calendar */
 .dash-calendar {
     width: 300px;
@@ -552,9 +575,11 @@ main h1 {
     width: var(--main-width);
     margin: 2rem auto;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: space-evenly;
     text-align: left;
+    flex-direction: column;
+    align-items: center;
 }
 
 .invoice-item-row button,
@@ -575,7 +600,6 @@ main h1 {
     gap: 1.5rem;
     text-align: left;
     line-height: 2rem;
-    margin-bottom: 2rem;
 }
 
 .invoice-header {
@@ -762,19 +786,51 @@ main h1 {
 
 .invoice-history {
     width: 100%;
-    max-width: 250px;
+    max-width: 800px;
     height: fit-content;
     max-height: 500px;
-    overflow: auto;
     box-shadow: var(--shadow-sm);
     padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: var(--bg-main);
 }
 
 .invoice-history p {
     border-bottom: var(--border);
 }
 
-.invoice-history button,
+.invoice-history .history-filter {
+    margin-bottom: 0;
+}
+
+.invoice-history .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.invoice-history-separator {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-top: 0.35rem;
+    margin-top: 0.35rem;
+    border-top: 1px solid var(--border-color-secondary);
+}
+
+.invoice-history-item {
+    padding-bottom: 0.55rem;
+}
+
+.invoice-history-actions {
+    gap: 0.2rem;
+}
+
 .edit-entry-btn,
 .delete-entry-btn {
     padding: 0;
@@ -900,6 +956,10 @@ main h1 {
     margin: 1.5rem 0;
 }
 
+#viewNotes, #viewClientAddress {
+    white-space: pre-line;
+}
+
 .modal-footer {
     padding: 1rem 1.5rem;
     border-top: var(--border);
@@ -949,16 +1009,17 @@ main h1 {
         width: 100%;
     }
 
-    .item-row .remove-item {
-        width: 30%;
-        min-width: 100px;
-        margin-top: 0.5rem;
-        align-self: flex-end;
+    .invoice-history-item {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .invoice-history {
-        max-width: 100%;
+    .invoice-history-actions {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.75rem;
     }
+
 }
 
 /* income / expense edit modal */
@@ -1068,6 +1129,7 @@ main h1 {
     flex-direction: column;
     gap: 0.5rem;
     text-align: left;
+    max-width: 800px;
 }
 
 .tracker-card h2 {
@@ -1150,7 +1212,7 @@ main h1 {
 
 .history-item-right {
     display: flex;
-    flex-direction: column-reverse;
+    gap: 1rem;
     align-items: flex-end;
     white-space: nowrap;
 }
@@ -1286,12 +1348,13 @@ main h1 {
 }
 
 .tracker-content {
-    padding: 1.5rem;
+    padding: 0 1rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin: 2rem auto;
     width: var(--main-width);
+    align-items: center;
 }
 
 .quick-add-panel{
@@ -1866,7 +1929,6 @@ main h1 {
 
     .invoice-page {
         padding: 1rem;
-        width: auto;
     }
 
     .invoice-items .item-header span {
