@@ -12,7 +12,7 @@ const db = mysql.createPool({
 // test connection on startup
 db.getConnection()
     .then(conn => {
-        console.log('Connected to Railway MySQL successfully.');
+        console.log('Connected to local SQL database successfully.');
         conn.release(); // release back to the pool
     })
     .catch(err => {
