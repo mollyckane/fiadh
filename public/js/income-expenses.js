@@ -7,7 +7,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     //default date to today
-    const today = new Date().toISOString().split('T')[0];
+    function formatLocalDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    const today = formatLocalDate(new Date());
+
     document.getElementById('expDate').value = today;
     document.getElementById('incDate').value = today;
 
@@ -175,6 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let allExpenses = [];
     let historyFilter = 'all';
     let chartView = 'income';
+    let chartMode = 'breakdown';
     let timeRange = 'month';
     let customFrom = null;
     let customTo = null;
@@ -318,15 +327,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(historyFilter === 'all' || historyFilter === 'income'){
             allIncome.forEach(item => entries.push({ ...item, _type: 'income'}));
         }
-        if(historyFilter === 'all' || historyFilter === 'expenses'){
+        if(historyFilter === 'all' || historyFilter === 'expense'){
             allExpenses.forEach(item => entries.push({ ...item, _type: 'expense' }));
         }
 
         //sort by entry_date desceding, fall back to create_at
         entries.sort((a, b) => {
-            const da = new Date(a.entry_date || a.created_at);
-            const db = new Date(b.entry_date || b.created_at);
-            return db - da;
+            const da = getStoredDate(a.entry_date || a.created_at);
+            const db = getStoredDate(b.entry_date || b.created_at);
+            return db.localeCompare(da);
         });
         
         if(entries.length === 0){
@@ -342,7 +351,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </span>
                     <span class="history-item-meta">
                         ${entry.category || ''}
-                        ${entry.entry_date ? '&middot; ' + new Date(entry.entry_date).toLocaleDateString('en-IE') : ''}
+                        ${entry.entry_date ? '&middot; ' + formatDisplayDate(entry.entry_date) : ''}
                     </span>
                 </div>
                 <div class="history-item-right">
@@ -483,6 +492,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+    document.querySelectorAll('#chartModeToggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#chartModeToggle button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            chartMode = btn.dataset.mode;
+            renderChart();
+        });
+    });
+
     // ── time filter ──
     document.querySelectorAll('#timeFilter button').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -501,51 +519,93 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderChart();
     });
 
-    // ── date filtering helpers ──
+    function getStoredDate(value) {
+        if (!value) return '';
+
+        if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            return value;
+        }
+
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) return '';
+
+        return formatLocalDate(parsed);
+    }
+
+    function formatDisplayDate(value) {
+        const datePart = getStoredDate(value);
+        if (!datePart) return '';
+
+        const [year, month, day] = datePart.split('-');
+        return `${day}/${month}/${year}`;
+    }
+
     function getDateBounds() {
         const now = new Date();
-        let from, to;
+        let from;
+        let to;
 
         if (timeRange === 'week') {
             const day = now.getDay();
-            from = new Date(now);
-            from.setDate(now.getDate() - ((day + 6) % 7)); // Monday
-            from.setHours(0, 0, 0, 0);
-            to = new Date(now);
-            to.setHours(23, 59, 59, 999);
+
+            const start = new Date(now);
+            start.setDate(now.getDate() - day);
+
+            const end = new Date(start);
+            end.setDate(start.getDate() + 6);
+
+            from = formatLocalDate(start);
+            to = formatLocalDate(end);
+
         } else if (timeRange === 'month') {
-            from = new Date(now.getFullYear(), now.getMonth(), 1);
-            to = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+            from = formatLocalDate(new Date(now.getFullYear(), now.getMonth(), 1));
+            to = formatLocalDate(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+
         } else if (timeRange === 'year') {
-            from = new Date(now.getFullYear(), 0, 1);
-            to = new Date(now.getFullYear(), 11, 31, 23, 59, 59);
+            from = formatLocalDate(new Date(now.getFullYear(), 0, 1));
+            to = formatLocalDate(new Date(now.getFullYear(), 11, 31));
+
         } else if (timeRange === 'custom' && customFrom && customTo) {
-            from = new Date(customFrom);
-            to = new Date(customTo);
-            to.setHours(23, 59, 59, 999);
+            from = customFrom;
+            to = customTo;
+
         } else {
-            from = new Date(0);
-            to = new Date();
+            from = '0000-01-01';
+            to = today;
         }
+
         return { from, to };
     }
 
     function filterByDate(entries) {
         const { from, to } = getDateBounds();
-        return entries.filter(e => {
-            const d = new Date(e.entry_date || e.created_at);
-            return d >= from && d <= to;
+
+        return entries.filter(entry => {
+            const entryDate = getStoredDate(entry.entry_date || entry.created_at);
+            return entryDate && entryDate >= from && entryDate <= to;
         });
     }
 
     // ── group by category for bar/donut ──
-    function groupByCategory(entries) {
+    function groupByKey(entries, keyName, fallback = 'Uncategorised') {
         const map = {};
-        entries.forEach(e => {
-            const key = e.category || 'Uncategorised';
-            map[key] = (map[key] || 0) + parseFloat(e.amount);
+        entries.forEach(entry => {
+            const key = (entry[keyName] || '').trim() || fallback;
+            map[key] = (map[key] || 0) + parseFloat(entry.amount);
         });
         return map;
+    }
+
+    function createBarDataset(label, data, backgroundColor) {
+        return {
+            label,
+            data,
+            backgroundColor,
+            borderRadius: 4,
+            categoryPercentage: 0.55,
+            barPercentage: 0.7,
+            maxBarThickness: 85
+        };
     }
 
     // ── render chart ──
@@ -556,11 +616,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const filteredIncome = filterByDate(allIncome);
         const filteredExpenses = filterByDate(allExpenses);
 
-        const totalIncome = filteredIncome.reduce((s, e) => s + parseFloat(e.amount), 0);
-        const totalExpenses = filteredExpenses.reduce((s, e) => s + parseFloat(e.amount), 0);
+        const totalIncome = filteredIncome.reduce((sum, entry) => sum + parseFloat(entry.amount), 0);
+        const totalExpenses = filteredExpenses.reduce((sum, entry) => sum + parseFloat(entry.amount), 0);
         const net = totalIncome - totalExpenses;
 
-        // update summary strip
         const summary = document.getElementById('chartSummary');
         summary.innerHTML = `
             Income: <span style="color:var(--text-green)">€${totalIncome.toFixed(2)}</span>
@@ -570,72 +629,118 @@ document.addEventListener('DOMContentLoaded', async () => {
             Net: <span class="${net >= 0 ? 'net-positive' : 'net-negative'}">€${net.toFixed(2)}</span>
         `;
 
-        const palette = [
+        const incomePalette = [
+            '#6aab6a', '#7fbc7f', '#94cd94', '#579957',
+            '#a8d9a8', '#bddfbd', '#4b874b', '#8fc48f'
+        ]
+
+        const expensePalette = [
             '#965E5E', '#b88a8a', '#d4b0b0', '#7a4d4d',
             '#c49a9a', '#e2c8c8', '#8c6b6b', '#a87e7e'
         ];
 
-        if (chartView === 'income') {
-            const grouped = groupByCategory(filteredIncome);
-            const labels = Object.keys(grouped);
-            const data = Object.values(grouped);
+        if (chartMode === 'totals') {
+            if (chartView === 'income') {
+                trackerChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Income'],
+                        datasets: [
+                            createBarDataset('Income (€)', [totalIncome], '#6aab6a')
+                        ]
+                    },
+                    options: chartOptions('Total Income')
+                });
+                return;
+            }
 
-            trackerChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels,
-                    datasets: [{
-                        label: 'Income (€)',
-                        data,
-                        backgroundColor: palette.slice(0, labels.length),
-                        borderRadius: 4
-                    }]
-                },
-                options: chartOptions('Income by Category')
-            });
+            if (chartView === 'expenses') {
+                trackerChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Expenses'],
+                        datasets: [
+                            createBarDataset('Expenses (€)', [totalExpenses], '#965E5E')
+                        ]
+                    },
+                    options: chartOptions('Total Expenses')
+                });
+                return;
+            }
 
-        } else if (chartView === 'expenses') {
-            const grouped = groupByCategory(filteredExpenses);
-            const labels = Object.keys(grouped);
-            const data = Object.values(grouped);
-
-            trackerChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels,
-                    datasets: [{
-                        label: 'Expenses (€)',
-                        data,
-                        backgroundColor: palette.slice(0, labels.length),
-                        borderRadius: 4
-                    }]
-                },
-                options: chartOptions('Expenses by Category')
-            });
-
-        } else if (chartView === 'comparison') {
             trackerChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Selected Period'],
                     datasets: [
-                        {
-                            label: 'Income',
-                            data: [totalIncome],
-                            backgroundColor: '#6aab6a',
-                            borderRadius: 4
-                        },
-                        {
-                            label: 'Expenses',
-                            data: [totalExpenses],
-                            backgroundColor: '#965E5E',
-                            borderRadius: 4
-                        }
+                        createBarDataset('Income', [totalIncome], '#6aab6a'),
+                        createBarDataset('Expenses', [totalExpenses], '#965E5E')
                     ]
                 },
                 options: chartOptions('Income vs Expenses')
             });
+            return;
         }
+
+        if (chartView === 'income') {
+            const grouped = groupByKey(filteredIncome, 'category');
+            const labels = Object.keys(grouped);
+            const data = Object.values(grouped);
+
+            trackerChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        createBarDataset('Income (€)', data, incomePalette.slice(0, labels.length))
+                    ]
+                },
+                options: chartOptions('Income by Category')
+            });
+            return;
+        }
+
+        if (chartView === 'expenses') {
+            const grouped = groupByKey(filteredExpenses, 'category');
+            const labels = Object.keys(grouped);
+            const data = Object.values(grouped);
+
+            trackerChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        createBarDataset('Expenses (€)', data, expensePalette.slice(0, labels.length))
+                    ]
+                },
+                options: chartOptions('Expenses by Category')
+            });
+            return;
+        }
+
+        const incomeMap = groupByKey(filteredIncome, 'category');
+        const expenseMap = groupByKey(filteredExpenses, 'category');
+        const labels = [...new Set([...Object.keys(incomeMap), ...Object.keys(expenseMap)])];
+
+        trackerChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [
+                    createBarDataset(
+                        'Income',
+                        labels.map(label => incomeMap[label] || 0),
+                        incomePalette.slice(0, labels.length)
+                    ),
+                    createBarDataset(
+                        'Expenses',
+                        labels.map(label => expenseMap[label] || 0),
+                        expensePalette.slice(0, labels.length)
+                    )
+                ]
+            },
+            options: chartOptions('Income vs Expenses by Category')
+        });
     }
 
     // ── shared chart options ──
