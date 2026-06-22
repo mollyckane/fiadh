@@ -132,23 +132,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     //custom category toggle
-    function wireCustomCategory(selectId, customInputId){
+    function wireCustomCategory(selectId, customInputId, backButtonId) {
         const select = document.getElementById(selectId);
         const custom = document.getElementById(customInputId);
+        const backButton = document.getElementById(backButtonId);
+
+        function showCustomInput() {
+            select.hidden = true;
+            custom.hidden = false;
+            backButton.hidden = false;
+            custom.required = true;
+            custom.focus();
+        }
+
+        function showSelect() {
+            select.hidden = false;
+            custom.hidden = true;
+            backButton.hidden = true;
+            custom.required = false;
+            custom.value = '';
+            select.value = '';
+            select.focus();
+        }
         select.addEventListener('change', () => {
-            if(select.value === 'Other'){
-                custom.style.display = 'block';
-                custom.required = true;
-            }
-            else{
-                custom.style.display = 'none';
-                custom.required = false;
-                custom.value = '';
+            if (select.value === 'Other') {
+                showCustomInput();
             }
         });
+        backButton.addEventListener('click', showSelect);
     }
-    wireCustomCategory('expCategory', 'expCategoryCustom');
-    wireCustomCategory('incCategory', 'incCategoryCustom');
+    wireCustomCategory('expCategory', 'expCategoryCustom', 'expCategoryBackBtn');
+    wireCustomCategory('incCategory', 'incCategoryCustom', 'incCategoryBackBtn');
 
     function resolveCategory(selectId, customId){
         const select = document.getElementById(selectId);
@@ -265,8 +279,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('expAmount').value = '';
         document.getElementById('expDate').value = today;
         document.getElementById('expCategory').value = '';
+        document.getElementById('expCategory').hidden = false;
         document.getElementById('expCategoryCustom').value = '';
-        document.getElementById('expCategoryCustom').style.display = 'none';
+        document.getElementById('expCategoryCustom').hidden = true;
+        document.getElementById('expCategoryCustom').required = false;
+        document.getElementById('expCategoryBackBtn').hidden = true;
         document.getElementById('expNotes').value = '';
     }
 
@@ -275,8 +292,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('incDate').value = today;
         document.getElementById('incSource').value = '';
         document.getElementById('incCategory').value = '';
+        document.getElementById('incCategory').hidden = false;
         document.getElementById('incCategoryCustom').value = '';
-        document.getElementById('incCategoryCustom').style.display = 'none';
+        document.getElementById('incCategoryCustom').hidden = true;
+        document.getElementById('incCategoryCustom').required = false;
+        document.getElementById('incCategoryBackBtn').hidden = true;
         document.getElementById('incNotes').value = '';
     }
 

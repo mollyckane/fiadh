@@ -1376,7 +1376,7 @@ main h1 {
 .tracker-bar-fields {
     display: grid;
     gap: 0.75rem;
-    align-items: end;
+    align-items: start;
 }
 
 .tracker-bar-fields-income {
@@ -1388,8 +1388,9 @@ main h1 {
 }
 
 .tracker-field {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 40px auto;
+    align-content: start;
     gap: 0.35rem;
     min-width: 0;
 }
@@ -1405,6 +1406,7 @@ main h1 {
     padding: 0.45rem 0.65rem;
     font-size: 0.82rem;
     min-height: 40px;
+    width: 100%;
 }
 
 .tracker-field-notes {
@@ -1415,32 +1417,31 @@ main h1 {
     width: 100%;
 }
 
+.custom-category-input[hidden],
+.custom-category-back[hidden] {
+    display: none !important;
+}
+
 .custom-category-input {
-    display: none;
-    margin-top: 0.4rem;
-}
-
-.category-row {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.category-row select,
-.category-row .custom-category-input {
-    flex: 1;
     margin-top: 0;
 }
 
-.custom-category-input {
-    display: none;
+.custom-category-back {
+    width: fit-content;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--text-color-secondary);
+    font-size: 0.75rem;
+    text-decoration: underline;
+    cursor: pointer;
+    justify-self: start;
+    margin-top: 0.5rem;
 }
 
-@media (max-width: 600px) {
-    .category-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
+.custom-category-back:hover,
+.custom-category-back:focus-visible {
+    color: var(--text-color-primary);
 }
 
 .tracker-chart-top {
