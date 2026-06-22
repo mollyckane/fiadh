@@ -12,7 +12,7 @@ router.post('/', verifyToken, async (req, res) => {
     }
     try{
         const [result] = await db.query(
-            `INSERT INTO income (user_id, amount, category, entry_date, notes)
+            `INSERT INTO expenses (user_id, amount, category, entry_date, notes)
             VALUES (?, ?, ?, ?, ?)`,
             [req.userId, amount, category || null,  entry_date || null, notes || null]
         );
@@ -28,7 +28,7 @@ router.post('/', verifyToken, async (req, res) => {
 router.get('/', verifyToken, async (req, res) => {
     try{
         const [rows] = await db.query(
-            `SELECT * FROM income WHERE user_id = ? ORDER BY entry_date DESC, created_at DESC`,
+            `SELECT * FROM expenses WHERE user_id = ? ORDER BY entry_date DESC, created_at DESC`,
             [req.userId]
         );
         res.json(rows);
@@ -43,7 +43,7 @@ router.get('/', verifyToken, async (req, res) => {
 router.get('/:id', verifyToken, async (req, res) => {
     try{
         const [rows] = await db.query(
-            `SELECT * FROM income WHERE id = ? AND user_id = ?`,
+            `SELECT * FROM expenses WHERE id = ? AND user_id = ?`,
             [req.params.id, req.userId]
         );
         if(rows.length === 0){
@@ -67,7 +67,7 @@ router.put('/:id', verifyToken, async (req, res) => {
 
         try{
             const [result] = await db.query(
-                `UPDATE income SET amount=?, category=?, entry_date=?, notes=?
+                `UPDATE expenses SET amount=?, category=?, entry_date=?, notes=?
                 WHERE id = ? AND user_id=?`,
                 [amount, category || null, entry_date || null, notes || null, req.params.id, req.userId]
             );
