@@ -24,7 +24,7 @@ router.post('/', verifyToken, async (req, res) => {
     }
 });
 
-//GET /api/income - get all expense entries for logged in user
+//GET /api/expenses - get all expense entries for logged in user
 router.get('/', verifyToken, async (req, res) => {
     try{
         const [rows] = await db.query(
@@ -39,7 +39,7 @@ router.get('/', verifyToken, async (req, res) => {
     }
 });
 
-//GET /api/income/:id - get single expense entry
+//GET /api/expenses/:id - get single expense entry
 router.get('/:id', verifyToken, async (req, res) => {
     try{
         const [rows] = await db.query(
@@ -57,7 +57,7 @@ router.get('/:id', verifyToken, async (req, res) => {
     }
 });
 
-//PUT /api/income/:id - update an income entry
+//PUT /api/expenses/:id - update an expenses entry
 router.put('/:id', verifyToken, async (req, res) => {
     const { amount, category, entry_date, notes } = req.body;
 
@@ -82,7 +82,7 @@ router.put('/:id', verifyToken, async (req, res) => {
         }
 });
 
-// DELETE /api/income/:id - delete an income entry
+// DELETE /api/expenses/:id - delete an expenses entry
 router.delete('/:id', verifyToken, async (req, res) => {
     try {
         const [result] = await db.query(
