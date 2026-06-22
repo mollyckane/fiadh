@@ -67,8 +67,7 @@ a {
 }
 
 #logout-btn{
-    margin:0;
-    padding:0;
+    border-radius: 0;
 }
 
 h1,
@@ -588,7 +587,7 @@ label, tr {
 }
 
 /* INVOICES */
-.main-section-invoice{
+.main-section{
     width: var(--main-width);
     margin: 2rem auto;
     display: flex;
@@ -597,7 +596,7 @@ label, tr {
     text-align: left;
 }
 
-.invoice-item-row button, .main-section-invoice button{
+.invoice-item-row button, .main-section button{
     border-radius: var(--radius);
     width: 100%;
     height: fit-content;
@@ -978,7 +977,7 @@ label, tr {
 
 
 @media (max-width: 1300px){
-    .main-section-invoice{
+    .main-section{
         flex-direction: column;
 
     }
@@ -1002,6 +1001,270 @@ label, tr {
     .invoice-history{
         max-width: 100%;
     }
+}
+
+/* income and expenses tracker */
+.tracker-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem auto;
+    width: 90%;
+}
+
+.tracker-forms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; 
+}
+
+.tracker-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color-secondary);
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.tracker-card h2 {
+    font-size: 1rem;
+    font-family: var(--font-heading);
+    color: var(--text-color-primary);
+    border-bottom: 1px solid var(--border-color-secondary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.tracker-card .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.custom-category-input {
+    display: none;
+    margin-top: -0.25rem;
+}
+
+.tracker-bottom {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* history panel */
+.tracker-history {
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.history-filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.history-filter button {
+    width: fit-content;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.75rem;
+    background: none;
+    border: 1px solid var(--border-color-secondary);
+    color: var(--text-color-primary);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.history-filter button.active,
+.history-filter button:hover {
+    background: var(--bg-secondary);
+    color: var(--bg-main);
+    border-color: var(--bg-secondary);
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.82rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-color-secondary);
+    gap: 0.5rem;
+}
+
+.history-item-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.history-item-label {
+    font-weight: 600;
+    color: var(--text-color-primary);
+}
+
+.history-item-meta {
+    font-size: 0.75rem;
+    color: var(--text-color-secondary);
+}
+
+.history-item-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    white-space: nowrap;
+}
+
+.history-amount.income {
+    color: var(--text-green);
+    font-weight: 600;
+}
+
+.history-amount.expense {
+    color: var(--text-red);
+    font-weight: 600;
+}
+
+.history-empty {
+    font-size: 0.82rem;
+    color: var(--text-color-muted);
+    margin-top: 0.5rem;
+}
+
+/* chart card */
+.tracker-chart-card {
+    min-height: 420px;
+}
+
+.chart-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.segmented-control {
+    display: flex;
+    border: 1px solid var(--border-color-main);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.segmented-control button {
+    flex: 1;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--border-color-secondary);
+    color: var(--text-color-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    width: auto;
+    border-radius: 0;
+}
+
+.segmented-control button:last-child {
+    border-right: none;
+}
+
+.segmented-control button.active {
+    background: var(--bg-secondary);
+    color: var(--bg-main);
+}
+
+.segmented-control button:hover:not(.active) {
+    background: var(--bg-hover-001);
+}
+
+.time-filter {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.time-filter button {
+    width: fit-content;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.75rem;
+    background: none;
+    border: 1px solid var(--border-color-secondary);
+    color: var(--text-color-primary);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.time-filter button.active,
+.time-filter button:hover {
+    background: var(--bg-secondary);
+    color: var(--bg-main);
+    border-color: var(--bg-secondary);
+}
+
+#customRangeInputs {
+    display: none;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+}
+
+#customRangeInputs input[type="date"] {
+    width: auto;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.4rem;
+    margin: 0;
+}
+
+#customRangeInputs button {
+    width: fit-content;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+.chart-canvas-wrapper {
+    position: relative;
+    height: 300px;
+}
+
+.chart-summary {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    color: var(--text-color-secondary);
+}
+
+.chart-summary span {
+    font-weight: 700;
+}
+
+.chart-summary .net-positive {
+    color: var(--text-green);
+}
+
+.chart-summary .net-negative {
+    color: var(--text-red);
 }
 
 @media print {
@@ -1178,7 +1441,7 @@ label, tr {
     }
 
     /* invoice page */
-    .main-section-invoice {
+    .main-section{
         flex-direction: column;
         margin: 1rem 0;
         width: 100%;
@@ -1264,6 +1527,24 @@ label, tr {
         white-space: normal !important;
         padding: 1rem 0;
         position: relative !important;
+    }
+
+    /* income and expenses */
+    .tracker-content {
+        padding: 1rem;
+        margin-top: 5rem;
+    }
+
+    .tracker-forms {
+        grid-template-columns: 1fr;
+    }
+
+    .tracker-bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .tracker-history {
+        max-height: 320px;
     }
 }
 
