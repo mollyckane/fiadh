@@ -11,6 +11,126 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('expDate').value = today;
     document.getElementById('incDate').value = today;
 
+    // quick add expandable bars
+    const openIncomeBarBtn = document.getElementById('openIncomeBarBtn');
+    const openExpenseBarBtn = document.getElementById('openExpenseBarBtn');
+    const closeIncomeBarBtn = document.getElementById('closeIncomeBarBtn');
+    const closeExpenseBarBtn = document.getElementById('closeExpenseBarBtn');
+    const incomeQuickBar = document.getElementById('incomeQuickBar');
+    const expenseQuickBar = document.getElementById('expenseQuickBar');
+
+    function incomeFormHasValues() {
+        return (
+            document.getElementById('incAmount').value.trim() !== '' ||
+            document.getElementById('incDate').value !== today ||
+            document.getElementById('incSource').value.trim() !== '' ||
+            document.getElementById('incCategory').value !== '' ||
+            document.getElementById('incCategoryCustom').value.trim() !== '' ||
+            document.getElementById('incNotes').value.trim() !== ''
+        );
+    }
+
+    function expenseFormHasValues() {
+        return (
+            document.getElementById('expAmount').value.trim() !== '' ||
+            document.getElementById('expDate').value !== today ||
+            document.getElementById('expCategory').value !== '' ||
+            document.getElementById('expCategoryCustom').value.trim() !== '' ||
+            document.getElementById('expNotes').value.trim() !== ''
+        );
+    }
+
+    function confirmDiscardIfNeeded(typeToOpen = null) {
+        const incomeOpen = !incomeQuickBar.hasAttribute('hidden');
+        const expenseOpen = !expenseQuickBar.hasAttribute('hidden');
+
+        if (incomeOpen && typeToOpen !== 'income' && incomeFormHasValues()) {
+            return confirm('Discard your unsaved income entry?');
+        }
+
+        if (expenseOpen && typeToOpen !== 'expense' && expenseFormHasValues()) {
+            return confirm('Discard your unsaved expense entry?');
+        }
+
+        return true;
+    }
+
+    function closeIncomeBar(reset = false) {
+        incomeQuickBar.hidden = true;
+        openIncomeBarBtn.classList.remove('active');
+        openIncomeBarBtn.setAttribute('aria-expanded', 'false');
+
+        if (reset) {
+            resetIncomeForm();
+        }
+    }
+
+    function closeExpenseBar(reset = false) {
+        expenseQuickBar.hidden = true;
+        openExpenseBarBtn.classList.remove('active');
+        openExpenseBarBtn.setAttribute('aria-expanded', 'false');
+
+        if (reset) {
+            resetExpenseForm();
+        }
+    }
+
+    function openIncomeBar() {
+        if (!confirmDiscardIfNeeded('income')) return;
+
+        closeExpenseBar(true);
+        incomeQuickBar.hidden = false;
+        openIncomeBarBtn.classList.add('active');
+        openIncomeBarBtn.setAttribute('aria-expanded', 'true');
+        openExpenseBarBtn.setAttribute('aria-expanded', 'false');
+        document.getElementById('incAmount').focus();
+    }
+
+    function openExpenseBar() {
+        if (!confirmDiscardIfNeeded('expense')) return;
+
+        closeIncomeBar(true);
+        expenseQuickBar.hidden = false;
+        openExpenseBarBtn.classList.add('active');
+        openExpenseBarBtn.setAttribute('aria-expanded', 'true');
+        openIncomeBarBtn.setAttribute('aria-expanded', 'false');
+        document.getElementById('expAmount').focus();
+    }
+
+    openIncomeBarBtn.addEventListener('click', () => {
+        const isOpen = !incomeQuickBar.hasAttribute('hidden');
+
+        if (isOpen) {
+            if (!confirmDiscardIfNeeded()) return;
+            closeIncomeBar(true);
+            return;
+        }
+
+        openIncomeBar();
+    });
+
+    openExpenseBarBtn.addEventListener('click', () => {
+        const isOpen = !expenseQuickBar.hasAttribute('hidden');
+
+        if (isOpen) {
+            if (!confirmDiscardIfNeeded()) return;
+            closeExpenseBar(true);
+            return;
+        }
+
+        openExpenseBar();
+    });
+
+    closeIncomeBarBtn.addEventListener('click', () => {
+        if (!confirmDiscardIfNeeded()) return;
+        closeIncomeBar(true);
+    });
+
+    closeExpenseBarBtn.addEventListener('click', () => {
+        if (!confirmDiscardIfNeeded()) return;
+        closeExpenseBar(true);
+    });
+
     //custom category toggle
     function wireCustomCategory(selectId, customInputId){
         const select = document.getElementById(selectId);
@@ -89,6 +209,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const result = await res.json();
             if(res.ok){
                 resetExpenseForm();
+                closeExpenseBar();
                 loadAll();
             }
             else{
@@ -126,6 +247,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const result = await res.json();
             if (res.ok) {
                 resetIncomeForm();
+                closeIncomeBar();
                 loadAll();
             }
             else {

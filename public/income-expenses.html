@@ -58,136 +58,153 @@
 
         <div class="tracker-content">
 
-            <!-- ENTRY FORMS -->
-            <div class="tracker-forms">
-
-                <!-- EXPENSE FORM -->
-                <div class="tracker-card">
-                    <h2>Log an Expense</h2>
-                    <div class="form-row">
-                        <div>
-                            <label for="expAmount">Amount (&euro;)</label>
-                            <input type="number" id="expAmount" step="0.01" min="0" placeholder="0.00" />
-                        </div>
-                        <div>
-                            <label for="expDate">Date</label>
-                            <input type="date" id="expDate" />
-                        </div>
-                    </div>
-                    <div>
-                        <label for="expCategory">Category</label>
-                        <select id="expCategory">
-                            <option value="">Select a category</option>
-                            <option value="Art Materials">Art Materials</option>
-                            <option value="Equipment">Equipment</option>
-                            <option value="Software / Subscriptions">Software / Subscriptions</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Studio / Rent">Studio / Rent</option>
-                            <option value="Professional Services">Professional Services</option>
-                            <option value="Other">Other (custom)</option>
-                        </select>
-                        <input type="text" id="expCategoryCustom" class="custom-category-input"
-                            placeholder="Enter category" />
-                    </div>
-                    <div>
-                        <label for="expNotes">Notes</label>
-                        <textarea id="expNotes" placeholder="Optional notes..."></textarea>
-                    </div>
-                    <button class="save-entry-btn" id="saveExpenseBtn">+ Log expense</button>
+            <!-- QUICK ADD -->
+            <div class="quick-add-panel">
+                <div class="quick-add-actions">
+                    <button type="button" class="quick-add-btn" id="openIncomeBarBtn">+ Quick add income</button>
+                    <button type="button" class="quick-add-btn" id="openExpenseBarBtn">+ Quick add expense</button>
                 </div>
-
-                <!-- INCOME FORM -->
-                <div class="tracker-card">
-                    <h2>Log Income</h2>
-                    <div class="form-row">
-                        <div>
+        
+                <!-- INCOME EXPANDABLE BAR -->
+                <div class="tracker-bar tracker-bar-income" id="incomeQuickBar" hidden>
+                    <div class="tracker-bar-top">
+                        <h2>Log Income</h2>
+                        <div class="tracker-bar-actions">
+                            <button type="button" class="tracker-bar-save" id="saveIncomeBtn">Save income</button>
+                            <button type="button" class="tracker-bar-close" id="closeIncomeBarBtn" aria-label="Close income form">×</button>
+                        </div>
+                    </div>
+        
+                    <div class="tracker-bar-fields tracker-bar-fields-income">
+                        <div class="tracker-field">
                             <label for="incAmount">Amount (&euro;)</label>
                             <input type="number" id="incAmount" step="0.01" min="0" placeholder="0.00" />
                         </div>
-                        <div>
+        
+                        <div class="tracker-field">
                             <label for="incDate">Date</label>
                             <input type="date" id="incDate" />
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div>
+        
+                        <div class="tracker-field">
                             <label for="incSource">Source</label>
                             <input type="text" id="incSource" placeholder="e.g. client name, platform..." />
                         </div>
-                        <div>
+        
+                        <div class="tracker-field">
                             <label for="incCategory">Category</label>
-                            <select id="incCategory">
-                                <option value="">Select a category</option>
-                                <option value="Commissions">Commissions</option>
-                                <option value="Grants">Grants</option>
-                                <option value="Licensing">Licensing</option>
-                                <option value="Event / Performance">Event / Performance</option>
-                                <option value="Teaching / Workshops">Teaching / Workshops</option>
-                                <option value="Print Sales">Print Sales</option>
-                                <option value="Other">Other (custom)</option>
-                            </select>
-                            <input type="text" id="incCategoryCustom" class="custom-category-input" placeholder="Enter category" />
+                            <div class="category-row">
+                                <select id="incCategory">
+                                    <option value="">Select a category</option>
+                                    <option value="Commissions">Commissions</option>
+                                    <option value="Grants">Grants</option>
+                                    <option value="Licensing">Licensing</option>
+                                    <option value="Event / Performance">Event / Performance</option>
+                                    <option value="Teaching / Workshops">Teaching / Workshops</option>
+                                    <option value="Print Sales">Print Sales</option>
+                                    <option value="Other">Other (custom)</option>
+                                </select>
+                                <input type="text" id="incCategoryCustom" class="custom-category-input" placeholder="Enter category" />
                             </div>
+                        </div>
+        
+                        <div class="tracker-field tracker-field-notes">
+                            <label for="incNotes">Notes</label>
+                            <input type="text" id="incNotes" placeholder="Optional notes..." />
+                        </div>
                     </div>
-                    <div>
-                        <label for="incNotes">Notes</label>
-                        <textarea id="incNotes" placeholder="Optional notes..."></textarea>
+                </div>
+        
+                <!-- EXPENSE EXPANDABLE BAR -->
+                <div class="tracker-bar tracker-bar-expense" id="expenseQuickBar" hidden>
+                    <div class="tracker-bar-top">
+                        <h2>Log Expense</h2>
+                        <div class="tracker-bar-actions">
+                            <button type="button" class="tracker-bar-save" id="saveExpenseBtn">Save expense</button>
+                            <button type="button" class="tracker-bar-close" id="closeExpenseBarBtn" aria-label="Close expense form">×</button>
+                        </div>
                     </div>
-                    <button class="save-entry-btn" id="saveIncomeBtn">+ Log income</button>
+        
+                    <div class="tracker-bar-fields tracker-bar-fields-expense">
+                        <div class="tracker-field">
+                            <label for="expAmount">Amount (&euro;)</label>
+                            <input type="number" id="expAmount" step="0.01" min="0" placeholder="0.00" />
+                        </div>
+        
+                        <div class="tracker-field">
+                            <label for="expDate">Date</label>
+                            <input type="date" id="expDate" />
+                        </div>
+        
+                        <div class="tracker-field">
+                            <label for="expCategory">Category</label>
+                            <div class="category-row">
+                                <select id="expCategory">
+                                    <option value="">Select a category</option>
+                                    <option value="Art Materials">Art Materials</option>
+                                    <option value="Equipment">Equipment</option>
+                                    <option value="Software / Subscriptions">Software / Subscriptions</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Studio / Rent">Studio / Rent</option>
+                                    <option value="Professional Services">Professional Services</option>
+                                    <option value="Other">Other (custom)</option>
+                                </select>
+                                <input type="text" id="expCategoryCustom" class="custom-category-input" placeholder="Enter category" />
+                            </div>
+                        </div>
+        
+                        <div class="tracker-field tracker-field-notes tracker-field-notes-expense">
+                            <label for="expNotes">Notes</label>
+                            <input type="text" id="expNotes" placeholder="Optional notes..." />
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- BOTTOM ROW -->
-            <div class="tracker-bottom">
-
-                <!-- HISTORY PANEL -->
-                <div class="tracker-card tracker-history">
-                    <h2>History</h2>
-                    <div class="history-filter">
-                        <button class="active" data-filter="all">All</button>
-                        <button data-filter="income">Income</button>
-                        <button data-filter="expense">Expenses</button>
+        
+            <!-- CHART -->
+            <div class="tracker-card tracker-chart-card tracker-chart-top">
+                <div class="chart-controls">
+                    <div class="segmented-control" id="chartViewToggle">
+                        <button class="active" data-view="income">Income</button>
+                        <button data-view="expenses">Expenses</button>
+                        <button data-view="comparison">Comparison</button>
                     </div>
-                    <div class="history-list" id="historyList">
-                        <p class="history-empty">No entries yet.</p>
+        
+                    <div class="time-filter" id="timeFilter">
+                        <button data-range="week">This week</button>
+                        <button class="active" data-range="month">This month</button>
+                        <button data-range="year">This year</button>
+                        <button data-range="custom">Custom</button>
                     </div>
                 </div>
-
-                <!-- CHART CARD -->
-                <div class="tracker-card tracker-chart-card">
-                    <div class="chart-controls">
-                        <!-- view segmented control -->
-                        <div class="segmented-control" id="chartViewToggle">
-                            <button class="active" data-view="income">Income</button>
-                            <button data-view="expenses">Expenses</button>
-                            <button data-view="comparison">Comparison</button>
-                        </div>
-                        <!-- time filter -->
-                        <div class="time-filter" id="timeFilter">
-                            <button data-range="week">This week</button>
-                            <button class="active" data-range="month">This month</button>
-                            <button data-range="year">This year</button>
-                            <button data-range="custom">Custom</button>
-                        </div>
-                    </div>
-
-                    <!-- custom range -->
-                    <div id="customRangeInputs">
-                        <label>From</label>
-                        <input type="date" id="customFrom" />
-                        <label>To</label>
-                        <input type="date" id="customTo" />
-                        <button id="applyCustomRange">Apply</button>
-                    </div>
-
-                    <div class="chart-canvas-wrapper">
-                        <canvas id="trackerChart"></canvas>
-                    </div>
-
-                    <div class="chart-summary" id="chartSummary"></div>
+        
+                <div id="customRangeInputs">
+                    <label>From</label>
+                    <input type="date" id="customFrom" />
+                    <label>To</label>
+                    <input type="date" id="customTo" />
+                    <button id="applyCustomRange">Apply</button>
                 </div>
-
+        
+                <div class="chart-canvas-wrapper">
+                    <canvas id="trackerChart"></canvas>
+                </div>
+        
+                <div class="chart-summary" id="chartSummary"></div>
+            </div>
+        
+            <!-- HISTORY -->
+            <div class="tracker-card tracker-history tracker-history-full">
+                <h2>History</h2>
+                <div class="history-filter">
+                    <button class="active" data-filter="all">All</button>
+                    <button data-filter="income">Income</button>
+                    <button data-filter="expense">Expenses</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="history-empty">No entries yet.</p>
+                </div>
             </div>
         </div>
 
