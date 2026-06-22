@@ -19,21 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Could not load user: ', err);
     }
 
-    //live date 
-    function updateDateTime() {
-        const now = new Date();
-        const day = now.toLocaleDateString('en-IE', { weekday: 'long' });
-        const date = now.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' });
-        const time = now.toLocaleTimeString('en-IE', { hour: '2-digit', minute: '2-digit', hour12: false });
-
-        document.getElementById('live-datetime').textContent = `${day}, ${date}, ${time}`;
-    }
-
-    // run then update every second
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-
-
     // elements
     const itemsBody = document.getElementById('invoiceItemsBody');
     const addItemBtn = document.getElementById('addItemButton');
@@ -45,9 +30,60 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalDisplay = document.getElementById('totalDisplay');
     const saveBtn = document.getElementById('saveInvoiceButton');
     const exportPdfBtn = document.getElementById('exportPdfBtn');
+    const invoiceHistoryList = document.getElementById('invoiceHistoryList');
+    const invoiceHistoryFilter = document.getElementById('invoiceHistoryFilter');
+
+    let invoiceHistoryData = [];
+    let activeInvoiceHistoryFilter = 'all';
 
     // hide VAT rate input by default
     if (vatRateContainer) vatRateContainer.style.display = 'none';
+
+    //helper to determine if an invoice is overdue
+    function isInvoiceOverdue(inv){
+        if(!inv || inv.status === 'paid') return false;
+        if(inv.status === 'overdue') return true;
+        if(!inv.created_at) return false;
+
+        const dueDateValue = inv.due_date || inv.duedate;
+        if(!dueDateValue) return false;
+
+        const dueDate = new Date(dueDateValue);
+        if(Number.isNaN(dueDate.getTime())) return false;
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        dueDate.setHours(0, 0, 0, 0);
+
+        return dueDate < today;
+    }
+
+    function getEffectiveInvoiceStatus(inv){
+        if(isInvoiceOverdue(inv)) return 'overdue';
+        return(inv?.status || 'draft').toLowerCase();
+    }
+
+    function getInvoiceGroupDate(inv){
+        const groupDateValue = inv?.created_at || inv?.createdat || inv?.due_date || inv?.duedate;
+        const date = groupDateValue ? new Date(groupDateValue) : new Date();
+        return Number.isNaN(date.getTime()) ? new Date() : date;
+    }
+
+    function formatMonthSeparator(date) {
+        const now = new Date();
+        const sameMonth = date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+
+        const monthLabel = date.toLocaleDateString('en-IE', {
+            month: 'long',
+            year: 'numeric'
+        });
+
+        if (sameMonth) {
+            return `This month - ${monthLabel}`;
+        }
+
+        return monthLabel;
+    }
 
     // recalculate one row
     function recalcRow(row) {
@@ -252,93 +288,147 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // invoice history
+    function renderInvoiceHistory() {
+        if (!invoiceHistoryList) return;
+
+        if (!Array.isArray(invoiceHistoryData) || invoiceHistoryData.length === 0) {
+            invoiceHistoryList.innerHTML = `
+                <p class="history-empty">No invoices saved yet.</p>
+            `;
+            return;
+        }
+
+        const filteredInvoices = invoiceHistoryData
+            .filter(inv => {
+                const effectiveStatus = getEffectiveInvoiceStatus(inv);
+                if (activeInvoiceHistoryFilter === 'all') return true;
+                return effectiveStatus === activeInvoiceHistoryFilter;
+            })
+            .sort((a, b) => getInvoiceGroupDate(b) - getInvoiceGroupDate(a));
+
+        if (filteredInvoices.length === 0) {
+            invoiceHistoryList.innerHTML = `
+                <p class="history-empty">No invoices found for this filter.</p>
+            `;
+            return;
+        }
+
+        let lastMonthKey = '';
+
+        invoiceHistoryList.innerHTML = filteredInvoices.map(inv => {
+            const effectiveStatus = getEffectiveInvoiceStatus(inv);
+            const groupDate = getInvoiceGroupDate(inv);
+            const monthKey = `${groupDate.getFullYear()}-${groupDate.getMonth()}`;
+            const separatorHtml = monthKey !== lastMonthKey
+                ? `<p class="invoice-history-separator">${formatMonthSeparator(groupDate)}</p>`
+                : '';
+
+            lastMonthKey = monthKey;
+
+            const dueLabel = inv.due_date
+                ? `Due: ${new Date(inv.due_date).toLocaleDateString('en-IE')}`
+                : 'No due date';
+
+            return `
+                ${separatorHtml}
+                <div class="history-item invoice-history-item">
+                    <div class="history-item-left">
+                        <span class="history-item-label">${inv.client_name || 'Untitled invoice'}</span>
+                        <span class="history-item-meta">
+                            €${parseFloat(inv.total || 0).toFixed(2)} ·
+                            <span class="status-pill ${effectiveStatus}">${effectiveStatus}</span> ·
+                            ${dueLabel}
+                        </span>
+                    </div>
+                    <div class="history-item-right invoice-history-actions">
+                        <button class="edit-entry-btn" data-id="${inv.id}">view/edit</button>
+                        <button class="delete-entry-btn" data-id="${inv.id}">delete</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        invoiceHistoryList.querySelectorAll('.delete-entry-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = btn.dataset.id;
+                const confirmed = confirm('Are you sure you want to delete this invoice?');
+                if (!confirmed) return;
+
+                try {
+                    const response = await fetch(`/api/invoices/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Invoice deleted!');
+                        loadInvoiceHistory();
+                    } else {
+                        alert(result.error || result.message || 'Failed to delete invoice.');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+
+        invoiceHistoryList.querySelectorAll('.edit-entry-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = btn.dataset.id;
+
+                try {
+                    const res = await fetch(`/api/invoices/${id}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    const inv = await res.json();
+                    openModal(inv);
+                } catch (err) {
+                    console.error(err);
+                    alert('Could not load invoice.');
+                }
+            });
+        });
+    }
+
     async function loadInvoiceHistory() {
-        const historySection = document.querySelector('.invoice-history');
-        if (!historySection) return;
+        if (!invoiceHistoryList) return;
 
         try {
             const response = await fetch('/api/invoices', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+
             const invoices = await response.json();
-
-            if (!Array.isArray(invoices) || invoices.length === 0) {
-                historySection.innerHTML = `
-            <p>Invoice History</p>
-            <p style="font-size:0.85rem; color:#9a9494; margin-top:0.5rem;">No invoices saved yet.</p>
-        `;
-                return;
-            }
-
-            historySection.innerHTML = `
-        <p>Invoice History</p>
-        <div style="margin-top:0.5rem; display:flex; flex-direction:column; gap:0.5rem;">
-            ${invoices.map(inv => `
-            <div style="font-size:0.82rem; border-bottom:1px solid var(--border-color-secondary); padding-bottom:0.4rem;">
-                <div style="display: flex; justify-content:space-between; align-items: center;"><strong>${inv.client_name}</strong>
-                    <div>
-                        <button class="view-edit-btn" data-id="${inv.id}">view/edit</button>
-                        <button class="delete-btn" data-id="${inv.id}">delete</button>
-                    </div>
-            </div>
-                €${parseFloat(inv.total).toFixed(2)} &middot; <span class="status-pill ${inv.status}"> ${inv.status}</span>
-                ${inv.due_date ? `&middot; Due: ${new Date (inv.due_date).toLocaleDateString('en-IE')}` : ''}
-            </div>
-            `).join('')}
-        </div>
-        `;
-
-        historySection.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const id= btn.dataset.id;
-                const confirmed = confirm('Are you sure you want to delete this invoice?');
-                if(confirmed){
-                    try {
-                        const response = await fetch(`/api/invoices/${id}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'Authorization': `Bearer ${token}`
-                            },
-                        });
-
-                        const result = await response.json();
-                        if (response.ok) {
-                            alert('Invoice deleted!');
-                            loadInvoiceHistory();
-                        } else {
-                            alert(result.error || result.message || 'Failed to delete invoice.');
-                        }
-                    } catch (err) {
-                        console.error(err);
-                        alert('An error occurred. Please try again.');
-                    }
-                }
-            });
-        });
-        historySection.querySelectorAll('.view-edit-btn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const id= btn.dataset.id;
-
-                try{
-                    const res = await fetch(`/api/invoices/${id}`, {
-                        headers: { 'Authorization' : `Bearer ${token}` }
-                    });
-                    const inv = await res.json();
-                    openModal(inv);
-                }
-                catch (err){
-                    console.error(err);
-                    alert('Could not load invoice.');
-                }
-                //TODO: open edit modal/form for this invoice
-                console.log('Edit invoice: ', id);
-            });
-        });
-
+            invoiceHistoryData = Array.isArray(invoices) ? invoices : [];
+            renderInvoiceHistory();
         } catch (err) {
             console.error('Could not load invoice history:', err);
+            invoiceHistoryList.innerHTML = `
+                <p class="history-empty">Could not load invoice history.</p>
+            `;
         }
     }
+
+    if (invoiceHistoryFilter) {
+        invoiceHistoryFilter.querySelectorAll('button[data-filter]').forEach(button => {
+            button.addEventListener('click', () => {
+                activeInvoiceHistoryFilter = button.dataset.filter;
+
+                invoiceHistoryFilter.querySelectorAll('button[data-filter]').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                button.classList.add('active');
+                renderInvoiceHistory();
+            });
+        });
+    }
+
     loadInvoiceHistory();
 
     // reusable PDF generator 
@@ -478,7 +568,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // populate view mode
         document.getElementById('viewInvoiceNumber').textContent = inv.invoice_number || '--';
-        document.getElementById('viewStatus').textContent = inv.status || '';
+        document.getElementById('viewStatus').textContent = getEffectiveInvoiceStatus(inv);
         document.getElementById('viewInvoiceDate').textContent = inv.created_at
             ? new Date(inv.created_at).toLocaleDateString('en-IE') : '--';
         document.getElementById('viewDueDate').textContent = inv.due_date

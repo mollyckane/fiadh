@@ -52,7 +52,7 @@
         </nav>
     </aside>
 
-    <div class="main-content-dash">
+    <div class="main-content-dash page-load">
         <header>
             <h1>Invoice Generator</h1>
             <p id="live-datetime"></p>
@@ -140,7 +140,6 @@
                                 <option value="draft">Draft</option>
                                 <option value="sent">Sent</option>
                                 <option value="paid">Paid</option>
-                                <option value="overdue">Overdue</option>
                             </select>
                         </div>
                         <div>
@@ -157,6 +156,14 @@
             </section>
             <section class="invoice-history">
                 <p>Invoice History</p>
+                <div class="history-filter" id="invoiceHistoryFilter">
+                    <button data-filter="all" class="active">all</button>
+                    <button data-filter="draft">draft</button>
+                    <button data-filter="sent">sent</button>
+                    <button data-filter="paid">paid</button>
+                    <button data-filter="overdue">overdue</button>
+                </div>
+                <div class="history-list" id="invoiceHistoryList"></div>
             </section>
         </div>
         <footer>
@@ -224,7 +231,6 @@
                                 <option value="draft">Draft</option>
                                 <option value="sent">Sent</option>
                                 <option value="paid">Paid</option>
-                                <option value="overdue">Overdue</option>
                             </select>
                         </div>
                         <div>
