@@ -4,24 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="/images/f.png">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/21102ac5ea.js" crossorigin="anonymous"></script>
+    <title>Fiadh | Income &amp; Expenses</title>
 
-    <title>Fiadh | Income & Expenses</title>
 </head>
 
 <body>
-    <!-- SIDEBAR NAVIGATION -->
+    <!-- SIDEBAR -->
     <aside>
         <div class="mobile-bar">
             <h1 style="color:white;">f.</h1>
             <button class="burger" id="burger-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
         <nav class="navbar" id="main-nav">
@@ -33,13 +30,13 @@
                 <a href="invoices.html">
                     <li>Invoices</li>
                 </a>
-                <a href="#">
-                    <li>Income & Expenses</li>
+                <a href="income-expenses.html">
+                    <li>Income &amp; Expenses</li>
                 </a>
-                <a href="dashboard.html#business-container" onclick="openSection('business-container')">
+                <a href="dashboard.html" onclick="openSection('business-container')">
                     <li>Business Tools</li>
                 </a>
-                <a href="dashboard.html#resource-container" onclick="openSection('resource-container')">
+                <a href="#">
                     <li>Resource Hub</li>
                 </a>
             </ul>
@@ -48,36 +45,190 @@
                     <li>Settings</li>
                 </a>
                 <li>/</li>
-                <a href="#"><button id="logout-btn">Log Out</button></a>
+                <button id="logout-btn">Log Out</button>
             </ul>
         </nav>
     </aside>
 
     <div class="main-content-dash">
         <header>
-            <h1>Your income and expenses</h1>
+            <h1>Income &amp; Expenses</h1>
             <p id="live-datetime"></p>
         </header>
-        <main class="dash-grid">
-            <section class="card-full">
 
+        <div class="tracker-content">
 
-            </section>
-            <section class="card-full">
-            
-            
-            </section>
-            <section class="card-full">
-            
-            
-            </section>
-           
-        </main>
+            <!-- ENTRY FORMS -->
+            <div class="tracker-forms">
+
+                <!-- EXPENSE FORM -->
+                <div class="tracker-card">
+                    <h2>Log an Expense</h2>
+                    <div class="form-row">
+                        <div>
+                            <label for="expAmount">Amount (&euro;)</label>
+                            <input type="number" id="expAmount" step="0.01" min="0" placeholder="0.00" />
+                        </div>
+                        <div>
+                            <label for="expDate">Date</label>
+                            <input type="date" id="expDate" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="expCategory">Category</label>
+                        <select id="expCategory">
+                            <option value="">Select a category</option>
+                            <option value="Art Materials">Art Materials</option>
+                            <option value="Equipment">Equipment</option>
+                            <option value="Software / Subscriptions">Software / Subscriptions</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Studio / Rent">Studio / Rent</option>
+                            <option value="Professional Services">Professional Services</option>
+                            <option value="Other">Other (custom)</option>
+                        </select>
+                        <input type="text" id="expCategoryCustom" class="custom-category-input"
+                            placeholder="Enter category" />
+                    </div>
+                    <div>
+                        <label for="expNotes">Notes</label>
+                        <textarea id="expNotes" placeholder="Optional notes..."></textarea>
+                    </div>
+                    <button class="save-entry-btn" id="saveExpenseBtn">+ Log expense</button>
+                </div>
+
+                <!-- INCOME FORM -->
+                <div class="tracker-card">
+                    <h2>Log Income</h2>
+                    <div class="form-row">
+                        <div>
+                            <label for="incAmount">Amount (&euro;)</label>
+                            <input type="number" id="incAmount" step="0.01" min="0" placeholder="0.00" />
+                        </div>
+                        <div>
+                            <label for="incDate">Date</label>
+                            <input type="date" id="incDate" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="incSource">Source</label>
+                            <input type="text" id="incSource" placeholder="e.g. client name, platform..." />
+                        </div>
+                        <div>
+                            <label for="incCategory">Category</label>
+                            <select id="incCategory">
+                                <option value="">Select a category</option>
+                                <option value="Commissions">Commissions</option>
+                                <option value="Grants">Grants</option>
+                                <option value="Licensing">Licensing</option>
+                                <option value="Event / Performance">Event / Performance</option>
+                                <option value="Teaching / Workshops">Teaching / Workshops</option>
+                                <option value="Print Sales">Print Sales</option>
+                                <option value="Other">Other (custom)</option>
+                            </select>
+                            <input type="text" id="incCategoryCustom" class="custom-category-input" placeholder="Enter category" />
+                            </div>
+                    </div>
+                    <div>
+                        <label for="incNotes">Notes</label>
+                        <textarea id="incNotes" placeholder="Optional notes..."></textarea>
+                    </div>
+                    <button class="save-entry-btn" id="saveIncomeBtn">+ Log income</button>
+                </div>
+            </div>
+
+            <!-- BOTTOM ROW -->
+            <div class="tracker-bottom">
+
+                <!-- HISTORY PANEL -->
+                <div class="tracker-card tracker-history">
+                    <h2>History</h2>
+                    <div class="history-filter">
+                        <button class="active" data-filter="all">All</button>
+                        <button data-filter="income">Income</button>
+                        <button data-filter="expense">Expenses</button>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <p class="history-empty">No entries yet.</p>
+                    </div>
+                </div>
+
+                <!-- CHART CARD -->
+                <div class="tracker-card tracker-chart-card">
+                    <div class="chart-controls">
+                        <!-- view segmented control -->
+                        <div class="segmented-control" id="chartViewToggle">
+                            <button class="active" data-view="income">Income</button>
+                            <button data-view="expenses">Expenses</button>
+                            <button data-view="comparison">Comparison</button>
+                        </div>
+                        <!-- time filter -->
+                        <div class="time-filter" id="timeFilter">
+                            <button data-range="week">This week</button>
+                            <button class="active" data-range="month">This month</button>
+                            <button data-range="year">This year</button>
+                            <button data-range="custom">Custom</button>
+                        </div>
+                    </div>
+
+                    <!-- custom range -->
+                    <div id="customRangeInputs">
+                        <label>From</label>
+                        <input type="date" id="customFrom" />
+                        <label>To</label>
+                        <input type="date" id="customTo" />
+                        <button id="applyCustomRange">Apply</button>
+                    </div>
+
+                    <div class="chart-canvas-wrapper">
+                        <canvas id="trackerChart"></canvas>
+                    </div>
+
+                    <div class="chart-summary" id="chartSummary"></div>
+                </div>
+
+            </div>
+        </div>
+
         <footer>
             <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
         </footer>
     </div>
+
+    <!-- EDIT ENTRY MODAL -->
+    <div id="editEntryModal" class="edit-entry-overlay" style="display:none;">
+        <div class="edit-entry-box">
+            <h3 id="editEntryTitle">Edit Entry</h3>
+            <div>
+                <label for="editAmount">Amount (€)</label>
+                <input type="number" id="editAmount" step="0.01" min="0" />
+            </div>
+            <div id="editSourceWrapper">
+                <label for="editSource">Source</label>
+                <input type="text" id="editSource" />
+            </div>
+            <div>
+                <label for="editCategory">Category</label>
+                <input type="text" id="editCategory" />
+            </div>
+            <div>
+                <label for="editEntryDate">Date</label>
+                <input type="date" id="editEntryDate" />
+            </div>
+            <div>
+                <label for="editNotes">Notes</label>
+                <textarea id="editNotes" rows="3"></textarea>
+            </div>
+            <div class="edit-entry-actions">
+                <button id="editSaveBtn">Save changes</button>
+                <button id="editCancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/ui.js"></script>
+    <script src="js/income-expenses.js"></script>
 </body>
 
 </html>
