@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function confirmDiscardIfNeeded(typeToOpen = null) {
-        const incomeOpen = !incomeQuickBar.hasAttribute('hidden');
-        const expenseOpen = !expenseQuickBar.hasAttribute('hidden');
+        const incomeOpen = incomeQuickBar.classList.contains('show');
+        const expenseOpen = expenseQuickBar.classList.contains('show');
 
         if (incomeOpen && typeToOpen !== 'income' && incomeFormHasValues()) {
             return confirm('Discard your unsaved income entry?');
@@ -64,30 +64,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function closeIncomeBar(reset = false) {
-        incomeQuickBar.hidden = true;
+        incomeQuickBar.classList.remove('show');
         openIncomeBarBtn.classList.remove('active');
         openIncomeBarBtn.setAttribute('aria-expanded', 'false');
 
-        if (reset) {
-            resetIncomeForm();
-        }
+        incomeQuickBar.addEventListener('transitionend', () => {
+            if (reset) resetIncomeForm();
+        }, { once: true });
     }
 
     function closeExpenseBar(reset = false) {
-        expenseQuickBar.hidden = true;
+        expenseQuickBar.classList.remove('show');
         openExpenseBarBtn.classList.remove('active');
         openExpenseBarBtn.setAttribute('aria-expanded', 'false');
 
-        if (reset) {
-            resetExpenseForm();
-        }
+        expenseQuickBar.addEventListener('transitionend', () => {
+            if (reset) resetExpenseForm();
+        }, { once: true });
     }
 
     function openIncomeBar() {
         if (!confirmDiscardIfNeeded('income')) return;
 
         closeExpenseBar(true);
-        incomeQuickBar.hidden = false;
+        incomeQuickBar.classList.add('show');
         openIncomeBarBtn.classList.add('active');
         openIncomeBarBtn.setAttribute('aria-expanded', 'true');
         openExpenseBarBtn.setAttribute('aria-expanded', 'false');
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!confirmDiscardIfNeeded('expense')) return;
 
         closeIncomeBar(true);
-        expenseQuickBar.hidden = false;
+        expenseQuickBar.classList.add('show');
         openExpenseBarBtn.classList.add('active');
         openExpenseBarBtn.setAttribute('aria-expanded', 'true');
         openIncomeBarBtn.setAttribute('aria-expanded', 'false');
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     openIncomeBarBtn.addEventListener('click', () => {
-        const isOpen = !incomeQuickBar.hasAttribute('hidden');
+        const isOpen = incomeQuickBar.classList.contains('show');
 
         if (isOpen) {
             if (!confirmDiscardIfNeeded()) return;
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     openExpenseBarBtn.addEventListener('click', () => {
-        const isOpen = !expenseQuickBar.hasAttribute('hidden');
+        const isOpen = expenseQuickBar.classList.contains('show');
 
         if (isOpen) {
             if (!confirmDiscardIfNeeded()) return;
