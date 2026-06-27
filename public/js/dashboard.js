@@ -1,10 +1,10 @@
+const token = localStorage.getItem('token');
+
+if (!token) {
+    window.location.href = '/index.html';
+}
+
 async function loadUserData() {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-        window.location.href = '/index.html';
-    }
-
     try {
         const response = await fetch('/api/auth/me', {
             headers: {
@@ -84,63 +84,93 @@ function renderMiniCalendar() {
 
 renderMiniCalendar();
 
-// income/expense chart on dashboard
-function initIncomeExpenseChart() {
-    const ctx = document.getElementById('income-expense-chart');
-    if (!ctx || typeof Chart === 'undefined') return;
+let dashboardChart = null;
 
-    const data = {
-        labels: ['This month'],
-        datasets: [
-            {
-                label: 'Income',
-                data: [400],
-                backgroundColor: 'rgba(150, 94, 94, 0.7)',
-                borderRadius: 6,
-                barThickness: 18   
-            },
-            {
-                label: '',         
-                data: [0],
-                backgroundColor: 'transparent',
-                barThickness: 8, 
-                borderWidth: 0
-            },
-            {
-                label: 'Expenses',
-                data: [500],
-                backgroundColor: 'rgba(226, 200, 200, 0.9)',
-                borderRadius: 6,
-                barThickness: 18  
-            }
-        ]
+//date helper
+function formatLocalDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function getStoredDate(value) {
+    if (!value) return null;
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        return value;
+    }
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return null;
+
+    return formatLocalDate(parsed);
+}
+
+function isCurrentMonth(value) {
+    const storedDate = getStoredDate(value);
+    if (!storedDate) return false;
+
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = String(now.getMonth() + 1).padStart(2, '0');
+
+    return storedDate.startsWith(`${currentYear}-${currentMonth}`);
+}
+
+function createBarDataset(label, data, backgroundColor) {
+    return {
+        label,
+        data,
+        backgroundColor,
+        borderRadius: 6,
+        categoryPercentage: 0.55,
+        barPercentage: 0.7,
+        maxBarThickness: 38
     };
+}
 
-    const options = {
+//chart options
+function chartOptions(maxValue) {
+    const roundedMax = maxValue === 0 ? 100 : Math.ceil(maxValue / 100) * 100;
+    const stepSize = Math.max(50, Math.ceil(roundedMax / 5));
+
+    return {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'bottom',
                 labels: {
-                    boxWidth: 12,
-                    font: { size: 10 }
+                    color: '#9b6363',
+                    font: { family: 'Inter', size: 10 },
+                    boxWidth: 12
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: ctx => ` €${parseFloat(ctx.parsed.y).toFixed(2)}`
                 }
             }
         },
         scales: {
             x: {
                 grid: { display: false },
-                ticks: { font: { size: 10 } },
-                categoryPercentage: 0.1
+                ticks: {
+                    color: '#9f998e',
+                    font: { size: 10 }
+                }
             },
             y: {
                 beginAtZero: true,
-                max: 1000,      
+                max: roundedMax,
                 ticks: {
+                    color: '#9f998e',
                     font: { size: 10 },
-                    stepSize: 200
-                }
+                    stepSize: stepSize,
+                    callback: value => `€${value}`
+                },
+                grid: { color: 'rgba(0,0,0,0.05)' }
             }
         },
         onClick: (evt, elements) => {
@@ -149,14 +179,76 @@ function initIncomeExpenseChart() {
             }
         }
     };
+}
 
-    new Chart(ctx, {
+//render chart
+function renderIncomeExpenseChart(totalIncome, totalExpenses) {
+    const canvas = document.getElementById('income-expense-chart');
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    const ctx = canvas.getContext('2d');
+
+    if (dashboardChart) {
+        dashboardChart.destroy();
+    }
+
+    const highestValue = Math.max(totalIncome, totalExpenses);
+
+    dashboardChart = new Chart(ctx, {
         type: 'bar',
-        data,
-        options
+        data: {
+            labels: ['This month'],
+            datasets: [
+                createBarDataset('Income', [totalIncome], '#7fbc7f'),
+                createBarDataset('Expenses', [totalExpenses], '#b88a8a')
+            ]
+        },
+        options: chartOptions(highestValue)
     });
 }
-initIncomeExpenseChart();
+
+//load chart
+async function loadIncomeExpenseChart() {
+    try {
+        const [incomeRes, expenseRes] = await Promise.all([
+            fetch('/api/income', {
+                headers: { Authorization: `Bearer ${token}` }
+            }),
+            fetch('/api/expenses', {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+        ]);
+
+        let incomeEntries = await incomeRes.json();
+        let expenseEntries = await expenseRes.json();
+
+        if (!Array.isArray(incomeEntries)) incomeEntries = [];
+        if (!Array.isArray(expenseEntries)) expenseEntries = [];
+
+        const currentMonthIncome = incomeEntries.filter(entry =>
+            isCurrentMonth(entry.entry_date || entry.created_at)
+        );
+
+        const currentMonthExpenses = expenseEntries.filter(entry =>
+            isCurrentMonth(entry.entry_date || entry.created_at)
+        );
+
+        const totalIncome = currentMonthIncome.reduce(
+            (sum, entry) => sum + parseFloat(entry.amount || 0), 0
+        );
+
+        const totalExpenses = currentMonthExpenses.reduce(
+            (sum, entry) => sum + parseFloat(entry.amount || 0), 0
+        );
+
+        renderIncomeExpenseChart(totalIncome, totalExpenses);
+    } catch (err) {
+        console.error('Could not load dashboard chart:', err);
+    }
+}
+
+loadIncomeExpenseChart();
+
 
 // arrow dropdown toggle
 function toggleDropdown(header) {
