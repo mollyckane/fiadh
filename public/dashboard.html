@@ -44,17 +44,18 @@
             <h1>Welcome to your Fiadh Dashboard, <span id="welcome-name">.</span></h1>
             <p id="live-datetime"></p>
         </header>
+        
         <main class="dash-grid">
-            <section class="card-full">
+            <section class="dash-main">
+                <!-- quick shortcuts -->
+                <div class="dash-actions">
+                    <button onclick="location.href='invoices.html'" class="dash-btn">+ Create Invoice</button>
+                    <button onclick="location.href='income-expenses.html'" class="dash-btn">+ Log an expense</button>
+                    <button class="dash-btn">Current Opportunities</button>
+                </div>
                 <!-- calender widget -->
                 <div class="dash-calendar">
                     <div id="mini-calendar"></div>
-                </div>
-                <!-- quick shortcuts -->
-                <div class="dash-shortcuts">
-                    <button onclick="location.href='invoices.html'">+ Create Invoice</button>
-                    <button onclick="location.href='income-expenses.html'">+ Log an expense</button>
-                    <button>Current Opportunities</button>
                 </div>
                 <!-- chart widget -->
                 <div class="dash-chart">
@@ -71,9 +72,9 @@
             <section class="dash-section" id="business-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
                     Business Tools 
-                    <i class="fa-solid fa-caret-down"></i>
+                    <i class="fa-solid fa-caret-up"></i>
                 </div>
-                <div class="dash-section-container">
+                <div class="dash-section-container show">
                     <button>Learn about contracts</button>
                     <button onclick="location.href='income-expenses.html'">View my income/expenses</button>
                     <button>Learn about contracts</button>
@@ -86,9 +87,9 @@
             <section class="dash-section" id="generators-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
                     Generators
-                    <i class="fa-solid fa-caret-down"></i>
+                    <i class="fa-solid fa-caret-up"></i>
                 </div>
-                <div class="dash-section-container">
+                <div class="dash-section-container show">
                     <button onclick="location.href='invoices.html'">Invoice</button>
                     <button>Contract</button>
                     <button>Expense Chart</button>
@@ -98,9 +99,9 @@
             <section class="dash-section" id="resource-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
                     Resource Hub
-                    <i class="fa-solid fa-caret-down"></i>
+                    <i class="fa-solid fa-caret-up"></i>
                 </div>
-                <div class="dash-section-container">
+                <div class="dash-section-container show">
                     <button>gov.ie</button>
                     <button>Self-employment</button>
                     <button>Arts Council</button>
