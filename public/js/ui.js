@@ -20,19 +20,16 @@ if (burgerBtn && mainNav) {
 // desktop sidebar collapse - only run if toggle exists on this page
 const desktopToggle = document.getElementById('desktop-sidebar-toggle');
 
-// apply saved preference on page load
-const sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+if(desktopToggle){
+    // apply saved preference on page load
+    const sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
 
-if(sidebarCollapsed && window.innerWidth > 900){
-    document.body.classList.add('sidebar-collapsed')
-    
-    if (desktopToggle) {
+    if (sidebarCollapsed && window.innerWidth > 900){
+        document.body.classList.add('sidebar-collapsed');
         desktopToggle.setAttribute('aria-expanded', 'false');
         desktopToggle.setAttribute('aria-label', 'Expand sidebar');
     }
-}
-  
-if(desktopToggle){
+
         desktopToggle.addEventListener('click', () => {
         const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
 
