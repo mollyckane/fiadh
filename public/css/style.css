@@ -443,6 +443,13 @@ main h1 {
     font-size: 5rem;
 }
 
+.main-inner{
+    padding-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    width: var(--main-width);
+}
+
 .subtitle {
     font-size: var(--text-xs);
     color: var(--subtitle);
@@ -463,11 +470,11 @@ main h1 {
 }
 
 .register-section {
-    padding-bottom: 7rem;
+    padding-bottom: 9rem;
 }
 
 .login-section {
-    padding-bottom: 12rem;
+    padding-bottom: 15rem;
 }
 
 .register-section h2,
@@ -797,7 +804,7 @@ main h1 {
 
 .invoice-page {
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 4rem;
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
@@ -993,7 +1000,7 @@ main h1 {
     height: fit-content;
     max-height: 500px;
     box-shadow: var(--shadow-sm);
-    padding: 1rem;
+    padding: 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -1051,26 +1058,32 @@ main h1 {
 /* modal */
 .modal-overlay {
     position: fixed;
-    inset: 0;
     background: rgba(0, 0, 0, 0.45);
-    z-index: 1000;
+    z-index: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    width: 100%;
+    top: 0;
+    height: 100%;
+}
+
+body.sidebar-collapsed .modal-box {
+    margin-left: 4rem;
 }
 
 .modal-box {
     background: var(--bg-main);
     border-radius: var(--radius);
     width: 100%;
-    max-width: 680px;
     max-height: 91vh;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-sm);
     padding: 1.5rem;
+    margin-left: var(--sidebar-width);
 }
 
 .modal-header {
@@ -1199,6 +1212,15 @@ main h1 {
 
     .modal-grid .full-width {
         grid-column: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .modal-overlay {
+        left: 0;
+        width: 100%;
+        top:0;
+        height: 100%;
     }
 }
 
@@ -1736,6 +1758,10 @@ main h1 {
     padding-right: 0.25rem;
 }
 
+.tracker-bar, .main-section, .dash-grid, .modal-box{
+    max-width: 1080px;
+}
+
 /* Tracker responsiveness */
 @media (max-width: 1100px) {
     .tracker-content {
@@ -1916,10 +1942,8 @@ main h1 {
 
     .history-item-right {
         align-items: flex-start;
-        white-space: normal;
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
     }
 
     .chart-controls {
