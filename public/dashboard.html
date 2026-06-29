@@ -41,50 +41,63 @@
                 </button>
             </div>
             <ul class="nav-items">
-                <li><a href="#">
-                    <i class="fa-solid fa-house" aria-hidden="true"></i>
-                    <span class="nav-label">Dashboard</span>
-                    <span class="nav-tooltip" role="tooltip">Dashboard</span>
-                </a></li>
-                <li><a href="invoices.html">
-                    <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                    <span class="nav-label">Invoices</span>
-                    <span class="nav-tooltip" role="tooltip">Invoices</span>
-                </a></li>
-                <li>
-                    <a href="income-expenses.html">
-                    <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
-                    <span class="nav-label">Income &amp; Expenses</span>
-                    <span class="nav-tooltip" role="tooltip">Income &amp; Expenses</span>
+                <li onclick="location.href='#'">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_dashboard">Dashboard</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_dashboard">Dashboard</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#business-container" onclick="openSection('business-container')">
-                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                    <span class="nav-label">Business Tools</span>
-                    <span class="nav-tooltip" role="tooltip">Business Tools</span>
+                <li onclick="location.href='invoices.html'">
+                    <a href="invoices.html" class="nav-link">
+                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#resource-container" onclick="openSection('resource-container')">
-                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                    <span class="nav-label">Resource Hub</span>
-                    <span class="nav-tooltip" role="tooltip">Resource Hub</span>
+                <li onclick="location.href='income-expenses.html'">
+                    <a href="income-expenses.html" class="nav-link">
+                        <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_income_expenses">Income &amp; Expenses</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_income_expenses">Income &amp; Expenses</span>
+                    </a>
+                </li>
+                <li onclick="location.href='dashboard.html#business-container'">
+                    <a href="#business-container" onclick="openSection('business-container')" class="nav-link">
+                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_business_tools">Business Tools</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_business_tools">Business Tools</span>
+                    </a>
+                </li>
+                <li onclick="location.href='dashboard.html#resource-container'">
+                    <a href="#resource-container" onclick="openSection('resource-container')" class="nav-link">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_resource_hub">Resource Hub</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_resource_hub">Resource Hub</span>
                     </a>
                 </li>
             </ul>
             <ul class="btm-nav">
                 <li>
-                    <a href="#">
-                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
-                    <span class="nav-label">Settings</span>
-                    <span class="nav-tooltip" role="tooltip">Settings</span>
+                    <i class="fa-solid fa-language"></i>
+                </li>
+                <li id="lang-en" class="lang-option active" role="button" tabindex="0" aria-pressed="true"> 
+                    <span>ENG</span>
+                </li>
+                <li id="lang-ga" class="lang-option" role="button" tabindex="0" aria-pressed="false">
+                    GA
+                </li>
+                <li onclick="location.href='settings.html'">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_settings">Settings</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_settings">Settings</span>
                     </a>
                 </li>
-                <li id="logout-btn">
+                <li id="logout-btn" class="nav-link">
                     <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
-                    <span class="nav-label">Log Out</span>
-                    <span class="nav-tooltip" role="tooltip">Log Out</span>
+                    <span class="nav-label" data-i18n="nav_logout">Log Out</span>
+                    <span class="nav-tooltip" role="tooltip" data-i18n="nav_logout">Log Out</span>
                 </li>
             </ul>
         </nav>
@@ -92,7 +105,7 @@
 
     <div class="main-content-dash page-load">
         <header>
-            <h1>Welcome to your Fiadh Dashboard, <span id="welcome-name">.</span></h1>
+            <h1><span data-i18n="dashboard_title">Welcome to your Fiadh Dashboard, </span> <span id="welcome-name">.</span></h1>
             <p id="live-datetime"></p>
         </header>
         
@@ -100,9 +113,9 @@
             <section class="dash-main">
                 <!-- quick shortcuts -->
                 <div class="dash-actions">
-                    <button onclick="location.href='invoices.html'" class="dash-btn">+ Create Invoice</button>
-                    <button onclick="location.href='income-expenses.html'" class="dash-btn">+ Log an expense</button>
-                    <button class="dash-btn">Current Opportunities</button>
+                    <button onclick="location.href='invoices.html'" class="dash-btn" data-i18n="dashboard_btn_invoice">+ Create Invoice</button>
+                    <button onclick="location.href='income-expenses.html'" class="dash-btn" data-i18n="dashboard_btn_expense">+ Log an expense</button>
+                    <button class="dash-btn" data-i18n="dashboard_btn_opportunities">Current Opportunities</button>
                 </div>
                 <!-- calender widget -->
                 <div class="dash-calendar">
@@ -111,7 +124,7 @@
                 <!-- chart widget -->
                 <div class="dash-chart">
                     <div class="card-header">
-                      <p>Income vs Expenses this month</p>
+                      <p data-i18n="dashboard_chart_header">Income vs Expenses this month</p>
                     </div>
                     <div class="dash-chart-body">
                       <canvas id="income-expense-chart"></canvas>
@@ -122,7 +135,7 @@
             </section>
             <section class="dash-section" id="business-container">
                 <div class="dash-section-header"  onclick="toggleDropdown(this)" >
-                    Business Tools 
+                    <span data-i18n="dashboard_business_tools">Business Tools </span>
                     <i class="fa-solid fa-caret-up"></i>
                 </div>
                 <div class="dash-section-container show">
@@ -136,37 +149,38 @@
                 </div>
             </section>
             <section class="dash-section" id="generators-container">
-                <div class="dash-section-header"  onclick="toggleDropdown(this)" >
-                    Generators
+                <div class="dash-section-header"  onclick="toggleDropdown(this)">
+                    <span data-i18n="dashboard_generators">Generators</span>
                     <i class="fa-solid fa-caret-up"></i>
                 </div>
                 <div class="dash-section-container show">
-                    <button onclick="location.href='invoices.html'">Invoice</button>
-                    <button>Contract</button>
+                    <button onclick="location.href='invoices.html'" data-i18n="dashboard_generators_btn_invoice">Invoice</button>
+                    <button data-i18n="dashboard_generators_btn_contract">Contract</button>
                     <button>Expense Chart</button>
-                    <button>Email</button>
+                    <button data-i18n="dashboard_generators_btn_email">Email</button>
                 </div>
             </section>
             <section class="dash-section" id="resource-container">
-                <div class="dash-section-header"  onclick="toggleDropdown(this)" >
-                    Resource Hub
+                <div class="dash-section-header"  onclick="toggleDropdown(this)">
+                    <span data-i18n="dashboard_resource_hub">Resource Hub</span>
                     <i class="fa-solid fa-caret-up"></i>
                 </div>
                 <div class="dash-section-container show">
                     <button>gov.ie</button>
-                    <button>Self-employment</button>
-                    <button>Arts Council</button>
-                    <button>Current Opportunties</button>
-                    <button>Artist Megathread</button>
-                    <button>Local Development</button>
+                    <button data-i18n="dashboard_resource_btn_self_employ">Self-employment</button>
+                    <button data-i18n="dashboard_resource_btn_arts_council">Arts Council</button>
+                    <button data-i18n="dashboard_resource_btn_current">Current Opportunties</button>
+                    <button data-i18n="dashboard_resource_btn_megathread">Artist Megathread</button>
+                    <button data-i18n="dashboard_resource_btn_local_dev">Local Development</button>
                 </div>
             </section>
         </main>
         <footer>
-            <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
+            <p data-i18n="footer">Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
         </footer>
     </div>
-<script src="js/ui.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="js/lang.js" defer></script>
+<script src="js/ui.js" defer></script>
+<script src="js/dashboard.js" defer></script>
 </body>
 </html>
