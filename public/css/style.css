@@ -224,8 +224,31 @@ nav .btm-nav {
     flex-direction: row;
     align-items: center;
     white-space: nowrap;
+    flex-wrap: wrap;
     gap: 0;
     cursor: pointer;
+}
+
+nav .btm-nav li:first-child, nav .btm-nav li:first-child:hover {
+    padding-right: 0;
+    cursor:auto;
+    background: none;
+    color: inherit;
+}
+
+.lang-option {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.lang-option:hover{    
+    background: none !important; 
+    color: #debdbd !important;
+}
+
+.lang-option.active {
+    opacity: 1;
+    font-weight: 600;
 }
 
 @media (max-width: 1400px){
@@ -304,6 +327,10 @@ body.sidebar-collapsed .btm-nav {
 
 body.sidebar-collapsed nav ul i {
     margin-right: 0;
+}
+
+body.sidebar-collapsed nav .btm-nav li:first-child{
+    padding: 0.6rem 1rem;
 }
 
 /* hide text labels in collapsed mode */
