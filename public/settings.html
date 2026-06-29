@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/f.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preload" href="https://kit.fontawesome.com/21102ac5ea.js" as="script">
+    <script src="https://kit.fontawesome.com/21102ac5ea.js" crossorigin="anonymous"></script>
+    <script>
+        if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            document.documentElement.classList.add('sidebar-collapsed');
+        }
+    </script>
+
+    <title>Fiadh | Settings</title>
+</head>
+
+<body>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside>
+        <div class="mobile-bar">
+            <h1 style="color:white;">f.</h1>
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="navbar" id="main-nav">
+            <div class="nav-top">
+                <h1 style="color:white;">f.</h1>
+                <button type="button" class="sidebar-toggle" id="desktop-sidebar-toggle" aria-label="Collapse sidebar"
+                    aria-expanded="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="nav-items">
+                <li><a href="dashboard.html" class="nav-link">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                        <span class="nav-label">Dashboard</span>
+                        <span class="nav-tooltip" role="tooltip">Dashboard</span>
+                    </a></li>
+                <li><a href="invoices.html" class="nav-link">
+                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                        <span class="nav-label">Invoices</span>
+                        <span class="nav-tooltip" role="tooltip">Invoices</span>
+                    </a></li>
+                <li>
+                    <a href="income-expenses.html" class="nav-link">
+                        <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                        <span class="nav-label">Income &amp; Expenses</span>
+                        <span class="nav-tooltip" role="tooltip">Income &amp; Expenses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard#business-container" onclick="openSection('business-container')" class="nav-link">
+                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        <span class="nav-label">Business Tools</span>
+                        <span class="nav-tooltip" role="tooltip">Business Tools</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html#resource-container" onclick="openSection('resource-container')" class="nav-link">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span class="nav-label">Resource Hub</span>
+                        <span class="nav-tooltip" role="tooltip">Resource Hub</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="btm-nav">
+                <li>
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                        <span class="nav-label">Settings</span>
+                        <span class="nav-tooltip" role="tooltip">Settings</span>
+                    </a>
+                </li>
+                <li id="logout-btn" class="nav-link">
+                    <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                    <span class="nav-label">Log Out</span>
+                    <span class="nav-tooltip" role="tooltip">Log Out</span>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="page-load main-content-dash">
+        <main class="main-section settings-main">
+            <h1>Settings</h1>
+            <p class="subtitle">
+                Change settings here.
+            </p>
+            <div class="settings-card">
+                <div>
+                    <span>Your name</span>
+                    <span id="settings-name">temp name</span>
+                    <input type="text" id="settings-name-input" hidden/>
+                    <i class="fa-solid fa-pencil"></i>
+                </div>
+                <div>
+                    <span>Your email</span>
+                    <span id="settings-email">emailuser@temp.com</span>
+                </div>
+                <span>Change language:
+                    <ul class="language-select">
+                        <li class="selected">English</li>
+                        <li>Gaeilge</li>
+                    </ul>
+                </span>
+                <span>Change colour palette: 
+                    <ul class="colour-palette">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </span>
+                <span style="text-decoration: underline;color: red;">Delete account</span>
+
+            </div>
+        </main>
+        
+
+        
+        <footer>
+            <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
+        </footer>
+    </div>
+    <script src="js/ui.js"></script>
+</body>
+
+</html>
