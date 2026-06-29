@@ -6,6 +6,8 @@
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="/images/f.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="https://kit.fontawesome.com/21102ac5ea.js" as="script">
+    <script src="https://kit.fontawesome.com/21102ac5ea.js" crossorigin="anonymous"></script>
     <title>Fiadh</title>
 </head>
 <body>
@@ -21,17 +23,40 @@
         </div>
         <nav class="navbar" id="main-nav">
             <h1 style="color:white;">f.</h1>
-            <ul>
-                <a href="#"><li>Home</li></a>
-                <a href="#"><li>Learn More</li></a>
-                <a href="#"><li>Accessibility</li></a>
-                <a href="#"><li>FAQ</li></a>
-                <a href="#"><li>Contact Us</li></a>
+            <ul class="nav-items">
+                <li onclick="location.href='#'">
+                    <a href="#">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                        <span class="nav-label">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="nav-label">Our Mission</span>
+                    </a>
+                </li>
+                <li onclick="location.href='#register-section'">
+                    <a href="#register-section">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span class="nav-label">Register</span>
+                    </a>
+                </li>
+                <li onclick="location.href='#login-section'">
+                    <a href="#login-section">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="nav-label">Login</span>
+                    </a>
+                </li>
             </ul>
             <ul class="btm-nav">
-                <a href="#register-section"><li>Register</li></a>
-                <li>/</li>
-                <a href="#login-section"><li>Login</li></a>
+                <li>
+                    <i class="fa-solid fa-language"></i>
+                    <span>ENG</span>
+                </li>
+                <li>
+                    GA
+                </li>
             </ul>
         </nav>
     </aside>
