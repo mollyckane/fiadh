@@ -89,3 +89,12 @@ if (document.getElementById('live-datetime')) {
   setInterval(updateDateTime, 1000);
 }
 
+// restore saved theme on every page
+const savedTheme = localStorage.getItem('fiadh-theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+// toggle function called from settings page
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('fiadh-theme', theme);
+}
