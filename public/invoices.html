@@ -38,33 +38,31 @@
                 </button>
             </div>
             <ul class="nav-items">
-                <li onclick="location.href='dashboard.html'"><a href="dashboard.html" class="nav-link">
+                <li><a href="dashboard.html" class="nav-link">
                         <i class="fa-solid fa-house" aria-hidden="true"></i>
                         <span class="nav-label">Dashboard</span>
                         <span class="nav-tooltip" role="tooltip">Dashboard</span>
-                    </a>
-                </li>
-                <li onclick="location.href='#'"><a href="#" class="nav-link">
+                    </a></li>
+                <li><a href="invoices.html" class="nav-link">
                         <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
                         <span class="nav-label">Invoices</span>
                         <span class="nav-tooltip" role="tooltip">Invoices</span>
-                    </a>
-                </li>
-                <li onclick="location.href='income-expenses.html'">
+                    </a></li>
+                <li>
                     <a href="income-expenses.html" class="nav-link">
                         <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
                         <span class="nav-label">Income &amp; Expenses</span>
                         <span class="nav-tooltip" role="tooltip">Income &amp; Expenses</span>
                     </a>
                 </li>
-                <li onclick="location.href='dashboard.html#business-container'">
+                <li>
                     <a href="dashboard.html#business-container" onclick="openSection('business-container')" class="nav-link">
                         <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
                         <span class="nav-label">Business Tools</span>
                         <span class="nav-tooltip" role="tooltip">Business Tools</span>
                     </a>
                 </li>
-                <li onclick="location.href='dashboard.html#resource-container'">
+                <li>
                     <a href="dashboard.html#resource-container" onclick="openSection('resource-container')" class="nav-link">
                         <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                         <span class="nav-label">Resource Hub</span>
@@ -73,17 +71,26 @@
                 </li>
             </ul>
             <ul class="btm-nav">
-                <li onclick="location.href='settings.html'">
+                <li>
+                    <i class="fa-solid fa-language"></i>
+                </li>
+                <li id="lang-en" class="lang-option active" role="button" tabindex="0" aria-pressed="true">
+                    <span>ENG</span>
+                </li>
+                <li id="lang-ga" class="lang-option" role="button" tabindex="0" aria-pressed="false">
+                    GA
+                </li>
+                <li>
                     <a href="settings.html" class="nav-link">
                         <i class="fa-solid fa-gear" aria-hidden="true"></i>
-                        <span class="nav-label">Settings</span>
-                        <span class="nav-tooltip" role="tooltip">Settings</span>
+                        <span class="nav-label" data-i18n="nav_settings">Settings</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_settings">Settings</span>
                     </a>
                 </li>
                 <li id="logout-btn" class="nav-link">
                     <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
-                    <span class="nav-label">Log Out</span>
-                    <span class="nav-tooltip" role="tooltip">Log Out</span>
+                    <span class="nav-label" data-i18n="nav_logout">Log Out</span>
+                    <span class="nav-tooltip" role="tooltip" data-i18n="nav_logout">Log Out</span>
                 </li>
             </ul>
         </nav>
@@ -343,7 +350,8 @@
     <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- my scripts -->
-    <script src="js/ui.js"></script>
+    <script src="js/lang.js" defer></script>
+    <script src="js/ui.js" defer></script>
     <script src="js/invoices.js"></script>
 </body>
 
