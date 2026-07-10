@@ -134,10 +134,10 @@
 
             </section>
             <section class="dash-section" id="business-container">
-                <div class="dash-section-header"  onclick="toggleDropdown(this)" >
+                <button class="dash-section-header"  onclick="toggleDropdown(this)" >
                     <span data-i18n="dashboard_business_tools">Business Tools </span>
                     <i class="fa-solid fa-caret-up"></i>
-                </div>
+                </button>
                 <div class="dash-section-container show">
                     <button>Learn about contracts</button>
                     <button onclick="location.href='income-expenses.html'">View my income/expenses</button>
@@ -149,22 +149,22 @@
                 </div>
             </section>
             <section class="dash-section" id="generators-container">
-                <div class="dash-section-header"  onclick="toggleDropdown(this)">
+                <button class="dash-section-header"  onclick="toggleDropdown(this)">
                     <span data-i18n="dashboard_generators">Generators</span>
                     <i class="fa-solid fa-caret-up"></i>
-                </div>
+                </button>
                 <div class="dash-section-container show">
                     <button onclick="location.href='invoices.html'" data-i18n="dashboard_generators_btn_invoice">Invoice</button>
-                    <button data-i18n="dashboard_generators_btn_contract">Contract</button>
+                    <button data-i18n="dashboard_generators_btn_contract" onclick="location.href='contracts.html'">Contract</button>
                     <button>Expense Chart</button>
                     <button data-i18n="dashboard_generators_btn_email">Email</button>
                 </div>
             </section>
             <section class="dash-section" id="resource-container">
-                <div class="dash-section-header"  onclick="toggleDropdown(this)">
-                    <span data-i18n="dashboard_resource_hub">Resource Hub</span>
+                <button class="dash-section-header"  onclick="toggleDropdown(this)">
+                    <span data-i18n="dashboard_resource_hub">Quick Resources</span>
                     <i class="fa-solid fa-caret-up"></i>
-                </div>
+                </button>
                 <div class="dash-section-container show">
                     <button>gov.ie</button>
                     <button data-i18n="dashboard_resource_btn_self_employ">Self-employment</button>
