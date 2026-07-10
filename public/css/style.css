@@ -6,7 +6,7 @@
     --font-heading: 'Kaisei Tokumin', Times, serif;
     --text-color-primary: #904b4b;
     --text-color-light: #faf4f3;
-    --text-color-secondary: #f6e2db;
+    --text-color-secondary: #cf9c89;
     --subtitle: #595a3dae;
     --text-color-muted: #9a9494;
     --text-green: rgb(40, 103, 40);
@@ -49,8 +49,8 @@
 
 [data-theme="dark"] {
     /* font colour*/
-    --text-color-primary: #ebdcdc;
-    --text-color-secondary: #9f998e;
+    --text-color-primary: #e0e0e1;
+    --text-color-secondary: #a6a5a2;
     --subtitle: #e0dcd0ae;
     --text-color-muted: #9a9494;
     --text-green: rgb(40, 103, 40);
@@ -59,17 +59,17 @@
     --text-shadow: 0 1px 2px rgba(92, 56, 56, 0.196);
 
     /* colours */
-    --bg-main: #161515;
-    --bg-secondary: #1e1c1c;
-    --bg-hover-001: #784f4fad;
-    --bg-hover-002: #5f4242;
-    --card-main: rgba(53, 50, 47, 0.957);
+    --bg-main: #111111;
+    --bg-secondary: #322628;
+    --bg-hover-001: #d26e41;
+    --bg-hover-002: #655b55;
+    --card-main: #1c1b1b;
     --border-color-main: #413c3c;
     --border-color-secondary: #513e3e;
-    --color-surface-offset: #eeeae0;
+    --color-surface-offset: #4b3a3486;
     --color-opacity: #10101078;
-    --input-bg: #292020;
-    --button-colour-transparent: #36292927;
+    --input-bg: #29202097;
+    --button-colour-transparent: #322628;
 }
 
 [data-theme="font-theme-1"] {
@@ -154,6 +154,7 @@ textarea {
     border-radius: var(--radius);
     background-color: var(--input-bg);
     width: 100%;
+    color: var(--text-color-primary);
 }
 
 input:focus {
@@ -338,8 +339,8 @@ nav .btm-nav li{
 /* sidebar toggle button */
 .sidebar-toggle {
     background: none;
-    border: none;
-    color: var(--bg-main);
+    border: 1px solid transparent;
+    color: var(--text-color-light);
     cursor: pointer;
     padding: 0.4rem;
     width: auto;
@@ -686,7 +687,7 @@ main h1 {
     border: none;
     border-radius: var(--radius);
     background-color: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     font-weight: 600;
     cursor: pointer;
     width: 100%;
@@ -730,6 +731,7 @@ main h1 {
 .main-content-dash button {
     width: auto;
     border-radius: 0;
+    transition: var(--transition);
 }
 
 .dash-grid {
@@ -750,12 +752,31 @@ main h1 {
     text-align: left;
 }
 
-.dash-section .dash-section-header {
+.dash-section .dash-section-header, .dash-section-header button {
     border-bottom: 2px solid var(--border-color-main);
     display: flex;
     justify-content: space-between;
     width: 100%;
     cursor: pointer;
+    background: transparent;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    color: var(--text-color-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding-left: 0;
+}
+
+.dash-section-header:hover, .dash-section-header:focus-visible, .dash-section-header button:hover, .dash-section-header button:focus-visible {
+    background: transparent;
+}
+
+.dash-section-container button:hover,
+.dash-section-container button:focus-visible,
+.dash-section-container button:active {
+    background: var(--bg-hover-001);
+    color: var(--text-color-primary);
 }
 
 .card-full {
@@ -850,7 +871,7 @@ main h1 {
 
 .cal-day.today {
     background: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     font-weight: 600;
     border-radius: 50%;
     width: 100%;
@@ -888,10 +909,6 @@ main h1 {
 
 .dash-actions .dash-btn{
     min-width: 200px;
-}
-
-/* quick shortcuts */
-.dash-grid button, .quick-add-btn {
     color: var(--text-color-primary);
     padding: 1rem;
     border: 1px solid var(--border-color-main);
@@ -900,7 +917,17 @@ main h1 {
     cursor: pointer;
 }
 
-.dash-grid button:hover, .dash-grid button:focus-visible, .quick-add-btn:hover, .quick-add-btn:focus-visible, .quick-add-btn:active{
+/* quick shortcuts */
+ /* .quick-add-btn {
+    color: var(--text-color-primary);
+    padding: 1rem;
+    border: 1px solid var(--border-color-main);
+    background: var(--button-colour-transparent);
+    transition: var(--transition);
+    cursor: pointer;
+} */
+
+.dash-actions button:hover, .dash-actions button:focus-visible, .dash-actions button:active {
     background: var(--bg-hover-001);
 }
 
@@ -967,6 +994,9 @@ main h1 {
 .invoice-page {
     width: 100%;
     padding: 4rem;
+    border: 1px solid var(--border-color-secondary);
+    border-radius: var(--radius);
+    background-color: var(--card-main);
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
@@ -1083,7 +1113,7 @@ main h1 {
 
 .invoice-actions button#exportPdfBtn {
     background: none;
-    color: var(--border-color-main);
+    color: var(--text-color-secondary);
     transition: var(--transition);
 }
 
@@ -1144,6 +1174,7 @@ main h1 {
 .invoice-page textarea {
     width: 100%;
     box-sizing: border-box;
+    color: var(--text-color-primary);
 }
 
 .invoice-page textarea {
@@ -1162,12 +1193,14 @@ main h1 {
     height: fit-content;
     max-height: 500px;
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color-secondary);
+    border-radius: var(--radius);
+    background-color: var(--card-main);
     padding: 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    background: var(--bg-main);
 }
 
 .invoice-history p {
@@ -1495,7 +1528,8 @@ body.sidebar-collapsed .modal-box {
 
 /* income and expenses tracker */
 .tracker-card {
-    background: var(--bg-main);
+    border-radius: var(--radius);
+    background-color: var(--card-main);
     border: 1px solid var(--border-color-secondary);
     box-shadow: var(--shadow-sm);
     padding: 1.5rem 2rem;
@@ -1547,7 +1581,7 @@ body.sidebar-collapsed .modal-box {
 .history-filter button.active,
 .history-filter button:hover {
     background: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     border-color: var(--bg-secondary);
 }
 
@@ -1647,7 +1681,7 @@ body.sidebar-collapsed .modal-box {
 
 .segmented-control button.active {
     background: var(--bg-secondary);
-    color: var(--subtitle);
+    color: var(--text-color-light);
 }
 
 .segmented-control button:hover:not(.active) {
@@ -1668,7 +1702,7 @@ body.sidebar-collapsed .modal-box {
 .time-filter button.active,
 .time-filter button:hover {
     background: var(--bg-secondary);
-    color: var(--subtitle);
+    color: var(--text-color-light);
     border-color: var(--bg-secondary);
 }
 
@@ -2199,7 +2233,7 @@ body.sidebar-collapsed .modal-box {
 .filter-pill:hover,
 .filter-pill.active {
     background-color: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-secondary);
     border-color: var(--bg-secondary);
 }
 
@@ -2214,7 +2248,6 @@ body.sidebar-collapsed .modal-box {
 }
 
 .resources-section-title i {
-    color: var(--bg-secondary);
     font-size: 1rem;
 }
 
@@ -2257,7 +2290,7 @@ body.sidebar-collapsed .modal-box {
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--bg-secondary);
+    color: var(--text-color-secondary);
     opacity: 0.85;
 }
 
@@ -2282,7 +2315,7 @@ body.sidebar-collapsed .modal-box {
     gap: 0.4rem;
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--bg-secondary);
+    color: var(--text-color-primary);
     text-decoration: none;
     border: 1px solid var(--border-color-main);
     border-radius: var(--radius);
@@ -2293,8 +2326,8 @@ body.sidebar-collapsed .modal-box {
 }
 
 .resource-card-link:hover {
-    background-color: var(--bg-secondary);
-    color: var(--bg-main);
+    background-color: var(--bg-hover-001);
+    color: var(--text-color-primary);
     border-color: var(--bg-secondary);
 }
 
