@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/f.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="https://kit.fontawesome.com/21102ac5ea.js" as="script">
+    <script src="https://kit.fontawesome.com/21102ac5ea.js" crossorigin="anonymous"></script>
+    <script>
+        if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            document.documentElement.classList.add('sidebar-collapsed');
+        }
+    </script>
+    <title>Fiadh | Contracts</title>
+</head>
+
+<body>
+    <aside>
+        <div class="mobile-bar">
+            <h1 style="color:white;">f.</h1>
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <nav class="navbar" id="main-nav">
+            <div class="nav-top">
+                <h1 style="color:white;">f.</h1>
+                <button type="button" class="sidebar-toggle" id="desktop-sidebar-toggle" aria-label="Collapse sidebar"
+                    aria-expanded="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <ul class="nav-items">
+                <li>
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_dashboard">Dashboard</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_dashboard">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="invoices.html" class="nav-link">
+                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="income-expenses.html" class="nav-link">
+                        <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_income_expenses">Income &amp; Expenses</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_income_expenses">Income &amp;
+                            Expenses</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html#business-container" class="nav-link">
+                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_business_tools">Business Tools</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_business_tools">Business Tools</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="resources.html" class="nav-link">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_resource_hub">Resource Hub</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_resource_hub">Resource Hub</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="btm-nav">
+                <li><i class="fa-solid fa-language"></i></li>
+                <li id="lang-en" class="lang-option active" role="button" tabindex="0" aria-pressed="true">
+                    <span>ENG</span>
+                </li>
+                <li id="lang-ga" class="lang-option" role="button" tabindex="0" aria-pressed="false">
+                    GA
+                </li>
+                <li>
+                    <a href="settings.html" class="nav-link">
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_settings">Settings</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_settings">Settings</span>
+                    </a>
+                </li>
+                <li id="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                    <span class="nav-label" data-i18n="nav_logout">Log Out</span>
+                    <span class="nav-tooltip" role="tooltip" data-i18n="nav_logout">Log Out</span>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-content-dash page-load">
+        <header>
+            <h1 data-i18n="contracts_title">Contract Generator</h1>
+            <p data-i18n="contracts_subtitle">
+                Create an editable contract draft for freelance creative work.
+            </p>
+        </header>
+
+        <div class="main-section">
+            <section class="invoice-page" aria-labelledby="contracts-form-heading">
+                <h2 id="contracts-form-heading" class="sr-only">Contract form</h2>
+
+                <div class="invoice-header">
+                    <div>
+                        <label for="contractTitle" data-i18n="contracts_project_title_label">Project title</label>
+                        <input type="text" id="contractTitle" name="contractTitle"
+                            placeholder="e.g. Album artwork commission">
+                    </div>
+
+                    <div>
+                        <label for="contractStartDate" data-i18n="contracts_start_date_label">Start date</label>
+                        <input type="date" id="contractStartDate" name="contractStartDate">
+                    </div>
+
+                    <div>
+                        <label for="contractEndDate" data-i18n="contracts_end_date_label">Delivery / end date</label>
+                        <input type="date" id="contractEndDate" name="contractEndDate">
+                    </div>
+                </div>
+
+                <div>
+                    <p style="border-bottom: 1px solid #965E5E; font-weight:700; padding-bottom:0.5rem;"
+                        data-i18n="contracts_template_heading">
+                        Choose a contract template
+                    </p>
+
+                    <div class="invoice-actions" style="justify-content:flex-start; margin-top:1rem; flex-wrap:wrap;">
+                        <button type="button" id="commissionTemplateBtn" class="contract-template-btn"
+                            data-template="commission">
+                            Commission
+                        </button>
+                        <button type="button" id="commercialTemplateBtn" class="contract-template-btn"
+                            data-template="commercial">
+                            Commercial / Company
+                        </button>
+                        <button type="button" id="ongoingTemplateBtn" class="contract-template-btn"
+                            data-template="ongoing">
+                            Ongoing Project
+                        </button>
+                    </div>
+                </div>
+
+                <div class="invoice-client">
+                    <div>
+                        <label for="artistName" data-i18n="contracts_artist_name_label">Artist name</label>
+                        <input type="text" id="artistName" name="artistName">
+                    </div>
+
+                    <div>
+                        <label for="artistEmail" data-i18n="contracts_artist_email_label">Artist email</label>
+                        <input type="email" id="artistEmail" name="artistEmail">
+                    </div>
+
+                    <div>
+                        <label for="clientName" data-i18n="contracts_client_name_label">Client / organisation
+                            name</label>
+                        <input type="text" id="clientName" name="clientName">
+                    </div>
+
+                    <div>
+                        <label for="clientEmail" data-i18n="contracts_client_email_label">Client email</label>
+                        <input type="email" id="clientEmail" name="clientEmail">
+                    </div>
+
+                    <div class="client-address">
+                        <label for="clientAddress" data-i18n="contracts_client_address_label">Client address</label>
+                        <textarea id="clientAddress" name="clientAddress" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="invoice-dates">
+                    <div>
+                        <label for="projectFee" data-i18n="contracts_fee_label">Total fee</label>
+                        <input type="number" id="projectFee" name="projectFee" step="0.01" min="0">
+                    </div>
+
+                    <div>
+                        <label for="depositAmount" data-i18n="contracts_deposit_label">Deposit amount</label>
+                        <input type="number" id="depositAmount" name="depositAmount" step="0.01" min="0">
+                    </div>
+
+                    <div>
+                        <label for="paymentTerms" data-i18n="contracts_payment_terms_label">Payment terms</label>
+                        <input type="text" id="paymentTerms" name="paymentTerms"
+                            placeholder="e.g. 50% upfront, 50% on completion">
+                    </div>
+
+                    <div>
+                        <label for="revisionCount" data-i18n="contracts_revisions_label">Included revisions</label>
+                        <input type="text" id="revisionCount" name="revisionCount" placeholder="e.g. 2 rounds">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="scopeOfWork" data-i18n="contracts_scope_label">Scope of work</label>
+                    <textarea id="scopeOfWork" name="scopeOfWork" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="deliverables" data-i18n="contracts_deliverables_label">Deliverables</label>
+                    <textarea id="deliverables" name="deliverables" rows="4"></textarea>
+                </div>
+
+                <div>
+                    <label for="usageRights" data-i18n="contracts_usage_label">Usage rights / licence</label>
+                    <textarea id="usageRights" name="usageRights" rows="4"></textarea>
+                </div>
+
+                <div>
+                    <label for="cancellationTerms" data-i18n="contracts_cancellation_label">Cancellation terms</label>
+                    <textarea id="cancellationTerms" name="cancellationTerms" rows="4"></textarea>
+                </div>
+
+                <div>
+                    <label for="confidentialityTerms"
+                        data-i18n="contracts_confidentiality_label">Confidentiality</label>
+                    <textarea id="confidentialityTerms" name="confidentialityTerms" rows="4"></textarea>
+                </div>
+
+                <div>
+                    <label for="additionalTerms" data-i18n="contracts_additional_terms_label">Additional notes /
+                        terms</label>
+                    <textarea id="additionalTerms" name="additionalTerms" rows="4"></textarea>
+                </div>
+
+                <div class="invoice-footer">
+                    <div class="status-notes">
+                        <div>
+                            <label for="contractStatus" data-i18n="contracts_status_label">Draft status</label>
+                            <select id="contractStatus" name="contractStatus">
+                                <option value="draft" selected>Draft</option>
+                                <option value="ready">Ready to export</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="contractNotes" data-i18n="contracts_notes_label">Internal notes</label>
+                            <textarea id="contractNotes" name="contractNotes" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="invoice-actions">
+                        <button type="button" id="resetContractBtn" data-i18n="contracts_reset_btn">Reset form</button>
+                        <button type="button" id="exportContractPdfBtn" data-i18n="contracts_export_btn">Export as
+                            PDF</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="invoice-history" aria-labelledby="contract-preview-heading">
+                <h2 id="contract-preview-heading" style="border-bottom: 1px solid #965E5E; padding-bottom:0.5rem;"
+                    data-i18n="contracts_preview_heading">
+                    Contract preview
+                </h2>
+
+                <div class="tracker-card" style="padding: 1rem 1.25rem;">
+                    <h2 style="text-align:left;" data-i18n="contracts_preview_summary_heading">Summary</h2>
+                    <p><strong>Template:</strong> <span id="previewTemplate">Commission</span></p>
+                    <p><strong>Artist:</strong> <span id="previewArtistName">-</span></p>
+                    <p><strong>Client:</strong> <span id="previewClientName">-</span></p>
+                    <p><strong>Project:</strong> <span id="previewProjectTitle">-</span></p>
+                    <p><strong>Fee:</strong> €<span id="previewProjectFee">0.00</span></p>
+                    <p><strong>Dates:</strong> <span id="previewDates">-</span></p>
+                </div>
+
+                <div class="tracker-card" style="padding: 1rem 1.25rem;">
+                    <h2 style="text-align:left;" data-i18n="contracts_preview_sections_heading">Sections</h2>
+                    <p><strong data-i18n="contracts_scope_label">Scope of work</strong></p>
+                    <p id="previewScope">No contract text yet.</p>
+
+                    <p style="margin-top:1rem;"><strong data-i18n="contracts_usage_label">Usage rights /
+                            licence</strong></p>
+                    <p id="previewUsage">No contract text yet.</p>
+
+                    <p style="margin-top:1rem;"><strong data-i18n="contracts_cancellation_label">Cancellation
+                            terms</strong></p>
+                    <p id="previewCancellation">No contract text yet.</p>
+                </div>
+
+                <div class="tracker-card" style="padding: 1rem 1.25rem;">
+                    <h2 style="text-align:left;" data-i18n="contracts_help_heading">Resources</h2>
+
+                    <p data-i18n="contracts_help_text">
+                        Use Fiadh as a starting point. Review and edit all clauses before sending.
+                    </p>
+
+                    <div class="history-list" style="margin-top: 1rem;">
+                        <a href="https://visualartists.ie/how-to-manual/contracts" target="_blank"
+                            rel="noopener noreferrer" class="resource-card-link">
+                            Visual Artists Ireland contracts
+                            <i class="fa-solid fa-arrow-up-right-from-square fa-xs" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="https://www.performingartsforum.ie/contracts/" target="_blank"
+                            rel="noopener noreferrer" class="resource-card-link">
+                            Performing Arts Forum contracts
+                            <i class="fa-solid fa-arrow-up-right-from-square fa-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p data-i18n="footer">Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI
+                Project Module</p>
+        </footer>
+    </div>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/contracts.js" defer></script>
+    <script src="js/lang.js" defer></script>
+    <script src="js/ui.js" defer></script>
+</body>
+
+</html>
