@@ -10,7 +10,8 @@
     "home_title_paragraph": "Ainm Gaeilge a thagann as an ainmhí 'fia', a sheasann do 'allta/saor'. Is aip dhátheangach (Béarla/Gaeilge) í Fiadh, a thugann seans d'ealaíontóirí nua agus neamhspléacha a gcuid gnóthaí a bhainistiú.",
 
     "register_title": "Cláraigh le Fiadh",
-    "register_subtitle": "Líon an foirm thíos chun cuntas a cruthú le do thoil. An bhfuil cuntas agat cheana féin? Logáil isteach anseo.",
+    "register_subtitle": "Líon an foirm thíos chun cuntas a cruthú le do thoil. An bhfuil cuntas agat cheana féin?",
+    "register_login_link": "Logáil isteach anseo",
     "register_label_fName": "Céadainm:",
     "register_placeholder_fName": "Cuir do chéadainm anseo name m.sh. Seán",
     "register_label_lName": "Sloinne:",
@@ -22,7 +23,8 @@
     "register_button": "Cláraigh",
 
     "login_title": "Logáil isteach ar Fiadh",
-    "login_subtitle": "Líon an fhoirm thíos chun logáil isteach le do thoil. Níl cuntas agat? Cláraigh anseo",
+    "login_subtitle": "Líon an fhoirm thíos chun logáil isteach le do thoil. Níl cuntas agat?",
+    "login_register_link": "Cláraigh anseo",
     "login_label_email": "Seoladh ríomhphoist:",
     "login_placeholder_email": "m.sh. johnsmith@gmail.com",
     "login_label_password": "Pasfhocal:",
@@ -137,4 +139,6 @@
 
     "income_history": "Stair",
     "income_history_all": "Uile"
+
+
 }

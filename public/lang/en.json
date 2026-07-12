@@ -10,7 +10,8 @@
     "home_title_paragraph": "An Irish name coming from the word ‘fia’ which means ‘deer’, representing the words 'wild/free', is a free, bilingual (English/Irish) web application designed as an all-in-one business toolkit for emerging and early-career freelance artists in Ireland.",
 
     "register_title": "Register for Fiadh",
-    "register_subtitle": "Please fill out the form below to create an account. Already have an account? Login here",
+    "register_subtitle": "Please fill out the form below to create an account. Already have an account?",
+    "register_login_link": "Login here",
     "register_label_fName": "First Name:",
     "register_placeholder_fName": "Enter your first name e.g. John",
     "register_label_lName": "Last Name:",
@@ -59,7 +60,7 @@
     "dashboard_generators_btn_contract": "Contract",
     "dashboard_generators_btn_email": "Email",
 
-    "dashboard_resource_hub": "Resource Hub",
+    "dashboard_resource_hub": "Quick Resources",
     "dashboard_resource_btn_self_employ": "Self-employment",
     "dashboard_resource_btn_arts_council": "Arts Council",
     "dashboard_resource_btn_current": "Current Opportunities",
@@ -137,4 +138,6 @@
 
     "income_history": "History",
     "income_history_all": "All"
+
+
 }
