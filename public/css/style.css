@@ -6,9 +6,9 @@
     --font-heading: 'Kaisei Tokumin', Times, serif;
     --text-color-primary: #904b4b;
     --text-color-light: #faf4f3;
-    --text-color-secondary: #cf9c89;
+    --text-color-secondary: #d69078;
     --subtitle: #595a3dae;
-    --text-color-muted: #9a9494;
+    --text-color-muted: #605d5d;
     --text-green: rgb(40, 103, 40);
     --text-red: rgb(196, 42, 42);
     --text-highlight: rgb(220, 144, 87);
@@ -53,8 +53,8 @@
     --text-color-secondary: #a6a5a2;
     --subtitle: #e0dcd0ae;
     --text-color-muted: #9a9494;
-    --text-green: rgb(40, 103, 40);
-    --text-red: rgb(196, 42, 42);
+    --text-green: rgb(114, 186, 114);
+    --text-red: rgb(192, 90, 90);
     --text-highlight: rgb(220, 144, 87);
     --text-shadow: 0 1px 2px rgba(92, 56, 56, 0.196);
 
@@ -452,7 +452,6 @@ body.sidebar-collapsed .main-content-dash {
     top: 50%;
     transform: translateY(-50%);
     background-color: var(--bg-secondary);
-    color: var(--bg-main);
     padding: 0.3rem 0.6rem;
     border-radius: 0.2rem;
     font-size: var(--text-xs);
@@ -615,11 +614,15 @@ main h1 {
     border: none;
 }
 
-.colour-palette li:nth-child(1){ background-color: #9b6363ae; }
-.colour-palette li:nth-child(2) { background-color: #7b87d7; }
-.colour-palette li:nth-child(3) { background-color: #6ccfe5; }
-.colour-palette li:nth-child(4) { background-color: #9cd17f; }
-.colour-palette li:nth-child(5) { background-color: #6f2a2a; }
+.colour-palette li button.light{
+    color: #8d5252;
+    background-color: #faf4f3;
+}
+
+.colour-palette li button.dark{
+    color: #faf4f3;
+    background-color: #322628;
+}
 
 .register-section,
 .login-section {
@@ -671,12 +674,12 @@ main h1 {
     border: none;
 }
 
-.register-text span {
+.register-text a span {
     color: var(--text-highlight);
     font-weight: 600;
 }
 
-.register-text span:hover {
+.register-text a span:hover {
     color: var(--text-color-primary);
     transition: var(--transition);
 }
@@ -1413,9 +1416,9 @@ body.sidebar-collapsed .modal-box {
 
 @media (max-width: 900px) {
     .modal-overlay {
-        left: 0;
+        margin-left: 0;
         width: 100%;
-        top:0;
+        margin-top:0;
         height: 100%;
     }
 }
@@ -2470,6 +2473,8 @@ body.sidebar-collapsed .modal-box {
 
     nav .btm-nav {
         margin-bottom: 1.5rem;
+        margin-left: 0;
+        font-size: 1.1rem;
         justify-content: flex-start;
         flex-wrap: wrap;
     }
@@ -2481,7 +2486,7 @@ body.sidebar-collapsed .modal-box {
     nav .btm-nav li,
     nav .btm-nav button {
         width: fit-content !important;
-        font-size: 1.2rem !important;
+        font-size: 0.8rem;
     }
 
     /* main content fills full width */
@@ -2504,7 +2509,7 @@ body.sidebar-collapsed .modal-box {
         grid-column: 1;
         min-height: fit-content !important;
         justify-content: flex-start !important;
-        padding: 0 3rem 3rem !important;
+        padding: 0 1rem 3rem !important;
         max-width: 100%;
     }
 
