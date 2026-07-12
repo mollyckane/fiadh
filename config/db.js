@@ -6,14 +6,17 @@ const db = mysql.createPool({
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
+    password: process.env.DB_PASSWORD,
+    ssl: {
+        ca: process.env.DB_CA_CERT,
+        rejectUnauthorized: true
+    }
 });
 
-// test connection on startup
 db.getConnection()
     .then(conn => {
-        console.log('Connected to local SQL database successfully.');
-        conn.release(); // release back to the pool
+        console.log('Connected to SQL database successfully.');
+        conn.release();
     })
     .catch(err => {
         console.error('Database connection failed:', err);
