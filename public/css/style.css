@@ -2513,7 +2513,7 @@ body.sidebar-collapsed .modal-box {
         grid-column: 1;
         min-height: fit-content !important;
         justify-content: flex-start !important;
-        padding: 0 1rem 3rem !important;
+        padding: 10rem 1rem 10rem 1rem !important;
         max-width: 100%;
     }
 
