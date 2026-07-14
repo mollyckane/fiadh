@@ -137,7 +137,94 @@
     "income_chart_net": "Net:",
 
     "income_history": "History",
-    "income_history_all": "All"
+    "income_history_all": "All",
 
+    "hub_subtitle": "Guides, links and support for freelance artists in Ireland.",
+    "hub_btn_all": "All",
+    "hub_tax_reg": "Tax & Registration",
+    "hub_funding_grants": "Funding & Grants",
+    "hub_rights": "Artist Rights",
+    "hub_pricing": "Pricing",
+    "hub_support": "Support Organisations",
+
+    "hub_tax_slogan": "Getting Started",
+    "hub_tax_title": "Registering as a Sole Trader",
+    "hub_tax_desc": "If you earn income as a freelance artist in Ireland, you are legally required to register as a sole trader with Revenue. You can do this online via MyAccount. Registration is free and takes around 10 minutes.",
+    "hub_tax_link": "Visit Revenue.ie",
+
+    "hub_vat_slogan": "VAT",
+    "hub_vat_title": "VAT Thresholds for Artists",
+    "hub_vat_desc": "As a freelance artist, you must register for VAT only if your annual income exceeds €40,000 for services. Cultural services may qualify for VAT exemptions worth checking.",
+    "hub_vat_link": "Revenue VAT guide",
+
+    "hub_self_assess_slogan": "Self-Assessment",
+    "hub_self_assess_title": "Filling your Form 11",
+    "hub_self_assess_desc": "Self-employed people in Ireland file a Form 11 each year by 31 October. Your income minus allowable expenses is your taxable profit. Keep receipts for everything.",
+    "hub_self_assess_link": "Self-assessment guide",
+
+    "hub_exemption_slogan": "Artists Exemptions",
+    "hub_exemption_title": "Artists' Exemption Scheme",
+    "hub_exemption_desc": "Revenue operates an artists' exemption allowing qualifying creative work to be exempt from income tax up to €50,000 per year. Applies to original, creative work in categories including visual art, writing and music.",
+    "hub_exemption_link": "Check eligibility",
+
+    "hub_arts_council_slogan": "Primary Funder",
+    "hub_arts_council_title": "Arts Council of Ireland",
+    "hub_arts_council_desc": "The main government body for funding the arts in Ireland. Offers bursaries, project awards and travel grants for individual artists at all career stages. Check their opportunities calendar regularly.",
+    "hub_arts_council_link": "View current opportunities",
+
+    "hub_local_funding_slogan": "Local Funding",
+    "hub_local_funding_title": "Local Development Companies",
+    "hub_local_funding_desc": "Local Enterprise Offices (LEOs) across Ireland offer small business grants, mentoring, and training. Some programmes specifically target creative sector applicants.",
+    "hub_local_funding_link": "Find your LEO",
+
+    "hub_creative_industries_slogan": "Creative Industries",
+    "hub_creative_industries_title": "Screen Ireland & Creative Ireland",
+    "hub_creative_industries_desc": "Creative Ireland's Creativity Fund and Screen Ireland both support project-based creative work. Deadlines vary; sign up for their newsletters to stay informed.",
+    "hub_creative_industries_link_1": "Creative Ireland",
+    "hub_creative_industries_link_2": "Screen Ireland",
+
+    "hub_copyright_slogan": "Copyright",
+    "hub_copyright_title": "Copyright in Ireland",
+    "hub_copyright_desc": "In Ireland, copyright is automatic from the moment you create original work. You do not need to register. Copyright generally lasts 70 years after the creator's death under the Copyright and Related Rights Act 2000.",
+    "hub_copyright_link": "visualartists.ie copyright info",
+
+    "hub_moral_rights_title": "Moral Rights",
+    "hub_moral_rights_desc": "As an artist you hold moral rights to be identified as the creator of your work and to object to derogatory treatment. These rights exist separately from economic copyright and cannot be sold, only waived.",
+    "hub_moral_rights_link": "IPOI copyright guide",
+
+    "hub_contracts_slogan": "Contracts",
+    "hub_contracts_title": "Why You Need a Written Contract",
+    "hub_contracts_desc": "A written contract protects both you and your client. It should clearly state the scope of work, payment terms, deadlines, revision limits, and who owns the final work. Fiadh includes a contract template generator.",
+    "hub_contracts_link": "Go to generators",
+
+    "hub_pricing_title": "Pricing Your Work",
+    "hub_pricing_minimum_slogan": "Rates",
+    "hub_pricing_minimum_title": "Minimum Pay Guidance",
+    "hub_pricing_minimum_desc": "Visual Artists Ireland and Create Ireland publish recommended minimum fees for artists working with publicly funded organisations. These are a useful baseline even for private commissions.",
+    "hub_pricing_minimum_link": "View recommended fees",
+
+    "hub_formula_slogan": "Formula",
+    "hub_formula_title": "How to Calculate Your Hourly Rate",
+    "hub_formula_desc": "A simple starting point: add up your annual living costs and business expenses, divide by the number of billable hours you realistically work per year (typically 1,000 to 1,400 for freelancers), then add a profit margin.",
+
+    "hub_negotiation_slogan": "Negotiation",
+    "hub_negotiation_title": "Asking for What You Are Worth",
+    "hub_negotiation_desc": "It is normal to feel uncomfortable quoting prices. Remember: your price includes your skill, time, equipment, and expertise built over years. Send a written quote before starting any work.",
+
+    "hub_advocacy_slogan": "Advocacy",
+    "hub_advocacy_title": "Create Ireland",
+    "hub_advocacy_desc": "Create is the national development agency for collaborative arts. Offers resources, advocacy, peer support, and professional development opportunities.",
+
+    "hub_visual_art_slogan": "Visual Art",
+    "hub_visual_art_title": "Visual Artists Ireland (VAI)",
+    "hub_visual_art_desc": "The national membership body for visual artists in Ireland. VAI supports visual artists through practical resources, a legal helpline, peer groups and the VAI Opportunities bulletin with current calls and commissions.",
+
+    "hub_community_slogan": "Community",
+    "hub_community_title": "Artist Megathread",
+    "hub_community_desc": "An informal community resource thread collating advice on pricing, contracts, difficult clients, and self-employment shared by working artists.",
+
+    "hub_welfare_slogan": "Welfare",
+    "hub_welfare_title": "Basic Income for the Arts",
+    "hub_welfare_desc": "Ireland's pilot Basic Income for the Arts scheme runs until 2025. Check gov.ie for outcomes and any successor scheme announcements."
 
 }

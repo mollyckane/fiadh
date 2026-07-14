@@ -138,7 +138,93 @@
     "income_chart_net": "Glanbhrabús:",
 
     "income_history": "Stair",
-    "income_history_all": "Uile"
+    "income_history_all": "Uile",
 
+    "hub_subtitle": "Treoracha, naisc agus tacaíocht d'ealaíontóirí saoragrach in Éirinn.",
+    "hub_btn_all": "Uile",
+    "hub_tax_reg": "Cáin & Clárú",
+    "hub_funding_grants": "Maoiniú & Deontais",
+    "hub_rights": "Cearta Ealaíontóirí",
+    "hub_pricing": "Praghsáil",
+    "hub_support": "Eagraíochtaí Tacaíochta",
 
+    "hub_tax_slogan": "Ag tosú",
+    "hub_tax_title": "Clárú mar thrádálaí aonair",
+    "hub_tax_desc": "shaothraíonn tú ioncam mar ealaíontóir saoreagrach in Éirinn, tá dualgas dlíthiúil ort clárú mar thrádálaí aonair leis na Coimisinéirí Ioncaim. Is féidir leat é seo a dhéanamh ar líne trí MyAccount. Tá an clárú saor in aisce agus tógann sé thart ar 10 nóiméad",
+    "hub_tax_link": "Tabhair cuairte ar Revenue.ie",
+
+    "hub_vat_slogan": "CBL (VAT)",
+    "hub_vat_title": "Tearna VAT do Ealaíontóirí",
+    "hub_vat_desc": "Má shaothraíonn tú ioncam mar ealaíontóir saoreagrach in Éirinn, tá dualgas dlíthiúil ort clárú mar thrádálaí aonair leis na Coimisinéirí Ioncaim. Is féidir leat é seo a dhéanamh ar líne trí MyAccount. Tá an clárú saor in aisce agus tógann sé thart ar 10 nóiméad",
+    "hub_vat_link": "Treoir CBL do Ealaíontóirí",
+
+    "hub_self_assess_slogan": "Féinmheasnú",
+    "hub_self_assess_title": "Do Fhoirm 11 a líonadh",
+    "hub_self_assess_desc": "I gcás daoine féinfhostaithe in Éirinn, ní mór Foirm 11 a chuir isteach gach bliain roimh an 31ú Deireadh Fómhair. Is é d'ioncam lúide costais inlamháilte do bhrabús incháinithe. Coinnigh gach admháil.",
+    "hub_self_assess_link": "Treoir don fhéinmheasnú",
+
+    "hub_exemption_slogan": "Díolúine d'Ealaíontóirí",
+    "hub_exemption_title": "Scéim um Dhíolúine d'Ealaíontóirí",
+    "hub_exemption_desc": "Tá díolúine ag na Comisinéirí Ioncam d'ealaíontóirí a cheadaíonn obair chruthaitheach cháilitheach a bheith soar ó cháin ioncaim suas le €50,000 in aghaidh na bliana. Baineann sé seo le saothar bunaidh cruthaitheach i gcatagóirí mar gheall ar an scríbhneoireacht, na hamharcealaíonta agus an ceol.",
+    "hub_exemption_link": "Seiceáil má tá tú i dteideal díolúine",
+
+    "hub_arts_council_slogan": "Príomh-mhaoinitheoir",
+    "hub_arts_council_title": "An Comhairle Ealaíon",
+    "hub_arts_council_desc": "An príomhchomhlact rialtais chun na healaíona a mhaoiniú in Éirinn. Cuireann siad sparánachtaí, gradaim tionscadail agus deontais taistil ar fáil d'ealaíontóirí aonair ag gach céim dá ngairm. Seiceáil a bhféilire le haghaidh deiseanna go rialta",
+    "hub_arts_council_link": "Féach ar na deiseanna reatha",
+
+    "hub_local_funding_slogan": "Maoiniú Áitiúil",
+    "hub_local_funding_title": "Comhlachtaí Forbartha Áitiúla",
+    "hub_local_funding_desc": "Cuireann Oifigí Fiontair Áitiúla (LEOnna) ar fud na hÉireann deontais do ghnólachtaí beaga, meantóireacht agus oiliúint ar fáil. Tá cláir áirithe ann atá dírithe go sonrach ar iarratasóirí san earnáil chruthaitheach.",
+    "hub_local_funding_link": "Aimsigh do LEO áitiúil",
+
+    "hub_creative_industries_slogan": "Tionscail Chruthaitheacha",
+    "hub_creative_industries_title": "Screen Ireland & Creative Ireland",
+    "hub_creative_industries_desc": "Tacaíonn an Ciste Cruthaitheachta de chuid Creative Ireland agus Screen Ireland araon le hobair chruthaitheach atá bunaithe ar thionscadail. Athraíonn na spriocdhátaí; cláraigh dá nuachtlitreacha chun fanacht ar an eolas.",
+    "hub_creative_industries_link_1": "Creative Ireland",
+    "hub_creative_industries_link_2": "Screen Ireland",
+
+    "hub_copyright_slogan": "Cóipcheart",
+    "hub_copyright_title": "Cóipcheart in Éirinn",
+    "hub_copyright_desc": "In Éirinn, gintear cóipcheart go huathoibríoch ón nóiméad a chruthaíonn tú saothar bunaidh. Ní gá duit é a chlárú. De ghnáth, mairfidh cóipcheart ar feadh 70 bliain tar éis bhás an chruthaitheora faoin Acht um Chóipcheart agus Cearta Gaolmhara, 2000.",
+    "hub_copyright_link": "Eolas cóipchirt ó  visualartists.ie",
+
+    "hub_moral_rights_title": "Cearta Morálta",
+    "hub_moral_rights_desc": "Mar ealaíontóir, tá cearta morálta agat go n-aithneofaí tú mar chruthaitheoir do shaothair agus cur i gcoinne drochíde a thabhairt dó. Tá na cearta seo ann neamhspleách ar chóipcheart eacnamaíoch agus ní féidir iad a dhíol, ach is féidir iad a tharscaoileadh.",
+    "hub_moral_rights_link": "Treoir chóipchirt IPOI",
+
+    "hub_contracts_slogan": "Conarthaí",
+    "hub_contracts_title": "An fáth a dteastaíonn Conradh Scríofa uaidh",
+    "hub_contracts_desc": "Cosnaíonn conradh scríofa tú féin agus do chliant araon. Ba cheart go léireodh sé go soiléir raon feidhme na hoibre, téarmaí íocaíochta, spriocdhátaí, teorainneacha athbhreithnithe agus cé leis an saothar deiridh. San áireamh le Fiadh tá gineadóir teimpléid conartha.",
+    "hub_contracts_link": "Téigh go dtí na gineadóirí",
+
+    "hub_pricing_title": "Praghas a Chur ar do Shaothar",
+    "hub_pricing_minimum_slogan": "Rátaí",
+    "hub_pricing_minimum_title": "Treoir maidir le hÍosmhéid Pá",
+    "hub_pricing_minimum_desc": "Foilsíonn Amharcealaíontóirí Éire agus Create Éire táillí íosta molta d’ealaíontóirí a bhíonn ag obair le heagraíochtaí a fhaigheann maoiniú poiblí. Is bunlíne úsáideach iad seo fiú amháin i gcás coimisiún príobháideach.",
+    "hub_pricing_minimum_link": "Féach ar na táillí molta",
+
+    "hub_formula_slogan": "Foirmle",
+    "hub_formula_title": "Conas do Ráta In aghaidh na hUaire a Áiríodh",
+    "hub_formula_desc": "Pointí tosaigh simplí: cuir do chostais mhaireachtála bhliantúla agus do chostais ghnó le chéile, roinn an t-iomlán ar an líon uaireanta inmhuirearaithe a oibríonn tú i ndáiríre in aghaidh na bliana (idir 1,000 go 1,400 de ghnáth do shaorealaíontóirí), agus ansin cuir corrlaigh bhrabúis leis.",
+
+    "hub_negotiation_slogan": "Idirbheartaíocht",
+    "hub_negotiation_title": "Ag Lorg an Luacha atá Tuillte Agat",
+    "hub_negotiation_desc": "Is gnáthrud é míchompord a mhothú uaireanta agus tú ag tabhairt praghsanna. Cuimhnigh: tá do scil, do chuid ama, do threalamh agus an saineolas a bhailigh tú thar na blianta san áireamh sa phraghas. Seol luachan scríofa sula dtosaíonn tú ar aon obair.",
+
+    "hub_advocacy_slogan": "Abhcóideacht",
+    "hub_advocacy_title": "Create Ireland",
+    "hub_advocacy_desc": "Is é Create an ghníomhaireacht náisiúnta forbartha do na healaíona comhoibríocha. Cuireann siad acmhainní, abhcóideacht, tacaíocht piaraí, agus deiseanna forbartha gairmiúla ar fáil.",
+
+    "hub_visual_art_slogan": "Amharcealaín",
+    "hub_visual_art_title": "Visual Artists Ireland (VAI)",
+    "hub_visual_art_desc": "An comhlacht náisiúnta ballraíochta d’amharcealaíontóirí in Éirinn. Tacaíonn VAI le hamharcealaíontóirí trí acmhainní praiticiúla, línte cabhrach dlí, grúpaí piaraí agus an fheasachán 'VAI Opportunities' ina bhfuil gairmneacha agus coimisiúin reatha.",
+
+    "hub_community_slogan": "Pobal",
+    "hub_community_title": "Mórshnáithe na nEalaíontóirí",
+    "hub_community_desc": "Snáithe acmhainne pobail neamhfhoirmiúil a bhailíonn comhairle maidir le praghsáil, conarthaí, cliaint dhiúltacha agus féinfhostaíocht, roinnte ag ealaíontóirí gníomhacha.",
+
+    "hub_welfare_slogan": "Leas Sóisialach",
+    "hub_welfare_title": "Buninchinn do na Healaíona",
+    "hub_welfare_desc": "Ritheann píolótscéim na hÉireann don Bhuninchinn do na Healaíona go dtí 2025. Seiceáil gov.ie le haghaidh torthaí nó aon fhógraí maidir le scéim chomharbais."
 }
