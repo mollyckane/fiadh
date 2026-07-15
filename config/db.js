@@ -7,10 +7,9 @@ const db = mysql.createPool({
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    ssl: {
-        ca: process.env.DB_CA_CERT,
-        rejectUnauthorized: true
-    }
+    ssl: process.env.DB_SSL === 'true'
+        ? { ca: process.env.DB_CA_CERT, rejectUnauthorized: true }
+        : undefined
 });
 
 // db.getConnection()
