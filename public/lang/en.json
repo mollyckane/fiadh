@@ -23,7 +23,7 @@
     "register_button": "Register",
 
     "login_title": "Login to Fiadh",
-    "login_subtitle": "Please fill out the form below to login. Don't have an account? Register here",
+    "login_subtitle": "Please fill out the form below to login. Don't have an account?",
     "login_label_email": "Email:",
     "login_placeholder_email": "e.g. johnsmith@example.com",
     "login_label_password": "Password:",
