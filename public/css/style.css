@@ -630,7 +630,13 @@ p.home-paragraph {
     padding: 0;
 }
 
-.language-select li {
+.settings-card .colour-palette li button{
+    margin: 0;
+    width: 100px;
+    font-size: 1rem;
+}
+
+.language-select li, .colour-palette li button {
     padding: 0.2rem 0.6rem;
     border-radius: var(--radius);
     border: 1px solid var(--border-color-main);
@@ -642,8 +648,6 @@ p.home-paragraph {
 }
 
 .colour-palette li {
-    width: 60px;
-    height: auto;
     border-radius: var(--radius);
     background-color: transparent;
     border: none;
@@ -852,7 +856,7 @@ div.resource-card[name="our-mission-card"] ul li {
     max-width: 2080px;
 }
 
-.main-content-dash button {
+.main-content-dash button, .main-content-dash a{
     width: auto;
     border-radius: 0;
     transition: var(--transition);
@@ -902,7 +906,10 @@ div.resource-card[name="our-mission-card"] ul li {
 
 .dash-section-container button:hover,
 .dash-section-container button:focus-visible,
-.dash-section-container button:active {
+.dash-section-container button:active,
+.dash-section-container a:hover,
+.dash-section-container a:focus-visible,
+.dash-section-container a:active {
     background: var(--bg-hover-001);
     color: var(--text-color-primary);
 }
@@ -1044,6 +1051,17 @@ div.resource-card[name="our-mission-card"] ul li {
     background: var(--button-colour-transparent);
     transition: var(--transition);
     cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.dash-section a{
+    margin-top: 1rem;
+    color: var(--text-color-light);
+    background-color: var(--bg-secondary);
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color-main);
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 /* quick shortcuts */
