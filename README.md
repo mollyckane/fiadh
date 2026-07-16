@@ -33,7 +33,7 @@ Fiadh (*fee-ah* – an Irish name coming from the word ‘fia’ which means dee
 | Data Visualisation | Chart.js |
 | Auth | bcrypt + JWT |
 | i18n | Custom EN/GA JSON files |
-| Hosting | Railway |
+| Hosting | Render + Aiven |
 
 ---
 
