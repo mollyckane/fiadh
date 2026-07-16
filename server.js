@@ -14,16 +14,11 @@ const authRoutes = require('./routes/auth');
 const invoiceRoutes = require('./routes/invoices');
 const expenseRoutes = require('./routes/expenses');
 const incomeRoutes = require('./routes/income');
-const contractRoutes = require('./routes/contracts');
-const articleRoutes = require('./routes/articles');
-
 
 app.use('/api/auth', authRoutes);
 app.use('/api/invoices', invoiceRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/income', incomeRoutes);
-app.use('/api/contracts', contractRoutes);
-app.use('/api/articles', articleRoutes);
 
 //home page
 app.get('/', (req, res) => {
