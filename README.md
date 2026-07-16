@@ -168,7 +168,7 @@ You can then:
 
 Thi project uses Jest and Supertest for route tesing.
 
-To run full tset suite:
+To run full test suite:
 
 ```bash
 npm test
