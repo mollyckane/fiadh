@@ -29,7 +29,7 @@ Fiadh (*fee-ah* – an Irish name coming from the word ‘fia’ which means dee
 |---|---|
 | Frontend | HTML5, CSS3, Vanilla JavaScript |
 | Backend | Node.js, Express.js |
-| Database | MySQL (Railway) |
+| Database | MySQL |
 | Data Visualisation | Chart.js |
 | Auth | bcrypt + JWT |
 | i18n | Custom EN/GA JSON files |
@@ -42,6 +42,8 @@ Fiadh (*fee-ah* – an Irish name coming from the word ‘fia’ which means dee
 ```
 fiadh/
 ├── server.js
+├── database/
+│   └── schema.sql
 ├── config/
 │   └── db.js
 ├── middleware/
@@ -49,30 +51,50 @@ fiadh/
 ├── routes/
 │   ├── auth.js
 │   ├── invoices.js
-│   ├── contracts.js
 │   ├── income.js
 │   ├── expenses.js
-│   └── articles.js
+│   └── contracts.js
 ├── public/
 │   ├── css/
 │   ├── js/
-│   └── lang/
+│   ├── lang/
+│   ├── index.html
+│   ├── contracts.html
+│   ├── income-expenses.html
+│   ├── dashboard.html
+│   ├── resources.html
+│   ├── settings.html
+│   └── invoices.html
 └── tests/
 ```
 
 ---
+## Live deployment on Render
 
-## Getting Started
+A deployed version of the project is available at: 
 
-### Prerequisites
+[https://fiadh.onrender.com](https://fiadh.onrender.com)
+
+### Important note about Render availability
+
+This deployment may be unavailable, slow to wake, or temporarily down at times. The hosted version is kept mainly for demonstration purposes but the most reliable way to review the project is to run it locally.
+
+During the examination period, the intention is to have the Render deployment available where possible. If the link does not load immediately, please alow time for Render to wake the service, or use local setup instructions below.
+
+## Accessing Fiadh on Render
+
+1. Open [https://fiadh.onrender.com](https://fiadh.onrender.com)
+2. Wait for the app to load fully, as the service may need time to wake
+3. Register a new account through the sign-up form, or log in with an existing account if one has already been created
+4. After logging in, use the dashboard and navigation to access invoices, income and expenses
+
+## Run Fiadh locally
 
 Before running Fiadh locally, make sure you have:
 
 - Node.js
 - npm
 - MySQL Server installed and running locally
-
-Fiadh currently uses a **local MySQL database** for development and demonstration.
 
 ### Installation
 
@@ -90,10 +112,11 @@ Create a `.env` file in the project root and add the following:
 
 ```env
 DB_HOST=localhost
-DB_PORT=3306
+DB_PORT=3000
 DB_USER=root
 DB_PASSWORD=your-local-mysql-password
 DB_NAME=fiadh
+DB_SSL=false
 JWT_SECRET=your-secret-key
 ```
 
@@ -134,15 +157,27 @@ Then open the app in your browser at:
 http://localhost:3000
 ```
 
-You can then register a user account and log in through the application.
+You can then: 
+- register a new user account
+- log in securely
+- create and manage invoices
+- log income entries
+- log expense entries
 
+### Running tests
+
+Thi project uses Jest and Supertest for route tesing.
+
+To run full tset suite:
+
+```bash
+npm test
+```
 ---
 
 ## Development Note
 
-Fiadh currently uses a **local MySQL database** to make development, testing and demonstration simpler and more reliable across different machines.
-
-A potential future upgrade would be to reconnect the project to a remote MySQL service such as Railway for deployment, once the environment setup and remote connection flow are fully stable.
+ **Local MySQL database** is more reliable for development, testing and demonstration across different machines.
 
 ## Project Management
 
