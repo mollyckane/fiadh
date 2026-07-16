@@ -17,6 +17,14 @@ function applyTranslations() {
             el.textContent = translations[key];
         }
     });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+
+        if (translations[key]) {
+            el.innerHTML = translations[key];
+        }
+    });
 }
 
 // load on page start
