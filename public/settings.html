@@ -94,7 +94,9 @@
             <p class="subtitle">
                 Change settings here.
             </p>
+            <!-- card start -->
             <div class="settings-card">
+                <!-- Your details -->
                 <h3>Your details</h3>
                 <div>
                     <span>Your name</span>
@@ -108,24 +110,26 @@
                     <input type="text" id="settings-email-input" hidden />
                     <i class="fa-solid fa-pencil"></i>
                 </div>
+                <!-- Preferences -->
                 <h3>Preferences</h3>
                 <span>Change language: </span>
-                    <ul class="language-select">
-                        <li class="selected">English</li>
-                        <li>Gaeilge</li>
-                    </ul>
+                <ul class="language-select">
+                    <li class="selected">English</li>
+                    <li>Gaeilge</li>
+                </ul>
                 <span>Change colour palette: </span>
-                    <ul class="colour-palette">
-                        <li><button onclick="setTheme('light')">Light</button></li>
-                        <li><button onclick="setTheme('dark')">Dark</button></li>
+                <ul class="colour-palette">
+                    <li><button onclick="setTheme('light')" class="light">Light</button></li>
+                    <li><button onclick="setTheme('dark')" class="dark">Dark</button></li>
 
-                    </ul>
+                </ul>
+                <!-- Defaults -->
                 <h3>Defaults</h3>
                 <span>Default invoice template: </span>
-                    <ul class="invoice-defaults">
-                        <li class="selected">Default VAT rate: <input type="number" step="0.1" min="0" value="23.00"/></li>
-                        <li>Default Currency: <input type="text" value="EUR"/></li>
-                    </ul>
+                <ul class="invoice-defaults">
+                    <li class="selected">Default VAT rate: <input type="number" step="0.1" min="0" value="23.00"/></li>
+                    <li>Default Currency: <input type="text" value="EUR"/></li>
+                </ul>
                 <h3>Danger Zone</h3>
                 <span style="text-decoration: underline;color: red;">Delete account</span>
 
