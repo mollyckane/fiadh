@@ -130,6 +130,7 @@ textarea {
     border-radius: var(--radius);
     background-color: var(--input-bg);
     width: 100%;
+    color: var(--text-color-primary);
 }
 
 input:focus {
@@ -555,15 +556,15 @@ h1.website-name {
 }
 
 .main-content::before {
-    top: 10%;
-    left: calc(20vw + 20%);
+    top: 5%;
+    left: calc(20vw + 25%);
     width: 40%;
     height: 40%;
     opacity: 0.15;
 }
 
 .main-content::after {
-    top: 18%;
+    top: 10%;
     right: 55%;
     width: 56%;
     height: 56%;
@@ -571,7 +572,7 @@ h1.website-name {
     transform: scaleX(-1);
 }
 
-.main-content > * {
+.main-content>* {
     z-index: 1;
 }
 
@@ -582,14 +583,13 @@ h1.website-name {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 100vh;
+    min-height: 95vh;
     margin: 0 auto;
 }
 
 .main-home {
-    max-width: 500px;
-    scroll-snap-align: start;
-    padding-bottom: 40vh;
+    max-width: 600px;
+    padding-bottom: 25vh;
 }
 
 .settings-main h1{
@@ -609,7 +609,11 @@ main h1 {
     font-size: 5rem;
 }
 
-.main-inner{
+.get-started h1 {
+    font-size: 4rem;
+}
+
+.main-inner {
     padding-top: 20vh;
     display: flex;
     flex-direction: column;
@@ -673,6 +677,78 @@ main h1 {
     height: 30px;
     border-radius: var(--radius);
     border: 2px solid var(--border-color-main);
+div.get-started-point span {
+    background-color: var(--bg-secondary);
+    color: var(--text-color-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+div.get-started-point {
+    height: 3.5rem;
+    margin: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+div.get-started-point div strong {
+    color: var(--text-color-muted);
+    font-weight: 800;
+}
+
+div.get-started-point div {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+div.resource-card[name="get-started-card"] h2,
+div.resource-card[name="our-mission-card"] h2 {
+    border: none;
+    margin: 1rem 1rem 0;
+    font-size: 1.8rem;
+    padding: 0;
+}
+
+div.resource-card[name="get-started-card"] p,
+div.resource-card[name="our-mission-card"] p {
+    margin: 0.8rem 1.2rem;
+    font-size: 1rem;
+    color: var(--text-color-primary);
+}
+
+div.resource-card[name="our-mission-card"] ul {
+    font-size: 0.9rem;
+    color: var(--text-color-paragraph);
+    padding-left: 3.5rem;
+}
+
+div.resource-card[name="our-mission-card"] ul li {
+    margin-bottom: 0.6rem;
+}
+
+.image-strip {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.image-strip div {
+    margin-top: 1rem;
+    max-height: 300px;
+
+}
+
+.image-strip div img[src="images/contract.webp"] {
+    height: 100%;
 }
 
 .colour-palette li:nth-child(1){ background-color: #9b6363ae; }
@@ -680,14 +756,24 @@ main h1 {
 .colour-palette li:nth-child(3) { background-color: #6ccfe5; }
 .colour-palette li:nth-child(4) { background-color: #9cd17f; }
 .colour-palette li:nth-child(5) { background-color: #6f2a2a; }
+.image-strip .resource-card {
+    padding: 0;
+    overflow: hidden;
+}
 
 .register-section,
 .login-section {
-    text-align: center;
     max-width: 500px;
     width: 100%;
     scroll-snap-align: start;
     padding-inline: 0.5rem;
+}
+
+.get-started.register-section {
+    margin: 0 auto;
+    max-width: 800px;
+    justify-content: center;
+    padding: 0;
 }
 
 .register-section {
@@ -731,13 +817,13 @@ main h1 {
     border: none;
 }
 
-.register-text span {
+.register-text a span {
     color: var(--text-highlight);
     font-weight: 600;
 }
 
-.register-text span:hover {
-    color: #743333;
+.register-text a span:hover {
+    color: var(--text-color-primary);
     transition: var(--transition);
 }
 
@@ -747,7 +833,7 @@ main h1 {
     border: none;
     border-radius: var(--radius);
     background-color: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     font-weight: 600;
     cursor: pointer;
     width: 100%;
@@ -755,7 +841,7 @@ main h1 {
 
 .register-button:hover,
 .login-button:hover {
-    background-color: #7a4d4d;
+    background-color: var(--bg-hover-002);
     transition: var(--transition);
 }
 
@@ -768,6 +854,7 @@ main h1 {
 .dash-section-container {
     min-width: 0;
 }
+
 .dash-chart-body {
     width: 100%;
     overflow: hidden;
