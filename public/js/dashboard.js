@@ -269,27 +269,27 @@ async function loadIncomeExpenseChart() {
 loadIncomeExpenseChart();
 
 
-// arrow dropdown toggle
+// dropdown toggle
 function toggleDropdown(header) {
-    var dropdown = header.nextElementSibling;
+    const dropdown = header.nextElementSibling;
 
     if (!dropdown) return;
 
-    dropdown.classList.toggle("show");
+    const isOpen = dropdown.classList.toggle("show");
+    const icon = header.querySelector("i");
 
-    // find the arrow icon inside this button
-    var arrow = header.querySelector("i");
+    header.setAttribute("aria-expanded", String(isOpen));
 
-    if(arrow){
-        if (dropdown.classList.contains("show")) {
-            arrow.classList.remove("fa-caret-down");
-            arrow.classList.add("fa-caret-up");
-    }   else {
-            arrow.classList.add("fa-caret-down");
-            arrow.classList.remove("fa-caret-up");
-        }
+    if (icon) {
+        icon.classList.remove(
+            "fa-plus",
+            "fa-minus",
+            "fa-caret-up",
+            "fa-caret-down"
+        );
+
+        icon.classList.add(isOpen ? "fa-minus" : "fa-plus");
     }
-    
 }
 
 function openSection(sectionId) {
