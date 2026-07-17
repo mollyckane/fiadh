@@ -530,6 +530,7 @@ body.sidebar-collapsed .nav-submenu a.nav-link i {
 
 
 /* Tooltips for collapsed navigation */
+
 .nav-tooltip {
     position: absolute;
     top: 50%;
@@ -667,16 +668,16 @@ h1.website-name {
     padding-bottom: 25vh;
 }
 
-.settings-main h1{
+.settings-main h1 {
     font-size: 3rem;
 }
 
-.main-section.settings-main{
+.main-section.settings-main {
     min-height: 85vh;
     justify-content: center;
 }
 
-.settings-main .subtitle{
+.settings-main .subtitle {
     margin: 0 auto;
 }
 
@@ -705,7 +706,11 @@ main h1 {
     margin-bottom: 1.5rem;
 }
 
-.settings-card{
+p.home-paragraph {
+    line-height: 2rem;
+}
+
+.settings-card {
     background: var(--bg-main);
     border: 1px solid var(--border-color-secondary);
     box-shadow: var(--shadow-sm);
@@ -718,40 +723,58 @@ main h1 {
     padding: 4rem;
 }
 
-.settings-card div:nth-child(2){
+.settings-card div:nth-child(3),
+.settings-card h3:nth-child(8) {
     border-bottom: 1px solid var(--border-color-main);
     padding-bottom: 2rem;
 }
 
-.settings-card div{
+.settings-card div {
     display: flex;
     gap: 2rem;
 }
 
-.settings-card ul{
-    display: flex; 
-    gap: 2rem; 
+.settings-card ul {
+    display: flex;
+    gap: 2rem;
     list-style: none;
     margin: 1rem 0;
     padding: 0;
 }
 
-.language-select li{
+.settings-card .colour-palette li button{
+    margin: 0;
+    width: 100px;
+    font-size: 1rem;
+}
+
+.language-select li, .colour-palette li button {
     padding: 0.2rem 0.6rem;
     border-radius: var(--radius);
     border: 1px solid var(--border-color-main);
 }
 
-.language-select li.selected{
+.language-select li.selected {
     background-color: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-secondary);
 }
 
-.colour-palette li{
-    width: 30px;
-    height: 30px;
+.colour-palette li {
     border-radius: var(--radius);
-    border: 2px solid var(--border-color-main);
+    background-color: transparent;
+    border: none;
+}
+
+.colour-palette li button.light {
+    color: #8d5252;
+    background-color: #faf4f3;
+}
+
+.colour-palette li button.dark {
+    color: #faf4f3;
+    background-color: #322628;
+}
+
 div.get-started-point span {
     background-color: var(--bg-secondary);
     color: var(--text-color-light);
@@ -826,11 +849,6 @@ div.resource-card[name="our-mission-card"] ul li {
     height: 100%;
 }
 
-.colour-palette li:nth-child(1){ background-color: #9b6363ae; }
-.colour-palette li:nth-child(2) { background-color: #7b87d7; }
-.colour-palette li:nth-child(3) { background-color: #6ccfe5; }
-.colour-palette li:nth-child(4) { background-color: #9cd17f; }
-.colour-palette li:nth-child(5) { background-color: #6f2a2a; }
 .image-strip .resource-card {
     padding: 0;
     overflow: hidden;
