@@ -50,13 +50,28 @@ function renderMiniCalendar() {
 
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
-    const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     let html = `
-    <div class="cal-header">
-    <button class="cal-nav cal-prev" type="button" aria-label="Previous month">&lt;</button>
+    <div class="calendar-card-header">
+    <div class="calendar-title">
+        <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+        <span>Calendar</span>
+    </div>
+</div>
+
+<div class="cal-month-row">
     <span class="cal-month-label">${monthNames[month]} ${year}</span>
-    <button class="cal-nav cal-next" type="button" aria-label="Next month">&gt;</button>
+
+    <div class="cal-nav-group">
+        <button class="cal-nav cal-prev" type="button" aria-label="Previous month">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+
+        <button class="cal-nav cal-next" type="button" aria-label="Next month">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+    </div>
 </div>
 <div class="cal-grid">
     ${dayNames.map(d => `<div class="cal-day-name">${d}</div>`).join('')}
@@ -67,6 +82,10 @@ function renderMiniCalendar() {
         return `<div class="cal-day${isToday ? ' today' : ''}">${day}</div>`;
     }).join('')}
 </div>
+<div class="calendar-footer">
+        <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
+        <span>0 upcoming</span>
+    </div>
     `;
 
     container.innerHTML = html;
