@@ -4,13 +4,16 @@
     /* font colour*/
     --font-body: 'Inter', Arial, sans-serif;
     --font-heading: 'Kaisei Tokumin', Times, serif;
-    --text-color-primary: #9b6363;
-    --text-color-secondary: #9f998e;
+    --text-color-primary: #20332c;
+    --text-color-secondary: #607067;
+    --text-color-light: #faf4f3;
+    --text-color-paragraph: #564f49;
+    --text-highlight: #b56f63;
     --subtitle: #595a3dae;
-    --text-color-muted: #9a9494;
+    --text-color-muted: #605d5d;
     --text-green: rgb(40, 103, 40);
     --text-red: rgb(196, 42, 42);
-    --text-highlight: rgb(220, 144, 87);
+    --text-shadow: 0 1px 2px rgba(92, 56, 56, 0.196);
 
     /* font sizes */
     --text-xs: 0.8rem;
@@ -20,14 +23,17 @@
     --text-xl: 4rem;
 
     /* colours */
-    --bg-main: #faf4f3;
-    --bg-secondary: #965E5E;
-    --bg-hover-001: #e1bebead;
-    --card-main: rgba(250, 249, 247, 0.957);
-    --border-color-main: #965E5E;
-    --border-color-secondary: #e2c8c8;
+    --bg-main: #f4efe5;
+    --card-main: #fffdf8;
+    --bg-secondary: #213a31;
+    --bg-hover-001: #c8bb96ad;
+    --bg-hover-002: #5f5142;
+    --border-color-main: #6c806f;
+    --border-color-secondary: #d8d2c5;
     --color-surface-offset: #eeeae0;
-    --input-bg: #f4e8e8;
+    --color-opacity: #f1e6e615;
+    --input-bg: #e9e3e3b7;
+    --button-colour-transparent: #e2c8c827;
 
     /* presets */
     --border: 1px solid var(--border-color-main);
@@ -84,6 +90,14 @@ p {
     padding: 0;
 }
 
+.fa-solid,
+.fa-regular,
+.fa-brands {
+    display: inline-block;
+    min-width: 1em;
+    text-align: center;
+}
+
 #logout-btn {
     border-radius: 0;
 }
@@ -126,13 +140,14 @@ input:focus {
 
 input::placeholder {
     color: var(--text-color-muted);
+    color: var(--text-color-muted) !important;
 }
 
 button {
     padding: 0.5rem;
     border: var(--border);
     background-color: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     width: 100%;
     font-weight: 500;
     cursor: pointer;
