@@ -316,7 +316,7 @@ nav ul {
 }
 
 /* Add class="active" to the current page's .nav-link */
-.nav-items a.nav-link.active {
+.nav-items a.nav-link.active, .btm-nav a.nav-link.active {
     color: #27361f;
     background: #f5ecd9;
     border-color: rgba(255, 255, 255, 0.45);
@@ -473,6 +473,62 @@ body.sidebar-collapsed .main-content-dash {
     margin-left: 4rem;
 }
 
+body.sidebar-collapsed .nav-group-toggle {
+    justify-content: center;
+    padding: 0.75rem 0.4rem;
+}
+
+body.sidebar-collapsed .nav-group-toggle>i:first-child {
+    margin-right: 0;
+}
+
+/* Hide only the chevron in icon-only mode */
+body.sidebar-collapsed .nav-group-chevron {
+    display: none;
+}
+
+/* The submenu becomes a fly-out when expanded */
+body.sidebar-collapsed .nav-submenu {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.65rem);
+    z-index: 1100;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    width: 12rem;
+    margin: 0;
+    padding: 0.5rem;
+
+    border: 1px solid rgba(242, 232, 210, 0.25);
+    border-radius: 0.75rem;
+
+    background: var(--bg-secondary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* Keep it closed until the Generators button is activated */
+body.sidebar-collapsed .nav-submenu[hidden] {
+    display: none;
+}
+
+/* Make the fly-out child items readable */
+body.sidebar-collapsed .nav-submenu .nav-label {
+    display: inline;
+}
+
+body.sidebar-collapsed .nav-submenu a.nav-link {
+    justify-content: flex-start;
+    padding: 0.75rem 0.8rem;
+}
+
+body.sidebar-collapsed .nav-submenu a.nav-link i {
+    margin-right: 0.7rem;
+}
+
+
 /* Tooltips for collapsed navigation */
 .nav-tooltip {
     position: absolute;
@@ -496,6 +552,24 @@ body.sidebar-collapsed .main-content-dash {
 }
 
 nav a,
+nav button.nav-link,
+#logout-btn {
+    position: relative;
+}
+
+/* Display tooltip elements only in collapsed desktop sidebar */
+body.sidebar-collapsed .nav-tooltip {
+    display: block;
+}
+
+/* Show a tooltip for links and the Generators button */
+body.sidebar-collapsed .nav-link:hover .nav-tooltip,
+body.sidebar-collapsed .nav-link:focus-visible .nav-tooltip {
+    opacity: 1;
+    pointer-events: none;
+}
+
+nav a,
 #logout-btn {
     position: relative;
 }
@@ -506,7 +580,7 @@ nav a,
 
 .navbar {
     isolation: isolate;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .navbar::before {
@@ -529,6 +603,7 @@ nav a,
 .navbar.texture-ready::before {
     opacity: 0.23;
 }
+
 
 h1.website-name {
     font-family: MissyVoya, Times, serif;
