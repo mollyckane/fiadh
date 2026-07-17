@@ -11,51 +11,69 @@
     <title>Fiadh</title>
 </head>
 <body>
-    <!-- SIDEBAR NAVIGATION -->
+    <!-- LANDING PAGE SIDEBAR NAVIGATION -->
     <aside>
         <div class="mobile-bar">
             <h1 style="color:white;">f.</h1>
-            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+    
+            <button type="button" class="burger" id="burger-btn" aria-label="Toggle menu" aria-controls="main-nav"
+                aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
-        <nav class="navbar" id="main-nav">
-            <h1 style="color:white;">f.</h1>
+    
+        <nav class="navbar landing-navbar" id="main-nav" aria-label="Main navigation">
+            <div class="nav-top">
+                <h1 style="color:white;">f.</h1>
+            </div>
+    
             <ul class="nav-items">
-                <li onclick="location.href='#'">
-                    <a href="#">
+                <li>
+                    <a href="#home" class="nav-link active" aria-current="page">
                         <i class="fa-solid fa-house" aria-hidden="true"></i>
                         <span class="nav-label">Home</span>
                     </a>
                 </li>
+    
                 <li>
-                    <a href="#">
-                        <i class="fa-regular fa-heart"></i>
+                    <a href="#mission" class="nav-link">
+                        <i class="fa-regular fa-heart" aria-hidden="true"></i>
                         <span class="nav-label">Our Mission</span>
                     </a>
                 </li>
-                <li onclick="location.href='#register-section'">
-                    <a href="#register-section">
-                        <i class="fa-solid fa-user-plus"></i>
+    
+                <li>
+                    <a href="#register-section" class="nav-link">
+                        <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                         <span class="nav-label">Register</span>
                     </a>
                 </li>
-                <li onclick="location.href='#login-section'">
-                    <a href="#login-section">
-                        <i class="fa-solid fa-user"></i>
-                        <span class="nav-label">Login</span>
+    
+                <li>
+                    <a href="#login-section" class="nav-link">
+                        <i class="fa-solid fa-user" aria-hidden="true"></i>
+                        <span class="nav-label">Log in</span>
                     </a>
                 </li>
             </ul>
+    
             <ul class="btm-nav">
-                <li>
-                    <i class="fa-solid fa-language"></i>
-                    <span>ENG</span>
-                </li>
-                <li>
-                    GA
+                <li class="language-control">
+                    <i class="fa-solid fa-language" aria-hidden="true"></i>
+    
+                    <div class="language-options" role="group" aria-label="Language selection">
+                        <button type="button" id="lang-en" class="lang-option active" aria-pressed="true">
+                            ENG
+                        </button>
+    
+                        <span class="language-divider" aria-hidden="true">/</span>
+    
+                        <button type="button" id="lang-ga" class="lang-option" aria-pressed="false">
+                            GA
+                        </button>
+                    </div>
                 </li>
             </ul>
         </nav>
