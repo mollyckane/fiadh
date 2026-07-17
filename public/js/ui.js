@@ -46,6 +46,20 @@ if(desktopToggle){
     });
 }
 
+// generators submenu
+const generatorsToggle = document.getElementById('generatorsToggle');
+const generatorsMenu = document.getElementById('generatorsMenu');
+
+if (generatorsToggle && generatorsMenu) {
+    generatorsToggle.addEventListener('click', () => {
+        const isOpen =
+            generatorsToggle.getAttribute('aria-expanded') === 'true';
+
+        generatorsToggle.setAttribute('aria-expanded', String(!isOpen));
+        generatorsMenu.hidden = isOpen;
+    });
+}
+
 // logout functionality
 const logoutBtn = document.getElementById('logout-btn');
 
