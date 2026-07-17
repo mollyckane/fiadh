@@ -1,5 +1,5 @@
-const registerForm = document.querySelector('.register-form');
-const loginForm = document.querySelector('.login-form');
+const registerForm = document.querySelector('[data-form="register"]');
+const loginForm = document.querySelector('[data-form="login"]');
 
 if (registerForm) {
     registerForm.addEventListener('submit', handleRegister);
