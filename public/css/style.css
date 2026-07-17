@@ -413,6 +413,12 @@ nav a,
     display: none;
 }
 
+
+h1.website-name {
+    font-family: MissyVoya, Times, serif;
+    font-size: 10rem;
+}
+
 /* main */
 .main-content {
     margin-left: var(--sidebar-width);
