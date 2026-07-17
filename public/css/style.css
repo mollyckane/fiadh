@@ -1939,20 +1939,6 @@ body.sidebar-collapsed .modal-box {
         justify-content: flex-start;
         gap: 0.75rem;
     }
-
-}
-
-/* income / expense edit modal */
-
-.edit-entry-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.45);
 }
 
 .edit-entry-box {
@@ -1967,6 +1953,7 @@ body.sidebar-collapsed .modal-box {
     flex-direction: column;
     gap: 0.9rem;
     text-align: left;
+    margin-left: var(--sidebar-width);
 }
 
 .edit-entry-box h3 {
@@ -2009,6 +1996,20 @@ body.sidebar-collapsed .modal-box {
     min-width: 120px;
     padding: 0.65rem 1rem;
 }
+#editEntryModal.edit-entry-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: var(--blur);
+}
 
 #editCancelBtn {
     background: transparent;
@@ -2020,13 +2021,14 @@ body.sidebar-collapsed .modal-box {
     border: 1px solid var(--border-color-main);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .edit-entry-overlay {
         padding: 0.75rem;
     }
 
     .edit-entry-box {
         padding: 1rem;
+        margin-left: 0;
     }
 
     .edit-entry-actions {
@@ -2041,7 +2043,8 @@ body.sidebar-collapsed .modal-box {
 
 /* income and expenses tracker */
 .tracker-card {
-    background: var(--bg-main);
+    border-radius: var(--radius);
+    background-color: var(--card-main);
     border: 1px solid var(--border-color-secondary);
     box-shadow: var(--shadow-sm);
     padding: 1.5rem 2rem;
@@ -2093,7 +2096,7 @@ body.sidebar-collapsed .modal-box {
 .history-filter button.active,
 .history-filter button:hover {
     background: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     border-color: var(--bg-secondary);
 }
 
@@ -2193,7 +2196,7 @@ body.sidebar-collapsed .modal-box {
 
 .segmented-control button.active {
     background: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
 }
 
 .segmented-control button:hover:not(.active) {
@@ -2214,7 +2217,7 @@ body.sidebar-collapsed .modal-box {
 .time-filter button.active,
 .time-filter button:hover {
     background: var(--bg-secondary);
-    color: var(--bg-main);
+    color: var(--text-color-light);
     border-color: var(--bg-secondary);
 }
 
@@ -2276,7 +2279,7 @@ body.sidebar-collapsed .modal-box {
     align-items: center;
 }
 
-.quick-add-panel{
+.quick-add-panel {
     width: 100%;
 }
 
@@ -2299,8 +2302,7 @@ body.sidebar-collapsed .modal-box {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    margin-top: .5rem;
-    transition: 
+    transition:
         opacity 0.9s ease-in-out;
 }
 
@@ -2453,7 +2455,10 @@ body.sidebar-collapsed .modal-box {
     padding-right: 0.25rem;
 }
 
-.tracker-bar, .main-section, .dash-grid, .modal-box{
+.tracker-bar,
+.main-section,
+.dash-grid,
+.modal-box {
     max-width: 1080px;
 }
 
@@ -2828,6 +2833,10 @@ body.sidebar-collapsed .modal-box {
     .dash-journey-card:focus-visible {
         transform: none;
     }
+}
+/* ========================================
+   DASHBOARD RESOURCE PANELS
+   ======================================== */
 
     .burger {
         display: flex;
@@ -3064,15 +3073,15 @@ body.sidebar-collapsed .modal-box {
         text-align: center;
     }
 
-    /* income and expenses */
-    .tracker-content {
-        padding: 1rem;
-        margin-top: 2rem;
+    .chart-canvas-wrapper {
+        height: 260px;
     }
 
-    .tracker-forms,
-    .tracker-bottom {
-        grid-template-columns: 1fr;
+    .chart-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        margin-top: 0.75rem;
     }
 
     .tracker-history {
