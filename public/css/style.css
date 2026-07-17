@@ -964,7 +964,58 @@ div.resource-card[name="our-mission-card"] ul li {
     margin-bottom: 1.4rem;
 }
 
-    border: none;
+.calendar-card-header,
+.cal-month-row,
+.calendar-footer {
+    width: 100%;
+}
+
+.calendar-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.calendar-title i {
+    font-size: 1rem;
+    color: var(--text-color-primary);
+}
+
+/* Month and navigation row */
+.cal-month-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.1rem;
+}
+
+.cal-month-label {
+    color: var(--text-color-primary);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cal-nav-group {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+}
+
+.cal-nav-group .cal-nav {
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
     background: transparent;
     color: var(--text-color-primary);
     display: grid;
