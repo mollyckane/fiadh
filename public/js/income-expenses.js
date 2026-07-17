@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     wireCustomCategory('expCategory', 'expCategoryCustom', 'expCategoryBackBtn');
     wireCustomCategory('incCategory', 'incCategoryCustom', 'incCategoryBackBtn');
 
-    function resolveCategory(selectId, customId){
+    function resolveCategory(selectId, customId) {
         const select = document.getElementById(selectId);
         const custom = document.getElementById(customId);
         return select.value === 'Other' ? custom.value.trim() : select.value;
@@ -190,38 +190,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     let trackerChart = null;
 
     //fetch data
-    async function loadAll(){
-        try{
-            const [incRes, expRes] = await Promise.all([ 
-                fetch('/api/income', { headers: { 'Authorization' : `Bearer ${token}`} }),
-                fetch('/api/expenses', { headers: { 'Authorization' : `Bearer ${token}`} })
+    async function loadAll() {
+        try {
+            const [incRes, expRes] = await Promise.all([
+                fetch('/api/income', { headers: { 'Authorization': `Bearer ${token}` } }),
+                fetch('/api/expenses', { headers: { 'Authorization': `Bearer ${token}` } })
             ]);
             allIncome = await incRes.json();
             allExpenses = await expRes.json();
-            if(!Array.isArray(allIncome)) allIncome = [];
-            if(!Array.isArray(allExpenses)) allExpenses = [];
+            if (!Array.isArray(allIncome)) allIncome = [];
+            if (!Array.isArray(allExpenses)) allExpenses = [];
             renderHistory();
             renderChart();
         }
-        catch(err){
+        catch (err) {
             console.error('Could not load data: ', err);
         }
     }
 
     //save an expense
-    document.getElementById('saveExpenseBtn').addEventListener('click', async () =>{
+    document.getElementById('saveExpenseBtn').addEventListener('click', async () => {
         const amount = parseFloat(document.getElementById('expAmount').value);
         const date = document.getElementById('expDate').value;
         const category = resolveCategory('expCategory', 'expCategoryCustom');
         const notes = document.getElementById('expNotes').value.trim();
 
-        if(!amount || amount <= 0){
+        if (!amount || amount <= 0) {
             alert('Please enter a valid amount.');
             return;
         }
 
-        try{
-            const res =  await fetch('/api/expenses', {
+        try {
+            const res = await fetch('/api/expenses', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -230,16 +230,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 body: JSON.stringify({ amount, category, entry_date: date || today, notes })
             });
             const result = await res.json();
-            if(res.ok){
+            if (res.ok) {
                 resetExpenseForm();
                 closeExpenseBar();
                 loadAll();
             }
-            else{
+            else {
                 alert(result.error || 'Failed to save expense.');
             }
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             alert('An error has occurred. Please try again.');
         }
@@ -320,14 +320,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     //render history
-    function renderHistory(){
+    function renderHistory() {
         const list = document.getElementById('historyList');
 
         let entries = [];
-        if(historyFilter === 'all' || historyFilter === 'income'){
-            allIncome.forEach(item => entries.push({ ...item, _type: 'income'}));
+        if (historyFilter === 'all' || historyFilter === 'income') {
+            allIncome.forEach(item => entries.push({ ...item, _type: 'income' }));
         }
-        if(historyFilter === 'all' || historyFilter === 'expense'){
+        if (historyFilter === 'all' || historyFilter === 'expense') {
             allExpenses.forEach(item => entries.push({ ...item, _type: 'expense' }));
         }
 
@@ -337,34 +337,99 @@ document.addEventListener('DOMContentLoaded', async () => {
             const db = getStoredDate(b.entry_date || b.created_at);
             return db.localeCompare(da);
         });
-        
-        if(entries.length === 0){
+
+        if (entries.length === 0) {
             list.innerHTML = `<p class="history-empty">No entries yet.</p>`;
             return;
         }
 
-        list.innerHTML = entries.map(entry => `
-            <div class="history-item">
-                <div class="history-item-left">
-                    <span class="history-item-label">
-                        ${entry._type === 'income' ? (entry.source || 'Income') : (entry.category || 'Expense')}
-                    </span>
-                    <span class="history-item-meta">
-                        ${entry.category || ''}
-                        ${entry.entry_date ? '&middot; ' + formatDisplayDate(entry.entry_date) : ''}
-                    </span>
-                </div>
-                <div class="history-item-right">
-                    <span class="history-amount ${entry._type}">
-                        ${entry._type === 'income' ? '+' : '-'}€${parseFloat(entry.amount).toFixed(2)}
-                    </span>
-                    <div class="history-item-actions">
-                        <button class="edit-entry-btn" data-id="${entry.id}" data-type="${entry._type}">edit</button>
-                        <button class="delete-entry-btn" data-id="${entry.id}" data-type="${entry._type}">delete</button>
-                    </div>
-                </div>
+        let lastMonthKey = '';
+
+        list.innerHTML = entries.map(entry => {
+            const rawDate = entry.entry_date || entry.created_at;
+            const entryDate = rawDate ? new Date(rawDate) : new Date();
+
+            const monthKey = `${entryDate.getFullYear()}-${entryDate.getMonth()}`;
+
+            const monthLabel = entryDate.toLocaleDateString('en-IE', {
+                month: 'long',
+                year: 'numeric'
+            });
+
+            const separatorHtml = monthKey !== lastMonthKey
+                ? `<p class="invoice-history-separator">${monthLabel}</p>`
+                : '';
+
+            lastMonthKey = monthKey;
+
+            const isIncome = entry._type === 'income';
+
+            const title = isIncome
+                ? (entry.source || 'Untitled income')
+                : (entry.category || 'Untitled expense');
+
+            const reference = isIncome
+                ? (entry.category || 'No category')
+                : (entry.notes || 'No notes');
+
+            const displayDate = entryDate.toLocaleDateString('en-IE');
+
+            return `
+    ${separatorHtml}
+
+    <article class="history-item invoice-history-item">
+        <div class="invoice-history-main">
+            <div class="invoice-history-client">
+                <span class="invoice-history-invoice-number">
+                    ${reference}
+                </span>
+
+                <span class="history-item-label">
+                    ${title}
+                </span>
             </div>
-        `).join('');
+
+            <div class="invoice-history-meta">
+                <span class="invoice-history-due">
+                    ${displayDate}
+                </span>
+
+                <span class="status-pill ${isIncome ? 'paid' : 'overdue'}">
+                    ${isIncome ? 'Income' : 'Expense'}
+                </span>
+            </div>
+        </div>
+
+        <div class="invoice-history-side">
+            <strong class="invoice-history-total ${isIncome ? 'income' : 'expense'}">
+                ${isIncome ? '+' : '-'}€${parseFloat(entry.amount || 0).toFixed(2)}
+            </strong>
+
+            <div class="history-item-right invoice-history-actions">
+                <button
+                    type="button"
+                    class="edit-entry-btn"
+                    data-id="${entry.id}"
+                    data-type="${entry._type}"
+                    aria-label="Edit ${isIncome ? 'income' : 'expense'} entry: ${title}"
+                >
+                    Edit
+                </button>
+
+                <button
+                    type="button"
+                    class="delete-entry-btn"
+                    data-id="${entry.id}"
+                    data-type="${entry._type}"
+                    aria-label="Delete ${isIncome ? 'income' : 'expense'} entry: ${title}"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </article>
+`;
+        }).join('');
 
         // wire delete buttons
         list.querySelectorAll('.delete-entry-btn').forEach(btn => {
@@ -373,7 +438,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (!confirmed) return;
                 const { id, type } = btn.dataset;
                 const endpoint = type === 'income' ? `/api/income/${id}` : `/api/expenses/${id}`;
-                
+
                 try {
                     const res = await fetch(endpoint, {
                         method: 'DELETE',
@@ -601,10 +666,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             label,
             data,
             backgroundColor,
+            borderColor: backgroundColor,
+            borderWidth: 0,
             borderRadius: 4,
             categoryPercentage: 0.55,
             barPercentage: 0.7,
-            maxBarThickness: 85
+            maxBarThickness: 50
         };
     }
 
@@ -646,7 +713,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     data: {
                         labels: ['Income'],
                         datasets: [
-                            createBarDataset('Income (€)', [totalIncome], '#6aab6a')
+                            createBarDataset('Income (€)', [totalIncome], '#5f925f')
                         ]
                     },
                     options: chartOptions('Total Income')
@@ -660,7 +727,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     data: {
                         labels: ['Expenses'],
                         datasets: [
-                            createBarDataset('Expenses (€)', [totalExpenses], '#965E5E')
+                            createBarDataset('Expenses (€)', [totalExpenses], '#a85f5f')
                         ]
                     },
                     options: chartOptions('Total Expenses')
