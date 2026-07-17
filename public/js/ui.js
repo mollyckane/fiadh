@@ -89,3 +89,14 @@ if (document.getElementById('live-datetime')) {
   setInterval(updateDateTime, 1000);
 }
 
+//texture ready
+const sidebarTexture = new Image();
+sidebarTexture.src = "images/texture.webp";
+
+sidebarTexture.addEventListener("load", () => {
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+        navbar.classList.add("texture-ready");
+    }
+});
