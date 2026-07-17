@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="/images/f.png">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preload" href="https://kit.fontawesome.com/21102ac5ea.js" as="script">
+    <script src="https://kit.fontawesome.com/21102ac5ea.js" crossorigin="anonymous"></script>
+
+    <title>Fiadh | Contracts</title>
+</head>
+
+<body>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside>
+        <div class="mobile-bar">
+            <h1 style="color:white;">f.</h1>
+
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <nav class="navbar" id="main-nav">
+            <div class="nav-top">
+                <h1 style="color:white;">f.</h1>
+
+                <button type="button" class="sidebar-toggle" id="desktop-sidebar-toggle" aria-label="Collapse sidebar"
+                    aria-expanded="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <ul class="nav-items">
+                <li>
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_dashboard">Dashboard</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_dashboard">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="income-expenses.html" class="nav-link">
+                        <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_income_expenses">Income &amp; Expenses</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_income_expenses">
+                            Income &amp; Expenses
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-group">
+                    <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false"
+                        aria-controls="generatorsMenu">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        <span class="nav-label">Generators</span>
+                        <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
+                        <span class="nav-tooltip" role="tooltip">Generators</span>
+                    </button>
+
+                    <ul class="nav-submenu" id="generatorsMenu" hidden>
+                        <li>
+                            <a href="invoices.html" class="nav-link">
+                                <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                                <span class="nav-label">Invoices</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="contracts.html" class="nav-link active" aria-current="page">
+                                <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+                                <span class="nav-label">Contracts</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="dashboard.html#business-container" class="nav-link">
+                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_business_tools">Business Guides</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_business_tools">
+                            Business Guides
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="resources.html" class="nav-link">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_resource_hub">Resource Hub</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_resource_hub">Resource Hub</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="btm-nav">
+                <li class="language-control">
+                    <i class="fa-solid fa-language" aria-hidden="true"></i>
+
+                    <div class="language-options" role="group" aria-label="Language selection">
+                        <button type="button" id="lang-en" class="lang-option active" aria-pressed="true">
+                            ENG
+                        </button>
+
+                        <span class="language-divider" aria-hidden="true">/</span>
+
+                        <button type="button" id="lang-ga" class="lang-option" aria-pressed="false">
+                            GA
+                        </button>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="settings.html" class="nav-link">
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_settings">Settings</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_settings">Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <button type="button" id="logout-btn" class="nav-link">
+                        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_logout">Log Out</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_logout">Log Out</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-content-dash page-load">
+        <header>
+            <h1 data-i18n="contracts_title">Contract Generator</h1>
+
+            <p data-i18n="contracts_subtitle">
+                Create an editable contract draft for freelance creative work.
+            </p>
+        </header>
+
+        <main class="contracts-content">
+            <section class="contracts-intro">
+                <p class="contracts-notice">
+                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    This creates an editable draft. Review every clause before sharing or signing.
+                </p>
+            </section>
+        
+            <section class="tracker-card contracts-template-card" aria-labelledby="template-heading">
+                <div class="contracts-card-heading">
+                    <div>
+                        <p class="contracts-eyebrow">Step 1</p>
+                        <h2 id="template-heading">Choose a template</h2>
+                    </div>
+        
+                    <p class="contracts-card-help">
+                        Select the starting point that best matches your project.
+                    </p>
+                </div>
+        
+                <div class="contracts-template-options">
+                    <button
+                        type="button"
+                        id="commissionTemplateBtn"
+                        class="contract-template-btn active"
+                        data-template="commission"
+                        aria-pressed="true"
+                    >
+                        <i class="fa-solid fa-paintbrush" aria-hidden="true"></i>
+                        <span>Commission</span>
+                    </button>
+        
+                    <button
+                        type="button"
+                        id="commercialTemplateBtn"
+                        class="contract-template-btn"
+                        data-template="commercial"
+                        aria-pressed="false"
+                    >
+                        <i class="fa-solid fa-building" aria-hidden="true"></i>
+                        <span>Commercial / Company</span>
+                    </button>
+        
+                    <button
+                        type="button"
+                        id="ongoingTemplateBtn"
+                        class="contract-template-btn"
+                        data-template="ongoing"
+                        aria-pressed="false"
+                    >
+                        <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
+                        <span>Ongoing Project</span>
+                    </button>
+                </div>
+            </section>
+        
+            <div class="contracts-layout">
+                <section class="tracker-card contracts-editor-card" aria-labelledby="contract-details-heading">
+                    <div class="contracts-card-heading">
+                        <div>
+                            <p class="contracts-eyebrow">Step 2</p>
+                            <h2 id="contract-details-heading">Contract details</h2>
+                        </div>
+        
+                        <p class="contracts-card-help">
+                            Add the information needed for your draft.
+                        </p>
+                    </div>
+        
+                    <div class="contracts-form-section">
+                        <h3>Project</h3>
+        
+                        <div class="contracts-grid contracts-grid-three">
+                            <div class="tracker-field">
+                                <label for="contractTitle">Project title</label>
+        
+                                <input
+                                    type="text"
+                                    id="contractTitle"
+                                    name="contractTitle"
+                                    placeholder="e.g. Album artwork commission"
+                                >
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="contractStartDate">Start date</label>
+                                <input type="date" id="contractStartDate" name="contractStartDate">
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="contractEndDate">Delivery / end date</label>
+                                <input type="date" id="contractEndDate" name="contractEndDate">
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="contracts-form-section">
+                        <h3>People</h3>
+        
+                        <div class="contracts-grid contracts-grid-two">
+                            <div class="tracker-field">
+                                <label for="artistName">Artist name</label>
+                                <input type="text" id="artistName" name="artistName">
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="artistEmail">Artist email</label>
+                                <input type="email" id="artistEmail" name="artistEmail">
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="clientName">Client / organisation name</label>
+                                <input type="text" id="clientName" name="clientName">
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="clientEmail">Client email</label>
+                                <input type="email" id="clientEmail" name="clientEmail">
+                            </div>
+        
+                            <div class="tracker-field contracts-full-width">
+                                <label for="clientAddress">Client address</label>
+                                <textarea id="clientAddress" name="clientAddress" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="contracts-form-section">
+                        <h3>Payment</h3>
+        
+                        <div class="contracts-grid contracts-grid-two">
+                            <div class="tracker-field">
+                                <label for="projectFee">Total fee</label>
+                                <input type="number" id="projectFee" name="projectFee" step="0.01" min="0">
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="depositAmount">Deposit amount</label>
+                                <input type="number" id="depositAmount" name="depositAmount" step="0.01" min="0">
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="paymentTerms">Payment terms</label>
+        
+                                <input
+                                    type="text"
+                                    id="paymentTerms"
+                                    name="paymentTerms"
+                                    placeholder="e.g. 50% upfront, 50% on completion"
+                                >
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="revisionCount">Included revisions</label>
+        
+                                <input
+                                    type="text"
+                                    id="revisionCount"
+                                    name="revisionCount"
+                                    placeholder="e.g. 2 rounds"
+                                >
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="contracts-form-section">
+                        <h3>Terms</h3>
+        
+                        <div class="contracts-text-fields">
+                            <div class="tracker-field">
+                                <label for="scopeOfWork">Scope of work</label>
+                                <textarea id="scopeOfWork" name="scopeOfWork" rows="5"></textarea>
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="deliverables">Deliverables</label>
+                                <textarea id="deliverables" name="deliverables" rows="4"></textarea>
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="usageRights">Usage rights / licence</label>
+                                <textarea id="usageRights" name="usageRights" rows="4"></textarea>
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="cancellationTerms">Cancellation terms</label>
+                                <textarea id="cancellationTerms" name="cancellationTerms" rows="4"></textarea>
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="confidentialityTerms">Confidentiality</label>
+                                <textarea id="confidentialityTerms" name="confidentialityTerms" rows="4"></textarea>
+                            </div>
+        
+                            <div class="tracker-field">
+                                <label for="additionalTerms">Additional notes / terms</label>
+                                <textarea id="additionalTerms" name="additionalTerms" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="contracts-form-section contracts-form-footer">
+                        <div class="tracker-field">
+                            <label for="contractStatus">Draft status</label>
+        
+                            <select id="contractStatus" name="contractStatus">
+                                <option value="draft" selected>Draft</option>
+                                <option value="ready">Ready to export</option>
+                            </select>
+                        </div>
+        
+                        <div class="tracker-field">
+                            <label for="contractNotes">Internal notes</label>
+                            <textarea id="contractNotes" name="contractNotes" rows="3"></textarea>
+                        </div>
+        
+                        <div class="contracts-actions">
+                            <button type="button" id="resetContractBtn" class="contracts-secondary-btn">
+                                Reset form
+                            </button>
+        
+                            <button type="button" id="exportContractPdfBtn" class="contracts-primary-btn">
+                                <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                                Export as PDF
+                            </button>
+                        </div>
+                    </div>
+                </section>
+        
+                <aside class="contracts-sidebar">
+                    <section class="tracker-card contracts-preview-card" aria-labelledby="contract-preview-heading">
+                        <div class="contracts-card-heading">
+                            <div>
+                                <p class="contracts-eyebrow">Live preview</p>
+                                <h2 id="contract-preview-heading">Contract summary</h2>
+                            </div>
+                        </div>
+        
+                        <dl class="contracts-summary-list">
+                            <div>
+                                <dt>Template</dt>
+                                <dd id="previewTemplate">Commission</dd>
+                            </div>
+        
+                            <div>
+                                <dt>Artist</dt>
+                                <dd id="previewArtistName">-</dd>
+                            </div>
+        
+                            <div>
+                                <dt>Client</dt>
+                                <dd id="previewClientName">-</dd>
+                            </div>
+        
+                            <div>
+                                <dt>Project</dt>
+                                <dd id="previewProjectTitle">-</dd>
+                            </div>
+        
+                            <div>
+                                <dt>Fee</dt>
+                                <dd>€<span id="previewProjectFee">0.00</span></dd>
+                            </div>
+        
+                            <div>
+                                <dt>Dates</dt>
+                                <dd id="previewDates">-</dd>
+                            </div>
+                        </dl>
+                    </section>
+        
+                    <section class="tracker-card contracts-preview-card" aria-labelledby="contract-sections-heading">
+                        <div class="contracts-card-heading">
+                            <div>
+                                <p class="contracts-eyebrow">Draft content</p>
+                                <h2 id="contract-sections-heading">Key sections</h2>
+                            </div>
+                        </div>
+        
+                        <div class="contracts-preview-text">
+                            <h3>Scope of work</h3>
+                            <p id="previewScope">No contract text yet.</p>
+        
+                            <h3>Usage rights / licence</h3>
+                            <p id="previewUsage">No contract text yet.</p>
+        
+                            <h3>Cancellation terms</h3>
+                            <p id="previewCancellation">No contract text yet.</p>
+                        </div>
+                    </section>
+        
+                    <section class="tracker-card contracts-help-card" aria-labelledby="contract-help-heading">
+                        <div class="contracts-card-heading">
+                            <div>
+                                <p class="contracts-eyebrow">Need more help?</p>
+                                <h2 id="contract-help-heading">Resources</h2>
+                            </div>
+                        </div>
+        
+                        <p>
+                            Fiadh provides a practical starting point, not legal advice. Review your draft carefully.
+                        </p>
+        
+                        <div class="contracts-resource-links">
+                            <a
+                                href="https://visualartists.ie/how-to-manual/contracts"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="resource-card-link"
+                            >
+                                Visual Artists Ireland contracts
+                                <i class="fa-solid fa-arrow-up-right-from-square fa-xs" aria-hidden="true"></i>
+                            </a>
+        
+                            <a
+                                href="https://www.performingartsforum.ie/contracts/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="resource-card-link"
+                            >
+                                Performing Arts Forum contracts
+                                <i class="fa-solid fa-arrow-up-right-from-square fa-xs" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </main>
+
+        <footer>
+            <p data-i18n="footer">
+                Copyright &copy; 2026 Molly C Kane. All rights reserved. |
+                Terms of Service | NCI Project Module
+            </p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/contracts.js" defer></script>
+    <script src="js/lang.js" defer></script>
+    <script src="js/ui.js" defer></script>
+</body>
+
+</html>
