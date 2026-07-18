@@ -197,26 +197,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        if (fields.contractStatus) {
-            fields.contractStatus.value = 'draft';
-        }
+        fields.contractStatus.value = 'draft';
+        fields.artistName.value = currentUser.name || '';
+        fields.artistEmail.value = currentUser.email || '';
 
         selectedTemplate = 'commission';
         applyTemplate(selectedTemplate);
-
-        if (fields.contractTitle) fields.contractTitle.value = '';
-        if (fields.contractStartDate) fields.contractStartDate.value = '';
-        if (fields.contractEndDate) fields.contractEndDate.value = '';
-        if (fields.artistName) fields.artistName.value = currentUser.name || '';
-        if (fields.artistEmail) fields.artistEmail.value = currentUser.email || '';
-        if (fields.clientName) fields.clientName.value = '';
-        if (fields.clientEmail) fields.clientEmail.value = '';
-        if (fields.clientAddress) fields.clientAddress.value = '';
-        if (fields.projectFee) fields.projectFee.value = '';
-        if (fields.depositAmount) fields.depositAmount.value = '';
-        if (fields.contractNotes) fields.contractNotes.value = '';
-
-        updatePreview();
     }
 
     function getContractData() {
@@ -261,9 +247,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         function addSection(title, body) {
             const safeBody = body && body.trim() ? body.trim() : 'Not provided.';
-            if (y > 250) {
+            const pageHeight = doc.internal.pageSize.getHeight();
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+
+            const lines = doc.splitTextToSize(safeBody, maxWidth);
+            const requiredHeight = 7 + (lines.length * 5) + 8;
+
+            if (y + requiredHeight > pageHeight - margin) {
                 doc.addPage();
-                y = 20;
+                y = margin;
             }
 
             doc.setFont('helvetica', 'bold');
@@ -273,9 +267,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             doc.setFont('helvetica', 'normal');
             doc.setFontSize(10);
-            const lines = doc.splitTextToSize(safeBody, maxWidth);
             doc.text(lines, margin, y);
-            y += lines.length * 5 + 6;
+            y += lines.length * 5 + 8;
         }
 
         doc.setFont('helvetica', 'bold');

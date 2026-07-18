@@ -38,48 +38,76 @@
                 </button>
             </div>
             <ul class="nav-items">
-                <li><a href="dashboard.html" class="nav-link">
+                <li>
+                    <a href="dashboard.html" class="nav-link">
                         <i class="fa-solid fa-house" aria-hidden="true"></i>
-                        <span class="nav-label">Dashboard</span>
-                        <span class="nav-tooltip" role="tooltip">Dashboard</span>
-                    </a></li>
-                <li><a href="invoices.html" class="nav-link">
-                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                        <span class="nav-label">Invoices</span>
-                        <span class="nav-tooltip" role="tooltip">Invoices</span>
-                    </a></li>
+                        <span class="nav-label" data-i18n="nav_dashboard">Dashboard</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_dashboard">Dashboard</span>
+                    </a>
+                </li>
                 <li>
                     <a href="income-expenses.html" class="nav-link">
                         <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
-                        <span class="nav-label">Income &amp; Expenses</span>
-                        <span class="nav-tooltip" role="tooltip">Income &amp; Expenses</span>
+                        <span class="nav-label" data-i18n="nav_income_expenses">Income &amp; Expenses</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_income_expenses">Income &amp;
+                            Expenses</span>
                     </a>
+                </li>
+                <li class="nav-group active">
+                    <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false"
+                        aria-controls="generatorsMenu">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        <span class="nav-label">Generators</span>
+                        <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
+                        <span class="nav-tooltip" role="tooltip">Generators</span>
+                    </button>
+                    <ul class="nav-submenu" id="generatorsMenu" hidden>
+                        <li>
+                            <a href="invoices.html" class="nav-link">
+                                <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                                <span class="nav-label">Invoices</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contracts.html" class="nav-link">
+                                <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+                                <span class="nav-label">Contracts</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="dashboard.html#business-container" onclick="openSection('business-container')" class="nav-link">
                         <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                        <span class="nav-label">Business Tools</span>
-                        <span class="nav-tooltip" role="tooltip">Business Tools</span>
+                        <span class="nav-label" data-i18n="nav_business_tools">Business Guides</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_business_tools">Business Guides</span>
                     </a>
                 </li>
                 <li>
                     <a href="resources.html" class="nav-link">
                         <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                        <span class="nav-label">Resource Hub</span>
-                        <span class="nav-tooltip" role="tooltip">Resource Hub</span>
+                        <span class="nav-label" data-i18n="nav_resource_hub">Resource Hub</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_resource_hub">Resource Hub</span>
                     </a>
                 </li>
             </ul>
             <ul class="btm-nav">
-                <li>
-                    <i class="fa-solid fa-language"></i>
+                <li class="language-control">
+                    <i class="fa-solid fa-language" aria-hidden="true"></i>
+    
+                    <div class="language-options" role="group" aria-label="Language selection">
+                        <button type="button" id="lang-en" class="lang-option active" aria-pressed="true">
+                            ENG
+                        </button>
+    
+                        <span class="language-divider" aria-hidden="true">/</span>
+    
+                        <button type="button" id="lang-ga" class="lang-option" aria-pressed="false">
+                            GA
+                        </button>
+                    </div>
                 </li>
-                <li id="lang-en" class="lang-option active" role="button" tabindex="0" aria-pressed="true">
-                    <span>ENG</span>
-                </li>
-                <li id="lang-ga" class="lang-option" role="button" tabindex="0" aria-pressed="false">
-                    GA
-                </li>
+    
                 <li>
                     <a href="settings.html" class="nav-link">
                         <i class="fa-solid fa-gear" aria-hidden="true"></i>
@@ -87,10 +115,13 @@
                         <span class="nav-tooltip" role="tooltip" data-i18n="nav_settings">Settings</span>
                     </a>
                 </li>
-                <li id="logout-btn" class="nav-link">
-                    <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
-                    <span class="nav-label" data-i18n="nav_logout">Log Out</span>
-                    <span class="nav-tooltip" role="tooltip" data-i18n="nav_logout">Log Out</span>
+    
+                <li>
+                    <button type="button" id="logout-btn" class="nav-link">
+                        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_logout">Log Out</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_logout">Log Out</span>
+                    </button>
                 </li>
             </ul>
         </nav>
@@ -103,78 +134,149 @@
         </header>
         <div class="main-section">
             <section class="invoice-page">
-                <!-- Invoice header -->
-                <div class="invoice-header">
-                    <div class="invoice-id-group">
-                        <label for="invoiceNumber">Invoice number</label>
-                        <input type="number" id="invoiceNumber" name="invoiceNumber" />
-                    </div>
+                <div class="invoice-page-intro">
+                    <p class="invoice-eyebrow">Business tools</p>
                     <div>
-                        <label for="invoiceDate">Invoice date</label>
-                        <input type="date" id="invoiceDate" name="invoiceDate" />
-                    </div>
-                    <div>
-                        <label for="dueDate">Due date</label>
-                        <input type="date" id="dueDate" name="dueDate" />
-                    </div>
-
-                </div>
-
-                <!-- Client details -->
-                <div class="invoice-client">
-                    <div>
-                        <label for="clientName">Client name</label>
-                        <input type="text" id="clientName" name="clientName" />
-                    </div>
-                    <div>
-                        <label for="clientEmail">Client email</label>
-                        <input type="email" id="clientEmail" name="clientEmail" />
-                    </div>
-                    <div class="client-address">
-                        <label for="clientAddress">Client Address</label>
-                        <textarea id="clientAddress" rows="3"></textarea>
+                        <h2>Create an invoice</h2>
+                        <p class="invoice-help">
+                            Add your client, payment details and line items. Totals update automatically.
+                        </p>
                     </div>
                 </div>
-
-                <p style="border-bottom: 1px solid #965E5E; font-weight:700">Line items</p>
-                <div class="invoice-items">
-                    <!-- Rows live here -->
-                    <div id="invoiceItemsBody"></div>
-
-                    <button type="button" id="addItemButton">+ Add item</button>
-                </div>
-
-                <!-- Totals + VAT -->
-                <div class="invoice-totals">
-                    <div class="totals-left">
-                        <label>
-                            Apply VAT
-                            <input type="checkbox" id="vatEnabled" />
-                        </label>
-                        <div id="vatRateContainer">
-                            <label for="vatRate">VAT rate (%)</label>
-                            <input type="number" id="vatRate" name="vatRate" value="23" step="0.1" min="0" />
+        
+                <div class="invoice-section">
+                    <div class="invoice-section-heading">
+                        <span class="invoice-section-number">01</span>
+                        <div>
+                            <h3>Invoice details</h3>
+                            <p>Set a reference number and important dates.</p>
                         </div>
                     </div>
-
-                    <div class="totals-right">
+        
+                    <div class="invoice-header">
+                        <div class="invoice-id-group">
+                            <label for="invoiceNumber">Invoice number</label>
+                            <input type="number" id="invoiceNumber" name="invoiceNumber">
+                        </div>
+        
                         <div>
+                            <label for="invoiceDate">Invoice date</label>
+                            <input type="date" id="invoiceDate" name="invoiceDate">
+                        </div>
+        
+                        <div>
+                            <label for="dueDate">Due date</label>
+                            <input type="date" id="dueDate" name="dueDate">
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="invoice-section">
+                    <div class="invoice-section-heading">
+                        <span class="invoice-section-number">02</span>
+                        <div>
+                            <h3>Client details</h3>
+                            <p>Who is this invoice being sent to?</p>
+                        </div>
+                    </div>
+        
+                    <div class="invoice-client">
+                        <div>
+                            <label for="clientName">Client name</label>
+                            <input type="text" id="clientName" name="clientName">
+                        </div>
+        
+                        <div>
+                            <label for="clientEmail">Client email</label>
+                            <input type="email" id="clientEmail" name="clientEmail">
+                        </div>
+        
+                        <div class="client-address">
+                            <label for="clientAddress">Client address</label>
+                            <textarea id="clientAddress" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="invoice-section invoice-items-section">
+                    <div class="invoice-section-heading invoice-section-heading-split">
+                        <div class="invoice-section-heading-main">
+                            <span class="invoice-section-number">03</span>
+                            <div>
+                                <h3>Line items</h3>
+                                <p>Add the work, quantity and agreed rate.</p>
+                            </div>
+                        </div>
+        
+                        <button type="button" id="addItemButton" class="add-item-button">
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                            Add item
+                        </button>
+                    </div>
+        
+                    <div class="invoice-items">
+                        <div id="invoiceItemsBody"></div>
+                    </div>
+                </div>
+        
+                <div class="invoice-bottom-grid">
+                    <div class="invoice-section invoice-vat-section">
+                        <div class="invoice-section-heading">
+                            <span class="invoice-section-number">04</span>
+                            <div>
+                                <h3>VAT</h3>
+                                <p>Enable this only where it applies to this invoice.</p>
+                            </div>
+                        </div>
+        
+                        <div class="invoice-vat-controls">
+                            <label class="vat-toggle" for="vatEnabled">
+                                <input type="checkbox" id="vatEnabled">
+                                <span>Apply VAT</span>
+                            </label>
+        
+                            <div id="vatRateContainer">
+                                <label for="vatRate">VAT rate</label>
+                                <input
+                                    type="number"
+                                    id="vatRate"
+                                    name="vatRate"
+                                    value="23"
+                                    step="0.1"
+                                    min="0">
+                            </div>
+                        </div>
+                    </div>
+        
+                    <aside class="invoice-summary" aria-label="Invoice total">
+                        <p class="invoice-summary-label">Invoice summary</p>
+        
+                        <div class="invoice-summary-row">
                             <span>Subtotal</span>
-                            <span id="subtotalDisplay">0.00</span>
+                            <strong id="subtotalDisplay">0.00</strong>
                         </div>
-                        <div>
+        
+                        <div class="invoice-summary-row">
                             <span>VAT</span>
-                            <span id="vatDisplay">0.00</span>
+                            <strong id="vatDisplay">0.00</strong>
                         </div>
-                        <div class="grand-total">
+        
+                        <div class="invoice-summary-total">
                             <span>Total</span>
-                            <span id="totalDisplay">0.00</span>
+                            <strong id="totalDisplay">0.00</strong>
+                        </div>
+                    </aside>
+                </div>
+        
+                <div class="invoice-section invoice-payment-section">
+                    <div class="invoice-section-heading">
+                        <span class="invoice-section-number">05</span>
+                        <div>
+                            <h3>Payment details</h3>
+                            <p>Add the current status and any notes for your client.</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Status + actions -->
-                <div class="invoice-footer">
+        
                     <div class="status-notes">
                         <div>
                             <label for="status">Status</label>
@@ -184,20 +286,33 @@
                                 <option value="paid">Paid</option>
                             </select>
                         </div>
+        
                         <div>
                             <label for="notes">Notes</label>
                             <textarea id="notes" name="notes" rows="3"></textarea>
                         </div>
                     </div>
-
-                    <div class="invoice-actions">
-                        <button type="button" id="exportPdfBtn">Export as PDF</button>
-                        <button type="button" id="saveInvoiceButton">Save invoice</button>
-                    </div>
+                </div>
+        
+                <div class="invoice-actions">
+                    <button type="button" id="exportPdfBtn" class="invoice-secondary-action">
+                        <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                        Export as PDF
+                    </button>
+        
+                    <button type="button" id="saveInvoiceButton" class="invoice-primary-action">
+                        <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                        Save invoice
+                    </button>
                 </div>
             </section>
             <section class="invoice-history">
-                <p>Invoice History</p>
+                <div class="invoice-history-heading">
+                    <div>
+                        <span class="invoice-history-eyebrow">Business records</span>
+                        <h2>Invoice History</h2>
+                    </div>
+                    <span id="invoiceHistoryCount" class="invoice-history-count"></span>      </div>
                 <div class="history-filter" id="invoiceHistoryFilter">
                     <button data-filter="all" class="active">all</button>
                     <button data-filter="draft">draft</button>
@@ -213,7 +328,6 @@
         </footer>
     </div>
 
-    <!-- view/edit modal -->
     <!-- view/edit modal -->
     <div id="invoiceModal" class="modal-overlay" style="display:none;">
         <div class="modal-box">
@@ -249,14 +363,16 @@
                         </thead>
                         <tbody id="viewItemsBody"></tbody>
                     </table>
-                    <div class="modal-totals">
-                        <p>Subtotal: € <span id="viewSubtotal"></span></p>
-                        <p>VAT: € <span id="viewVat"></span></p>
-                        <p><strong>Total: € <span id="viewTotal"></span></strong></p>
-                    </div>
-                    <div id="viewNotesContainer">
-                        <span class="modal-label">Notes</span>
-                        <p id="viewNotes"></p>
+                    <div class="modal-grid">
+                        <div id="viewNotesContainer">
+                            <span class="modal-label">Notes</span>
+                            <p id="viewNotes"></p>
+                        </div>
+                        <div class="modal-totals">
+                            <p>Subtotal: € <span id="viewSubtotal">250.00</span></p>
+                            <p>VAT: € <span id="viewVat">57.50</span></p>
+                            <p><strong>Total: € <span id="viewTotal">307.50</span></strong></p>
+                        </div>
                     </div>
                 </div>
     

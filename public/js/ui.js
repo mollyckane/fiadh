@@ -46,6 +46,20 @@ if(desktopToggle){
     });
 }
 
+// generators submenu
+const generatorsToggle = document.getElementById('generatorsToggle');
+const generatorsMenu = document.getElementById('generatorsMenu');
+
+if (generatorsToggle && generatorsMenu) {
+    generatorsToggle.addEventListener('click', () => {
+        const isOpen =
+            generatorsToggle.getAttribute('aria-expanded') === 'true';
+
+        generatorsToggle.setAttribute('aria-expanded', String(!isOpen));
+        generatorsMenu.hidden = isOpen;
+    });
+}
+
 // logout functionality
 const logoutBtn = document.getElementById('logout-btn');
 
@@ -89,12 +103,14 @@ if (document.getElementById('live-datetime')) {
   setInterval(updateDateTime, 1000);
 }
 
-// restore saved theme on every page
-const savedTheme = localStorage.getItem('fiadh-theme') || 'light';
-document.documentElement.setAttribute('data-theme', savedTheme);
+//texture ready
+const sidebarTexture = new Image();
+sidebarTexture.src = "images/texture.webp";
 
-// toggle function called from settings page
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('fiadh-theme', theme);
-}
+sidebarTexture.addEventListener("load", () => {
+    const navbar = document.querySelector(".navbar");
+
+    if (navbar) {
+        navbar.classList.add("texture-ready");
+    }
+});

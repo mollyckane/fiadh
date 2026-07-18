@@ -330,22 +330,53 @@ document.addEventListener('DOMContentLoaded', async () => {
                 : 'No due date';
 
             return `
-                ${separatorHtml}
-                <div class="history-item invoice-history-item">
-                    <div class="history-item-left">
-                        <span class="history-item-label">${inv.client_name || 'Untitled invoice'}</span>
-                        <span class="history-item-meta">
-                            €${parseFloat(inv.total || 0).toFixed(2)} ·
-                            <span class="status-pill ${effectiveStatus}">${effectiveStatus}</span> ·
-                            ${dueLabel}
-                        </span>
-                    </div>
-                    <div class="history-item-right invoice-history-actions">
-                        <button class="edit-entry-btn" data-id="${inv.id}">view/edit</button>
-                        <button class="delete-entry-btn" data-id="${inv.id}">delete</button>
-                    </div>
-                </div>
-            `;
+    ${separatorHtml}
+    <article class="history-item invoice-history-item">
+        <div class="invoice-history-main">
+            <div class="invoice-history-client">
+                <span class="invoice-history-invoice-number">
+                    Invoice #${inv.invoice_number || 'Invoice'}
+                </span>
+                <span class="history-item-label">
+                    ${inv.client_name || 'Untitled invoice'}
+                </span>
+            </div>
+
+            <div class="invoice-history-meta">
+                <span class="invoice-history-due">${dueLabel}</span>
+                <span class="status-pill ${effectiveStatus}">
+                    ${effectiveStatus}
+                </span>
+            </div>
+        </div>
+
+        <div class="invoice-history-side">
+            <strong class="invoice-history-total">
+                €${parseFloat(inv.total || 0).toFixed(2)}
+            </strong>
+
+            <div class="history-item-right invoice-history-actions">
+                <button
+                    type="button"
+                    class="edit-entry-btn"
+                    data-id="${inv.id}"
+                    aria-label="View or edit invoice for ${inv.client_name || 'client'}"
+                >
+                    View
+                </button>
+
+                <button
+                    type="button"
+                    class="delete-entry-btn"
+                    data-id="${inv.id}"
+                    aria-label="Delete invoice for ${inv.client_name || 'client'}"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </article>
+`;
         }).join('');
 
         invoiceHistoryList.querySelectorAll('.delete-entry-btn').forEach(btn => {
@@ -568,7 +599,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // populate view mode
         document.getElementById('viewInvoiceNumber').textContent = inv.invoice_number || '--';
-        document.getElementById('viewStatus').textContent = getEffectiveInvoiceStatus(inv);
+        const modalStatus = document.getElementById("viewStatus");
+        const effectiveStatus = getEffectiveInvoiceStatus(inv);
+
+        modalStatus.textContent = effectiveStatus;
+        modalStatus.className = `status-pill ${effectiveStatus}`;
+
         document.getElementById('viewInvoiceDate').textContent = inv.created_at
             ? new Date(inv.created_at).toLocaleDateString('en-IE') : '--';
         document.getElementById('viewDueDate').textContent = inv.due_date
