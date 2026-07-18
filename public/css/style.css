@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+Tokumin&display=swap');
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+Tokumin&display=swap");
 
 :root {
-    /* font colour*/
-    --font-body: 'Inter', Arial, sans-serif;
-    --font-heading: 'Kaisei Tokumin', Times, serif;
+    --font-body: "Inter", Arial, sans-serif;
+    --font-heading: "Kaisei Tokumin", Times, serif;
     --text-color-primary: #20332c;
     --text-color-secondary: #607067;
     --text-color-light: #faf4f3;
@@ -14,15 +14,11 @@
     --text-green: rgb(40, 103, 40);
     --text-red: rgb(196, 42, 42);
     --text-shadow: 0 1px 2px rgba(92, 56, 56, 0.196);
-
-    /* font sizes */
     --text-xs: 0.8rem;
     --text-sm: 1rem;
     --text-md: 2rem;
     --text-lg: 3rem;
     --text-xl: 4rem;
-
-    /* colours */
     --bg-main: #f4efe5;
     --card-main: #fffdf8;
     --bg-secondary: #213a31;
@@ -34,8 +30,6 @@
     --color-opacity: #f1e6e615;
     --input-bg: #e9e3e3b7;
     --button-colour-transparent: #e2c8c827;
-
-    /* presets */
     --border: 1px solid var(--border-color-main);
     --radius: 0.6rem;
     --shadow-sm: 0 2px 5px #00000058;
@@ -49,7 +43,6 @@
 /* themes */
 
 [data-theme="dark"] {
-    /* font colour*/
     --text-color-primary: #e0e0e1;
     --text-color-secondary: #a6a5a2;
     --subtitle: #e0dcd0ae;
@@ -58,8 +51,6 @@
     --text-red: rgb(192, 90, 90);
     --text-highlight: rgb(220, 144, 87);
     --text-shadow: 0 1px 2px rgba(92, 56, 56, 0.196);
-
-    /* colours */
     --bg-main: #111111;
     --bg-secondary: #322628;
     --bg-hover-001: #d26e41;
@@ -74,15 +65,14 @@
 }
 
 [data-theme="font-theme-1"] {
-    --font-body: 'Inter', Arial, sans-serif;
-    --font-heading: 'Kaisei Tokumin', Times, serif;
+    --font-body: "Inter", Arial, sans-serif;
+    --font-heading: "Kaisei Tokumin", Times, serif;
 }
 
 @font-face {
     font-family: MissyVoya;
     src: url(MissyVoya.ttf);
 }
-
 *,
 *::before,
 *::after {
@@ -206,11 +196,11 @@ main button[name="login"] {
     padding: 0.8rem 1.5rem;
 }
 
-main div.intro-btns{
+main div.intro-btns {
     display: flex;
     flex-direction: row;
     width: auto;
-    gap: 1rem
+    gap: 1rem;
 }
 
 label,
@@ -221,28 +211,24 @@ tr {
 }
 
 /* navbar */
+
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
-
     width: var(--sidebar-width);
     height: 100vh;
     padding: 1.25rem 0.75rem;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     color: var(--text-color-light);
-    background:
-        linear-gradient(to bottom, 
+    background: linear-gradient(to bottom, 
             #213a31, 
             rgba(41, 50, 29, 0.98)
         );
     border-right: solid 4px var(--border-color-secondary);
-
     transition: width var(--transition), padding var(--transition);
 }
 
@@ -313,22 +299,17 @@ nav ul {
 #logout-btn {
     display: flex;
     align-items: center;
-
     width: 100%;
     min-height: 46px;
     padding: 0.75rem 0.8rem;
-
     border: 1px solid transparent;
     border-radius: 0.75rem;
-
     color: rgba(250, 244, 233, 0.9);
     background: transparent;
     font-weight: 600;
     text-decoration: none;
-
     cursor: pointer;
-    transition:
-        color 0.2s ease,
+    transition: color 0.2s ease,
         background-color 0.2s ease,
         transform 0.2s ease;
 }
@@ -354,6 +335,7 @@ nav ul {
 }
 
 /* Add class="active" to the current page's .nav-link */
+
 .nav-items a.nav-link.active, .btm-nav a.nav-link.active {
     color: #27361f;
     background: #f5ecd9;
@@ -370,11 +352,9 @@ nav ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0.35rem;
-
     width: 100%;
     margin: 1rem 0 0;
     padding-top: 1rem;
-
     border-top: 1px solid rgba(242, 232, 210, 0.2);
 }
 
@@ -390,7 +370,6 @@ nav ul {
     min-height: 46px;
     padding: 0.7rem 0.8rem !important;
     gap: 0.7rem;
-
     color: rgba(250, 244, 233, 0.9);
 }
 
@@ -411,10 +390,8 @@ nav ul {
     width: auto;
     padding: 0;
     border: 0;
-
     color: rgba(250, 244, 233, 0.58);
     background: transparent;
-
     font: inherit;
     font-weight: 600;
     cursor: pointer;
@@ -446,6 +423,7 @@ nav ul {
 }
 
 /* Collapsed desktop sidebar */
+
 body.sidebar-collapsed .navbar {
     width: 4rem;
     padding: 0.75rem 0.35rem;
@@ -521,38 +499,38 @@ body.sidebar-collapsed .nav-group-toggle>i:first-child {
 }
 
 /* Hide only the chevron in icon-only mode */
+
 body.sidebar-collapsed .nav-group-chevron {
     display: none;
 }
 
 /* The submenu becomes a fly-out when expanded */
+
 body.sidebar-collapsed .nav-submenu {
     position: absolute;
     top: 0;
     left: calc(100% + 0.65rem);
     z-index: 1100;
-
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-
     width: 12rem;
     margin: 0;
     padding: 0.5rem;
-
     border: 1px solid rgba(242, 232, 210, 0.25);
     border-radius: 0.75rem;
-
     background: var(--bg-secondary);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
 }
 
 /* Keep it closed until the Generators button is activated */
+
 body.sidebar-collapsed .nav-submenu[hidden] {
     display: none;
 }
 
 /* Make the fly-out child items readable */
+
 body.sidebar-collapsed .nav-submenu .nav-label {
     display: inline;
 }
@@ -566,7 +544,6 @@ body.sidebar-collapsed .nav-submenu a.nav-link i {
     margin-right: 0.7rem;
 }
 
-
 /* Tooltips for collapsed navigation */
 
 .nav-tooltip {
@@ -574,16 +551,13 @@ body.sidebar-collapsed .nav-submenu a.nav-link i {
     top: 50%;
     left: calc(4rem + 0.5rem);
     z-index: 1000;
-
     display: none;
     padding: 0.35rem 0.65rem;
     border-radius: 0.4rem;
-
     color: var(--text-color-light);
     background: var(--bg-secondary);
     font-size: var(--text-xs);
     white-space: nowrap;
-
     opacity: 0;
     pointer-events: none;
     transform: translateY(-50%);
@@ -597,16 +571,8 @@ nav button.nav-link,
 }
 
 /* Display tooltip elements only in collapsed desktop sidebar */
-body.sidebar-collapsed .nav-tooltip {
-    display: block;
-}
 
 /* Show a tooltip for links and the Generators button */
-body.sidebar-collapsed .nav-link:hover .nav-tooltip,
-body.sidebar-collapsed .nav-link:focus-visible .nav-tooltip {
-    opacity: 1;
-    pointer-events: none;
-}
 
 nav a,
 #logout-btn {
@@ -627,15 +593,12 @@ nav a,
     position: absolute;
     inset: 0;
     z-index: -1;
-
     background-image: url("../images/texture.webp");
     background-repeat: repeat;
     background-size: 320px auto;
-
     opacity: 0;
     mix-blend-mode: overlay;
     pointer-events: none;
-
     transition: opacity 400ms ease-in-out;
 }
 
@@ -643,13 +606,8 @@ nav a,
     opacity: 0.23;
 }
 
-
-h1.website-name {
-    font-family: MissyVoya, Times, serif;
-    font-size: 10rem;
-}
-
 /* main */
+
 .main-content {
     margin-left: var(--sidebar-width);
     width: var(--main-width);
@@ -660,9 +618,9 @@ h1.website-name {
 
 .main-content::before,
 .main-content::after {
-    content: '';
+    content: "";
     position: absolute;
-    background-image: url('../images/deer_lines_001.png');
+    background-image: url("../images/deer_lines_001.png");
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 0;
@@ -780,7 +738,7 @@ p.home-paragraph {
     padding: 0;
 }
 
-.settings-card .colour-palette li button{
+.settings-card .colour-palette li button {
     margin: 0;
     width: 100px;
     font-size: 1rem;
@@ -880,7 +838,6 @@ div.resource-card[name="our-mission-card"] ul li {
 .image-strip div {
     margin-top: 1rem;
     max-height: 300px;
-
 }
 
 .image-strip div img[src="images/contract.webp"] {
@@ -998,6 +955,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* dashboard */
+
 .main-content-dash {
     padding: 2rem;
     margin-left: var(--sidebar-width);
@@ -1009,7 +967,7 @@ div.resource-card[name="our-mission-card"] ul li {
     overflow-x: hidden;
 }
 
-.main-content-dash button, .main-content-dash a{
+.main-content-dash button, .main-content-dash a {
     width: auto;
     border-radius: 0;
     transition: var(--transition);
@@ -1032,7 +990,7 @@ div.resource-card[name="our-mission-card"] ul li {
     height: 24rem;
     opacity: 0.16;
     background-image: url("../images/watercolour-leaves-1.png");
-    transform: rotate(-30deg); 
+    transform: rotate(-30deg);
 }
 
 .main-content-dash::after {
@@ -1154,6 +1112,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* Top title row */
+
 .calendar-card-header {
     display: flex;
     align-items: center;
@@ -1183,6 +1142,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* Month and navigation row */
+
 .cal-month-row {
     display: flex;
     align-items: center;
@@ -1237,6 +1197,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* Calendar grid */
+
 .cal-grid {
     width: 100%;
     min-width: 0;
@@ -1285,6 +1246,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* Bottom status row */
+
 .calendar-footer {
     display: flex;
     align-items: center;
@@ -1394,7 +1356,8 @@ div.resource-card[name="our-mission-card"] ul li {
     font-weight: 600;
     font-size: 1rem;
 }
-.dash-section a{
+
+.dash-section a {
     margin-top: 1rem;
     color: var(--text-color-light);
     background-color: var(--bg-secondary);
@@ -1403,7 +1366,6 @@ div.resource-card[name="our-mission-card"] ul li {
     font-size: 1rem;
     font-weight: 500;
 }
-
 
 .dash-actions button:hover,
 .dash-actions button:focus-visible,
@@ -1420,12 +1382,9 @@ div.resource-card[name="our-mission-card"] ul li {
     gap: 1rem;
     overflow: hidden;
     justify-content: flex-start;
-
     opacity: 0;
     transform: translateY(-0.5rem);
-
-    transition:
-        max-height 0.65s ease,
+    transition: max-height 0.65s ease,
         margin-top 0.65s ease,
         opacity 0.25s ease,
         transform 0.35s ease;
@@ -1442,6 +1401,7 @@ div.resource-card[name="our-mission-card"] ul li {
     padding-bottom: 2rem;
     min-height: 150px;
 }
+
 /* Resource Hub only */
 
 #resource-container .dash-section-header {
@@ -1461,7 +1421,6 @@ div.resource-card[name="our-mission-card"] ul li {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     margin: 0;
     color: var(--bg-secondary);
     background: var(--color-surface-offset);
@@ -1469,32 +1428,29 @@ div.resource-card[name="our-mission-card"] ul li {
     border-radius: 50%;
     font-size: 0.8rem;
 }
-#resource-container .dash-section-container{
+
+#resource-container .dash-section-container {
     padding-top: 0.5rem;
 }
+
 #resource-container .dash-section-container a {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-
     min-width: 12.5rem;
     padding: 0.9rem 1rem;
     margin: 0;
-
     color: var(--text-color-primary);
     background: var(--card-main);
     border: 1px solid var(--border-color-secondary);
     border-radius: 0.8rem;
-
     font-size: 0.9rem;
     font-weight: 650;
     line-height: 1.2;
     text-decoration: none;
-
     box-shadow: 0 2px 5px rgba(92, 56, 56, 0.08);
-    transition:
-        transform 0.2s ease,
+    transition: transform 0.2s ease,
         background-color 0.2s ease,
         border-color 0.2s ease,
         box-shadow 0.2s ease;
@@ -1524,6 +1480,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* invoices */
+
 .main-section,
 .main-section-invoice {
     width: var(--main-width);
@@ -1689,6 +1646,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* draft pill */
+
 .status-pill.draft {
     background: #68dcef59;
     border: 1px solid #3292a85e;
@@ -1696,6 +1654,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* paid pill */
+
 .status-pill.paid {
     background: #91eb5f80;
     border: 1px solid #588a1c5e;
@@ -1703,6 +1662,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* overdue pill */
+
 .status-pill.overdue {
     background: #ff00006e;
     border: 1px solid #a22d2d5e;
@@ -1710,6 +1670,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* sent pill */
+
 .status-pill.sent {
     background: #fff0115c;
     border: 1px solid #e1bd31e0;
@@ -1755,7 +1716,9 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 /* invoice modal: view/edit */
+
 /* modal */
+
 .modal-overlay {
     position: fixed;
     background: rgba(0, 0, 0, 0.45);
@@ -1931,7 +1894,6 @@ body.sidebar-collapsed .modal-box {
 }
 
 @media (max-width: 1300px) {
-
     .main-section,
     .main-section-invoice {
         flex-direction: column;
@@ -2008,6 +1970,7 @@ body.sidebar-collapsed .modal-box {
     min-width: 120px;
     padding: 0.65rem 1rem;
 }
+
 #editEntryModal.edit-entry-overlay {
     position: fixed;
     inset: 0;
@@ -2054,6 +2017,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* income and expenses tracker */
+
 .tracker-card {
     border-radius: var(--radius);
     background-color: var(--card-main);
@@ -2077,6 +2041,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* history panel */
+
 .tracker-history {
     max-height: 480px;
     overflow-y: auto;
@@ -2168,6 +2133,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* chart card */
+
 .tracker-chart-card {
     min-height: 420px;
 }
@@ -2314,8 +2280,7 @@ body.sidebar-collapsed .modal-box {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    transition:
-        opacity 0.9s ease-in-out;
+    transition: opacity 0.9s ease-in-out;
 }
 
 .tracker-bar.show {
@@ -2475,6 +2440,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Tracker responsiveness */
+
 @media (max-width: 1100px) {
     .tracker-content {
         width: 94%;
@@ -2526,7 +2492,6 @@ body.sidebar-collapsed .modal-box {
     #expenseQuickBar {
         margin-top: 0;
     }
-
 
     .tracker-bar-top {
         align-items: flex-start;
@@ -2598,8 +2563,7 @@ body.sidebar-collapsed .modal-box {
 
 .main-content-dash {
     position: relative;
-    background:
-        radial-gradient(circle at 86% 8%,
+    background: radial-gradient(circle at 86% 8%,
             rgba(117, 143, 109, 0.12),
             transparent 24rem),
         var(--bg-main);
@@ -2675,6 +2639,7 @@ body.sidebar-collapsed .modal-box {
     cursor: not-allowed;
     opacity: 0.75;
 }
+
 .focus-view-button:disabled {
     pointer-events: none;
 }
@@ -2705,8 +2670,7 @@ body.sidebar-collapsed .modal-box {
     align-items: flex-start;
     text-align: left;
     text-decoration: none;
-    transition:
-        transform 220ms ease,
+    transition: transform 220ms ease,
         border-color 220ms ease,
         box-shadow 220ms ease;
 }
@@ -2725,6 +2689,7 @@ body.sidebar-collapsed .modal-box {
     transform: rotate(-14deg);
     pointer-events: none;
 }
+
 .journey-create::after {
     background: rgba(181, 111, 99, 0.18);
 }
@@ -2835,7 +2800,6 @@ body.sidebar-collapsed .modal-box {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
     .dash-journey-card,
     .journey-card-action .fa-solid {
         transition: none;
@@ -2846,6 +2810,7 @@ body.sidebar-collapsed .modal-box {
         transform: none;
     }
 }
+
 /* ========================================
    DASHBOARD RESOURCE PANELS
    ======================================== */
@@ -2911,9 +2876,7 @@ body.sidebar-collapsed .modal-box {
     overflow: hidden;
     opacity: 0;
     transform: translateY(-10px);
-
-    transition:
-        max-height 0.6s ease-in-out,
+    transition: max-height 0.6s ease-in-out,
         margin-top 0.6s ease-in-out,
         opacity 0.25s ease,
         transform 0.35s ease;
@@ -2922,7 +2885,6 @@ body.sidebar-collapsed .modal-box {
 .dashboard-resource-section .dash-section-container.show {
     max-height: 800px;
     margin-top: 1rem;
-
     opacity: 1;
     transform: translateY(0);
 }
@@ -2941,8 +2903,7 @@ body.sidebar-collapsed .modal-box {
     gap: 0.6rem;
     text-align: left;
     text-decoration: none;
-    transition:
-        transform 200ms ease,
+    transition: transform 200ms ease,
         background-color 200ms ease,
         border-color 200ms ease;
 }
@@ -2953,12 +2914,13 @@ a.dash-resource-link:focus-visible {
     background: var(--color-surface-offset);
     transform: translateY(-3px);
 }
+
 a.dash-resource-link:hover span,
 a.dash-resource-link:hover span strong,
 a.dash-resource-link:hover span small,
 a.dash-resource-link:focus-visible span,
 a.dash-resource-link:focus-visible span strong,
-a.dash-resource-link:focus-visible span small{
+a.dash-resource-link:focus-visible span small {
     color: var(--text-color-primary);
 }
 
@@ -3006,7 +2968,7 @@ button.dash-resource-link:disabled {
     opacity: 0.6;
 }
 
-button.dash-resource-link:disabled small{
+button.dash-resource-link:disabled small {
     color: var(--text-color-secondary);
 }
 
@@ -3017,7 +2979,6 @@ button.dash-resource-link:disabled small{
 }
 
 @media (prefers-reduced-motion: reduce) {
-
     .dash-resource-link,
     .dashboard-resource-section .dash-section-header>.fa-solid {
         transition: none;
@@ -3062,7 +3023,6 @@ button.dash-resource-link:disabled small{
         min-height: 220px;
     }
 }
-
 
 @media (max-width: 600px) {
     .tracker-content {
@@ -3174,17 +3134,20 @@ button.dash-resource-link:disabled small{
     }
 
     /* hide the navigation when printing */
+
     body {
         font-size: 12pt;
     }
 
     /* adjust font size for paper */
+
     .no-print {
         display: none;
     }
 }
 
 /* ── Resources page styles ── */
+
 .resources-container {
     width: var(--main-width);
     margin: 2rem auto;
@@ -3194,6 +3157,7 @@ button.dash-resource-link:disabled small{
 }
 
 /* Page header */
+
 .resources-header {
     margin-bottom: 2rem;
     text-align: left;
@@ -3211,6 +3175,7 @@ button.dash-resource-link:disabled small{
 }
 
 /* Category filter pills */
+
 .resources-filter {
     display: flex;
     flex-wrap: wrap;
@@ -3239,6 +3204,7 @@ button.dash-resource-link:disabled small{
 }
 
 /* Section heading rows */
+
 .resources-section-title {
     display: flex;
     align-items: center;
@@ -3260,6 +3226,7 @@ button.dash-resource-link:disabled small{
 }
 
 /* Resource grid */
+
 .resources-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -3268,6 +3235,7 @@ button.dash-resource-link:disabled small{
 }
 
 /* Individual resource card */
+
 .resource-card {
     background-color: var(--card-main);
     border: 1px solid var(--border-color-secondary);
@@ -3310,7 +3278,7 @@ button.dash-resource-link:disabled small{
     flex: 1;
 }
 
-a.resource-card-link{
+a.resource-card-link {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -3333,6 +3301,7 @@ a.resource-card-link:hover {
 }
 
 /* Featured / wide card spanning 2 cols */
+
 .resource-card-featured {
     grid-column: span 2;
     flex-direction: row;
@@ -3376,7 +3345,6 @@ a.resource-card-link:hover {
     display: flex;
     flex-direction: column;
     gap: 5rem;
-
     padding: 4rem clamp(2rem, 6vw, 7rem) 2rem;
     text-align: left;
 }
@@ -3390,7 +3358,6 @@ a.resource-card-link:hover {
 
 .landing-hero {
     min-height: min(72vh, 720px);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -3399,7 +3366,6 @@ a.resource-card-link:hover {
 
 .landing-eyebrow {
     margin-bottom: 0.6rem;
-
     color: var(--text-color-secondary);
     font-size: 0.76rem;
     font-weight: 750;
@@ -3409,9 +3375,8 @@ a.resource-card-link:hover {
 
 .landing-hero .website-name {
     margin: 0;
-
     color: var(--text-color-primary);
-    font-family: var(--font-heading);
+    font-family: MissyVoya, Times, serif;
     font-size: clamp(4.5rem, 12vw, 9rem);
     line-height: 0.9;
 }
@@ -3420,14 +3385,12 @@ a.resource-card-link:hover {
     margin: 0.75rem 0 1.5rem;
     padding: 0;
     border: 0;
-
     color: var(--text-color-secondary);
     font-size: 0.95rem;
 }
 
 .landing-tagline {
     margin: 0 0 1rem;
-
     color: var(--text-color-primary);
     font-family: var(--font-heading);
     font-size: clamp(1.35rem, 2.3vw, 2rem);
@@ -3439,7 +3402,6 @@ a.resource-card-link:hover {
 .landing-description {
     max-width: 42rem;
     margin: 0;
-
     color: var(--text-color-secondary);
     font-size: 1rem;
     line-height: 1.75;
@@ -3458,10 +3420,8 @@ a.resource-card-link:hover {
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
-
     min-height: 46px;
     padding: 0.65rem 1rem;
-
     border-radius: var(--radius);
     font-size: 0.9rem;
     font-weight: 700;
@@ -3503,17 +3463,14 @@ a.resource-card-link:hover {
     justify-content: space-between;
     align-items: flex-end;
     gap: 2rem;
-
     margin-bottom: 1.25rem;
     padding-bottom: 0.85rem;
-
     border-bottom: 1px solid var(--border-color-secondary);
 }
 
 .landing-section-heading h2,
 .landing-auth-intro h2 {
     margin: 0;
-
     color: var(--text-color-primary);
     font-family: var(--font-heading);
     font-size: clamp(1.7rem, 3vw, 2.4rem);
@@ -3522,7 +3479,6 @@ a.resource-card-link:hover {
 .landing-section-heading>p {
     max-width: 25rem;
     margin: 0;
-
     color: var(--text-color-secondary);
     font-size: 0.9rem;
     line-height: 1.55;
@@ -3539,10 +3495,8 @@ a.resource-card-link:hover {
     display: flex;
     align-items: flex-start;
     gap: 0.85rem;
-
     min-height: 140px;
     padding: 1.25rem;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
     background: var(--card-main);
@@ -3554,21 +3508,17 @@ a.resource-card-link:hover {
     flex: 0 0 2rem;
     align-items: center;
     justify-content: center;
-
     width: 2rem;
     height: 2rem;
-
     border-radius: 50%;
     background: var(--bg-secondary);
     color: var(--text-color-light);
-
     font-size: 0.85rem;
     font-weight: 800;
 }
 
 .landing-step-card h3 {
     margin: 0 0 0.35rem;
-
     color: var(--text-color-primary);
     font-family: var(--font-heading);
     font-size: 1rem;
@@ -3576,7 +3526,6 @@ a.resource-card-link:hover {
 
 .landing-step-card p {
     margin: 0;
-
     color: var(--text-color-secondary);
     font-size: 0.86rem;
     line-height: 1.55;
@@ -3591,7 +3540,6 @@ a.resource-card-link:hover {
 
 .landing-mission-card {
     padding: 1.5rem;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
     background: var(--card-main);
@@ -3605,7 +3553,6 @@ a.resource-card-link:hover {
 
 .landing-mission-intro {
     margin: 0 0 1.25rem;
-
     color: var(--text-color-secondary);
     font-size: 0.95rem;
     line-height: 1.65;
@@ -3615,7 +3562,6 @@ a.resource-card-link:hover {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-
     margin: 0;
     padding: 0;
     list-style: none;
@@ -3625,7 +3571,6 @@ a.resource-card-link:hover {
     display: flex;
     align-items: flex-start;
     gap: 0.65rem;
-
     color: var(--text-color-primary);
     font-size: 0.87rem;
     line-height: 1.5;
@@ -3649,7 +3594,6 @@ a.resource-card-link:hover {
     flex-direction: column;
     overflow: hidden;
     margin: 0;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
     background: var(--card-main);
@@ -3658,7 +3602,6 @@ a.resource-card-link:hover {
 
 .landing-image-card img {
     display: block;
-
     width: 100%;
     aspect-ratio: 0.8;
     object-fit: cover;
@@ -3666,7 +3609,6 @@ a.resource-card-link:hover {
 
 .landing-image-card figcaption {
     padding: 0.65rem 0.75rem;
-
     color: var(--text-color-primary);
     font-size: 0.82rem;
     font-weight: 700;
@@ -3678,7 +3620,6 @@ a.resource-card-link:hover {
     grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
     align-items: start;
     gap: 3rem;
-
     padding-top: 1rem;
 }
 
@@ -3689,7 +3630,6 @@ a.resource-card-link:hover {
 .landing-auth-intro>p:not(.landing-eyebrow) {
     max-width: 30rem;
     margin: 1rem 0 0;
-
     color: var(--text-color-secondary);
     font-size: 0.92rem;
     line-height: 1.6;
@@ -3706,9 +3646,7 @@ a.resource-card-link:hover {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
     padding: clamp(1.25rem, 3vw, 2rem);
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
     background: var(--card-main);
@@ -3737,12 +3675,10 @@ a.resource-card-link:hover {
     min-height: 44px;
     margin: 0;
     padding: 0.6rem 0.7rem;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
     background: var(--input-bg);
     color: var(--text-color-primary);
-
     font: inherit;
     font-size: 0.9rem;
 }
@@ -3757,7 +3693,6 @@ a.resource-card-link:hover {
     width: 100%;
     min-height: 46px;
     margin-top: 0.25rem;
-
     border-radius: var(--radius);
     font: inherit;
     font-size: 0.9rem;
@@ -3765,6 +3700,7 @@ a.resource-card-link:hover {
 }
 
 /* Landing page: tablet */
+
 @media (max-width: 1000px) {
     .landing-content {
         gap: 4rem;
@@ -3780,6 +3716,7 @@ a.resource-card-link:hover {
 }
 
 /* Landing page: mobile */
+
 @media (max-width: 700px) {
     .landing-content {
         gap: 3.5rem;
@@ -3832,6 +3769,7 @@ a.resource-card-link:hover {
 }
 
 /* Separate register and login sections more clearly */
+
 #register-section {
     margin-top: 2rem;
     padding-bottom: 5rem;
@@ -3840,39 +3778,33 @@ a.resource-card-link:hover {
 
 #login-section {
     position: relative;
-
     width: min(100%, 1180px);
     margin-top: 0;
     padding: 5rem clamp(1.25rem, 5vw, 4rem);
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
-
     background: var(--color-surface-offset);
 }
 
 /* Make the login form card distinct from its section background */
+
 #login-section .landing-auth-card {
     background: var(--card-main);
 }
 
 /* Small visual label to make the change of section unmistakable */
+
 #login-section::before {
     content: "Already registered?";
-
     position: absolute;
     top: 0;
     left: clamp(1.25rem, 5vw, 4rem);
     transform: translateY(-50%);
-
     padding: 0.3rem 0.7rem;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
-
     background: var(--bg-main);
     color: var(--text-color-secondary);
-
     font-size: 0.75rem;
     font-weight: 750;
     letter-spacing: 0.06em;
@@ -3895,6 +3827,7 @@ a.resource-card-link:hover {
 }
 
 /* responsiveness */
+
 @media (max-width: 900px) {
     html {
         scroll-snap-type: none;
@@ -3919,6 +3852,7 @@ a.resource-card-link:hover {
     }
 
     /* top bar that's always visible -- holds f. and the burger */
+
     .mobile-bar {
         position: fixed;
         width: 100vw;
@@ -3954,6 +3888,7 @@ a.resource-card-link:hover {
     }
 
     /* animate burger into x when open */
+
     .burger.open span:nth-child(1) {
         transform: translateY(5px) rotate(45deg);
     }
@@ -3967,6 +3902,7 @@ a.resource-card-link:hover {
     }
 
     /* nav is hidden by default on mobile */
+
     .navbar {
         position: fixed;
         left: 0;
@@ -3981,6 +3917,7 @@ a.resource-card-link:hover {
     }
 
     /* nav open state */
+
     .navbar.open {
         max-height: 480px !important;
         padding: 1.5rem;
@@ -4017,12 +3954,13 @@ a.resource-card-link:hover {
     .navbar.open {
         max-height: 580px !important;
     }
-    
+
     .nav-submenu {
         margin-left: 1.2rem;
     }
 
     /* main content fills full width */
+
     .main-content,
     .main-content-dash {
         position: relative;
@@ -4120,6 +4058,7 @@ a.resource-card-link:hover {
     }
 
     /* invoice page */
+
     .main-section,
     .main-section-invoice {
         flex-direction: column;
@@ -4146,6 +4085,7 @@ a.resource-card-link:hover {
     }
 
     /* desktop -- labels hidden, column headers do the job */
+
     .item-field {
         display: contents;
     }
@@ -4208,10 +4148,10 @@ a.resource-card-link:hover {
         white-space: normal !important;
         padding: 1rem 0;
         position: relative !important;
-
     }
 
     /* income and expenses */
+
     .tracker-content {
         padding: 1rem;
         margin-top: 2rem;
@@ -4228,9 +4168,9 @@ a.resource-card-link:hover {
 }
 
 /* footer */
+
 footer {
     font-size: 0.8rem;
-    /* position: sticky; */
     background-color: var(--bg-main);
     color: var(--text-color-secondary);
     text-align: center;
@@ -4253,8 +4193,7 @@ footer p {
     padding: clamp(1.25rem, 3vw, 2.5rem);
     gap: 2rem;
     line-height: 1.5;
-    background:
-        linear-gradient(135deg,
+    background: linear-gradient(135deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.55));
     border: 1px solid var(--border-color-secondary);
@@ -4554,8 +4493,7 @@ footer p {
     max-height: 560px;
     padding: clamp(1.25rem, 3vw, 2rem);
     overflow-y: auto;
-    background:
-        linear-gradient(145deg,
+    background: linear-gradient(145deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.76));
     border: 1px solid var(--border-color-secondary);
@@ -4641,6 +4579,7 @@ footer p {
 }
 
 /* Invoice card */
+
 .invoice-history-item {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -4809,6 +4748,7 @@ footer p {
 ======================================== */
 
 /* Tablet and narrow desktop */
+
 @media (max-width: 900px) {
     .invoice-history {
         max-height: none;
@@ -4840,6 +4780,7 @@ footer p {
 }
 
 /* Mobile */
+
 @media (max-width: 600px) {
     .invoice-history {
         padding: 1rem;
@@ -4918,6 +4859,7 @@ footer p {
 }
 
 /* Very narrow screens */
+
 @media (max-width: 380px) {
     .invoice-history .history-filter button {
         flex-basis: 100%;
@@ -4979,8 +4921,7 @@ footer p {
     margin-left: var(--sidebar-width);
     padding: 0;
     overflow: hidden auto;
-    background:
-        linear-gradient(145deg,
+    background: linear-gradient(145deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.82));
     border: 1px solid var(--border-color-secondary);
@@ -4989,11 +4930,9 @@ footer p {
 }
 
 /* Keep modal centerd when sidebar is collapsed */
-body.sidebar-collapsed .modal-box {
-    margin-left: 4rem;
-}
 
 /* Header */
+
 .modal-header {
     position: sticky;
     top: 0;
@@ -5033,6 +4972,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Content */
+
 .modal-body {
     gap: 1.5rem;
     padding: clamp(1.25rem, 3vw, 2rem);
@@ -5084,6 +5024,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Draft */
+
 .modal-grid #viewStatus.status-pill.draft {
     color: #228da6;
     background-color: #68dcef59;
@@ -5091,6 +5032,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Sent */
+
 .modal-grid #viewStatus.status-pill.sent {
     color: #8a6700;
     background-color: #fff0115c;
@@ -5098,6 +5040,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Paid */
+
 .modal-grid #viewStatus.status-pill.paid {
     color: #286a1f;
     background-color: #91eb5f80;
@@ -5105,6 +5048,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Overdue */
+
 .modal-grid #viewStatus.status-pill.overdue {
     color: #ffffff;
     background-color: #c42a2a;
@@ -5112,12 +5056,14 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Dividers */
+
 .modal-divider {
     margin: 0.25rem 0;
     border-top: 1px solid var(--border-color-secondary);
 }
 
 /* Line-item table */
+
 .modal-items-table {
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.45);
@@ -5377,7 +5323,6 @@ body.sidebar-collapsed .modal-box {
 /* Small screens */
 
 @media (max-width: 700px) {
-
     .modal-box,
     body.sidebar-collapsed .modal-box {
         width: 100%;
@@ -5426,8 +5371,7 @@ body.sidebar-collapsed .modal-box {
 .quick-add-panel {
     width: 100%;
     padding: 1rem;
-    background:
-        linear-gradient(135deg,
+    background: linear-gradient(135deg,
             rgba(238, 234, 224, 0.8),
             rgba(250, 249, 247, 0.7));
     border: 1px solid var(--border-color-secondary);
@@ -5527,8 +5471,7 @@ body.sidebar-collapsed .modal-box {
 .tracker-chart-card {
     min-height: 450px;
     padding: clamp(1rem, 3vw, 2rem);
-    background:
-        linear-gradient(145deg,
+    background: linear-gradient(145deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.58));
     border-radius: 1rem;
@@ -5618,8 +5561,6 @@ body.sidebar-collapsed .modal-box {
     padding-top: 0.2rem;
 }
 
-
-
 .tracker-history-full .history-item-label {
     font-size: 0.9rem;
 }
@@ -5692,24 +5633,18 @@ body.sidebar-collapsed .modal-box {
 .nav-items .nav-group-toggle {
     display: flex;
     align-items: center;
-
     width: 100%;
     min-height: 46px;
     padding: 0.75rem 0.8rem;
-
     border: 1px solid transparent;
     border-radius: 0.75rem;
-
     color: rgba(250, 244, 233, 0.9);
     background: transparent;
-
     font: inherit;
     font-weight: 600;
     text-align: left;
-
     cursor: pointer;
-    transition:
-        color 0.2s ease,
+    transition: color 0.2s ease,
         background-color 0.2s ease,
         transform 0.2s ease;
 }
@@ -5735,6 +5670,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* The only visual difference: chevron on the right */
+
 .nav-group-chevron {
     width: auto;
     margin-left: auto;
@@ -5747,14 +5683,13 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Reset nested list so it does not inherit .nav-items layout */
+
 .nav-submenu {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-
     margin: 0.35rem 0 0.35rem 1.45rem;
     padding: 0 0 0 0.7rem;
-
     list-style: none;
     border-left: 1px solid rgba(242, 232, 210, 0.2);
 }
@@ -5768,6 +5703,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Let the child links use the same base nav-link appearance */
+
 .nav-submenu a.nav-link {
     min-height: 46px;
     padding: 0.75rem 0.8rem;
@@ -5791,15 +5727,12 @@ body.sidebar-collapsed .modal-box {
     display: flex;
     align-items: flex-start;
     gap: 0.6rem;
-
     padding: 0.85rem 1rem;
     border: 1px solid var(--border-color-secondary);
     border-left: 4px solid var(--text-highlight);
     border-radius: var(--radius);
-
     background: var(--color-surface-offset);
     color: var(--text-color-primary);
-
     font-size: 0.88rem;
     line-height: 1.5;
     text-align: left;
@@ -5826,10 +5759,8 @@ body.sidebar-collapsed .modal-box {
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-
     padding-bottom: 0.85rem;
     margin-bottom: 1rem;
-
     border-bottom: 1px solid var(--border-color-secondary);
 }
 
@@ -5842,7 +5773,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-eyebrow {
     margin-bottom: 0.15rem;
-
     color: var(--text-color-secondary);
     font-size: 0.72rem;
     font-weight: 700;
@@ -5852,7 +5782,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-card-help {
     max-width: 21rem;
-
     color: var(--text-color-secondary);
     font-size: 0.82rem;
     line-height: 1.45;
@@ -5871,22 +5800,17 @@ body.sidebar-collapsed .modal-box {
     align-items: flex-start;
     justify-content: center;
     gap: 0.45rem;
-
     min-height: 92px;
     width: 100%;
     padding: 1rem;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
-
     background: transparent;
     color: var(--text-color-primary);
-
     font: inherit;
     font-size: 0.9rem;
     font-weight: 700;
     text-align: left;
-
     cursor: pointer;
     transition: var(--transition);
 }
@@ -5942,7 +5866,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-form-section h3 {
     margin: 0 0 0.8rem;
-
     color: var(--text-color-primary);
     font-family: var(--font-heading);
     font-size: 0.98rem;
@@ -5973,7 +5896,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-editor-card .tracker-field label {
     margin: 0;
-
     color: var(--text-color-primary);
     font-size: 0.82rem;
     font-weight: 650;
@@ -5986,13 +5908,10 @@ body.sidebar-collapsed .modal-box {
     min-height: 42px;
     margin: 0;
     padding: 0.55rem 0.65rem;
-
     border: 1px solid var(--border-color-secondary);
     border-radius: var(--radius);
-
     background: var(--input-bg);
     color: var(--text-color-primary);
-
     font: inherit;
     font-size: 0.88rem;
     line-height: 1.4;
@@ -6024,11 +5943,9 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-actions {
     grid-column: 1 / -1;
-
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
-
     margin-top: 0.35rem;
     padding-top: 0.5rem;
 }
@@ -6037,9 +5954,7 @@ body.sidebar-collapsed .modal-box {
     width: auto;
     min-height: 44px;
     padding: 0.6rem 1rem;
-
     border-radius: var(--radius);
-
     font: inherit;
     font-size: 0.86rem;
     font-weight: 700;
@@ -6060,7 +5975,6 @@ body.sidebar-collapsed .modal-box {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-
     border: 1px solid var(--bg-secondary);
     background: var(--bg-secondary);
     color: var(--text-color-light);
@@ -6099,7 +6013,6 @@ body.sidebar-collapsed .modal-box {
     display: grid;
     grid-template-columns: minmax(6.5rem, 0.85fr) minmax(0, 1.15fr);
     gap: 0.75rem;
-
     padding: 0.65rem 0;
     border-bottom: 1px solid var(--border-color-secondary);
 }
@@ -6118,7 +6031,6 @@ body.sidebar-collapsed .modal-box {
 .contracts-summary-list dd {
     min-width: 0;
     margin: 0;
-
     color: var(--text-color-primary);
     font-size: 0.84rem;
     font-weight: 600;
@@ -6134,7 +6046,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-preview-text h3 {
     margin: 0.65rem 0 0;
-
     color: var(--text-color-primary);
     font-family: var(--font-heading);
     font-size: 0.9rem;
@@ -6146,7 +6057,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-preview-text p {
     margin: 0;
-
     color: var(--text-color-secondary);
     font-size: 0.83rem;
     line-height: 1.55;
@@ -6155,7 +6065,6 @@ body.sidebar-collapsed .modal-box {
 
 .contracts-help-card>p {
     margin: 0;
-
     color: var(--text-color-secondary);
     font-size: 0.84rem;
     line-height: 1.55;
@@ -6166,7 +6075,6 @@ body.sidebar-collapsed .modal-box {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.6rem;
-
     margin-top: 0.25rem;
 }
 
@@ -6175,6 +6083,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Contracts: tablet */
+
 @media (max-width: 1100px) {
     .contracts-content {
         width: min(94%, 900px);
@@ -6196,6 +6105,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 /* Contracts: mobile */
+
 @media (max-width: 700px) {
     .contracts-content {
         width: 100%;
