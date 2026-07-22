@@ -309,7 +309,6 @@ async function loadIncomeExpenseChart() {
 
 // React to language changes in one place
 document.addEventListener('languageChanged', () => {
-    updateLiveDatetime();
     renderMiniCalendar();
     updateDashboardChartLanguage();
 });
