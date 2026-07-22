@@ -4,12 +4,11 @@ if (!token) {
     window.location.href = '/index.html';
 }
 
+// Load user data for the greeting
 async function loadUserData() {
     try {
         const response = await fetch('/api/auth/me', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+            headers: { 'Authorization': `Bearer ${token}` }
         });
 
         if (!response.ok) {
@@ -19,23 +18,31 @@ async function loadUserData() {
         }
 
         const user = await response.json();
-
         const nameEl = document.getElementById('welcome-name');
+
         if (nameEl && user.fname) {
             nameEl.textContent = user.fname;
         }
-
     } catch (err) {
         console.error('Failed to load user data:', err);
     }
 }
-loadUserData();
 
-//custom mini calendar
-let currentMonthOffset=0;
+// Simple translation helper for dynamic text
+function t(key, fallback = key) {
+    return (typeof translations !== 'undefined' && translations && translations[key])
+        ? translations[key]
+        : fallback;
+}
 
+// Mini calendar state
+let currentMonthOffset = 0;
+
+// Render the mini calendar
 function renderMiniCalendar() {
     const container = document.getElementById('mini-calendar');
+    if (!container) return;
+
     const now = new Date();
 
     const base = new Date(now.getFullYear(), now.getMonth() + currentMonthOffset, 1);
@@ -48,44 +55,58 @@ function renderMiniCalendar() {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'];
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const locale = document.documentElement.lang === 'ga' ? 'ga-IE' : 'en-IE';
+
+    const monthName = new Intl.DateTimeFormat(locale, {
+        month: 'long',
+        year: 'numeric'
+    }).format(base);
+
+    const weekdayFormatter = new Intl.DateTimeFormat(locale, {
+        weekday: 'short'
+    });
+
+    const dayNames = Array.from({ length: 7 }, (_, index) => {
+        const date = new Date(2023, 0, 1 + index);
+        return weekdayFormatter.format(date);
+    });
 
     let html = `
-    <div class="calendar-card-header">
-    <div class="calendar-title">
-        <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
-        <span>Calendar</span>
-    </div>
-</div>
+        <div class="calendar-card-header">
+            <div class="calendar-title">
+                <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+                <span>${t('dashboard_calendar_heading', 'Calendar')}</span>
+            </div>
+        </div>
 
-<div class="cal-month-row">
-    <span class="cal-month-label">${monthNames[month]} ${year}</span>
+        <div class="cal-month-row">
+            <span class="cal-month-label">${monthName}</span>
 
-    <div class="cal-nav-group">
-        <button class="cal-nav cal-prev" type="button" aria-label="Previous month">
-            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-        </button>
+            <div class="cal-nav-group">
+                <button class="cal-nav cal-prev" type="button" aria-label="Previous month">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
 
-        <button class="cal-nav cal-next" type="button" aria-label="Next month">
-            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-        </button>
-    </div>
-</div>
-<div class="cal-grid">
-    ${dayNames.map(d => `<div class="cal-day-name">${d}</div>`).join('')}
-    ${Array(firstDay).fill('<div class="cal-day empty"></div>').join('')}
-    ${Array.from({ length: daysInMonth }, (_, i) => {
+                <button class="cal-nav cal-next" type="button" aria-label="Next month">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="cal-grid">
+            ${dayNames.map(d => `<div class="cal-day-name">${d}</div>`).join('')}
+            ${Array(firstDay).fill('<div class="cal-day empty"></div>').join('')}
+            ${Array.from({ length: daysInMonth }, (_, i) => {
         const day = i + 1;
         const isToday = isCurrentMonth && day === today.getDate();
         return `<div class="cal-day${isToday ? ' today' : ''}">${day}</div>`;
     }).join('')}
-</div>
-<div class="calendar-footer">
-        <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
-        <span>0 upcoming</span>
-    </div>
+        </div>
+
+        <div class="calendar-footer">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>
+            <span>0 upcoming</span>
+        </div>
     `;
 
     container.innerHTML = html;
@@ -101,11 +122,12 @@ function renderMiniCalendar() {
     });
 }
 
-renderMiniCalendar();
-
+// Dashboard chart state
 let dashboardChart = null;
+let dashboardIncomeTotal = 0;
+let dashboardExpenseTotal = 0;
 
-//date helper
+// Date helpers for filtering entries
 function formatLocalDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -149,7 +171,7 @@ function createBarDataset(label, data, backgroundColor) {
     };
 }
 
-//chart options
+// Chart options
 function chartOptions(maxValue) {
     const roundedMax = maxValue === 0 ? 100 : Math.ceil(maxValue / 100) * 100;
     const stepSize = Math.max(50, Math.ceil(roundedMax / 5));
@@ -200,7 +222,7 @@ function chartOptions(maxValue) {
     };
 }
 
-//render chart
+// Render chart using your existing translation-based labels
 function renderIncomeExpenseChart(totalIncome, totalExpenses) {
     const canvas = document.getElementById('income-expense-chart');
     if (!canvas || typeof Chart === 'undefined') return;
@@ -216,17 +238,33 @@ function renderIncomeExpenseChart(totalIncome, totalExpenses) {
     dashboardChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['This month'],
+            labels: [translations.chart_this_month],
             datasets: [
-                createBarDataset('Income', [totalIncome], '#7fbc7f'),
-                createBarDataset('Expenses', [totalExpenses], '#b88a8a')
+                createBarDataset(translations.chart_income, [totalIncome], '#7fbc7f'),
+                createBarDataset(translations.chart_expenses, [totalExpenses], '#b88a8a')
             ]
         },
         options: chartOptions(highestValue)
     });
 }
 
-//load chart
+// Update chart labels when language changes
+function updateDashboardChartLanguage() {
+    if (!dashboardChart || !translations) {
+        return;
+    }
+
+    dashboardChart.data.labels = [
+        translations.chart_this_month
+    ];
+
+    dashboardChart.data.datasets[0].label = translations.chart_income;
+    dashboardChart.data.datasets[1].label = translations.chart_expenses;
+
+    dashboardChart.update();
+}
+
+// Load chart data and render chart
 async function loadIncomeExpenseChart() {
     try {
         const [incomeRes, expenseRes] = await Promise.all([
@@ -260,35 +298,41 @@ async function loadIncomeExpenseChart() {
             (sum, entry) => sum + parseFloat(entry.amount || 0), 0
         );
 
-        renderIncomeExpenseChart(totalIncome, totalExpenses);
+        dashboardIncomeTotal = totalIncome;
+        dashboardExpenseTotal = totalExpenses;
+
+        renderIncomeExpenseChart(dashboardIncomeTotal, dashboardExpenseTotal);
     } catch (err) {
         console.error('Could not load dashboard chart:', err);
     }
 }
 
-loadIncomeExpenseChart();
+// React to language changes in one place
+document.addEventListener('languageChanged', () => {
+    updateLiveDatetime();
+    renderMiniCalendar();
+    updateDashboardChartLanguage();
+});
 
-
-// dropdown toggle
+// Dropdown toggle logic
 function toggleDropdown(header) {
     const dropdown = header.nextElementSibling;
-
     if (!dropdown) return;
 
-    const isOpen = dropdown.classList.toggle("show");
-    const icon = header.querySelector("i");
+    const isOpen = dropdown.classList.toggle('show');
+    const icon = header.querySelector('i');
 
-    header.setAttribute("aria-expanded", String(isOpen));
+    header.setAttribute('aria-expanded', String(isOpen));
 
     if (icon) {
         icon.classList.remove(
-            "fa-plus",
-            "fa-minus",
-            "fa-caret-up",
-            "fa-caret-down"
+            'fa-plus',
+            'fa-minus',
+            'fa-caret-up',
+            'fa-caret-down'
         );
 
-        icon.classList.add(isOpen ? "fa-minus" : "fa-plus");
+        icon.classList.add(isOpen ? 'fa-minus' : 'fa-plus');
     }
 }
 
@@ -306,6 +350,11 @@ function openSection(sectionId) {
     if (!container.classList.contains('show')) {
         setTimeout(() => {
             toggleDropdown(header);
-        }, 500); 
+        }, 500);
     }
 }
+
+// Startup calls
+loadUserData();
+renderMiniCalendar();
+loadIncomeExpenseChart();

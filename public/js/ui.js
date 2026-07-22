@@ -89,18 +89,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-//live date 
+// live date
 function updateDateTime() {
     const now = new Date();
-    const day = now.toLocaleDateString('en-IE', { weekday: 'long' });
-    const date = now.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' });
-    const time = now.toLocaleTimeString('en-IE', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-    document.getElementById('live-datetime').textContent = `${day}, ${date}, ${time}`;
+    // Use the current document language for all pages
+    const locale = document.documentElement.lang === 'ga' ? 'ga-IE' : 'en-IE';
+
+    const day = now.toLocaleDateString(locale, { weekday: 'long' });
+    const date = now.toLocaleDateString(locale, {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    const time = now.toLocaleTimeString(locale, {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+
+    const el = document.getElementById('live-datetime');
+    if (el) {
+        el.textContent = `${day}, ${date}, ${time}`;
+    }
 }
+
 if (document.getElementById('live-datetime')) {
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
 }
 
 //texture ready
