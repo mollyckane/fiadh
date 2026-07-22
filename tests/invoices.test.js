@@ -27,9 +27,9 @@ describe('Invoice routes', () => {
     });
 
     //invalid token test
-    test('GET /api/income returns 403 when token is invalid', async () => {
+    test('GET /api/invoices returns 403 when token is invalid', async () => {
         const res = await request(app)
-            .get('/api/income')
+            .get('/api/invoices')
             .set('Authorization', 'Bearer bad-token');
 
         expect(res.status).toBe(403);
