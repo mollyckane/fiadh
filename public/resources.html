@@ -44,19 +44,37 @@
                     </a>
                 </li>
                 <li>
-                    <a href="invoices.html" class="nav-link">
-                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                        <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
-                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
-                    </a>
-                </li>
-                <li>
                     <a href="income-expenses.html" class="nav-link">
                         <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
                         <span class="nav-label" data-i18n="nav_income_expenses">Income &amp; Expenses</span>
                         <span class="nav-tooltip" role="tooltip" data-i18n="nav_income_expenses">Income &amp;
                             Expenses</span>
                     </a>
+                </li>
+                <li class="nav-group">
+                    <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false"
+                        aria-controls="generatorsMenu">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        <span class="nav-label" data-i18n="nav_generators">Generators</span>
+                        <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_generators">Generators</span>
+                    </button>
+                    <ul class="nav-submenu" id="generatorsMenu" hidden>
+                        <li>
+                            <a href="invoices.html" class="nav-link">
+                                <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                                <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link">
+                                <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+                                <span class="nav-label" data-i18n="nav_contracts">Contracts</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_contracts">Contracts</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="dashboard.html#business-container" onclick="openSection('business-container')" class="nav-link">

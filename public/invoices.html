@@ -23,11 +23,17 @@
     <aside>
         <div class="mobile-bar">
             <h1 style="color:white;">f.</h1>
-            <button class="burger" id="burger-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            
+                <a href="dashboard.html" class="mobile-back-link" aria-label="Go to dashboard">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    Back
+                </a>
+        
+                <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
         </div>
         <nav class="navbar" id="main-nav">
             <div class="nav-top">
@@ -53,25 +59,27 @@
                             Expenses</span>
                     </a>
                 </li>
-                <li class="nav-group active">
+                <li class="nav-group">
                     <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false"
                         aria-controls="generatorsMenu">
                         <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                        <span class="nav-label">Generators</span>
+                        <span class="nav-label" data-i18n="nav_generators">Generators</span>
                         <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
-                        <span class="nav-tooltip" role="tooltip">Generators</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_generators">Generators</span>
                     </button>
                     <ul class="nav-submenu" id="generatorsMenu" hidden>
                         <li>
                             <a href="invoices.html" class="nav-link">
                                 <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                                <span class="nav-label">Invoices</span>
+                                <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
                             </a>
                         </li>
                         <li>
-                            <a href="contracts.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
-                                <span class="nav-label">Contracts</span>
+                                <span class="nav-label" data-i18n="nav_contracts">Contracts</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_contracts">Contracts</span>
                             </a>
                         </li>
                     </ul>
