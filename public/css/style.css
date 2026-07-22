@@ -1273,7 +1273,7 @@ div.resource-card[name="our-mission-card"] ul li {
 }
 
 .dash-chart::before {
-    content: "MONTHLY SNAPSHOT";
+    content: attr(data-label);
     display: block;
     margin-bottom: 0.7rem;
     color: var(--text-color-secondary);
@@ -2211,18 +2211,6 @@ body.sidebar-collapsed .modal-box {
     font-size: 0.8rem;
 }
 
-#customRangeInputs input[type="date"] {
-    width: auto;
-    font-size: 0.8rem;
-    padding: 0.25rem 0.4rem;
-    margin: 0;
-}
-
-#customRangeInputs button {
-    width: fit-content;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.75rem;
-}
 
 .chart-canvas-wrapper {
     position: relative;
@@ -2378,7 +2366,7 @@ body.sidebar-collapsed .modal-box {
 }
 
 .tracker-field input,
-.tracker-field select {
+.tracker-field select, .custom-range-input input[type="date"] {
     padding: 0.45rem 0.65rem;
     font-size: 0.82rem;
     min-height: 40px;
@@ -2458,10 +2446,10 @@ body.sidebar-collapsed .modal-box {
         grid-template-columns: 1fr 1fr;
     }
 
-    .chart-controls {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+    .chart-controls, .tracker-bar-top, .history-item, .invoice-section-heading-split {
+  align-items: flex-start;
+  flex-direction: column;
+}
 
     .chart-summary {
         justify-content: flex-start;
@@ -2490,15 +2478,6 @@ body.sidebar-collapsed .modal-box {
 
     .tracker-bar {
         padding: 0.85rem;
-    }
-
-    #expenseQuickBar {
-        margin-top: 0;
-    }
-
-    .tracker-bar-top {
-        align-items: flex-start;
-        flex-direction: column;
     }
 
     .tracker-bar-actions {
@@ -2768,6 +2747,7 @@ body.sidebar-collapsed .modal-box {
 
 .journey-card-label {
     margin-bottom: 0.45rem;
+    text-transform: uppercase;
 }
 
 .dash-journey-card strong {
@@ -2847,6 +2827,7 @@ body.sidebar-collapsed .modal-box {
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .dashboard-resource-section .dash-section-header>div>span {
@@ -3026,110 +3007,6 @@ button.dash-resource-link:disabled small {
 
     .dash-journey-card {
         min-height: 220px;
-    }
-}
-
-@media (max-width: 600px) {
-    .tracker-content {
-        padding: 0.75rem;
-    }
-
-    .quick-add-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .quick-add-actions .quick-add-btn {
-        width: 100%;
-        flex: none;
-    }
-
-    .tracker-bar {
-        padding: 0.75rem;
-        gap: 0.75rem;
-    }
-
-    .tracker-bar-top h2 {
-        font-size: 0.9rem;
-    }
-
-    .tracker-bar-actions {
-        justify-content: space-between;
-        gap: 0.75rem;
-    }
-
-    .tracker-bar-save {
-        flex: 1;
-        min-height: 44px;
-    }
-
-    .tracker-bar-close {
-        flex: 0 0 44px;
-        width: 44px;
-        min-width: 44px;
-        height: 44px;
-    }
-
-    .tracker-bar-fields-income,
-    .tracker-bar-fields-expense {
-        grid-template-columns: 1fr;
-    }
-
-    .tracker-field input,
-    .tracker-field select {
-        min-height: 44px;
-    }
-
-    .tracker-history {
-        max-height: none;
-    }
-
-    .history-item {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .history-item-right {
-        align-items: flex-start;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .chart-controls {
-        margin-bottom: 0.75rem;
-    }
-
-    .segmented-control {
-        flex-direction: column;
-    }
-
-    .segmented-control button {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color-secondary);
-    }
-
-    .segmented-control button:last-child {
-        border-bottom: none;
-    }
-
-    .time-filter {
-        gap: 0.5rem;
-    }
-
-    .time-filter button {
-        flex: 1 1 calc(50% - 0.5rem);
-        text-align: center;
-    }
-
-    .chart-canvas-wrapper {
-        height: 260px;
-    }
-
-    .chart-summary {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.4rem;
-        margin-top: 0.75rem;
     }
 }
 
@@ -3376,6 +3253,7 @@ a.resource-card-link:hover {
     font-weight: 750;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+
 }
 
 .landing-hero .website-name {
@@ -3800,7 +3678,7 @@ a.resource-card-link:hover {
 /* Small visual label to make the change of section unmistakable */
 
 #login-section::before {
-    content: "Already registered?";
+    content: attr(data-label);
     position: absolute;
     top: 0;
     left: clamp(1.25rem, 5vw, 4rem);
@@ -4214,7 +4092,7 @@ footer p {
 }
 
 .invoice-eyebrow,
-.invoice-summary-label {
+.invoice-summary-label, .invoice-history-eyebrow {
     margin: 0;
     color: var(--text-color-secondary);
     font-size: 0.72rem;
@@ -4746,6 +4624,272 @@ footer p {
     text-align: center;
 }
 
+/* ========================================
+   INCOME & EXPENSES: VISUAL REFRESH
+======================================== */
+
+/* Quick-add controls */
+
+.quick-add-panel {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg,
+            rgba(238, 234, 224, 0.8),
+            rgba(250, 249, 247, 0.7));
+    border: 1px solid var(--border-color-secondary);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    max-width: 1080px;
+}
+
+.quick-add-actions {
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.quick-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 210px;
+    min-height: 46px;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border-color-main);
+    border-radius: 0.65rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+#openIncomeBarBtn {
+    color: #285c35;
+    background-color: rgba(111, 166, 111, 0.17);
+    border-color: rgba(58, 117, 69, 0.55);
+}
+
+#openExpenseBarBtn {
+    color: var(--text-color-primary);
+    background-color: rgba(168, 95, 95, 0.12);
+    border-color: rgba(150, 94, 94, 0.48);
+}
+
+#openIncomeBarBtn:hover,
+#openIncomeBarBtn:focus-visible,
+#openIncomeBarBtn.active {
+    color: var(--text-color-light);
+    background-color: #4d8056;
+    border-color: #4d8056;
+}
+
+#openExpenseBarBtn:hover,
+#openExpenseBarBtn:focus-visible,
+#openExpenseBarBtn.active {
+    color: var(--text-color-light);
+    background-color: var(--bg-secondary);
+    border-color: var(--bg-secondary);
+}
+
+/* Expandable entry forms */
+
+.tracker-bar {
+    border-radius: 0.85rem;
+    background-color: var(--card-main);
+}
+
+.tracker-bar.show {
+    border-color: var(--border-color-main);
+}
+
+.tracker-bar-income .tracker-bar-top {
+    border-bottom-color: rgba(58, 117, 69, 0.25);
+}
+
+.tracker-bar-expense .tracker-bar-top {
+    border-bottom-color: rgba(150, 94, 94, 0.25);
+}
+
+.tracker-bar-save {
+    min-height: 40px;
+    border-radius: 0.45rem;
+    font-weight: 700;
+}
+
+.tracker-bar-income .tracker-bar-save {
+    background-color: #4d8056;
+    border-color: #4d8056;
+}
+
+.tracker-bar-income .tracker-bar-save:hover,
+.tracker-bar-income .tracker-bar-save:focus-visible {
+    background-color: #34643d;
+    border-color: #34643d;
+}
+
+.tracker-bar-expense .tracker-bar-save {
+    background-color: var(--bg-secondary);
+}
+
+/* Chart card */
+
+.tracker-chart-card {
+    min-height: 450px;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: linear-gradient(145deg,
+            rgba(250, 249, 247, 0.98),
+            rgba(238, 234, 224, 0.58));
+    border-radius: 1rem;
+    max-width: 1080px;
+}
+
+.chart-controls {
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.85rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color-secondary);
+}
+
+.segmented-control {
+    border-color: var(--border-color-secondary);
+    border-radius: 999px;
+}
+
+.segmented-control button {
+    min-height: 36px;
+    padding: 0.4rem 0.85rem;
+    border-right-color: var(--border-color-secondary);
+    font-weight: 700;
+}
+
+.segmented-control button.active {
+    background-color: var(--bg-secondary);
+    color: var(--text-color-light);
+}
+
+.time-filter {
+    align-items: center;
+}
+
+.time-filter button {
+    min-height: 34px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.chart-canvas-wrapper {
+    height: 320px;
+    margin-top: 0.5rem;
+}
+
+.chart-summary {
+    justify-content: flex-start;
+    gap: 0.75rem 1.5rem;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border-color-secondary);
+    font-size: 0.82rem;
+}
+
+.chart-summary span {
+    font-size: 0.9rem;
+}
+
+/* Entry history */
+
+.tracker-history-full {
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 1rem;
+}
+
+.tracker-history-full>h2 {
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.tracker-history-full .history-filter {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color-secondary);
+}
+
+.tracker-history-full .history-filter button {
+    min-height: 34px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.tracker-history-full .history-list {
+    gap: 0.65rem;
+    padding-top: 0.2rem;
+}
+
+.tracker-history-full .history-item-label {
+    font-size: 0.9rem;
+}
+
+.tracker-history-full .history-item-meta {
+    margin-top: 0.15rem;
+}
+
+.tracker-history-full .history-item-right {
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.tracker-history-full .history-amount {
+    min-width: 88px;
+    font-size: 0.95rem;
+    text-align: right;
+}
+
+.history-item-actions {
+    display: flex;
+    gap: 0.35rem;
+    padding-left: 0.85rem;
+    border-left: 1px solid var(--border-color-secondary);
+}
+
+.history-item-actions .edit-entry-btn,
+.history-item-actions .delete-entry-btn {
+    min-height: 31px;
+    padding: 0.3rem 0.55rem;
+    border-radius: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.history-item-actions .edit-entry-btn {
+    color: var(--text-color-primary);
+    border: 1px solid var(--border-color-main);
+}
+
+.history-item-actions .delete-entry-btn {
+    color: var(--text-red);
+}
+
+/* Let Income and Expenses use the invoice-history layout unchanged */
+
+.tracker-history-full {
+    text-align: left;
+}
+
+.tracker-history-full>h2 {
+    text-align: left;
+}
+
+.tracker-history-full .history-list {
+    gap: 1rem;
+}
+
+.tracker-history-full .invoice-history-item {
+    padding-bottom: 0.55rem;
+}
+
+.tracker-history-full .invoice-history-actions {
+    gap: 0.2rem;
+}
+
 /* Mobile layout */
 
 /* ========================================
@@ -4861,6 +5005,102 @@ footer p {
         min-height: 40px;
         padding: 0.45rem 0.65rem;
     }
+    .tracker-content {
+        padding: 0.75rem;
+    }
+
+    .quick-add-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .quick-add-actions .quick-add-btn {
+        width: 100%;
+        flex: none;
+    }
+
+    .tracker-bar {
+        padding: 0;
+        gap: 0.75rem;
+    }
+
+    .tracker-bar-top h2 {
+        font-size: 0.9rem;
+    }
+
+    .tracker-bar-actions {
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .tracker-bar-save {
+        flex: 1;
+        min-height: 44px;
+    }
+
+    .tracker-bar-close {
+        flex: 0 0 44px;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+    }
+
+    .tracker-bar-fields-income,
+    .tracker-bar-fields-expense {
+        grid-template-columns: 1fr;
+    }
+
+    .tracker-field input,
+    .tracker-field select, .custom-range-input input[type="date"] {
+        min-height: 44px;
+    }
+
+    .tracker-history {
+        max-height: none;
+    }
+    .history-item-right {
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .chart-controls {
+        margin-bottom: 0.75rem;
+    }
+
+    .segmented-control {
+        flex-direction: column;
+        border-radius: var(--radius);
+    }
+
+    .segmented-control button {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color-secondary);
+    }
+
+    .segmented-control button:last-child {
+        border-bottom: none;
+    }
+
+    .time-filter {
+        gap: 0.5rem;
+    }
+
+    .time-filter button {
+        flex: 1 1 calc(50% - 0.5rem);
+        text-align: center;
+    }
+
+    .chart-canvas-wrapper {
+        height: 260px;
+    }
+
+    .chart-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        margin-top: 0.75rem;
+    }
 }
 
 /* Very narrow screens */
@@ -4893,12 +5133,6 @@ footer p {
     .invoice-bottom-grid {
         grid-template-columns: 1fr;
     }
-
-    .invoice-section-heading-split {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
     .invoice-actions {
         align-items: stretch;
         flex-direction: column-reverse;
@@ -5366,272 +5600,6 @@ footer p {
     .modal-footer button {
         flex: 1 1 130px;
     }
-}
-
-/* ========================================
-   INCOME & EXPENSES: VISUAL REFRESH
-======================================== */
-
-/* Quick-add controls */
-
-.quick-add-panel {
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg,
-            rgba(238, 234, 224, 0.8),
-            rgba(250, 249, 247, 0.7));
-    border: 1px solid var(--border-color-secondary);
-    border-radius: 1rem;
-    box-shadow: var(--shadow-sm);
-    max-width: 1080px;
-}
-
-.quick-add-actions {
-    justify-content: center;
-    gap: 0.75rem;
-}
-
-.quick-add-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 210px;
-    min-height: 46px;
-    padding: 0.7rem 1rem;
-    border: 1px solid var(--border-color-main);
-    border-radius: 0.65rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-#openIncomeBarBtn {
-    color: #285c35;
-    background-color: rgba(111, 166, 111, 0.17);
-    border-color: rgba(58, 117, 69, 0.55);
-}
-
-#openExpenseBarBtn {
-    color: var(--text-color-primary);
-    background-color: rgba(168, 95, 95, 0.12);
-    border-color: rgba(150, 94, 94, 0.48);
-}
-
-#openIncomeBarBtn:hover,
-#openIncomeBarBtn:focus-visible,
-#openIncomeBarBtn.active {
-    color: var(--text-color-light);
-    background-color: #4d8056;
-    border-color: #4d8056;
-}
-
-#openExpenseBarBtn:hover,
-#openExpenseBarBtn:focus-visible,
-#openExpenseBarBtn.active {
-    color: var(--text-color-light);
-    background-color: var(--bg-secondary);
-    border-color: var(--bg-secondary);
-}
-
-/* Expandable entry forms */
-
-.tracker-bar {
-    border-radius: 0.85rem;
-    background-color: var(--card-main);
-}
-
-.tracker-bar.show {
-    border-color: var(--border-color-main);
-}
-
-.tracker-bar-income .tracker-bar-top {
-    border-bottom-color: rgba(58, 117, 69, 0.25);
-}
-
-.tracker-bar-expense .tracker-bar-top {
-    border-bottom-color: rgba(150, 94, 94, 0.25);
-}
-
-.tracker-bar-save {
-    min-height: 40px;
-    border-radius: 0.45rem;
-    font-weight: 700;
-}
-
-.tracker-bar-income .tracker-bar-save {
-    background-color: #4d8056;
-    border-color: #4d8056;
-}
-
-.tracker-bar-income .tracker-bar-save:hover,
-.tracker-bar-income .tracker-bar-save:focus-visible {
-    background-color: #34643d;
-    border-color: #34643d;
-}
-
-.tracker-bar-expense .tracker-bar-save {
-    background-color: var(--bg-secondary);
-}
-
-/* Chart card */
-
-.tracker-chart-card {
-    min-height: 450px;
-    padding: clamp(1rem, 3vw, 2rem);
-    background: linear-gradient(145deg,
-            rgba(250, 249, 247, 0.98),
-            rgba(238, 234, 224, 0.58));
-    border-radius: 1rem;
-    max-width: 1080px;
-}
-
-.chart-controls {
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.85rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
-}
-
-.segmented-control {
-    border-color: var(--border-color-secondary);
-    border-radius: 999px;
-}
-
-.segmented-control button {
-    min-height: 36px;
-    padding: 0.4rem 0.85rem;
-    border-right-color: var(--border-color-secondary);
-    font-weight: 700;
-}
-
-.segmented-control button.active {
-    background-color: var(--bg-secondary);
-    color: var(--text-color-light);
-}
-
-.time-filter {
-    align-items: center;
-}
-
-.time-filter button {
-    min-height: 34px;
-    border-radius: 999px;
-    font-weight: 700;
-}
-
-.chart-canvas-wrapper {
-    height: 320px;
-    margin-top: 0.5rem;
-}
-
-.chart-summary {
-    justify-content: flex-start;
-    gap: 0.75rem 1.5rem;
-    padding-top: 1rem;
-    margin-top: 0.5rem;
-    border-top: 1px solid var(--border-color-secondary);
-    font-size: 0.82rem;
-}
-
-.chart-summary span {
-    font-size: 0.9rem;
-}
-
-/* Entry history */
-
-.tracker-history-full {
-    padding: clamp(1rem, 3vw, 2rem);
-    border-radius: 1rem;
-}
-
-.tracker-history-full>h2 {
-    margin-bottom: 0.5rem;
-    text-align: left;
-}
-
-.tracker-history-full .history-filter {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
-}
-
-.tracker-history-full .history-filter button {
-    min-height: 34px;
-    padding: 0.35rem 0.75rem;
-    border-radius: 999px;
-    font-weight: 700;
-}
-
-.tracker-history-full .history-list {
-    gap: 0.65rem;
-    padding-top: 0.2rem;
-}
-
-.tracker-history-full .history-item-label {
-    font-size: 0.9rem;
-}
-
-.tracker-history-full .history-item-meta {
-    margin-top: 0.15rem;
-}
-
-.tracker-history-full .history-item-right {
-    align-items: center;
-    gap: 0.85rem;
-}
-
-.tracker-history-full .history-amount {
-    min-width: 88px;
-    font-size: 0.95rem;
-    text-align: right;
-}
-
-.history-item-actions {
-    display: flex;
-    gap: 0.35rem;
-    padding-left: 0.85rem;
-    border-left: 1px solid var(--border-color-secondary);
-}
-
-.history-item-actions .edit-entry-btn,
-.history-item-actions .delete-entry-btn {
-    min-height: 31px;
-    padding: 0.3rem 0.55rem;
-    border-radius: 0.4rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.history-item-actions .edit-entry-btn {
-    color: var(--text-color-primary);
-    border: 1px solid var(--border-color-main);
-}
-
-.history-item-actions .delete-entry-btn {
-    color: var(--text-red);
-}
-
-/* Let Income and Expenses use the invoice-history layout unchanged */
-
-.tracker-history-full {
-    text-align: left;
-}
-
-.tracker-history-full>h2 {
-    text-align: left;
-}
-
-.tracker-history-full .history-list {
-    gap: 1rem;
-}
-
-.tracker-history-full .invoice-history-item {
-    padding-bottom: 0.55rem;
-}
-
-.tracker-history-full .invoice-history-actions {
-    gap: 0.2rem;
 }
 
 /* Navigation group: Generators */
