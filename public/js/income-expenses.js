@@ -758,9 +758,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const summary = document.getElementById('chartSummary');
         summary.innerHTML = `
-        ${t('chart_income', 'Income')}: <span style="color:var(--text-green)">€${totalIncome.toFixed(2)}</span>
+        ${t('chart_income', 'Income')}: <span style="color:var(--color-text-green)">€${totalIncome.toFixed(2)}</span>
         &nbsp;&nbsp;
-        ${t('chart_expenses', 'Expenses')}: <span style="color:var(--text-red)">€${totalExpenses.toFixed(2)}</span>
+        ${t('chart_expenses', 'Expenses')}: <span style="color:var(--color-danger)">€${totalExpenses.toFixed(2)}</span>
         &nbsp;&nbsp;
         ${t('chart_net', 'Net')}: <span class="${net >= 0 ? 'net-positive' : 'net-negative'}">€${net.toFixed(2) }</span>
         `;
