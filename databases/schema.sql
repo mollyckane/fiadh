@@ -5,7 +5,6 @@
 
 
 -- Drop tables in reverse order to avoid foreign key conflicts
-DROP TABLE IF EXISTS articles;
 DROP TABLE IF EXISTS expenses;
 DROP TABLE IF EXISTS income;
 DROP TABLE IF EXISTS contracts;
@@ -100,16 +99,4 @@ CREATE TABLE expenses (
   notes      TEXT,
   created_at TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- ARTICLES (Educational Hub)
-CREATE TABLE articles (
-  id           INT AUTO_INCREMENT PRIMARY KEY,
-  title        VARCHAR(255) NOT NULL,
-  category     VARCHAR(100) DEFAULT NULL,
-  body         TEXT         NOT NULL,
-  author_id    INT          DEFAULT NULL,
-  published_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
