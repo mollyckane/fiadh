@@ -15,7 +15,7 @@
         }
     </script>
     
-    <title>Fiadh | Dashboard</title>
+    <title data-i18n="title_dash">Fiadh | Dashboard</title>
 </head>
 <body>
     <!-- SIDEBAR NAVIGATION -->
@@ -55,21 +55,23 @@
                 <li class="nav-group">
                     <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false" aria-controls="generatorsMenu">
                         <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                        <span class="nav-label">Generators</span>
+                        <span class="nav-label" data-i18n="nav_generators">Generators</span>
                         <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
-                        <span class="nav-tooltip" role="tooltip">Generators</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_generators">Generators</span>
                     </button>
                     <ul class="nav-submenu" id="generatorsMenu" hidden>
                         <li>
                             <a href="invoices.html" class="nav-link">
                                 <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                                <span class="nav-label">Invoices</span>
+                                <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
                             </a>
                         </li>
                         <li>
                             <a href="contracts.html" class="nav-link">
                                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
-                                <span class="nav-label">Contracts</span>
+                                <span class="nav-label" data-i18n="nav_contracts">Contracts</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_contracts">Contracts</span>
                             </a>
                         </li>
                     </ul>
@@ -137,14 +139,14 @@
         <!-- header and greeting -->
         <header class="dashboard-header">
             <div class="dashboard-header-copy">
-                <p class="dashboard-eyebrow">FIADH · YOUR CREATIVE BUSINESS SPACE</p>
+                <p class="dashboard-eyebrow" data-i18n="dashboard_slogan">FIADH · YOUR CREATIVE BUSINESS SPACE</p>
         
                 <h1>
                     <span data-i18n="dashboard_title">Welcome to your Fiadh Dashboard,</span>
                     <span id="welcome-name"></span>
                 </h1>
         
-                <p class="dashboard-intro">
+                <p class="dashboard-intro" data-i18n="dashboard_subtitle">
                     A calm place to organise the work behind your practice.
                 </p>
         
@@ -164,37 +166,37 @@
                     <a href="invoices.html" class="dash-journey-card journey-create">
                         <img src="images/journey-create.png" class="journey-card-image" alt="">
                         <span class="journey-card-number">01</span>
-                        <span class="journey-card-label">Create</span>
-                        <strong>Create an invoice</strong>
-                        <span class="journey-card-copy">
+                        <span class="journey-card-label" data-i18n="dashboard_invoice_card_subheading">Create</span>
+                        <strong data-i18n="dashboard_invoice_card_title">Create an invoice</strong>
+                        <span class="journey-card-copy" data-i18n="dashboard_invoice_card_desc">
                             Turn finished work into a clear next step.
                         </span>
                         <span class="journey-card-action">
-                            Open invoices <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            <span data-i18n="dashboard_invoice_card_action">Open invoices</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </span>
                     </a>              
                     <a href="income-expenses.html" class="dash-journey-card journey-track">
                         <img src="images/journey-track.png" class="journey-card-image" alt="">
                         <span class="journey-card-number">02</span>
-                        <span class="journey-card-label">Track</span>
-                        <strong>Log your money</strong>
-                        <span class="journey-card-copy">
+                        <span class="journey-card-label" data-i18n="dashboard_track_card_subheading">Track</span>
+                        <strong data-i18n="dashboard_track_card_title">Log your money</strong>
+                        <span class="journey-card-copy" data-i18n="dashboard_track_card_desc">
                             Record income and expenses without losing momentum.
                         </span>
                         <span class="journey-card-action">
-                            Open tracker <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            <span data-i18n="dashboard_track_card_action">Open tracker</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </span>
                     </a>              
                     <a href="resources.html" class="dash-journey-card journey-discover">
                         <img src="images/journey-discover.png" class="journey-card-image" alt="">
                         <span class="journey-card-number">03</span>
-                        <span class="journey-card-label">Discover</span>
-                        <strong>Find support</strong>
-                        <span class="journey-card-copy">
+                        <span class="journey-card-label" data-i18n="dashboard_support_card_subheading">Discover</span>
+                        <strong data-i18n="dashboard_support_card_title">Find support</strong>
+                        <span class="journey-card-copy" data-i18n="dashboard_support_card_desc">
                             Explore guidance, funding and useful artist resources.
                         </span>
                         <span class="journey-card-action">
-                            Visit resources <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            <span data-i18n="dashboard_support_card_action">Visit resources</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </span>
                     </a>
                 </div>
@@ -217,7 +219,7 @@
             <section class="dash-section dashboard-resource-section" id="business-container">
                 <div class="dash-section-header" onclick="toggleDropdown(this)" role="button" tabindex="0" aria-expanded="true">
                     <div>
-                        <p class="dash-section-eyebrow">YOUR PRACTICE</p>
+                        <p class="dash-section-eyebrow" data-i18n="dashboard_business_subheading">YOUR PRACTICE</p>
                         <span data-i18n="dashboard_business_tools">Business Guides</span>
                     </div>           
                     <i class="fa-solid fa-minus" aria-hidden="true"></i>
@@ -228,8 +230,8 @@
                             <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
                         </span>             
                         <span>
-                            <strong>Starting as a sole trader</strong>
-                            <small>Find the basics for setting up your freelance practice.</small>
+                            <strong data-i18n="dashboard_business_card_trader_title">Starting as a sole trader</strong>
+                            <small data-i18n="dashboard_business_card_trader_desc">Find the basics for setting up your freelance practice.</small>
                         </span>
                 
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -239,8 +241,8 @@
                             <i class="fa-solid fa-euro-sign" aria-hidden="true"></i>
                         </span>              
                         <span>
-                            <strong>Pricing your work</strong>
-                            <small>Build confidence when setting a rate for creative work.</small>
+                            <strong data-i18n="dashboard_business_card_pricing_title">Pricing your work</strong>
+                            <small data-i18n="dashboard_business_card_pricing_desc">Build confidence when setting a rate for creative work.</small>
                         </span>               
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>               
@@ -250,8 +252,8 @@
                         </span>
                 
                         <span>
-                            <strong>Tax and VAT basics</strong>
-                            <small>Understand key terms and when to seek professional advice.</small>
+                            <strong data-i18n="dashboard_business_card_tax_title">Tax and VAT basics</strong>
+                            <small data-i18n="dashboard_business_card_tax_desc">Understand key terms and when to seek professional advice.</small>
                         </span>                
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>               
@@ -260,8 +262,8 @@
                             <i class="fa-solid fa-copyright" aria-hidden="true"></i>
                         </span>               
                         <span>
-                            <strong>Artist rights</strong>
-                            <small>Learn about ownership, licensing and protecting your work.</small>
+                            <strong data-i18n="dashboard_business_card_rights_title">Artist rights</strong>
+                            <small data-i18n="dashboard_business_card_rights_desc">Learn about ownership, licensing and protecting your work.</small>
                         </span>
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
@@ -272,7 +274,7 @@
             <section class="dash-section dashboard-resource-section" id="generators-container">
                 <div class="dash-section-header" onclick="toggleDropdown(this)" role="button" tabindex="0" aria-expanded="true">
                     <div>
-                        <p class="dash-section-eyebrow">MAKE AND MANAGE</p>
+                        <p class="dash-section-eyebrow" data-i18n="dashboard_generators_subheading">MAKE AND MANAGE</p>
                         <span data-i18n="dashboard_generators">Generators</span>
                     </div>
             
@@ -286,7 +288,7 @@
             
                         <span>
                             <strong data-i18n="dashboard_generators_btn_invoice">Invoice</strong>
-                            <small>Create a clear invoice for a client.</small>
+                            <small data-i18n="dashboard_generators_card_invoice_desc">Create a clear invoice for a client.</small>
                         </span>
             
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -298,7 +300,7 @@
                     
                         <span>
                             <strong data-i18n="dashboard_generators_btn_contract">Contract</strong>
-                            <small>Create a starter agreement for your project.</small>
+                            <small data-i18n="dashboard_generators_card_contract_desc">Create a starter agreement for your project.</small>
                         </span>
                     
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -308,8 +310,8 @@
                             <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
                         </span>
                         <span>
-                            <strong>Income and expense chart</strong>
-                            <small>Review your financial activity.</small>
+                            <strong data-i18n="dashboard_generators_card_income_title">Income and expense chart</strong>
+                            <small data-i18n="dashboard_generators_card_income_desc">Review your financial activity.</small>
                         </span>
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
@@ -318,8 +320,8 @@
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                         </span>
                         <span>
-                            <strong data-i18n="dashboard_generators_btn_email">Email</strong>
-                            <small>Coming soon.</small>
+                            <strong data-i18n="dashboard_generators_card_email_title">Email</strong>
+                            <small data-i18n="coming_soon">Coming soon.</small>
                         </span>
                         <i class="fa-solid fa-lock" aria-hidden="true"></i>
                     </button>
@@ -336,30 +338,30 @@
                     <a class="dashboard-resource-link"
                         href="https://www.revenue.ie/en/starting-a-business/registering-for-tax/index.aspx" target="_blank"
                         rel="noopener noreferrer" data-i18n="dashboard_resource_btn_self_employ">
-                        Self-employment
+                        <span data-i18n="dashboard_resource_btn_self_employ_text">Self-employment</span>
                         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                     <a class="dashboard-resource-link" href="https://artscouncil.ie/funding/"
                         target="_blank" rel="noopener noreferrer" data-i18n="dashboard_resource_btn_arts_council">
-                        Arts Council
+                        <span data-i18n="dashboard_resource_btn_arts_council_text">Arts Council</span>
                         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                     <a class="dashboard-resource-link" href="https://visualartists.ie/opportunities/" target="_blank"
                         rel="noopener noreferrer" data-i18n="dashboard_resource_btn_current">
-                        Current opportunities
+                        <span data-i18n="dashboard_resource_btn_current_text">Current opportunities</span>
                         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>           
                     <a class="dashboard-resource-link" href="https://www.localenterprise.ie/" target="_blank"
                         rel="noopener noreferrer" data-i18n="dashboard_resource_btn_local_dev">
-                        Local Enterprise Office
+                        <span data-i18n="dashboard_resource_btn_local_dev_text">Local Enterprise Office</span>
                         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>           
                     <a class="dashboard-resource-link" href="https://visualartists.ie/" target="_blank" rel="noopener noreferrer">
-                        Visual Artists Ireland
+                        <span>Visual Artists Ireland</span>
                         <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>     
                     <a class="dashboard-resource-link" href="resources.html" data-i18n="dashboard_resource_btn_more">
-                        Browse all resources
+                        <span data-i18n="dashboard_quick_links_browse">Browse all resources</span>
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
