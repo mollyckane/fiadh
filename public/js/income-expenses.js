@@ -6,6 +6,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = '/index.html';
     }
 
+    function t(key, fallback = key) {
+        return translations?.[key] ?? fallback;
+    }
+
+    function interpolate(text, values) {
+        return text.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? '');
+    }
+
+    function getCategoryLabel(category) {
+        const categoryKeys = {
+            'Commissions': 'category_income_commissions',
+            'Grants': 'category_income_grants',
+            'Licensing': 'category_income_licensing',
+            'Event / Performance': 'category_income_event_performance',
+            'Teaching / Workshops': 'category_income_teaching_workshops',
+            'Print Sales': 'category_income_print_sales',
+
+            'Art Materials': 'category_expense_art_materials',
+            'Equipment': 'category_expense_equipment',
+            'Software / Subscriptions': 'category_expense_software_subscriptions',
+            'Travel': 'category_expense_travel',
+            'Marketing': 'category_expense_marketing',
+            'Studio Rent': 'category_expense_studio_rent',
+            'Professional Services': 'category_expense_professional_services'
+        };
+
+        const translationKey = categoryKeys[category];
+
+        return translationKey
+            ? t(translationKey, category)
+            : category;
+    }
+
     //default date to today
     function formatLocalDate(date) {
         const year = date.getFullYear();
@@ -339,7 +372,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         if (entries.length === 0) {
-            list.innerHTML = `<p class="history-empty">No entries yet.</p>`;
+            list.innerHTML = `
+                <p class="history-empty">
+                    ${t('history_no_entries', 'No entries yet.')}
+                </p>
+            `;
             return;
         }
 
@@ -351,7 +388,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const monthKey = `${entryDate.getFullYear()}-${entryDate.getMonth()}`;
 
-            const monthLabel = entryDate.toLocaleDateString('en-IE', {
+            const monthLabel = entryDate.toLocaleDateString(
+                document.documentElement.lang === 'ga' ? 'ga-IE' : 'en-IE',
+                {
                 month: 'long',
                 year: 'numeric'
             });
@@ -365,14 +404,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             const isIncome = entry._type === 'income';
 
             const title = isIncome
-                ? (entry.source || 'Untitled income')
-                : (entry.category || 'Untitled expense');
+                ? (entry.source || t('history_untitled_income', 'Untitled income'))
+                : (entry.category
+                    ? getCategoryLabel(entry.category)
+                    : t('history_untitled_expense', 'Untitled expense'));
 
             const reference = isIncome
-                ? (entry.category || 'No category')
-                : (entry.notes || 'No notes');
+                ? (entry.category
+                    ? getCategoryLabel(entry.category)
+                    : t('history_no_category', 'No category'))
+                : (entry.notes || t('history_no_notes', 'No notes'));
 
-            const displayDate = entryDate.toLocaleDateString('en-IE');
+            const locale = document.documentElement.lang === 'ga' ? 'ga-IE' : 'en-IE';
+            const displayDate = entryDate.toLocaleDateString(locale);
 
             return `
     ${separatorHtml}
@@ -395,7 +439,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </span>
 
                 <span class="status-pill ${isIncome ? 'paid' : 'overdue'}">
-                    ${isIncome ? 'Income' : 'Expense'}
+                ${isIncome
+                    ? t('history_entry_income', 'Income')
+                    : t('history_entry_expense', 'Expense')}
                 </span>
             </div>
         </div>
@@ -411,9 +457,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     class="edit-entry-btn"
                     data-id="${entry.id}"
                     data-type="${entry._type}"
-                    aria-label="Edit ${isIncome ? 'income' : 'expense'} entry: ${title}"
+                    aria-label="${interpolate(t('aria_edit_entry', 'Edit {type} entry: {title}'), {
+                        type: isIncome
+                            ? t('history_entry_income', 'income')
+                            : t('history_entry_expense', 'expense'),
+                        title
+                    })}"
                 >
-                    Edit
+                ${t('action_edit', 'Edit')}
                 </button>
 
                 <button
@@ -421,9 +472,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     class="delete-entry-btn"
                     data-id="${entry.id}"
                     data-type="${entry._type}"
-                    aria-label="Delete ${isIncome ? 'income' : 'expense'} entry: ${title}"
+                    aria-label="${interpolate(t('aria_delete_entry', 'Delete {type} entry: {title}'), {
+                        type: isIncome
+                            ? t('history_entry_income', 'income')
+                            : t('history_entry_expense', 'expense'),
+                        title
+                    })}"
                 >
-                    Delete
+                    ${t('action_delete', 'Delete')}
                 </button>
             </div>
         </div>
@@ -475,7 +531,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         editingId = entry.id;
         editingType = type;
 
-        document.getElementById('editEntryTitle').textContent = type === 'income' ? 'Edit Income Entry' : 'Edit Expense Entry';
+
+        document.getElementById('editEntryTitle').textContent =
+            type === 'income'
+                ? t('edit_income_entry_title', 'Edit Income Entry')
+                : t('edit_expense_entry_title', 'Edit Expense Entry');
         document.getElementById('editAmount').value = parseFloat(entry.amount).toFixed(2);
         document.getElementById('editCategory').value = entry.category || '';
         document.getElementById('editEntryDate').value = entry.entry_date ? entry.entry_date.split('T')[0] : '';
@@ -652,10 +712,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // ── group by category for bar/donut ──
-    function groupByKey(entries, keyName, fallback = 'Uncategorised') {
+    function groupByKey(
+        entries, 
+        keyName, 
+        fallback = t('chart_uncategorised', 'Uncategorised')
+    ) {
         const map = {};
         entries.forEach(entry => {
-            const key = (entry[keyName] || '').trim() || fallback;
+            const rawKey = (entry[keyName] || '').trim();
+
+            const key = rawKey
+                ? getCategoryLabel(rawKey)
+                : fallback;
+
             map[key] = (map[key] || 0) + parseFloat(entry.amount);
         });
         return map;
@@ -689,11 +758,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const summary = document.getElementById('chartSummary');
         summary.innerHTML = `
-            Income: <span style="color:var(--text-green)">€${totalIncome.toFixed(2)}</span>
-            &nbsp;&nbsp;
-            Expenses: <span style="color:var(--text-red)">€${totalExpenses.toFixed(2)}</span>
-            &nbsp;&nbsp;
-            Net: <span class="${net >= 0 ? 'net-positive' : 'net-negative'}">€${net.toFixed(2)}</span>
+        ${t('chart_income', 'Income')}: <span style="color:var(--text-green)">€${totalIncome.toFixed(2)}</span>
+        &nbsp;&nbsp;
+        ${t('chart_expenses', 'Expenses')}: <span style="color:var(--text-red)">€${totalExpenses.toFixed(2)}</span>
+        &nbsp;&nbsp;
+        ${t('chart_net', 'Net')}: <span class="${net >= 0 ? 'net-positive' : 'net-negative'}">€${net.toFixed(2) }</span>
         `;
 
         const incomePalette = [
@@ -711,12 +780,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 trackerChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Income'],
+                        labels: [t('chart_income', 'Income')],
                         datasets: [
-                            createBarDataset('Income (€)', [totalIncome], '#5f925f')
+                            createBarDataset(
+                                `${t('chart_income', 'Income')} (€)`,
+                                [totalIncome],
+                                '#5f925f'
+                            )
                         ]
                     },
-                    options: chartOptions('Total Income')
+                    options: chartOptions(t('chart_total_income', 'Total Income'))
                 });
                 return;
             }
@@ -725,12 +798,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 trackerChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Expenses'],
+                        labels: [t('chart_expenses', 'Expenses')],
                         datasets: [
-                            createBarDataset('Expenses (€)', [totalExpenses], '#a85f5f')
+                            createBarDataset(
+                                `${t('chart_expenses', 'Expenses')} (€)`,
+                                [totalExpenses],
+                                '#a85f5f'
+                            )
                         ]
                     },
-                    options: chartOptions('Total Expenses')
+                    options: chartOptions(t('chart_total_expenses', 'Total Expenses'))
                 });
                 return;
             }
@@ -738,13 +815,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             trackerChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Selected Period'],
+                    labels: [t('chart_selected_period', 'Selected Period')],
                     datasets: [
-                        createBarDataset('Income', [totalIncome], '#6aab6a'),
-                        createBarDataset('Expenses', [totalExpenses], '#965E5E')
+                        createBarDataset(t('chart_income', 'Income'), [totalIncome], '#6aab6a'),
+                        createBarDataset(t('chart_expenses', 'Expenses'), [totalExpenses], '#965E5E')
                     ]
                 },
-                options: chartOptions('Income vs Expenses')
+                options: chartOptions(t('chart_income_vs_expenses', 'Income vs Expenses'))
             });
             return;
         }
@@ -759,10 +836,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 data: {
                     labels,
                     datasets: [
-                        createBarDataset('Income (€)', data, incomePalette.slice(0, labels.length))
+                        createBarDataset(t('chart_income', 'Income') + ' (€)', data, incomePalette.slice(0, labels.length))
                     ]
                 },
-                options: chartOptions('Income by Category')
+                options: chartOptions(t('chart_income_by_category', 'Income by Category'))
             });
             return;
         }
@@ -777,10 +854,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 data: {
                     labels,
                     datasets: [
-                        createBarDataset('Expenses (€)', data, expensePalette.slice(0, labels.length))
+                        createBarDataset(t('chart_expenses', 'Expenses') + ' (€)', data, expensePalette.slice(0, labels.length))
                     ]
                 },
-                options: chartOptions('Expenses by Category')
+                options: chartOptions(t('chart_expenses_by_category', 'Expenses by Category'))
             });
             return;
         }
@@ -795,18 +872,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 labels,
                 datasets: [
                     createBarDataset(
-                        'Income',
+                        t('chart_income', 'Income'),
                         labels.map(label => incomeMap[label] || 0),
                         incomePalette.slice(0, labels.length)
                     ),
                     createBarDataset(
-                        'Expenses',
+                        t('chart_expenses', 'Expenses'),
                         labels.map(label => expenseMap[label] || 0),
                         expensePalette.slice(0, labels.length)
                     )
                 ]
             },
-            options: chartOptions('Income vs Expenses by Category')
+            options: chartOptions(t('chart_income_vs_expenses_by_category', 'Income vs Expenses by Category'))
         });
     }
 
@@ -853,4 +930,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     // ── initial load ──
     loadAll();
+
+    document.addEventListener('languageChanged', () => {
+        renderHistory();
+        renderChart();
+    });
 });

@@ -58,21 +58,23 @@
                     <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false"
                         aria-controls="generatorsMenu">
                         <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                        <span class="nav-label">Generators</span>
+                        <span class="nav-label" data-i18n="nav_generators">Generators</span>
                         <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
-                        <span class="nav-tooltip" role="tooltip">Generators</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_generators">Generators</span>
                     </button>
                     <ul class="nav-submenu" id="generatorsMenu" hidden>
                         <li>
                             <a href="invoices.html" class="nav-link">
                                 <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                                <span class="nav-label">Invoices</span>
+                                <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
                             </a>
                         </li>
                         <li>
                             <a href="contracts.html" class="nav-link">
                                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
-                                <span class="nav-label">Contracts</span>
+                                <span class="nav-label" data-i18n="nav_contracts">Contracts</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_contracts">Contracts</span>
                             </a>
                         </li>
                     </ul>
@@ -130,7 +132,7 @@
 
     <div class="main-content-dash page-load">
         <header>
-            <h1>Income &amp; Expenses</h1>
+            <h1 data-i18n="nav_income_expenses">Income &amp; Expenses</h1>
             <p id="live-datetime"></p>
         </header>
 
@@ -139,55 +141,55 @@
             <!-- QUICK ADD -->
             <div class="quick-add-panel">
                 <div class="quick-add-actions">
-                    <button type="button" class="quick-add-btn" id="openIncomeBarBtn">+ Quick add income</button>
-                    <button type="button" class="quick-add-btn" id="openExpenseBarBtn">+ Quick add expense</button>
+                    <button type="button" class="quick-add-btn" id="openIncomeBarBtn" data-i18n="quick_add_income">+ Quick add income</button>
+                    <button type="button" class="quick-add-btn" id="openExpenseBarBtn" data-i18n="quick_add_expense">+ Quick add expense</button>
                 </div>
         
                 <!-- INCOME EXPANDABLE BAR -->
                 <div class="tracker-bar tracker-bar-income" id="incomeQuickBar">
                     <div class="tracker-bar-top">
-                        <h2>Log Income</h2>
+                        <h2 data-i18n="income_card_title">Log Income</h2>
                         <div class="tracker-bar-actions">
-                            <button type="button" class="tracker-bar-save" id="saveIncomeBtn">Save income</button>
+                            <button type="button" class="tracker-bar-save" id="saveIncomeBtn" data-i18n="income_card_save">Save income</button>
                             <button type="button" class="tracker-bar-close" id="closeIncomeBarBtn" aria-label="Close income form">×</button>
                         </div>
                     </div>
         
                     <div class="tracker-bar-fields tracker-bar-fields-income">
                         <div class="tracker-field">
-                            <label for="incAmount">Amount (&euro;)</label>
+                            <label for="incAmount" data-i18n="card_amount">Amount (&euro;)</label>
                             <input type="number" id="incAmount" step="0.01" min="0" placeholder="0.00" />
                         </div>
         
                         <div class="tracker-field">
-                            <label for="incDate">Date</label>
+                            <label for="incDate" data-i18n="card_date">Date</label>
                             <input type="date" id="incDate" />
                         </div>
         
                         <div class="tracker-field">
-                            <label for="incSource">Source</label>
-                            <input type="text" id="incSource" placeholder="e.g. client name, platform..." />
+                            <label for="incSource" data-i18n="card_source">Source</label>
+                            <input type="text" id="incSource" placeholder="e.g. client name, platform..." data-i18n-placeholder="card_source_placeholder"/>
                         </div>
         
                         <div class="tracker-field">
-                            <label for="incCategory">Category</label>
+                            <label for="incCategory" data-i18n="card_category">Category</label>
                             <select id="incCategory">
-                                <option value="">Select a category</option>
-                                <option value="Commissions">Commissions</option>
-                                <option value="Grants">Grants</option>
-                                <option value="Licensing">Licensing</option>
-                                <option value="Event / Performance">Event / Performance</option>
-                                <option value="Teaching / Workshops">Teaching / Workshops</option>
-                                <option value="Print Sales">Print Sales</option>
-                                <option value="Other">Other (custom)</option>
+                                <option value="" data-i18n="category_select">Select a category</option>
+                                <option value="Commissions" data-i18n="category_income_commissions">Commissions</option>
+                                <option value="Grants" data-i18n="category_income_grants">Grants</option>
+                                <option value="Licensing" data-i18n="category_income_licensing">Licensing</option>
+                                <option value="Event / Performance" data-i18n="category_income_event_performance">Event / Performance</option>
+                                <option value="Teaching / Workshops" data-i18n="category_income_teaching_workshops">Teaching / Workshops</option>
+                                <option value="Print Sales" data-i18n="category_income_print_sales">Print Sales</option>
+                                <option value="Other" data-i18n="category_custom">Other (custom)</option>
                             </select>
-                            <input type="text" id="incCategoryCustom" class="custom-category-input" placeholder="Enter category" hidden />
-                            <button type="button" class="custom-category-back" id="incCategoryBackBtn" hidden>Choose from list</button>
+                            <input type="text" id="incCategoryCustom" class="custom-category-input" placeholder="Enter category" hidden data-i18n-placeholder="category_custom_placeholder"/>
+                            <button type="button" class="custom-category-back" id="incCategoryBackBtn" hidden data-i18n="category_choose">Choose from list</button>
                         </div>
         
                         <div class="tracker-field tracker-field-notes">
-                            <label for="incNotes">Notes</label>
-                            <input type="text" id="incNotes" placeholder="Optional notes..." />
+                            <label for="incNotes" data-i18n="category_notes">Notes</label>
+                            <input type="text" id="incNotes" placeholder="Optional notes..." data-i18n-placeholder="category_notes_placeholder"/>
                         </div>
                     </div>
                 </div>
@@ -195,44 +197,44 @@
                 <!-- EXPENSE EXPANDABLE BAR -->
                 <div class="tracker-bar tracker-bar-expense" id="expenseQuickBar">
                     <div class="tracker-bar-top">
-                        <h2>Log Expense</h2>
+                        <h2 data-i18n="expense_card_title">Log Expense</h2>
                         <div class="tracker-bar-actions">
-                            <button type="button" class="tracker-bar-save" id="saveExpenseBtn">Save expense</button>
+                            <button type="button" class="tracker-bar-save" id="saveExpenseBtn" data-i18n="expense_card_save">Save expense</button>
                             <button type="button" class="tracker-bar-close" id="closeExpenseBarBtn" aria-label="Close expense form">×</button>
                         </div>
                     </div>
         
                     <div class="tracker-bar-fields tracker-bar-fields-expense">
                         <div class="tracker-field">
-                            <label for="expAmount">Amount (&euro;)</label>
-                            <input type="number" id="expAmount" step="0.01" min="0" placeholder="0.00" />
+                            <label for="expAmount" data-i18n="card_amount">Amount (&euro;)</label>
+                            <input type="number" id="expAmount" step="0.01" min="0" placeholder="0.00" data-i18n-placeholder="card_amount_placeholder"/>
                         </div>
         
                         <div class="tracker-field">
-                            <label for="expDate">Date</label>
-                            <input type="date" id="expDate" />
+                            <label for="expDate" data-i18n="card_date">Date</label>
+                            <input type="date" id="expDate" data-i18n="card_date"/>
                         </div>
         
                         <div class="tracker-field">
-                            <label for="expCategory">Category</label>
+                            <label for="expCategory" data-i18n="card_category">Category</label>
                             <select id="expCategory">
-                                <option value="">Select a category</option>
-                                <option value="Art Materials">Art Materials</option>
-                                <option value="Equipment">Equipment</option>
-                                <option value="Software / Subscriptions">Software / Subscriptions</option>
-                                <option value="Travel">Travel</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Studio / Rent">Studio / Rent</option>
-                                <option value="Professional Services">Professional Services</option>
-                                <option value="Other">Other (custom)</option>
+                                <option value="" data-i18n="category_select">Select a category</option>
+                                <option value="Art Materials" data-i18n="category_expense_art_materials">Art Materials</option>
+                                <option value="Equipment" data-i18n="category_expense_equipment">Equipment</option>
+                                <option value="Software / Subscriptions" data-i18n="category_expense_software_subscriptions">Software / Subscriptions</option>
+                                <option value="Travel" data-i18n="category_expense_travel">Travel</option>
+                                <option value="Marketing" data-i18n="category_expense_marketing">Marketing</option>
+                                <option value="Studio / Rent" data-i18n="category_expense_studio_rent">Studio / Rent</option>
+                                <option value="Professional Services" data-i18n="category_expense_professional_services">Professional Services</option>
+                                <option value="Other" data-i18n="category_custom">Other (custom)</option>
                             </select>
                             <input type="text" id="expCategoryCustom" class="custom-category-input" placeholder="Enter category" hidden />
-                            <button type="button" class="custom-category-back" id="expCategoryBackBtn" hidden>Choose from list</button>
+                            <button type="button" class="custom-category-back" id="expCategoryBackBtn" hidden data-i18n="category_back_to_list">Choose from list</button>
                         </div>
         
                         <div class="tracker-field tracker-field-notes tracker-field-notes-expense">
-                            <label for="expNotes">Notes</label>
-                            <input type="text" id="expNotes" placeholder="Optional notes..." />
+                            <label for="expNotes" data-i18n="card_notes">Notes</label>
+                            <input type="text" id="expNotes" placeholder="Optional notes..." data-i18n-placeholder="card_notes_placeholder"/>
                         </div>
                     </div>
                 </div>
@@ -242,21 +244,21 @@
             <div class="tracker-card tracker-chart-card tracker-chart-top">
                 <div class="chart-controls">
                     <div class="segmented-control" id="chartViewToggle">
-                        <button class="active" data-view="income">Income</button>
-                        <button data-view="expenses">Expenses</button>
-                        <button data-view="comparison">Comparison</button>
+                        <button class="active" data-view="income" data-i18n="income">Income</button>
+                        <button data-view="expenses" data-i18n="expense">Expenses</button>
+                        <button data-view="comparison" data-i18n="income_select_comparison">Comparison</button>
                     </div>
 
                     <div class="segmented-control" id="chartModeToggle">
-                        <button data-mode="totals">Totals</button>
-                        <button class="active" data-mode="breakdown">Breakdown</button>
+                        <button data-mode="totals" data-i18n="income_select_totals">Totals</button>
+                        <button class="active" data-mode="breakdown" data-i18n="income_select_breakdown">Breakdown</button>
                     </div>
         
                     <div class="time-filter" id="timeFilter">
-                        <button data-range="week">This week</button>
-                        <button class="active" data-range="month">This month</button>
-                        <button data-range="year">This year</button>
-                        <button data-range="custom">Custom</button>
+                        <button data-range="week" data-i18n="income_select_week">This week</button>
+                        <button class="active" data-range="month" data-i18n="income_select_month">This month</button>
+                        <button data-range="year" data-i18n="income_select_year">This year</button>
+                        <button data-range="custom" data-i18n="income_select_custom">Custom</button>
                     </div>
                 </div>
         
@@ -265,7 +267,7 @@
                     <input type="date" id="customFrom" />
                     <label>To</label>
                     <input type="date" id="customTo" />
-                    <button id="applyCustomRange">Apply</button>
+                    <button id="applyCustomRange" data-i18n="income_select_custom_apply">Apply</button>
                 </div>
         
                 <div class="chart-canvas-wrapper">
@@ -277,16 +279,16 @@
         
             <!-- HISTORY -->
             <div class="invoice-history tracker-history-full">
-                <h2>History</h2>
+                <h2 data-i18n="income_history">History</h2>
             
                 <div class="history-filter">
-                    <button type="button" class="active" data-filter="all">All</button>
-                    <button type="button" data-filter="income">Income</button>
-                    <button type="button" data-filter="expense">Expenses</button>
+                    <button type="button" class="active" data-filter="all" data-i18n="income_history_all">All</button>
+                    <button type="button" data-filter="income" data-i18n="income">Income</button>
+                    <button type="button" data-filter="expense" data-i18n="expenses">Expenses</button>
                 </div>
             
                 <div class="history-list" id="historyList">
-                    <p class="history-empty">No entries yet.</p>
+                    <p class="history-empty" data-i18n="history_no_entries">No entries yet.</p>
                 </div>
             </div>
         </div>
@@ -301,28 +303,28 @@
         <div class="edit-entry-box">
             <h3 id="editEntryTitle">Edit Entry</h3>
             <div>
-                <label for="editAmount">Amount (€)</label>
+                <label for="editAmount" data-i18n="card_amount">Amount (€)</label>
                 <input type="number" id="editAmount" step="0.01" min="0" />
             </div>
             <div id="editSourceWrapper">
-                <label for="editSource">Source</label>
+                <label for="editSource" data-i18n="card_source">Source</label>
                 <input type="text" id="editSource" />
             </div>
             <div>
-                <label for="editCategory">Category</label>
+                <label for="editCategory" data-i18n="card_category">Category</label>
                 <input type="text" id="editCategory" />
             </div>
             <div>
-                <label for="editEntryDate">Date</label>
+                <label for="editEntryDate" data-i18n="card_date">Date</label>
                 <input type="date" id="editEntryDate" />
             </div>
             <div>
-                <label for="editNotes">Notes</label>
+                <label for="editNotes" data-i18n="category_notes">Notes</label>
                 <textarea id="editNotes" rows="3"></textarea>
             </div>
             <div class="edit-entry-actions">
-                <button id="editSaveBtn">Save changes</button>
-                <button id="editCancelBtn">Cancel</button>
+                <button id="editSaveBtn" data-i18n="income_select_custom_apply">Save changes</button>
+                <button id="editCancelBtn" data-i18n="action_cancel">Cancel</button>
             </div>
         </div>
     </div>
