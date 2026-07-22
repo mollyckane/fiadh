@@ -47,6 +47,7 @@
     "register_button": "Register",
     
     "login_question": "Already registered?",
+    "login_welcome": "Welcome back",
     "login_title": "Login to Fiadh",
     "login_subtitle": "Enter your account details to continue to your workspace.\n Don't have an account?\n",
     "login_label_email": "Email:",
@@ -79,6 +80,7 @@
     "dashboard_invoice_card_desc": "Turn finished work into a clear next step.",
     "dashboard_invoice_card_action": "Open invoices",
 
+    "dashboard_monthly_snapshot": "MONTHLY SNAPSHOT",
     "dashboard_track_card_subheading": "Track",
     "dashboard_track_card_title": "Log your money",
     "dashboard_track_card_desc": "Record income and expenses without losing momentum.",

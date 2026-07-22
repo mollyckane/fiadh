@@ -42,21 +42,21 @@
                 <li>
                     <a href="#mission" class="nav-link">
                         <i class="fa-regular fa-heart" aria-hidden="true"></i>
-                        <span class="nav-label">Our Mission</span>
+                        <span class="nav-label" data-i18n="nav_mission">Our Mission</span>
                     </a>
                 </li>
     
                 <li>
                     <a href="#register-section" class="nav-link">
                         <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                        <span class="nav-label">Register</span>
+                        <span class="nav-label" data-i18n="nav_register">Register</span>
                     </a>
                 </li>
     
                 <li>
                     <a href="#login-section" class="nav-link">
                         <i class="fa-solid fa-user" aria-hidden="true"></i>
-                        <span class="nav-label">Log in</span>
+                        <span class="nav-label" data-i18n="nav_login">Log in</span>
                     </a>
                 </li>
             </ul>
@@ -83,7 +83,7 @@
         <!-- MAIN CONTENT -->
         <div class="main-content landing-content page-load">
             <main class="landing-hero" id="home">
-                <p class="landing-eyebrow">A business toolkit for Irish artists</p>
+                <p class="landing-eyebrow" data-i18n="home_slogan">A business toolkit for Irish artists</p>
         
                 <h1 class="website-name">Fiadh</h1>
         
@@ -91,7 +91,7 @@
                     pronounced “fee-ah”
                 </p>
         
-                <p class="landing-tagline">
+                <p class="landing-tagline" data-i18n="home_quote">
                     Wild ideas need calm support.
                 </p>
         
@@ -103,11 +103,11 @@
         
                 <div class="landing-actions">
                     <a href="#register-section" class="landing-primary-action">
-                        Create a free account
+                        <span data-i18n="home_btn_register">Create a free account</span>
                         <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                     </a>
         
-                    <a href="#login-section" class="landing-secondary-action">
+                    <a href="#login-section" class="landing-secondary-action" data-i18n="home_btn_login">
                         Log in
                     </a>
                 </div>
@@ -116,11 +116,12 @@
             <section class="landing-section landing-steps-section" aria-labelledby="getting-started-heading">
                 <div class="landing-section-heading">
                     <div>
-                        <p class="landing-eyebrow">A simple starting point</p>
-                        <h2 id="getting-started-heading">Getting started</h2>
+                        <p class="landing-eyebrow" data-i18n="home_getting_started_slogan">A simple starting point</p>
+                        <h2 id="getting-started-heading"
+                        data-i18n="home_getting_started_title">Getting started</h2>
                     </div>
         
-                    <p>
+                    <p data-i18n="home_getting_started_desc">
                         Set up your workspace in a few small steps, then use the tools when you need them.
                     </p>
                 </div>
@@ -130,8 +131,8 @@
                         <span class="landing-step-number">1</span>
         
                         <div>
-                            <h3>Register</h3>
-                            <p>Create your free account in under a minute.</p>
+                            <h3 data-i18n="home_getting_started_card_reg_title">Register</h3>
+                            <p data-i18n="home_getting_started_card_reg">Create your free account in under a minute.</p>
                         </div>
                     </article>
         
@@ -139,8 +140,8 @@
                         <span class="landing-step-number">2</span>
         
                         <div>
-                            <h3>Personalise</h3>
-                            <p>Choose your language, colour and font theme in Settings.</p>
+                            <h3 data-i18n="home_getting_started_card_personalise_title">Personalise</h3>
+                            <p data-i18n="home_getting_started_card_personalise">Choose your language, colour and font theme in Settings.</p>
                         </div>
                     </article>
         
@@ -148,8 +149,8 @@
                         <span class="landing-step-number">3</span>
         
                         <div>
-                            <h3>Start a task</h3>
-                            <p>Create an invoice, draft a contract or add an income entry.</p>
+                            <h3 data-i18n="home_getting_started_card_task_title">Start a task</h3>
+                            <p data-i18n="home_getting_started_card_task">Create an invoice, draft a contract or add an income entry.</p>
                         </div>
                     </article>
                 </div>
@@ -159,12 +160,12 @@
                 <div class="landing-mission-card">
                     <div class="landing-section-heading">
                         <div>
-                            <p class="landing-eyebrow">Why Fiadh exists</p>
-                            <h2 id="mission-heading">Our mission</h2>
+                            <p class="landing-eyebrow" data-i18n="home_mission_slogan">Why Fiadh exists</p>
+                            <h2 id="mission-heading" data-i18n="home_mission_title">Our mission</h2>
                         </div>
                     </div>
         
-                    <p class="landing-mission-intro">
+                    <p class="landing-mission-intro" data-i18n="home_mission_desc">
                         Fiadh supports emerging and early-career freelance artists in Ireland by making the business side of
                         creative work feel manageable, not overwhelming.
                     </p>
@@ -172,17 +173,23 @@
                     <ul class="landing-mission-list">
                         <li>
                             <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                            <span data-i18n="home_mission_point_1">
                             Built for neurodivergent creatives, using plain language and low visual clutter.
+                            </span>
                         </li>
         
                         <li>
                             <i class="fa-solid fa-language" aria-hidden="true"></i>
+                            <span data-i18n="home_mission_point_2">
                             Fully bilingual English and Irish, switchable instantly without a page reload.
+                            </span>
                         </li>
         
                         <li>
                             <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                            <span data-i18n="home_mission_point_3">
                             Free to use, with no subscription or hidden paywalls.
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -190,24 +197,24 @@
                 <div class="landing-image-grid" aria-label="Fiadh tools">
                     <figure class="landing-image-card">
                         <img src="images/invoice.webp" alt="A hand turning a page marked invoice">
-                        <figcaption>Invoices</figcaption>
+                        <figcaption data-i18n="nav_invoices">Invoices</figcaption>
                     </figure>
         
                     <figure class="landing-image-card">
                         <img src="images/contract.webp" alt="A paper contract being signed with a black pen">
-                        <figcaption>Contracts</figcaption>
+                        <figcaption data-i18n="nav_contracts">Contracts</figcaption>
                     </figure>
         
                     <figure class="landing-image-card">
                         <img src="images/expenses.webp" alt="A document marked expenses">
-                        <figcaption>Income and expenses</figcaption>
+                        <figcaption data-i18n="nav_income_expenses">Income and expenses</figcaption>
                     </figure>
                 </div>
             </section>
         
             <section class="landing-auth-section" id="register-section" aria-labelledby="register-heading">
                 <div class="landing-auth-intro">
-                    <p class="landing-eyebrow">Create your space</p>
+                    <p class="landing-eyebrow" data-i18n="register_slogan">Create your space</p>
         
                     <h2 id="register-heading" data-i18n="register_title">Register for Fiadh</h2>
         
@@ -216,7 +223,6 @@
                     </p>
         
                     <p>
-                        Already have an account?
                         <a href="#login-section" data-i18n="register_login_link">Log in here</a>
                     </p>
                 </div>
@@ -258,9 +264,9 @@
                 </form>
             </section>
         
-            <section class="landing-auth-section" id="login-section" aria-labelledby="login-heading">
+            <section class="landing-auth-section" id="login-section" aria-labelledby="login-heading" data-i18n-attr="login_question" data-i18n-attr-name="data-label" data-label="Already registered?">
                 <div class="landing-auth-intro">
-                    <p class="landing-eyebrow">Welcome back</p>
+                    <p class="landing-eyebrow" data-i18n="login_welcome">Welcome back</p>
         
                     <h2 id="login-heading" data-i18n="login_title">Log in to Fiadh</h2>
         
@@ -269,7 +275,6 @@
                     </p>
         
                     <p>
-                        Do not have an account?
                         <a href="#register-section" data-i18n="login_register_link">Register here</a>
                     </p>
                 </div>
@@ -296,7 +301,7 @@
             </section>
         
             <footer>
-                <p>
+                <p data-i18n="footer">
                     Copyright &copy; 2026 Molly C Kane. All rights reserved. |
                     Terms of Service | NCI Project Module
                 </p>

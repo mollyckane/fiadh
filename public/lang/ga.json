@@ -11,7 +11,7 @@
     "home_title": "Fiadh",
     "home_title_subtitle": "fuaimnítear mar 'fee-ah'",
     "home_quote": "Ní mór tacaíocht chiúin a bheith ag smaointe fiáine.",
-    "home_title_paragraph": "Oiriúnaithe ón bhfocal <i>fia</i>, a chiallaíonn \"fianna\".<br>Is uirlis saor in aisce Béarla-Gaeilge é Fiadh d'ealaíontóirí neamhspleácha in Éirinn. Cruthaithe chun gnó na hoibre cruthaithí a dhéanamh níos simplí..",
+    "home_title_paragraph": "Oiriúnaithe ón bhfocal <i>fia</i>, a chiallaíonn \"fianna\".<br>Is uirlis saor in aisce Béarla-Gaeilge é Fiadh d'ealaíontóirí neamhspleácha in Éirinn. Cruthaithe chun gnó na hoibre cruthaithí a dhéanamh níos simplí.",
     "home_btn_register": "Cruthaigh cuntas saor in aisce",
     "home_btn_login": "Logáil isteach",
 
@@ -46,7 +46,8 @@
     "register_placeholder_password": "Cruthaigh pasfhocal láidir.",
     "register_button": "Cláraigh",
     
-    "login_question": "Cuntas agat cheana féin?",
+    "login_question": "CUNTAS AGAT CHEANA FÉIN?",
+    "login_welcome": "FÁILTE AR AIS",
     "login_title": "Logáil isteach ar Fiadh",
     "login_subtitle": "Líon an fhoirm thíos chun logáil isteach le do thoil. Níl cuntas agat?",
     "login_register_link": "Cláraigh anseo",
@@ -80,6 +81,7 @@
     "dashboard_invoice_card_desc": "Tiontaigh do chuid oibre críochnaithe i gcéim seo an chéad chéim.",
     "dashboard_invoice_card_action": "Oscail sonraisc",
 
+    "dashboard_monthly_snapshot": "LÉARGAS MÍOSÚIL",
     "dashboard_track_card_subheading": "Rianaigh",
     "dashboard_track_card_title": "Logáil do chuid airgid",
     "dashboard_track_card_desc": "Déan taifead ar ioncam agus ar chostais gan móiminteam a chailleadh.",
