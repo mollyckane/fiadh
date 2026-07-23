@@ -19,7 +19,10 @@
     <aside>
         <div class="mobile-bar">
             <h1 style="color:white;">f.</h1>
-
+            <a href="dashboard.html" class="mobile-back-link" aria-label="Go to dashboard">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back
+            </a>
             <button class="burger" id="burger-btn" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -130,16 +133,15 @@
     </aside>
 
     <div class="main-content-dash page-load">
-        <header>
-            <h1 data-i18n="contracts_title">Contract Generator</h1>
-
-            <p data-i18n="contracts_subtitle">
-                Create an editable contract draft for freelance creative work.
-            </p>
-        </header>
-
-        <main class="contracts-content">
-            <section class="contracts-intro">
+        <div class="contracts-content">
+            <header>
+                <h1 data-i18n="contracts_title">Contract Generator</h1>
+            
+                <p data-i18n="contracts_subtitle" class="contracts-intro">
+                    Create an editable contract draft for freelance creative work.
+                </p>
+                </header>
+            <section>
                 <p class="contracts-notice">
                     <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                     This creates an editable draft. Review every clause before sharing or signing.
@@ -465,7 +467,7 @@
                     </section>
                 </aside>
             </div>
-        </main>
+        </div>
 
         <footer>
             <p data-i18n="footer">

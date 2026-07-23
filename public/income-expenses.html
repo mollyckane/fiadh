@@ -24,6 +24,10 @@
     <aside>
         <div class="mobile-bar">
             <h1 style="color:white;">f.</h1>
+            <a href="dashboard.html" class="mobile-back-link" aria-label="Go to dashboard">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back
+            </a>
             <button class="burger" id="burger-btn" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -131,12 +135,12 @@
     </aside>
 
     <div class="main-content-dash page-load">
-        <header>
-            <h1 data-i18n="nav_income_expenses">Income &amp; Expenses</h1>
-            <p id="live-datetime"></p>
-        </header>
-
         <div class="tracker-content">
+            <header>
+                <h1 data-i18n="nav_income_expenses">Income &amp; Expenses</h1>
+                <p data-i18n="income_expenses_description" class="income-expenses-intro">Log your daily income and expenses to keep track of your finances. Use the charts to see a breakdown of your activity.</p>
+                <p id="live-datetime"></p>
+            </header>
 
             <!-- QUICK ADD -->
             <div class="quick-add-panel">

@@ -23,17 +23,15 @@
     <aside>
         <div class="mobile-bar">
             <h1 style="color:white;">f.</h1>
-            
-                <a href="dashboard.html" class="mobile-back-link" aria-label="Go to dashboard">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                    Back
-                </a>
-        
-                <button class="burger" id="burger-btn" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+            <a href="dashboard.html" class="mobile-back-link" aria-label="Go to dashboard">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                <span data-i18n="back_to_home">Back</span>
+            </a>
+            <button class="burger" id="burger-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
         <nav class="navbar" id="main-nav">
             <div class="nav-top">
@@ -76,7 +74,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link">
+                            <a href="contracts.html" class="nav-link">
                                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
                                 <span class="nav-label" data-i18n="nav_contracts">Contracts</span>
                                 <span class="nav-tooltip" role="tooltip" data-i18n="nav_contracts">Contracts</span>
@@ -136,17 +134,18 @@
     </aside>
 
     <div class="main-content-dash page-load">
-        <header>
-            <h1>Invoice Generator</h1>
-            <p id="live-datetime"></p>
-        </header>
         <div class="main-section">
+            <header>
+                <h1 data-i18n="invoices_title">Invoice Generator</h1>
+                <p class="invoice-intro" data-i18n="invoice_description">Create a clear invoice for your client. Save it as a draft, then export as a PDF when ready to send.</p>
+                <p id="live-datetime"></p>
+            </header>
             <section class="invoice-page">
                 <div class="invoice-page-intro">
-                    <p class="invoice-eyebrow">Business tools</p>
+                    <p class="invoice-eyebrow" data-i18n="nav_business_tools">Business tools</p>
                     <div>
-                        <h2>Create an invoice</h2>
-                        <p class="invoice-help">
+                        <h2 data-i18n="invoices_create">Create an invoice</h2>
+                        <p class="invoice-help" data-i18n="invoices_card_subtitle">
                             Add your client, payment details and line items. Totals update automatically.
                         </p>
                     </div>
@@ -156,24 +155,24 @@
                     <div class="invoice-section-heading">
                         <span class="invoice-section-number">01</span>
                         <div>
-                            <h3>Invoice details</h3>
-                            <p>Set a reference number and important dates.</p>
+                            <h3 data-i18n="invoices_invoice_details">Invoice details</h3>
+                            <p data-i18n="invoices_details_desc">Set a reference number and important dates.</p>
                         </div>
                     </div>
         
                     <div class="invoice-header">
                         <div class="invoice-id-group">
-                            <label for="invoiceNumber">Invoice number</label>
+                            <label for="invoiceNumber" data-i18n="invoices_invoice_number">Invoice number</label>
                             <input type="number" id="invoiceNumber" name="invoiceNumber">
                         </div>
         
                         <div>
-                            <label for="invoiceDate">Invoice date</label>
+                            <label for="invoiceDate" data-i18n="invoices_invoice_date">Invoice date</label>
                             <input type="date" id="invoiceDate" name="invoiceDate">
                         </div>
         
                         <div>
-                            <label for="dueDate">Due date</label>
+                            <label for="dueDate" data-i18n="invoices_due_date">Due date</label>
                             <input type="date" id="dueDate" name="dueDate">
                         </div>
                     </div>
@@ -183,24 +182,24 @@
                     <div class="invoice-section-heading">
                         <span class="invoice-section-number">02</span>
                         <div>
-                            <h3>Client details</h3>
-                            <p>Who is this invoice being sent to?</p>
+                            <h3 data-i18n="invoices_client_details">Client details</h3>
+                            <p data-i18n="invoices_client_details_desc">Who is this invoice being sent to?</p>
                         </div>
                     </div>
         
                     <div class="invoice-client">
                         <div>
-                            <label for="clientName">Client name</label>
+                            <label for="clientName" data-i18n="invoices_client_name">Client name</label>
                             <input type="text" id="clientName" name="clientName">
                         </div>
         
                         <div>
-                            <label for="clientEmail">Client email</label>
+                            <label for="clientEmail" data-i18n="invoices_client_email">Client email</label>
                             <input type="email" id="clientEmail" name="clientEmail">
                         </div>
         
                         <div class="client-address">
-                            <label for="clientAddress">Client address</label>
+                            <label for="clientAddress" data-i18n="invoices_client_address">Client address</label>
                             <textarea id="clientAddress" rows="3"></textarea>
                         </div>
                     </div>
@@ -211,14 +210,14 @@
                         <div class="invoice-section-heading-main">
                             <span class="invoice-section-number">03</span>
                             <div>
-                                <h3>Line items</h3>
-                                <p>Add the work, quantity and agreed rate.</p>
+                                <h3 data-i18n="invoices_line_items">Line items</h3>
+                                <p data-i18n="invoices_items_description">Add the work, quantity and agreed rate.</p>
                             </div>
                         </div>
         
                         <button type="button" id="addItemButton" class="add-item-button">
                             <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                            Add item
+                            <span data-i18n="invoices_line_add">Add item</span>
                         </button>
                     </div>
         
@@ -232,19 +231,19 @@
                         <div class="invoice-section-heading">
                             <span class="invoice-section-number">04</span>
                             <div>
-                                <h3>VAT</h3>
-                                <p>Enable this only where it applies to this invoice.</p>
+                                <h3 data-i18n="invoices_vat">VAT</h3>
+                                <p data-i18n="invoices_vat_desc">Enable this only where it applies to this invoice.</p>
                             </div>
                         </div>
         
                         <div class="invoice-vat-controls">
                             <label class="vat-toggle" for="vatEnabled">
                                 <input type="checkbox" id="vatEnabled">
-                                <span>Apply VAT</span>
+                                <span data-i18n="invoices_apply_vat">Apply VAT</span>
                             </label>
         
                             <div id="vatRateContainer">
-                                <label for="vatRate">VAT rate</label>
+                                <label for="vatRate" data-i18n="invoices_vat_rate">VAT rate</label>
                                 <input
                                     type="number"
                                     id="vatRate"
@@ -257,20 +256,20 @@
                     </div>
         
                     <aside class="invoice-summary" aria-label="Invoice total">
-                        <p class="invoice-summary-label">Invoice summary</p>
+                        <p class="invoice-summary-label" data-i18n="invoices_summary">Invoice summary</p>
         
                         <div class="invoice-summary-row">
-                            <span>Subtotal</span>
+                            <span data-i18n="invoices_subtotal">Subtotal</span>
                             <strong id="subtotalDisplay">0.00</strong>
                         </div>
         
                         <div class="invoice-summary-row">
-                            <span>VAT</span>
+                            <span data-i18n="invoices_vat">VAT</span>
                             <strong id="vatDisplay">0.00</strong>
                         </div>
         
                         <div class="invoice-summary-total">
-                            <span>Total</span>
+                            <span data-i18n="invoices_total">Total</span>
                             <strong id="totalDisplay">0.00</strong>
                         </div>
                     </aside>
@@ -280,23 +279,23 @@
                     <div class="invoice-section-heading">
                         <span class="invoice-section-number">05</span>
                         <div>
-                            <h3>Payment details</h3>
-                            <p>Add the current status and any notes for your client.</p>
+                            <h3 data-i18n="invoices_payment">Payment details</h3>
+                            <p data-i18n="invoices_payment_desc">Add the current status and any notes for your client.</p>
                         </div>
                     </div>
         
                     <div class="status-notes">
                         <div>
-                            <label for="status">Status</label>
+                            <label for="status" data-i18n="invoices_status">Status</label>
                             <select id="status" name="status">
-                                <option value="draft">Draft</option>
-                                <option value="sent">Sent</option>
-                                <option value="paid">Paid</option>
+                                <option value="draft" data-i18n="invoices_history_draft">Draft</option>
+                                <option value="sent" data-i18n="invoices_history_sent">Sent</option>
+                                <option value="paid" data-i18n="invoices_history_paid">Paid</option>
                             </select>
                         </div>
         
                         <div>
-                            <label for="notes">Notes</label>
+                            <label for="notes" data-i18n="invoices_notes">Notes</label>
                             <textarea id="notes" name="notes" rows="3"></textarea>
                         </div>
                     </div>
@@ -305,28 +304,28 @@
                 <div class="invoice-actions">
                     <button type="button" id="exportPdfBtn" class="invoice-secondary-action">
                         <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
-                        Export as PDF
+                        <span data-i18n="invoices_export">Export as PDF</span>
                     </button>
         
                     <button type="button" id="saveInvoiceButton" class="invoice-primary-action">
                         <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
-                        Save invoice
+                        <span data-i18n="invoices_save">Save invoice</span>
                     </button>
                 </div>
             </section>
             <section class="invoice-history">
                 <div class="invoice-history-heading">
                     <div>
-                        <span class="invoice-history-eyebrow">Business records</span>
-                        <h2>Invoice History</h2>
+                        <span class="invoice-history-eyebrow" data-i18n="invoices_slogan">Business records</span>
+                        <h2 data-i18n="invoices_history">Invoice History</h2>
                     </div>
                     <span id="invoiceHistoryCount" class="invoice-history-count"></span>      </div>
                 <div class="history-filter" id="invoiceHistoryFilter">
-                    <button data-filter="all" class="active">all</button>
-                    <button data-filter="draft">draft</button>
-                    <button data-filter="sent">sent</button>
-                    <button data-filter="paid">paid</button>
-                    <button data-filter="overdue">overdue</button>
+                    <button data-filter="all" class="active" data-i18n="invoices_history_all">All</button>
+                    <button data-filter="draft" data-i18n="invoices_history_draft">Draft</button>
+                    <button data-filter="sent" data-i18n="invoices_history_sent">Sent</button>
+                    <button data-filter="paid" data-i18n="invoices_history_paid">Paid</button>
+                    <button data-filter="overdue" data-i18n="invoices_history_overdue">Overdue</button>
                 </div>
                 <div class="history-list" id="invoiceHistoryList"></div>
             </section>
@@ -340,7 +339,7 @@
     <div id="invoiceModal" class="modal-overlay" style="display:none;">
         <div class="modal-box">
             <div class="modal-header">
-                <h2 id="modalTitle">Invoice</h2>
+                <h2 id="modalTitle" data-i18n="dashboard_generators_card_invoice_title">Invoice</h2>
                 <button type="button" id="closeModalBtn">&times;</button>
             </div>
     
@@ -348,32 +347,32 @@
                 <!-- view mode -->
                 <div id="viewMode">
                     <div class="modal-grid">
-                        <div><span class="modal-label">Invoice No.</span><span id="viewInvoiceNumber"></span></div>
-                        <div><span class="modal-label">Status</span><span id="viewStatus"></span></div>
-                        <div><span class="modal-label">Invoice Date</span><span id="viewInvoiceDate"></span></div>
-                        <div><span class="modal-label">Due Date</span><span id="viewDueDate"></span></div>
+                        <div><span class="modal-label" data-i18n="invoices_invoice_number">Invoice No.</span><span id="viewInvoiceNumber"></span></div>
+                        <div><span class="modal-label" data-i18n="invoices_status">Status</span><span id="viewStatus"></span></div>
+                        <div><span class="modal-label" data-i18n="invoices_invoice_date">Invoice Date</span><span id="viewInvoiceDate"></span></div>
+                        <div><span class="modal-label" data-i18n="invoices_due_date">Due Date</span><span id="viewDueDate"></span></div>
                     </div>
                     <hr class="modal-divider">
                     <div class="modal-grid">
-                        <div><span class="modal-label">Client</span><span id="viewClientName"></span></div>
-                        <div><span class="modal-label">Email</span><span id="viewClientEmail"></span></div>
-                        <div class="full-width"><span class="modal-label">Address</span><span id="viewClientAddress"></span></div>
+                        <div><span class="modal-label" data-i18n="invoices_client_name">Client</span><span id="viewClientName"></span></div>
+                        <div><span class="modal-label" data-i18n="invoices_client_email">Email</span><span id="viewClientEmail"></span></div>
+                        <div class="full-width"><span class="modal-label" data-i18n="invoices_client_address">Address</span><span id="viewClientAddress"></span></div>
                     </div>
                     <hr class="modal-divider">
                     <table class="modal-items-table">
                         <thead>
                             <tr>
-                                <th>Description</th>
-                                <th>Qty</th>
-                                <th>Rate</th>
-                                <th>Total</th>
+                                <th data-i18n="invoices_items_description">Description</th>
+                                <th data-i18n="invoices_items_quantity">Qty</th>
+                                <th data-i18n="invoices_items_rate">Rate</th>
+                                <th data-i18n="invoices_total">Total</th>
                             </tr>
                         </thead>
                         <tbody id="viewItemsBody"></tbody>
                     </table>
                     <div class="modal-grid">
                         <div id="viewNotesContainer">
-                            <span class="modal-label">Notes</span>
+                            <span class="modal-label" data-i18n="invoices_notes">Notes</span>
                             <p id="viewNotes"></p>
                         </div>
                         <div class="modal-totals">
@@ -388,44 +387,44 @@
                 <div id="editMode" style="display:none;">
                     <div class="modal-grid">
                         <div>
-                            <label>Invoice No.</label>
+                            <label data-i18n="invoices_invoice_number">Invoice No.</label>
                             <input type="text" id="editInvoiceNumber" />
                         </div>
                         <div>
-                            <label>Status</label>
+                            <label data-i18n="invoices_status">Status</label>
                             <select id="editStatus">
-                                <option value="draft">Draft</option>
-                                <option value="sent">Sent</option>
-                                <option value="paid">Paid</option>
+                                <option value="draft" data-i18n="invoices_status_draft">Draft</option>
+                                <option value="sent" data-i18n="invoices_status_sent">Sent</option>
+                                <option value="paid" data-i18n="invoices_status_paid">Paid</option>
                             </select>
                         </div>
                         <div>
-                            <label>Invoice Date</label>
+                            <label data-i18n="invoices_invoice_date">Invoice Date</label>
                             <input type="date" id="editInvoiceDate" />
                         </div>
                         <div>
-                            <label>Due Date</label>
+                            <label data-i18n="invoices_due_date">Due Date</label>
                             <input type="date" id="editDueDate" />
                         </div>
                     </div>
                     <hr class="modal-divider">
                     <div class="modal-grid">
                         <div>
-                            <label>Client Name</label>
+                            <label data-i18n="invoices_client_name">Client Name</label>
                             <input type="text" id="editClientName" />
                         </div>
                         <div>
-                            <label>Client Email</label>
+                            <label data-i18n="invoices_client_email">Client Email</label>
                             <input type="email" id="editClientEmail" />
                         </div>
                         <div class="full-width">
-                            <label>Client Address</label>
+                            <label data-i18n="invoices_client_address">Client Address</label>
                             <textarea id="editClientAddress" rows="3"></textarea>
                         </div>
                     </div>
                     <hr class="modal-divider">
                     <div>
-                        <p style="font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">Line Items</p>
+                        <p style="font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;" data-i18n="invoices_line_items">Line Items</p>
                         <div id="editItemsBody"></div>
                         <button type="button" id="editAddItemBtn" style="font-size:0.82rem; margin-top:0.5rem;">+ Add item</button>
                     </div>
@@ -449,7 +448,7 @@
                     
                     <hr class="modal-divider">
                     <div>
-                        <label>Notes</label>
+                        <label data-i18n="invoices_notes">Notes</label>
                         <textarea id="editNotes" rows="3"></textarea>
                     </div>
                 </div>
@@ -458,14 +457,14 @@
             <div class="modal-footer">
                 <!-- view mode buttons -->
                 <div id="viewActions">
-                    <button type="button" id="modalEditBtn">Edit</button>
-                    <button type="button" id="modalExportBtn">Export PDF</button>
-                    <button type="button" id="closeModalBtn2">Close</button>
+                    <button type="button" id="modalEditBtn" data-i18n="invoices_edit">Edit</button>
+                    <button type="button" id="modalExportBtn" data-i18n="invoices_export">Export PDF</button>
+                    <button type="button" id="closeModalBtn2" data-i18n="close">Close</button>
                 </div>
                 <!-- edit mode buttons -->
                 <div id="editActions">
-                    <button type="button" id="modalSaveBtn">Save changes</button>
-                    <button type="button" id="modalCancelBtn">Cancel</button>
+                    <button type="button" id="modalSaveBtn" data-i18n="save_changes">Save changes</button>
+                    <button type="button" id="modalCancelBtn" data-i18n="cancel">Cancel</button>
                 </div>
             </div>
         </div>
