@@ -1,6 +1,11 @@
 // mobile burger menu - only run if elements exist on this page
 const burgerBtn = document.getElementById('burger-btn');
 const mainNav = document.getElementById('main-nav');
+const savedTheme = localStorage.getItem('theme');
+
+if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
 
 if (burgerBtn && mainNav) {
     burgerBtn.addEventListener('click', () => {
@@ -88,6 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
         pageLoadElement.classList.add('is-visible');
     });
 });
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+}
 
 // live date
 function updateDateTime() {
