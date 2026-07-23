@@ -15,6 +15,7 @@
     --color-text-green: rgb(40, 103, 40);
 
     --color-background: #f4efe5;
+    --color-gradient-nav: linear-gradient(to bottom, #213a31, rgba(41, 50, 29, 0.98));
     --color-surface: #fffdf8;
     --color-brand: #213a31;
     --color-border: #6c806f;
@@ -41,7 +42,7 @@
     --shadow-sm: 0 2px 5px #00000058;
     --blur: blur(5px);
     --radius-sm: 0.5rem;
-    --radiu-md: 0.8rem;
+    --radius-md: 0.8rem;
     --radius-lg: 1.1rem;
     --shadow-text: 0 1px 2px rgba(92, 56, 56, 0.196);
 
@@ -70,25 +71,28 @@
 /* themes */
 
 [data-theme="dark"] {
+
+    /* colours */
     --color-text-primary: #e0e0e1;
     --color-text-secondary: #a6a5a2;
+    --color-text-light: #faf4f3;
+    --color-text-paragraph: #564f49;
     --subtitle: #e0dcd0ae;
     --color-text-muted: #9a9494;
-    --color-text-green: rgb(114, 186, 114);
-    --color-danger: rgb(192, 90, 90);
-    --color-focus: rgb(220, 144, 87);
-    --shadow-text: 0 1px 2px rgba(92, 56, 56, 0.196);
-    --color-background: #111111;
-    --color-brand: #322628;
-    --hover-effect-default: #d26e41;
-    --hover-effect-alt: #655b55;
+    --color-text-green: rgb(40, 103, 40);
+
+    --color-background: #1f1d19;
+    --color-gradient-nav: linear-gradient(to bottom, #1e2b26, rgba(28, 33, 21, 0.98));
     --color-surface: #1c1b1b;
+    --color-brand: #322628;
     --color-border: #413c3c;
-    --border-color-secondary: #513e3e;
     --color-surface-offset: #4b3a3486;
+    --color-focus: rgb(220, 144, 87);
+    --color-danger: rgb(196, 42, 42);
+
     --color-opacity: #10101078;
-    --input-bg: #29202097;
-    --colour-button-transparent: #322628;
+    --color-button-transparent: #322628;
+    
 }
 
 [data-theme="font-theme-1"] {
@@ -160,6 +164,8 @@ p {
 
 #live-datetime {
     margin-top: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
 }
 
 .page-load {
@@ -252,10 +258,8 @@ tr {
     flex-direction: column;
     justify-content: space-between;
     color: var(--color-text-light);
-    background: linear-gradient(to bottom,
-            #213a31,
-            rgba(41, 50, 29, 0.98));
-    border-right: solid 4px var(--border-color-secondary);
+    background: var(--color-gradient-nav);
+    border-right: solid 4px var(--color-border);
     transition: width var(--transition-default), padding var(--transition-default);
 }
 
@@ -365,14 +369,14 @@ nav ul {
 
 .nav-items a.nav-link.active,
 .btm-nav a.nav-link.active {
-    color: #27361f;
-    background: #f5ecd9;
-    border-color: rgba(255, 255, 255, 0.45);
+    color: var(--color-brand);
+    background: var(--color-background);
+    border-color: var(--color-brand);
     box-shadow: 0 5px 14px rgba(0, 0, 0, 0.16);
 }
 
 .nav-items a.nav-link.active i {
-    color: #3b4e2f;
+    color: var(--color-brand);
 }
 
 .btm-nav {
@@ -633,7 +637,7 @@ nav a,
 .mobile-back-link:hover,
 .mobile-back-link:focus-visible {
     background-color: var(--hover-effect-alt);
-    border-color: var(--border-color-secondary);
+    border-color: var(--color-border);
     outline: none;
 }
 
@@ -766,7 +770,7 @@ p.home-paragraph {
 
 .settings-card {
     background: var(--color-background);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
     padding: 1.5rem 2rem;
     display: flex;
@@ -1018,12 +1022,15 @@ div.resource-card[name="our-mission-card"] ul li {
 .main-content-dash {
     padding: 2rem;
     margin-left: var(--sidebar-width-expanded);
-    text-align: center;
     width: var(--main-width);
     max-width: 2080px;
     position: relative;
     isolation: isolate;
     overflow-x: hidden;
+}
+
+.main-content-dash header{
+    align-self: flex-start;
 }
 
 .main-content-dash button,
@@ -1144,7 +1151,7 @@ div.resource-card[name="our-mission-card"] ul li {
 .dash-calendar,
 .dash-chart {
     min-height: 310px;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1.1rem;
     background: var(--color-surface);
     box-shadow: none;
@@ -1342,7 +1349,7 @@ div.resource-card[name="our-mission-card"] ul li {
 
 .dash-chart .card-header {
     padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .dash-chart p {
@@ -1467,7 +1474,7 @@ div.resource-card[name="our-mission-card"] ul li {
 #resource-container .dash-section-header {
     align-items: center;
     padding: 0.35rem 0 0.7rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 #resource-container .dash-section-header span {
@@ -1484,7 +1491,7 @@ div.resource-card[name="our-mission-card"] ul li {
     margin: 0;
     color: var(--color-brand);
     background: var(--color-surface-offset);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 50%;
     font-size: 0.8rem;
 }
@@ -1503,7 +1510,7 @@ div.resource-card[name="our-mission-card"] ul li {
     margin: 0;
     color: var(--color-text-primary);
     background: var(--color-surface);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.8rem;
     font-size: 0.9rem;
     font-weight: 650;
@@ -1564,7 +1571,7 @@ div.resource-card[name="our-mission-card"] ul li {
 .invoice-page {
     width: 100%;
     padding: 4rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background-color: var(--color-surface);
     box-shadow: var(--shadow-sm);
@@ -1863,7 +1870,7 @@ body.sidebar-collapsed .modal-box {
 
 .modal-divider {
     border: none;
-    border-top: 1px solid var(--border-color-secondary);
+    border-top: 1px solid var(--color-border);
     margin: 1.5rem 0;
 }
 
@@ -1877,7 +1884,7 @@ body.sidebar-collapsed .modal-box {
 .modal-items-table td {
     text-align: left;
     padding: 0.4rem 0.5rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .modal-items-table th {
@@ -1980,7 +1987,7 @@ body.sidebar-collapsed .modal-box {
     width: 100%;
     max-width: 560px;
     background: var(--color-background);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
     padding: 1.5rem;
@@ -1996,7 +2003,7 @@ body.sidebar-collapsed .modal-box {
     font-size: 1rem;
     font-family: var(--font-heading);
     color: var(--color-text-primary);
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 0.5rem;
 }
 
@@ -2050,7 +2057,7 @@ body.sidebar-collapsed .modal-box {
 #editCancelBtn {
     background: transparent;
     color: var(--color-text-primary);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 #editSaveBtn {
@@ -2082,7 +2089,7 @@ body.sidebar-collapsed .modal-box {
 .tracker-card {
     border-radius: var(--radius-sm);
     background-color: var(--color-surface);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
     padding: 1.5rem 2rem;
     display: flex;
@@ -2095,7 +2102,7 @@ body.sidebar-collapsed .modal-box {
     font-size: 1rem;
     font-family: var(--font-heading);
     color: var(--color-text-primary);
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 0.35rem;
     margin-bottom: 1rem;
     text-align: center;
@@ -2128,7 +2135,7 @@ body.sidebar-collapsed .modal-box {
 
 .history-filter button {
     padding: 0.2rem 0.75rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .history-filter button.active,
@@ -2150,7 +2157,7 @@ body.sidebar-collapsed .modal-box {
     align-items: flex-start;
     font-size: 0.82rem;
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     gap: 0.5rem;
 }
 
@@ -2222,7 +2229,7 @@ body.sidebar-collapsed .modal-box {
     font-size: 0.8rem;
     background: none;
     border: none;
-    border-right: 1px solid var(--border-color-secondary);
+    border-right: 1px solid var(--color-border);
     color: var(--color-text-primary);
     cursor: pointer;
     transition: var(--transition-default);
@@ -2250,7 +2257,7 @@ body.sidebar-collapsed .modal-box {
 
 .time-filter button {
     padding: 0.2rem 0.65rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .time-filter button.active,
@@ -2339,7 +2346,7 @@ body.sidebar-collapsed .modal-box {
     pointer-events: auto;
     margin-top: 1.5rem;
     visibility: visible;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
     margin: 1.5rem auto 0;
 }
@@ -2349,7 +2356,7 @@ body.sidebar-collapsed .modal-box {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 0.55rem;
 }
 
@@ -2377,7 +2384,7 @@ body.sidebar-collapsed .modal-box {
     min-width: 2rem;
     height: 2rem;
     padding: 0;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 50%;
     background: transparent;
     color: var(--color-text-primary);
@@ -2614,7 +2621,7 @@ body.sidebar-collapsed .modal-box {
     max-width: 1080px;
     margin: 0 auto 2.5rem;
     padding: 1.25rem 0 2rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -2648,18 +2655,12 @@ body.sidebar-collapsed .modal-box {
     letter-spacing: -0.045em;
 }
 
-.dashboard-intro {
+.dashboard-intro, .income-expenses-intro, .invoice-intro, .contracts-intro {
     max-width: 34rem;
     margin-top: 1rem;
     color: var(--color-text-secondary);
     font-size: 1rem;
     line-height: 1.6;
-}
-
-.dashboard-header #live-datetime {
-    margin-top: 1rem;
-    color: var(--color-text-muted);
-    font-size: 0.82rem;
 }
 
 .focus-view-button {
@@ -2701,7 +2702,7 @@ body.sidebar-collapsed .modal-box {
     min-height: 250px;
     padding: 1.35rem;
     overflow: hidden;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1.1rem;
     background: var(--color-surface);
     color: var(--color-text-primary);
@@ -2859,7 +2860,7 @@ body.sidebar-collapsed .modal-box {
 
 .dashboard-resource-section {
     padding: 1.25rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1.1rem;
     background: var(--color-surface);
 }
@@ -2870,7 +2871,7 @@ body.sidebar-collapsed .modal-box {
     justify-content: space-between;
     gap: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     cursor: pointer;
 }
 
@@ -2898,7 +2899,7 @@ body.sidebar-collapsed .modal-box {
 .dashboard-resource-section .dash-section-header>.fa-solid {
     width: 2.5rem;
     height: 2.5rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 50%;
     display: grid;
     place-items: center;
@@ -2927,7 +2928,6 @@ body.sidebar-collapsed .modal-box {
 
 .dashboard-resource-section .dash-section-container.show {
     max-height: 800px;
-    margin-top: 1rem;
     opacity: 1;
     transform: translateY(0);
 }
@@ -2936,7 +2936,7 @@ body.sidebar-collapsed .modal-box {
     width: 100%;
     min-height: 140px;
     padding: 1rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.85rem;
     background: var(--color-background);
     color: var(--color-text-primary);
@@ -3178,7 +3178,7 @@ button.dash-resource-link:disabled small {
 
 .resource-card {
     background-color: var(--color-surface);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     padding: 1.25rem;
     display: flex;
@@ -3406,7 +3406,7 @@ a.resource-card-link:hover {
     gap: 2rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.85rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .landing-section-heading h2,
@@ -3438,7 +3438,7 @@ a.resource-card-link:hover {
     gap: 0.85rem;
     min-height: 140px;
     padding: 1.25rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
@@ -3481,7 +3481,7 @@ a.resource-card-link:hover {
 
 .landing-mission-card {
     padding: 1.5rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
@@ -3535,7 +3535,7 @@ a.resource-card-link:hover {
     flex-direction: column;
     overflow: hidden;
     margin: 0;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
@@ -3588,7 +3588,7 @@ a.resource-card-link:hover {
     flex-direction: column;
     gap: 1rem;
     padding: clamp(1.25rem, 3vw, 2rem);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
@@ -3616,7 +3616,7 @@ a.resource-card-link:hover {
     min-height: 44px;
     margin: 0;
     padding: 0.6rem 0.7rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--input-bg);
     color: var(--color-text-primary);
@@ -3714,7 +3714,7 @@ a.resource-card-link:hover {
 #register-section {
     margin-top: 2rem;
     padding-bottom: 5rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 #login-section {
@@ -3722,7 +3722,7 @@ a.resource-card-link:hover {
     width: min(100%, 1180px);
     margin-top: 0;
     padding: 5rem clamp(1.25rem, 5vw, 4rem);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-surface-offset);
 }
@@ -3742,8 +3742,8 @@ a.resource-card-link:hover {
     left: clamp(1.25rem, 5vw, 4rem);
     transform: translateY(-50%);
     padding: 0.3rem 0.7rem;
-    border: 1px solid var(--border-color-secondary);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     background: var(--color-background);
     color: var(--color-text-secondary);
     font-size: 0.75rem;
@@ -3803,7 +3803,7 @@ a.resource-card-link:hover {
         justify-content: space-between;
         background-color: var(--color-brand);
         padding: 0.75rem 1.5rem;
-        border-bottom: 4px solid var(--border-color-secondary);
+        border-bottom: 4px solid var(--color-border);
         z-index: 101;
     }
 
@@ -4137,7 +4137,7 @@ footer p {
     background: linear-gradient(135deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.55));
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1rem;
 }
 
@@ -4146,7 +4146,7 @@ footer p {
     flex-direction: column;
     gap: 0.35rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .invoice-eyebrow,
@@ -4179,7 +4179,7 @@ footer p {
     gap: 1rem;
     padding: 1.25rem;
     background-color: rgba(250, 249, 247, 0.55);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.85rem;
 }
 
@@ -4237,7 +4237,7 @@ footer p {
     padding: 0.65rem 0.75rem;
     color: var(--color-text-primary);
     background-color: rgba(255, 255, 255, 0.55);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.5rem;
     box-shadow: none;
 }
@@ -4267,7 +4267,7 @@ footer p {
     margin-bottom: 1rem;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.42);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.7rem;
 }
 
@@ -4332,7 +4332,7 @@ footer p {
     margin: 0 !important;
     padding: 0.55rem 0.75rem;
     background-color: var(--color-surface-offset);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.5rem;
     cursor: pointer;
 }
@@ -4395,7 +4395,7 @@ footer p {
     justify-content: flex-end;
     gap: 0.75rem;
     padding-top: 0.5rem;
-    border-top: 1px solid var(--border-color-secondary);
+    border-top: 1px solid var(--color-border);
 }
 
 .invoice-secondary-action {
@@ -4437,7 +4437,7 @@ footer p {
     background: linear-gradient(145deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.76));
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1rem;
     box-shadow: var(--shadow-sm);
 }
@@ -4446,7 +4446,7 @@ footer p {
     margin-bottom: 0.85rem;
     padding-bottom: 0.8rem;
     color: var(--color-text-primary);
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     font-family: var(--font-heading);
     font-size: 1.35rem;
     font-weight: 700;
@@ -4460,7 +4460,7 @@ footer p {
     gap: 0.45rem;
     margin: 0 0 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .invoice-history .history-filter button {
@@ -4469,7 +4469,7 @@ footer p {
     padding: 0.38rem 0.75rem;
     color: var(--color-text-primary);
     background: transparent;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 999px;
     font-size: 0.74rem;
     font-weight: 700;
@@ -4515,7 +4515,7 @@ footer p {
 .invoice-history-separator::after {
     flex: 1;
     height: 1px;
-    background-color: var(--border-color-secondary);
+    background-color: var(--color-border);
     content: "";
 }
 
@@ -4528,7 +4528,7 @@ footer p {
     gap: 1rem 1.5rem;
     padding: 0.9rem 1rem;
     background-color: rgba(255, 255, 255, 0.45);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.75rem;
     transition: var(--transition-default);
 }
@@ -4676,7 +4676,7 @@ footer p {
     padding: 1.25rem;
     color: var(--color-text-secondary);
     background-color: rgba(255, 255, 255, 0.38);
-    border: 1px dashed var(--border-color-secondary);
+    border: 1px dashed var(--color-border);
     border-radius: 0.65rem;
     font-size: 0.85rem;
     text-align: center;
@@ -4694,7 +4694,7 @@ footer p {
     background: linear-gradient(135deg,
             rgba(238, 234, 224, 0.8),
             rgba(250, 249, 247, 0.7));
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1rem;
     box-shadow: var(--shadow-sm);
     max-width: 1080px;
@@ -4803,18 +4803,18 @@ footer p {
     justify-content: space-between;
     gap: 0.85rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .segmented-control {
-    border-color: var(--border-color-secondary);
+    border-color: var(--color-border);
     border-radius: 999px;
 }
 
 .segmented-control button {
     min-height: 36px;
     padding: 0.4rem 0.85rem;
-    border-right-color: var(--border-color-secondary);
+    border-right-color: var(--color-border);
     font-weight: 700;
 }
 
@@ -4843,7 +4843,7 @@ footer p {
     gap: 0.75rem 1.5rem;
     padding-top: 1rem;
     margin-top: 0.5rem;
-    border-top: 1px solid var(--border-color-secondary);
+    border-top: 1px solid var(--color-border);
     font-size: 0.82rem;
 }
 
@@ -4866,7 +4866,7 @@ footer p {
 .tracker-history-full .history-filter {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .tracker-history-full .history-filter button {
@@ -4904,7 +4904,7 @@ footer p {
     display: flex;
     gap: 0.35rem;
     padding-left: 0.85rem;
-    border-left: 1px solid var(--border-color-secondary);
+    border-left: 1px solid var(--color-border);
 }
 
 .history-item-actions .edit-entry-btn,
@@ -5043,7 +5043,7 @@ footer p {
         flex-direction: row;
         width: 100%;
         padding-top: 0.75rem;
-        border-top: 1px solid var(--border-color-secondary);
+        border-top: 1px solid var(--color-border);
     }
 
     .invoice-history-total {
@@ -5133,7 +5133,7 @@ footer p {
 
     .segmented-control button {
         border-right: none;
-        border-bottom: 1px solid var(--border-color-secondary);
+        border-bottom: 1px solid var(--color-border);
     }
 
     .segmented-control button:last-child {
@@ -5221,7 +5221,7 @@ footer p {
     background: linear-gradient(145deg,
             rgba(250, 249, 247, 0.98),
             rgba(238, 234, 224, 0.82));
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 1rem;
     box-shadow: 0 1.25rem 3.5rem rgba(36, 20, 20, 0.3);
 }
@@ -5283,7 +5283,7 @@ footer p {
     min-width: 0;
     padding: 0.8rem 0.9rem;
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.65rem;
 }
 
@@ -5356,7 +5356,7 @@ footer p {
 
 .modal-divider {
     margin: 0.25rem 0;
-    border-top: 1px solid var(--border-color-secondary);
+    border-top: 1px solid var(--color-border);
 }
 
 /* Line-item table */
@@ -5364,7 +5364,7 @@ footer p {
 .modal-items-table {
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.45);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     margin-bottom: 1rem;
 }
 
@@ -5379,7 +5379,7 @@ footer p {
 
 .modal-items-table td {
     padding: 0.75rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     color: var(--color-text-primary);
     font-size: 0.84rem;
 }
@@ -5432,7 +5432,7 @@ footer p {
 #viewNotesContainer {
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.42);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.7rem;
 }
 
@@ -5452,11 +5452,13 @@ footer p {
 }
 
 #editMode label {
-    display: block;
+    display: flex;
     margin-bottom: 0.35rem;
     color: var(--color-text-primary);
     font-size: 0.78rem;
     font-weight: 700;
+    align-items: center;
+    gap: 1rem;
 }
 
 #editMode input,
@@ -5465,7 +5467,7 @@ footer p {
     min-height: 44px;
     padding: 0.65rem 0.75rem;
     background-color: rgba(255, 255, 255, 0.58);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.5rem;
 }
 
@@ -5481,7 +5483,7 @@ footer p {
 #editMode>p {
     margin: 0;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
     color: var(--color-text-primary);
 }
 
@@ -5491,7 +5493,7 @@ footer p {
     margin-bottom: 0.75rem;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.42);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.7rem;
 }
 
@@ -5530,7 +5532,7 @@ footer p {
     margin-top: 0.5rem !important;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.4);
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 0.75rem;
 }
 
@@ -5568,7 +5570,7 @@ footer p {
     z-index: 2;
     padding: 1rem 1.5rem;
     background-color: rgba(250, 249, 247, 0.96);
-    border-top: 1px solid var(--border-color-secondary);
+    border-top: 1px solid var(--color-border);
     backdrop-filter: blur(10px);
 }
 
@@ -5638,7 +5640,6 @@ footer p {
     }
 
     .modal-items-table {
-        display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
@@ -5760,7 +5761,7 @@ footer p {
     align-items: flex-start;
     gap: 0.6rem;
     padding: 0.85rem 1rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-left: 4px solid var(--color-focus);
     border-radius: var(--radius-sm);
     background: var(--color-surface-offset);
@@ -5768,6 +5769,7 @@ footer p {
     font-size: 0.88rem;
     line-height: 1.5;
     text-align: left;
+    margin-bottom: 1.5rem;
 }
 
 .contracts-notice i {
@@ -5793,7 +5795,7 @@ footer p {
     gap: 1rem;
     padding-bottom: 0.85rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .contracts-card-heading h2 {
@@ -5835,7 +5837,7 @@ footer p {
     min-height: 92px;
     width: 100%;
     padding: 1rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: transparent;
     color: var(--color-text-primary);
@@ -5888,7 +5890,7 @@ footer p {
 
 .contracts-form-section {
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .contracts-form-section:last-child {
@@ -5940,7 +5942,7 @@ footer p {
     min-height: 42px;
     margin: 0;
     padding: 0.55rem 0.65rem;
-    border: 1px solid var(--border-color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--input-bg);
     color: var(--color-text-primary);
@@ -6046,7 +6048,7 @@ footer p {
     grid-template-columns: minmax(6.5rem, 0.85fr) minmax(0, 1.15fr);
     gap: 0.75rem;
     padding: 0.65rem 0;
-    border-bottom: 1px solid var(--border-color-secondary);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .contracts-summary-list div:last-child {

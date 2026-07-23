@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tbody.innerHTML = '';
         const items = inv.items || [];
         if (items.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="4" style="color:var(--color-text-secondary); font-size:0.8rem;">No line items recorded.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4" style="color:var(--text-color-secondary); font-size:0.8rem;">No line items recorded.</td></tr>`;
         } else {
             items.forEach(item => {
                 tbody.innerHTML += `
