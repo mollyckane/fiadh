@@ -50,7 +50,6 @@ router.post('/register', async (req, res) => {
 
 // Login route - authenticate user and return JWT token
 router.post('/login', async (req, res) => {
-    console.log('Login route hit, body:', req.body);
     //pull email and password from request body
     const { email, password } = req.body;
     //validate input - check that all required fields are provided
