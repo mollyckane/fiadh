@@ -99,6 +99,31 @@ function setTheme(theme) {
     localStorage.setItem('theme', theme);
 }
 
+//reduced motion toggle
+// Reduced motion preference
+const reducedMotionToggle = document.getElementById('reduced-motion-toggle');
+
+function applyReducedMotion(enabled) {
+    document.documentElement.classList.toggle('user-reduced-motion', enabled);
+    localStorage.setItem('reducedMotion', String(enabled));
+
+    if (reducedMotionToggle) {
+        reducedMotionToggle.checked = enabled;
+    }
+}
+
+const savedReducedMotion = localStorage.getItem('reducedMotion') === 'true';
+
+if (savedReducedMotion) {
+    applyReducedMotion(true);
+}
+
+if (reducedMotionToggle) {
+    reducedMotionToggle.addEventListener('change', () => {
+        applyReducedMotion(reducedMotionToggle.checked);
+    });
+}
+
 // live date
 function updateDateTime() {
     const now = new Date();

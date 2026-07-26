@@ -6779,3 +6779,17 @@ footer p {
         text-align: left;
     }
 }
+
+/* reduced motion */
+html.user-reduced-motion {
+    scroll-behavior: auto;
+}
+
+html.user-reduced-motion *,
+html.user-reduced-motion *::before,
+html.user-reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+}
