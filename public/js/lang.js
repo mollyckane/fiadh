@@ -72,19 +72,41 @@ loadLanguage(currentLang);
 // Language toggle buttons
 const enBtn = document.getElementById('lang-en');
 const gaBtn = document.getElementById('lang-ga');
+const settingsEnBtn = document.getElementById('settings-lang-en');
+const settingsGaBtn = document.getElementById('settings-lang-ga');
+const selectedLanguageName = document.getElementById('selected-lang-name');
+const selectedLanguageStatus = document.getElementById('selected-lang-status');
 
 function setActiveLang(lang) {
-    // Load translations and apply them
     loadLanguage(lang);
-    // Update button visual state
-    if (enBtn && gaBtn) {
-        enBtn.classList.toggle('active', lang === 'en');
-        gaBtn.classList.toggle('active', lang === 'ga');
 
-        enBtn.setAttribute('aria-pressed', lang === 'en');
-        gaBtn.setAttribute('aria-pressed', lang === 'ga');
+    // Sidebar control
+    enBtn?.classList.toggle('active', lang === 'en');
+    gaBtn?.classList.toggle('active', lang === 'ga');
+
+    enBtn?.setAttribute('aria-pressed', String(lang === 'en'));
+    gaBtn?.setAttribute('aria-pressed', String(lang === 'ga'));
+
+    // Settings page control
+    settingsEnBtn?.classList.toggle('active', lang === 'en');
+    settingsGaBtn?.classList.toggle('active', lang === 'ga');
+
+    settingsEnBtn?.setAttribute('aria-pressed', String(lang === 'en'));
+    settingsGaBtn?.setAttribute('aria-pressed', String(lang === 'ga'));
+
+    // Current-language description
+    if (selectedLanguageName) {
+        selectedLanguageName.textContent = lang === 'ga' ? 'Gaeilge' : 'English';
+    }
+
+    if (selectedLanguageStatus) {
+        selectedLanguageStatus.textContent =
+            lang === 'ga' ? 'Roghnaithe faoi láthair' : 'Currently selected';
     }
 }
+
+settingsEnBtn?.addEventListener('click', () => setActiveLang('en'));
+settingsGaBtn?.addEventListener('click', () => setActiveLang('ga'));
 
 // Wire button events
 if (enBtn) {
@@ -109,3 +131,5 @@ if (enBtn && gaBtn) {
     enBtn.setAttribute('aria-pressed', currentLang === 'en');
     gaBtn.setAttribute('aria-pressed', currentLang === 'ga');
 }
+
+setActiveLang(currentLang);
