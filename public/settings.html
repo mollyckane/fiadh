@@ -62,21 +62,23 @@
                     <button type="button" class="nav-link nav-group-toggle" id="generatorsToggle" aria-expanded="false"
                         aria-controls="generatorsMenu">
                         <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                        <span class="nav-label">Generators</span>
+                        <span class="nav-label" data-i18n="nav_generators">Generators</span>
                         <i class="fa-solid fa-chevron-down nav-group-chevron" aria-hidden="true"></i>
-                        <span class="nav-tooltip" role="tooltip">Generators</span>
+                        <span class="nav-tooltip" role="tooltip" data-i18n="nav_generators">Generators</span>
                     </button>
                     <ul class="nav-submenu" id="generatorsMenu" hidden>
                         <li>
                             <a href="invoices.html" class="nav-link">
                                 <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                                <span class="nav-label">Invoices</span>
+                                <span class="nav-label" data-i18n="nav_invoices">Invoices</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_invoices">Invoices</span>
                             </a>
                         </li>
                         <li>
                             <a href="contracts.html" class="nav-link">
                                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
-                                <span class="nav-label">Contracts</span>
+                                <span class="nav-label" data-i18n="nav_contracts">Contracts</span>
+                                <span class="nav-tooltip" role="tooltip" data-i18n="nav_contracts">Contracts</span>
                             </a>
                         </li>
                     </ul>
@@ -134,56 +136,242 @@
 
     <div class="page-load main-content-dash">
         <main class="main-section settings-main">
-            <h1>Settings</h1>
-            <p class="subtitle">
-                Change settings here.
-            </p>
-            <!-- card start -->
-            <div class="settings-card">
-                <!-- Your details -->
-                <h3>Your details</h3>
-                <div>
-                    <span>Your name</span>
-                    <span id="settings-name">temp name</span>
-                    <input type="text" id="settings-name-input" hidden/>
-                    <i class="fa-solid fa-pencil"></i>
-                </div>
-                <div>
-                    <span>Your email</span>
-                    <span id="settings-email">emailuser@temp.com</span>
-                    <input type="text" id="settings-email-input" hidden />
-                    <i class="fa-solid fa-pencil"></i>
-                </div>
-                <!-- Preferences -->
-                <h3>Preferences</h3>
-                <span>Change language: </span>
-                <ul class="language-select">
-                    <li class="selected">English</li>
-                    <li>Gaeilge</li>
-                </ul>
-                <span>Change colour palette: </span>
-                <ul class="colour-palette">
-                    <li><button onclick="setTheme('light')" class="light">Light</button></li>
-                    <li><button onclick="setTheme('dark')" class="dark">Dark</button></li>
-
-                </ul>
-                <!-- Defaults -->
-                <h3>Defaults</h3>
-                <span>Default invoice template: </span>
-                <ul class="invoice-defaults">
-                    <li class="selected">Default VAT rate: <input type="number" step="0.1" min="0" value="23.00"/></li>
-                    <li>Default Currency: <input type="text" value="EUR"/></li>
-                </ul>
-                <h3>Danger Zone</h3>
-                <span style="text-decoration: underline;color: red;">Delete account</span>
-
+            <header class="settings-page-header">
+                <p class="settings-eyebrow">Account and accessibility</p>
+                <h1>Settings</h1>
+                <p class="settings-intro">
+                    Choose how Fiadh looks and feels. Your theme preference is saved
+                    on this device.
+                </p>
+            </header>
+        
+            <div class="settings-layout">
+        
+                <section class="settings-profile-card" aria-labelledby="profile-heading">
+                    <div class="settings-profile-icon" aria-hidden="true">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+        
+                    <div class="settings-profile-content">
+                        <p class="settings-section-label">Your account</p>
+                        <h2 id="profile-heading">Your details</h2>
+                        <p id="settings-name">Your name</p>
+                        <p id="settings-email">email@example.com</p>
+                    </div>
+        
+                    <button type="button" class="settings-secondary-button" disabled>
+                        Edit details
+                        <span class="settings-coming-soon">Coming soon</span>
+                    </button>
+                </section>
+        
+                <section class="settings-panel" aria-labelledby="appearance-heading">
+                    <div class="settings-panel-heading">
+                        <div class="settings-panel-icon" aria-hidden="true">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+        
+                        <div>
+                            <p class="settings-section-label">Appearance</p>
+                            <h2 id="appearance-heading">Choose a theme</h2>
+                            <p>Select the colour palette that feels most comfortable.</p>
+                        </div>
+                    </div>
+        
+                    <div class="theme-options" role="group" aria-label="Choose a colour theme">
+                        <button type="button" class="theme-option theme-light"
+                            onclick="setTheme('light')"
+                            aria-label="Use light theme">
+                            <span class="theme-swatch" aria-hidden="true"></span>
+                            <span class="theme-option-copy">
+                                <strong>Light</strong>
+                                <small>Soft and clear</small>
+                            </span>
+                        </button>
+        
+                        <button type="button" class="theme-option theme-dark"
+                            onclick="setTheme('dark')"
+                            aria-label="Use dark theme">
+                            <span class="theme-swatch" aria-hidden="true"></span>
+                            <span class="theme-option-copy">
+                                <strong>Dark</strong>
+                                <small>Lower brightness</small>
+                            </span>
+                        </button>
+        
+                        <button type="button" class="theme-option theme-pastel"
+                            onclick="setTheme('pastel-pop')"
+                            aria-label="Use pastel pop theme">
+                            <span class="theme-swatch" aria-hidden="true"></span>
+                            <span class="theme-option-copy">
+                                <strong>Pastel Pop</strong>
+                                <small>Colourful and soft</small>
+                            </span>
+                        </button>
+        
+                        <button type="button" class="theme-option theme-night"
+                            onclick="setTheme('pink-blue-dark')"
+                            aria-label="Use pink and blue dark theme">
+                            <span class="theme-swatch" aria-hidden="true"></span>
+                            <span class="theme-option-copy">
+                                <strong>Pink-Blue Dark</strong>
+                                <small>High contrast colour</small>
+                            </span>
+                        </button>
+                    </div>
+                </section>
+        
+                <section class="settings-panel" aria-labelledby="language-heading">
+                    <div class="settings-panel-heading">
+                        <div class="settings-panel-icon" aria-hidden="true">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+        
+                        <div>
+                            <p class="settings-section-label">Language</p>
+                            <h2 id="language-heading">Display language</h2>
+                            <p>Change the language used throughout Fiadh.</p>
+                        </div>
+                    </div>
+        
+                    <div class="settings-choice-row">
+                        <div>
+                            <strong id="selected-lang-name">English</strong>
+                            <p id="selected-lang-status">Currently selected</p>
+                        </div>
+        
+                        <div class="settings-segmented-control" role="group" aria-label="Display language">
+                            <button type="button" class="active" aria-pressed="true" id="settings-lang-en">
+                                English
+                            </button>
+                            <button type="button" aria-pressed="false" id="settings-lang-ga">
+                                Gaeilge
+                            </button>
+                        </div>
+                    </div>
+                </section>
+        
+                <section class="settings-panel" aria-labelledby="accessibility-heading">
+                    <div class="settings-panel-heading">
+                        <div class="settings-panel-icon" aria-hidden="true">
+                            <i class="fa-solid fa-universal-access"></i>
+                        </div>
+        
+                        <div>
+                            <p class="settings-section-label">Accessibility</p>
+                            <h2 id="accessibility-heading">Work in a way that suits you</h2>
+                            <p>These preferences are planned for a accessibility Fiadh release.</p>
+                        </div>
+                    </div>
+        
+                    <div class="settings-accessibility-grid">
+                        <div class="settings-accessibility-item inactive">
+                            <div>
+                                <strong>Focus mode</strong>
+                                <p>Reduce optional page content and visual distractions.</p>
+                            </div>
+        
+                            <button type="button" class="settings-toggle" disabled aria-pressed="false">
+                                <span aria-hidden="true"></span>
+                                <span class="visually-hidden">Focus mode unavailable</span>
+                            </button>
+                        </div>
+        
+                        <div class="settings-accessibility-item">
+                            <div>
+                                <strong>Reduced motion</strong>
+                                <p>Limit decorative animations and transitions.</p>
+                            </div>
+                        
+                            <label class="settings-toggle" for="reduced-motion-toggle">
+                                <input type="checkbox" id="reduced-motion-toggle">
+                                <span aria-hidden="true"></span>
+                                <span class="visually-hidden">Enable reduced motion</span>
+                            </label>
+                        </div>
+        
+                        <div class="settings-accessibility-item inactive">
+                            <div>
+                                <strong>Text size</strong>
+                                <p>Choose a reading size that feels comfortable.</p>
+                            </div>
+        
+                            <button type="button" class="settings-select-button" disabled>
+                                Standard
+                                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+        
+                    <p class="settings-accessibility-note">
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        Some options are proposed accessibility development features for future versions.
+                    </p>
+                </section>
+        
+                <section class="settings-panel" aria-labelledby="defaults-heading">
+                    <div class="settings-panel-heading">
+                        <div class="settings-panel-icon" aria-hidden="true">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+        
+                        <div>
+                            <p class="settings-section-label">Invoice preferences</p>
+                            <h2 id="defaults-heading">Your defaults</h2>
+                            <p>Set common values to make creating invoices quicker.</p>
+                        </div>
+                    </div>
+        
+                    <div class="settings-defaults-grid inactive">
+                        <label>
+                            Default VAT rate
+                            <span>Applied when you create a new invoice</span>
+                            <div class="settings-input-with-suffix">
+                                <input type="number" value="23" min="0" step="0.1" disabled>
+                                <span>%</span>
+                            </div>
+                        </label>
+        
+                        <label>
+                            Default currency
+                            <span>Used for totals and invoice amounts</span>
+                            <select disabled>
+                                <option selected>Euro (EUR)</option>
+                            </select>
+                        </label>
+                    </div>
+        
+                    <p class="settings-accessibility-note">
+                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                        Saving invoice defaults is planned for a future accessibility release.
+                    </p>
+                </section>
+        
+                <section class="settings-danger-zone" aria-labelledby="danger-heading">
+                    <div>
+                        <p class="settings-section-label">Account management</p>
+                        <h2 id="danger-heading">Delete account</h2>
+                        <p>
+                            Permanently remove your Fiadh account and all associated data.
+                            This cannot be undone.
+                        </p>
+                    </div>
+        
+                    <button type="button" class="settings-danger-button" disabled>
+                        Delete account
+                        <span class="settings-coming-soon">Coming soon</span>
+                    </button>
+                </section>
+        
             </div>
-        </main> 
+        </main>
         <footer>
             <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
         </footer>
     </div>
-    <script src="js/ui.js"></script>
+    <script src="js/lang.js" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/settings.js" defer></script>
 </body>
 
 </html>
