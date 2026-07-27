@@ -3213,7 +3213,7 @@ a.resource-card-link:hover  {
   flex-shrink: 0;
 }
 @media (max-width: 700px)  {
-.resource-card-featured  {
+.resource-card.resource-card-featured  {
   grid-column: span 1;
   flex-direction: column;
 }
