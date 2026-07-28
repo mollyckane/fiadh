@@ -137,9 +137,9 @@
     <div class="page-load main-content-dash">
         <main class="main-section settings-main">
             <header class="settings-page-header">
-                <p class="settings-eyebrow">Account and accessibility</p>
-                <h1>Settings</h1>
-                <p class="settings-intro">
+                <p class="settings-eyebrow" data-i18n="settings_subheading">Account and accessibility</p>
+                <h1 data-i18n="settings_title">Settings</h1>
+                <p class="settings-intro" data-i18n="settings_subtitle">
                     Choose how Fiadh looks and feels. Your theme preference is saved
                     on this device.
                 </p>
@@ -153,15 +153,15 @@
                     </div>
         
                     <div class="settings-profile-content">
-                        <p class="settings-section-label">Your account</p>
-                        <h2 id="profile-heading">Your details</h2>
-                        <p id="settings-name">Your name</p>
-                        <p id="settings-email">email@example.com</p>
+                        <p class="settings-section-label" data-i18n="settings_your_account">Your account</p>
+                        <h2 id="profile-heading" data-i18n="settings_your_details">Your details</h2>
+                        <p id="settings-name" data-i18n="settings_your_name">Your name</p>
+                        <p id="settings-email" data-i18n="settings_email">email@example.com</p>
                     </div>
         
                     <button type="button" class="settings-secondary-button" disabled>
-                        Edit details
-                        <span class="settings-coming-soon">Coming soon</span>
+                        <span data-i18n="settings_edit_details">Edit details</span>
+                        <span class="settings-coming-soon" data-i18n="coming_soon">Coming soon</span>
                     </button>
                 </section>
         
@@ -172,9 +172,9 @@
                         </div>
         
                         <div>
-                            <p class="settings-section-label">Appearance</p>
-                            <h2 id="appearance-heading">Choose a theme</h2>
-                            <p>Select the colour palette that feels most comfortable.</p>
+                            <p class="settings-section-label" data-i18n="settings_appearance">Appearance</p>
+                            <h2 id="appearance-heading" data-i18n="settings_choose_theme">Choose a theme</h2>
+                            <p data-i18n="settings_choose_theme_desc">Select the colour palette that feels most comfortable.</p>
                         </div>
                     </div>
         
@@ -184,8 +184,8 @@
                             aria-label="Use light theme">
                             <span class="theme-swatch" aria-hidden="true"></span>
                             <span class="theme-option-copy">
-                                <strong>Light</strong>
-                                <small>Soft and clear</small>
+                                <strong data-i18n="theme_light">Light</strong>
+                                <small data-i18n="theme_light_desc">Soft and clear</small>
                             </span>
                         </button>
         
@@ -194,8 +194,8 @@
                             aria-label="Use dark theme">
                             <span class="theme-swatch" aria-hidden="true"></span>
                             <span class="theme-option-copy">
-                                <strong>Dark</strong>
-                                <small>Lower brightness</small>
+                                <strong data-i18n="theme_dark">Dark</strong>
+                                <small data-i18n="theme_dark_desc">Lower brightness</small>
                             </span>
                         </button>
         
@@ -204,8 +204,8 @@
                             aria-label="Use pastel pop theme">
                             <span class="theme-swatch" aria-hidden="true"></span>
                             <span class="theme-option-copy">
-                                <strong>Pastel Pop</strong>
-                                <small>Colourful and soft</small>
+                                <strong data-i18n="theme_pastel_pop">Pastel Pop</strong>
+                                <small data-i18n="theme_pastel_pop_desc">Colourful and soft</small>
                             </span>
                         </button>
         
@@ -214,8 +214,8 @@
                             aria-label="Use pink and blue dark theme">
                             <span class="theme-swatch" aria-hidden="true"></span>
                             <span class="theme-option-copy">
-                                <strong>Pink-Blue Dark</strong>
-                                <small>High contrast colour</small>
+                                <strong data-i18n="theme_pink_blue_dark">Pink-Blue Dark</strong>
+                                <small data-i18n="theme_pink_blue_dark_desc">High contrast colour</small>
                             </span>
                         </button>
                     </div>
@@ -228,24 +228,24 @@
                         </div>
         
                         <div>
-                            <p class="settings-section-label">Language</p>
-                            <h2 id="language-heading">Display language</h2>
-                            <p>Change the language used throughout Fiadh.</p>
+                            <p class="settings-section-label" data-i18n="settings_language">Language</p>
+                            <h2 id="language-heading" data-i18n="settings_language_label">Display language</h2>
+                            <p data-i18n="settings_language_desc">Change the language used throughout Fiadh.</p>
                         </div>
                     </div>
         
                     <div class="settings-choice-row">
                         <div>
                             <strong id="selected-lang-name">English</strong>
-                            <p id="selected-lang-status">Currently selected</p>
+                            <p id="selected-lang-status" data-i18n="settings_language_selected">Currently selected</p>
                         </div>
         
                         <div class="settings-segmented-control" role="group" aria-label="Display language">
                             <button type="button" class="active" aria-pressed="true" id="settings-lang-en">
-                                English
+                                <span data-i18n="settings_language_english">English</span>
                             </button>
                             <button type="button" aria-pressed="false" id="settings-lang-ga">
-                                Gaeilge
+                                <span data-i18n="settings_language_irish">Gaeilge</span>
                             </button>
                         </div>
                     </div>
@@ -258,42 +258,42 @@
                         </div>
         
                         <div>
-                            <p class="settings-section-label">Accessibility</p>
-                            <h2 id="accessibility-heading">Work in a way that suits you</h2>
-                            <p>These preferences are planned for a accessibility Fiadh release.</p>
+                            <p class="settings-section-label" data-i18n="settings_accessibility">Accessibility</p>
+                            <h2 id="accessibility-heading" data-i18n="settings_accessibility_subheading">Work in a way that suits you</h2>
+                            <p data-i18n="settings_accessibility_desc">These preferences are planned for a accessibility Fiadh release.</p>
                         </div>
                     </div>
         
                     <div class="settings-accessibility-grid">
                         <div class="settings-accessibility-item inactive">
                             <div>
-                                <strong>Focus mode</strong>
-                                <p>Reduce optional page content and visual distractions.</p>
+                                <strong data-i18n="settings_focus_mode">Focus mode</strong>
+                                <p data-i18n="settings_focus_mode_desc">Reduce optional page content and visual distractions.</p>
                             </div>
         
                             <button type="button" class="settings-toggle" disabled aria-pressed="false">
                                 <span aria-hidden="true"></span>
-                                <span class="visually-hidden">Focus mode unavailable</span>
+                                <span class="visually-hidden" data-i18n="settings_focus_mode_unavailable">Focus mode unavailable</span>
                             </button>
                         </div>
         
                         <div class="settings-accessibility-item">
                             <div>
-                                <strong>Reduced motion</strong>
-                                <p>Limit decorative animations and transitions.</p>
+                                <strong data-i18n="settings_reduced_motion">Reduced motion</strong>
+                                <p data-i18n="settings_reduced_motion_desc">Limit decorative animations and transitions.</p>
                             </div>
                         
                             <label class="settings-toggle" for="reduced-motion-toggle">
                                 <input type="checkbox" id="reduced-motion-toggle">
                                 <span aria-hidden="true"></span>
-                                <span class="visually-hidden">Enable reduced motion</span>
+                                <span class="visually-hidden" data-i18n="settings_reduced_motion_label">Enable reduced motion</span>
                             </label>
                         </div>
         
                         <div class="settings-accessibility-item inactive">
                             <div>
-                                <strong>Text size</strong>
-                                <p>Choose a reading size that feels comfortable.</p>
+                                <strong data-i18n="settings_text_size">Text size</strong>
+                                <p data-i18n="settings_text_size_desc">Choose a reading size that feels comfortable.</p>
                             </div>
         
                             <button type="button" class="settings-select-button" disabled>
@@ -305,7 +305,7 @@
         
                     <p class="settings-accessibility-note">
                         <i class="fa-regular fa-clock" aria-hidden="true"></i>
-                        Some options are proposed accessibility development features for future versions.
+                        <span data-i18n="settings_accessibility_disclaimer">Some options are proposed accessibility development features for future versions.</span>
                     </p>
                 </section>
         
@@ -316,16 +316,16 @@
                         </div>
         
                         <div>
-                            <p class="settings-section-label">Invoice preferences</p>
-                            <h2 id="defaults-heading">Your defaults</h2>
-                            <p>Set common values to make creating invoices quicker.</p>
+                            <p class="settings-section-label" data-i18n="settings_invoice_preferences">Invoice preferences</p>
+                            <h2 id="defaults-heading" data-i18n="settings_invoice_preferences_subheading">Your defaults</h2>
+                            <p data-i18n="settings_invoice_preferences_desc">Set common values to make creating invoices quicker.</p>
                         </div>
                     </div>
         
                     <div class="settings-defaults-grid inactive">
                         <label>
-                            Default VAT rate
-                            <span>Applied when you create a new invoice</span>
+                            <span data-i18n="settings_default_vat">Default VAT rate</span>
+                            <span data-i18n="settings_default_vat_desc">Applied when you create a new invoice</span>
                             <div class="settings-input-with-suffix">
                                 <input type="number" value="23" min="0" step="0.1" disabled>
                                 <span>%</span>
@@ -333,40 +333,40 @@
                         </label>
         
                         <label>
-                            Default currency
-                            <span>Used for totals and invoice amounts</span>
+                            <span data-i18n="settings_default_currency">Default currency</span>
+                            <span data-i18n="settings_default_currency_desc">Used for totals and invoice amounts</span>
                             <select disabled>
-                                <option selected>Euro (EUR)</option>
+                                <option selected data-i18n="settings_default_currency_option">Euro (EUR)</option>
                             </select>
                         </label>
                     </div>
         
                     <p class="settings-accessibility-note">
                         <i class="fa-regular fa-clock" aria-hidden="true"></i>
-                        Saving invoice defaults is planned for a future accessibility release.
+                        <span data-i18n="settings_default_disclaimer">Saving invoice defaults is planned for a future accessibility release.</span>
                     </p>
                 </section>
         
                 <section class="settings-danger-zone" aria-labelledby="danger-heading">
                     <div>
-                        <p class="settings-section-label">Account management</p>
-                        <h2 id="danger-heading">Delete account</h2>
-                        <p>
+                        <p class="settings-section-label" data-i18n="settings_account_management">Account management</p>
+                        <h2 id="danger-heading" data-i18n="settings_delete_account">Delete account</h2>
+                        <p data-i18n="settings_delete_account_desc">
                             Permanently remove your Fiadh account and all associated data.
                             This cannot be undone.
                         </p>
                     </div>
         
                     <button type="button" class="settings-danger-button" disabled>
-                        Delete account
-                        <span class="settings-coming-soon">Coming soon</span>
+                        <span data-i18n="settings_delete_account">Delete account</span>
+                        <span class="settings-coming-soon" data-i18n="coming_soon">Coming soon</span>
                     </button>
                 </section>
         
             </div>
         </main>
         <footer>
-            <p>Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
+            <p data-i18n="footer">Copyright &copy; 2026 Molly C Kane. All rights reserved. | Terms of Service | NCI Project Module</p>
         </footer>
     </div>
     <script src="js/lang.js" defer></script>
