@@ -2700,6 +2700,7 @@ body.sidebar-collapsed .modal-box  {
   line-height: 1.6;
 }
 .focus-view-button  {
+  visibility: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
