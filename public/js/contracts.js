@@ -1,4 +1,12 @@
+/*
+This file contains the JavaScript code for managing contract templates, 
+form inputs and PDF export functionality on the contracts page. 
+It handles user authentication, form field updates, template selection
+and generates a PDF of the contract draft using jsPDF.
+*/
+
 document.addEventListener('DOMContentLoaded', async () => {
+    // make sure the user is authenticated before allowing access to the protected page
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = '/index.html';
@@ -7,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentUser = {};
 
+    // fetch the current user's information from the server using the stored JWT token
     try {
         const res = await fetch('/api/auth/me', {
             headers: { 'Authorization': `Bearer ${token}` }
@@ -18,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Could not load user:', err);
     }
 
+    // Define the form field IDs and map them to their corresponding DOM elements
     const formIds = [
         'contractTitle',
         'contractStartDate',
@@ -41,10 +51,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         'contractNotes'
     ];
 
+    // Create an object mapping form field IDs to their corresponding DOM elements
     const fields = Object.fromEntries(
         formIds.map(id => [id, document.getElementById(id)])
     );
 
+    // Define the preview elements for displaying contract information
     const previewTemplate = document.getElementById('previewTemplate');
     const previewArtistName = document.getElementById('previewArtistName');
     const previewClientName = document.getElementById('previewClientName');
@@ -61,6 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let selectedTemplate = 'commission';
 
+    // Define the content for each contract template
     const templateContent = {
         commission: {
             label: 'Commission',
@@ -162,6 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // Apply the selected template's content to the form fields and update the preview
     function applyTemplate(templateKey) {
         const template = templateContent[templateKey];
         if (!template) return;
@@ -186,6 +200,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         updatePreview();
     }
 
+    // Reset the form fields to their default values and reapply the selected template
     function resetForm() {
         Object.values(fields).forEach(field => {
             if (!field) return;
@@ -205,6 +220,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         applyTemplate(selectedTemplate);
     }
 
+    // Gather all the contract data from the form fields into a single object for export or submission
     function getContractData() {
         return {
             template: templateContent[selectedTemplate].label,
@@ -231,7 +247,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
     }
 
+    // Export the contract data to a PDF file using jsPDF library
     function exportContractPDF(contract, user) {
+        // Check if jsPDF is loaded
         if (!window.jspdf || !window.jspdf.jsPDF) {
             alert('jsPDF is not loaded. Please add the jsPDF CDN script before contracts.js.');
             return;

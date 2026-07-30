@@ -1,3 +1,10 @@
+/*
+The functionality of the dashboard page is handled here. 
+This includes the mini calendar, the income/expense chart
+and user greeting.
+*/
+
+// make sure the user is authenticated before allowing access to the protected page
 const token = localStorage.getItem('token');
 
 if (!token) {
@@ -159,6 +166,7 @@ function isCurrentMonth(value) {
     return storedDate.startsWith(`${currentYear}-${currentMonth}`);
 }
 
+// Create a dataset for the bar chart
 function createBarDataset(label, data, backgroundColor) {
     return {
         label,

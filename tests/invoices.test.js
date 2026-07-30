@@ -1,3 +1,8 @@
+/*
+This file contains unit tests for the invoice routes of the application.
+It uses Jest and Supertest to test the GET, POST and DELETE endpoints for invoices.
+*/
+
 jest.mock('../config/db', () => ({
     query: jest.fn()
 }));

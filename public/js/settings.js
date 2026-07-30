@@ -1,3 +1,7 @@
+/*
+This file handles the functionality of the settings page, including loading user data and handling logout.
+*/
+
 const token = localStorage.getItem('token');
 
 if (!token) {

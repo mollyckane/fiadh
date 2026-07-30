@@ -1,3 +1,8 @@
+/* This file is the main entry point for the application. It sets up the Express server,
+configures middleware, and defines routes for authentication, invoices, expenses, and income.
+It also serves the frontend static files and handles the home page route.
+*/
+
 require('dotenv').config();
 const express = require('express');
 const path = require('path');

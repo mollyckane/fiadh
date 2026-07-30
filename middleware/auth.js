@@ -1,3 +1,11 @@
+/*
+The middleware/auth.js file is responsible for 
+verifying the JWT token sent by the user in the request headers. 
+It checks if the token is present, verifies it using the 
+secret keyand attaches the decoded user ID to the request 
+object for use in protected routes.
+*/
+
 //import jsonwebtoken to verify token sent by user
 const jwt = require('jsonwebtoken');
 

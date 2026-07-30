@@ -1,3 +1,8 @@
+/*
+This file handles the functionality of the income/expenses page, 
+including adding, editing, deleting entries and rendering charts and history.
+*/
+
 //income-expenses.js
 document.addEventListener('DOMContentLoaded', async () => {
     // token authentication

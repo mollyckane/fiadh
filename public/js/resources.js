@@ -1,3 +1,7 @@
+/* 
+This file handles the functionality of the resources page, including filtering resources by category.
+*/
+
 // Filter pills
 const pills = document.querySelectorAll('.filter-pill');
 const sections = document.querySelectorAll('section[data-section]');

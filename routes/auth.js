@@ -1,3 +1,8 @@
+/*
+This file handles the authentication routes for the application, including user registration, login and fetching user details.
+It uses bcrypt for password hashing and jsonwebtoken for creating and verifying JWT tokens.
+*/
+
 const express = require('express');
 const router = express.Router();
 //bcrypt for password hashing - hash passwords before storing in database

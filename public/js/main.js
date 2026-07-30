@@ -1,3 +1,8 @@
+/* 
+This file handles the functionality of the login and registration pages
+including form validation, submission and token storage.
+*/
+
 const registerForm = document.querySelector('[data-form="register"]');
 const loginForm = document.querySelector('[data-form="login"]');
 

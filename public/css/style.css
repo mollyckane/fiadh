@@ -5062,6 +5062,13 @@ footer p  {
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text-primary);
 }
+
+.remove-item{
+  height: fit-content;
+  padding: 0.8rem 0;
+  align-self: flex-end;
+}
+
   /* JavaScript-generated edit line-item rows */
 #editItemsBody .item-row  {
   margin-bottom: 0.75rem;

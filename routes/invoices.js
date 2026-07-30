@@ -1,3 +1,8 @@
+/*
+This file handles the routes for the invoices functionality of the application, including creating, retrieving, updating and deleting invoices.
+It uses a verifyToken middleware to ensure that only authenticated users can access these routes.
+*/
+
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');

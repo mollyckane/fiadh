@@ -1,3 +1,9 @@
+/* 
+The functionality of the invoices page is handled here. 
+This includes adding/removing line items, calculating totals, 
+saving invoices, and generating PDFs.
+*/
+
 // invoices.js
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -119,6 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         });
 
+        // wire remove button
         const removeBtn = row.querySelector('.remove-item');
         if (removeBtn) {
             removeBtn.addEventListener('click', () => {

@@ -1,3 +1,8 @@
+/*
+This file handles the language switching functionality for the application.
+It loads the appropriate language JSON file and applies translations to the page.
+*/
+
 let currentLang = localStorage.getItem('lang') || 'en';
 let translations = {};
 

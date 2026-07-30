@@ -1,3 +1,8 @@
+/*
+This file contains unit tests for the authentication routes of the application.
+It uses Jest and Supertest to test the register, login and user details endpoints.
+*/
+
 jest.mock('../config/db', () => ({
     query: jest.fn()
 }));

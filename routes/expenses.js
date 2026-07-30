@@ -1,3 +1,8 @@
+/*
+This file handles the routes for the expenses functionality of the application, including logging, retrieving, updating and deleting expense entries.
+It uses a verifyToken middleware to ensure that only authenticated users can access these routes.
+*/
+
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');

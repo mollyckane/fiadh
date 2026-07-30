@@ -1,3 +1,9 @@
+/*
+This file handles the UI functionality of the application, including the mobile burger menu, 
+desktop sidebar collapse, generators submenu, logout functionality, fade elements, 
+theme switching, reduced motion toggle and live date display.
+*/
+
 // mobile burger menu - only run if elements exist on this page
 const burgerBtn = document.getElementById('burger-btn');
 const mainNav = document.getElementById('main-nav');
